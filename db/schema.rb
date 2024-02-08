@@ -10,9 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_08_123436) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_08_125517) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "availabilities", force: :cascade do |t|
+    t.date "date"
+    t.datetime "time_from"
+    t.datetime "time_to"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_availabilities_on_user_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "topic_id", null: false
+    t.datetime "time"
+    t.bigint "availability_id", null: false
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["availability_id"], name: "index_bookings_on_availability_id"
+    t.index ["topic_id"], name: "index_bookings_on_topic_id"
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "language"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "nationalities", force: :cascade do |t|
+    t.string "nationality"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "taggings", force: :cascade do |t|
     t.bigint "tag_id"
@@ -45,6 +78,36 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_08_123436) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "topics", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "tag_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_topics_on_tag_id"
+    t.index ["user_id"], name: "index_topics_on_user_id"
+  end
+
+  create_table "user_languages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "language_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["language_id"], name: "index_user_languages_on_language_id"
+    t.index ["user_id"], name: "index_user_languages_on_user_id"
+  end
+
+  create_table "user_nationalities", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "nationality_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nationality_id"], name: "index_user_nationalities_on_nationality_id"
+    t.index ["user_id"], name: "index_user_nationalities_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -57,5 +120,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_08_123436) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "availabilities", "users"
+  add_foreign_key "bookings", "availabilities"
+  add_foreign_key "bookings", "topics"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "topics", "tags"
+  add_foreign_key "topics", "users"
+  add_foreign_key "user_languages", "languages"
+  add_foreign_key "user_languages", "users"
+  add_foreign_key "user_nationalities", "nationalities"
+  add_foreign_key "user_nationalities", "users"
 end

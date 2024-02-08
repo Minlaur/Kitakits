@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  topic: one
+  time: 2024-02-08 21:55:17
+  availability: one
+  status: 1
+
+two:
+  topic: two
+  time: 2024-02-08 21:55:17
+  availability: two
+  status: 1
