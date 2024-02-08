@@ -48,6 +48,17 @@ gem "bootsnap", require: false
 # use bootstrap for styling
 gem "bootstrap", "~> 5.1.3"
 
+# use font-awesome for icons
+gem "font-awesome-sass", "~> 6.1"
+
+# use simple form for forms
+gem "simple_form"
+
+# use kaminari for pagination
+gem "kaminari"
+
+# use acts-as-taggable-on for tagging
+gem 'acts-as-taggable-on', '~> 9.0'
 # Use Pry as your rails console [
 
 # Use Sass to process CSS
