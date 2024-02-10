@@ -10,6 +10,11 @@ class TopicsController < ApplicationController
     end
   end
 
+  def show
+    @topic = Topic.find(params[:id])
+    @topics = Topic.all
+  end
+
   def edit
     @topic = Topic.find(params[:id])
   end
