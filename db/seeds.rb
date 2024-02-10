@@ -26,17 +26,17 @@ topic_tags = [
 ]
 
 topics = [
-  { description: "Hi, I'm a digital nomad and I need advice on my visa renewal application process."},
-  { description: "Hola, necesito ayuda con mi declaración de impuestos."},
-  { description: "Bonjour, je suis un étudiant et j'ai besoin d'aide pour rédiger mon CV."},
-  { description: "Hallo, ich bin ein digitaler Nomade und ich brauche Hilfe bei meinem Visumverlängerungsantrag."},
-  { description: "Olá, sou um estudante e preciso de ajuda para escrever meu currículo."},
-  { description: "Привет, я цифровой кочевник и мне нужна помощь в моем заявлении на продление визы."},
-  { description: "你好，我是一名数字游牧民，我需要帮助办理签证续签申请。"},
-  { description: "안녕하세요, 나는 디지털 노마드이며 비자 갱신 신청 절차에 대한 도움이 필요합니다."},
-  { description: "Hi, I am non-Japanese and work for a large corporation. I am having trouble with cross-functional commuication with a different department. I would like to discuss and get advice."},
-  { description: "Hola, soy no japonés y trabajo para una gran corporación. Tengo problemas con la comunicación interfuncional con un departamento diferente. Me gustaría discutir y obtener consejos."},
-  { description: "Bonjour, je suis non japonais et travaille pour une grande entreprise. J'ai des problèmes de communication interfonctionnelle avec un département différent. J'aimerais discuter et obtenir des conseils."},
+  { name: "Visa renewal",description: "Hi, I'm a digital nomad and I need advice on my visa renewal application process."},
+  { name:"Visa", description: "Hola, necesito ayuda con mi declaración de impuestos."},
+  { name:"Visa", description: "Bonjour, je suis un étudiant et j'ai besoin d'aide pour rédiger mon CV."},
+  { name:"Visa", description: "Hallo, ich bin ein digitaler Nomade und ich brauche Hilfe bei meinem Visumverlängerungsantrag."},
+  { name:"Visa", description: "Olá, sou um estudante e preciso de ajuda para escrever meu currículo."},
+  { name:"Visa", description: "Привет, я цифровой кочевник и мне нужна помощь в моем заявлении на продление визы."},
+  { name:"Visa", description: "你好，我是一名数字游牧民，我需要帮助办理签证续签申请。"},
+  { name:"Visa", description: "안녕하세요, 나는 디지털 노마드이며 비자 갱신 신청 절차에 대한 도움이 필요합니다."},
+  { name:"Work communication", description: "Hi, I am non-Japanese and work for a large corporation. I am having trouble with cross-functional commuication with a different department. I would like to discuss and get advice."},
+  { name:"Comunicación laboral", description: "Hola, soy no japonés y trabajo para una gran corporación. Tengo problemas con la comunicación interfuncional con un departamento diferente. Me gustaría discutir y obtener consejos."},
+  { name:"Communication professionnelle", description: "Bonjour, je suis non japonais et travaille pour une grande entreprise. J'ai des problèmes de communication interfonctionnelle avec un département différent. J'aimerais discuter et obtenir des conseils."},
 ]
 
 
@@ -110,11 +110,10 @@ users = [
 
 users.each do |user_data|
   user = User.create(user_data)
-  t = user.topics.new(topics.sample)
-  # t.tag_list.add("visa","taxes","employment")
+  t = Topic.new(topics.sample)
+  t.user = user.sample
   t.save
   if user.sempai
-    # tags.each do |t|
     user.expertises_list.add(*expert_tags)
     user.save
   else
