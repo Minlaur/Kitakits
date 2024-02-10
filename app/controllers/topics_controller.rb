@@ -14,7 +14,16 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
   end
 
-  def
+  def update
+    @topics = Topic.all
+    @topic = Topic.find(params[:id])
+    if @topic.update(topic_params)
+      redirect_to topics_path
+      # once we have the requests#index to include params[:mine],change to redirect_to topics_path(mine: true)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   private
 
