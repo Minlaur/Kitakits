@@ -1,7 +1,7 @@
-<h1>Topics#create</h1>
-<p>Find me in app/views/topics/create.html.erb</p>
-
 <%# 1. create a simple form for the topic %>
+<%# 2. render it from the home page%>
+<%# 3. update the tag in the TopicsController#create%>
+<%# 4. update the style%>
 <div>
   <%= simple_form_for @topic do |f| %>
     <%= f.input :name, label: false, placeholder: 'Visa Concern'%>
