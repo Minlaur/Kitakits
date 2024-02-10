@@ -8,11 +8,21 @@
 require 'net/http'
 require 'json'
 
-tags = [
+expert_tags = [
    "visa",
    "taxes",
    "employment",
    "communication",
+]
+
+topic_tags = [
+  "visa",
+  "taxes",
+  "employment",
+  "communication",
+  "marriage",
+  "childcare",
+  "lifestyle",
 ]
 
 topics = [
@@ -105,7 +115,10 @@ users.each do |user_data|
   t.save
   if user.sempai
     # tags.each do |t|
-    user.expertises_list.add(*tags)
+    user.expertises_list.add(*expert_tags)
+    user.save
+  else
+    user.tags_list.add(*topic_tags)
     user.save
   end
   # t.each do |tag|
