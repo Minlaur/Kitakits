@@ -8,7 +8,12 @@
 require 'net/http'
 require 'json'
 
-t = Tag.create
+tags = [
+   "visa",
+   "taxes",
+   "employment",
+   "communication",
+]
 
 topics = [
   { description: "Hi, I'm a digital nomad and I need advice on my visa renewal application process."},
@@ -34,7 +39,8 @@ users = [
     last_name: "Portal",
     email: "mail@mail.com",
     password: "secret",
-    password_confirmation: "secret"
+    password_confirmation: "secret",
+    sempai: true,
   },
   { first_name: "Laurice",
     last_name: "Port",
@@ -94,7 +100,16 @@ users = [
 
 users.each do |user_data|
   user = User.create(user_data)
-  user.topics.create(topics.sample)
+  t = user.topics.new(topics.sample)
+  # t.tag_list.add("visa","taxes","employment")
+  t.save
+  if user.sempai
+    # tags.each do |t|
+    user.expertises_list.add(*tags)
+    user.save
+  end
+  # t.each do |tag|
+  #   ActsAsTaggableOn::Tag.new(tags[:category]).save
 end
 puts "done"
 
@@ -119,46 +134,46 @@ puts "done"
 # puts "done"
 
 # fetching api to create random nationalities with restapi
-puts "Creating nationalities..."
-10.times do |i|
-  url = URI("https://randomuser.me/api/")
-  response = Net::HTTP.get(url)
-  json = JSON.parse(response)
-  results = json["results"]
-  results.each do |result|
-  Nationality.create(
-    nationality: result["nat"],
-  )
-  end
-end
-puts "done"
+# puts "Creating nationalities..."
+# 10.times do |i|
+#   url = URI("https://randomuser.me/api/")
+#   response = Net::HTTP.get(url)
+#   json = JSON.parse(response)
+#   results = json["results"]
+#   results.each do |result|
+#   Nationality.create(
+#     nationality: result["nat"],
+#   )
+#   end
+# end
+# puts "done"
 
-puts "Creating Languages..."
+# puts "Creating Languages..."
 
-languages = [
-  {language: "English"},
-  {language: "Spanish"},
-  {language: "French"},
-  {language: "German"},
-  {language: "Portuguese"},
-  {language: "Russian"},
-  {language: "Chinese"},
-  {language: "Korean"},
-  {language: "Spanish"},
-  {language: "French"},
-]
+# languages = [
+#   {language: "English"},
+#   {language: "Spanish"},
+#   {language: "French"},
+#   {language: "German"},
+#   {language: "Portuguese"},
+#   {language: "Russian"},
+#   {language: "Chinese"},
+#   {language: "Korean"},
+#   {language: "Spanish"},
+#   {language: "French"},
+# ]
 
-10.times do |i|
-  selected_language = languages.sample
-    Language.create!(
-      # language
-    language: selected_language[:language],
-  )
-  end
-  puts "done"
+# 10.times do |i|
+#   selected_language = languages.sample
+#     Language.create!(
+#       # language
+#     language: selected_language[:language],
+#   )
+#   end
+#   puts "done"
 
 
-puts "Creating Topics..."
+# puts "Creating Topics..."
 
 
 # 10.times do |i|
@@ -169,27 +184,25 @@ puts "Creating Topics..."
 # end
 # puts "done"
 
-puts "Creating availabilities..."
-10.times do |i|
-Availablity.create!(
-  # start_date, end_date, status
-  datetime: Faker::Time.between(from: DateTime.now - 5, to: DateTime.now),
-  status: "pending",
-  user: User.all.sample,
-  service: Service.all.sample
-)
-end
-puts "done"
+# puts "Creating availabilities..."
+# 10.times do |i|
+# Availablity.create!(
+#   # start_date, end_date, status
+#   datetime: Faker::Time.between(from: DateTime.now - 5, to: DateTime.now),
+#   status: "pending",
+#   user: User.all.sample,
+#   service: Service.all.sample
+# )
+# end
+# puts "done"
 
-puts "Creating bookings..."
-10.times do |i|
-Booking.create!(
-  # start_date, end_date, status, comment
-  comment: Faker::Lorem.paragraph(sentence_count: 1),
-  datetime: Faker::Time.between(from: DateTime.now - 5, to: DateTime.now),
-  status: "pending",
-  user: User.all.sample,
-  topic: Topic.all.sample
-)
-end
-puts "done"
+# puts "Creating bookings..."
+# 10.times do |i|
+# Booking.create!(
+#   # start_date, end_date, status, comment
+#   status: "pending",
+#   user: User.all.sample,
+#   topic: Topic.all.sample
+# )
+# end
+# puts "done"

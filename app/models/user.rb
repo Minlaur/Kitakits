@@ -11,4 +11,5 @@ class User < ApplicationRecord
   has_many :nationalities, through: :user_nationality
   has_many :topics, dependent: :destroy
   has_many :availabilities, dependent: :destroy
+  acts_as_taggable_on :expertises
 end
