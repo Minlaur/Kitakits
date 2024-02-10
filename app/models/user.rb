@@ -1,3 +1,4 @@
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -6,9 +7,8 @@ class User < ApplicationRecord
 
   has_many :user_languages
   has_many :languages, through: :user_languages
-  has_many :user_nationality
-  has_many :nationality, through: :user_nationality
-  has_many :requests, dependent: :destroy
-  has_many :bookings, through: :requests, dependent: :destroy
-  has_many :availability, dependent: :destroy
+  has_many :user_nationalities
+  has_many :nationalities, through: :user_nationality
+  has_many :topics, dependent: :destroy
+  has_many :availabilities, dependent: :destroy
 end
