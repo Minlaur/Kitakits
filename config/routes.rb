@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'pages/home'
   get 'topics/create'
   get 'topics/edit'
   devise_for :users
