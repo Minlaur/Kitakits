@@ -17,7 +17,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :topics, dependent: :destroy
-
+  acts_as_taggable_on :expertises
 
   validates :first_name, presence: true, length: { minimum: 1, maximum: 100 }
   validates :last_name, presence: true, length: { minimum: 1, maximum: 100 }
