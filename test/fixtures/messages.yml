@@ -1,9 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
-  language: one
+  content: MyText
+  bookings: one
+  users: one
 
 two:
-  user: two
-  language: two
+  content: MyText
+  bookings: two
+  users: two
