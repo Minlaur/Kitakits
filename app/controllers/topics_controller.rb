@@ -20,6 +20,7 @@ class TopicsController < ApplicationController
   private
 
   def topic_params
-    params.require(:topic).permit(:name, :description)
+    params.require(:topic).permit(:name, :description).merge(user_id: current_user.id, status: "pending")
+    # .merge; assuming we can submit a topic if signed in?
   end
 end

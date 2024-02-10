@@ -1,4 +1,11 @@
 <h1>Topics#create</h1>
 <p>Find me in app/views/topics/create.html.erb</p>
 
-<%# 1. create a simple form  %>
+<%# 1. create a simple form for the topic %>
+<div>
+  <%= simple_form_for @topic do |f| %>
+    <%= f.input :name, label: false, placeholder: 'Visa Concern'%>
+    <%= f.input :description, label: false , placeholder: 'I made a mistake about my visa renewal. What should I do?'%>
+    <%= f.button :submit, class: 'btn-primary', value: 'submit'%>
+  <% end %>
+</div>
