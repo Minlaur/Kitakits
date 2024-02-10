@@ -1,3 +1,16 @@
+# Topic
+# Table name: topics
+#  id          :bigint           not null, primary key
+#  name        :string
+#  description :text
+#  status      :integer          default("pending")
+#  user_id     :bigint
+#  tag_id      :bigint
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+
 class Topic < ApplicationRecord
   belongs_to :tag
   belongs_to :user

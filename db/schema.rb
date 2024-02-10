@@ -67,12 +67,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_10_075843) do
   create_table "topics", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.bigint "tag_id", null: false
     t.bigint "user_id", null: false
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tag_id"], name: "index_topics_on_tag_id"
     t.index ["user_id"], name: "index_topics_on_user_id"
   end
 
@@ -102,6 +100,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_10_075843) do
   add_foreign_key "messages", "bookings"
   add_foreign_key "messages", "users"
   add_foreign_key "taggings", "tags"
-  add_foreign_key "topics", "tags"
   add_foreign_key "topics", "users"
 end
