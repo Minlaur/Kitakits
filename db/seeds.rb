@@ -50,78 +50,112 @@ users = [
     email: "mail@mail.com",
     password: "secret",
     password_confirmation: "secret",
+    language: "French",
+    nationality: "France",
+    nickname: "Marty",
+    occupation: "immigration lawyer",
+    background: "20 yrs of experience in Japan",
+    web_url: "www.linkedin.com/MartinPortal",
     sempai: true,
   },
   { first_name: "Laurice",
     last_name: "Port",
     email: "abc@mail.com",
     password: "secret",
-    password_confirmation: "secret"
+    password_confirmation: "secret",
+    language: "English",
+    nationality: "Philippines",
+    nickname: "Laur",
+    occupation: "immigration consultant",
+    background: "10 yrs of experience in the city ward office",
+    web_url: "www.linkedin.com/LauricePort",
+    sempai: true,
   },
-  { first_name: "Dillion",
+  { first_name: "Taro",
     last_name: "Porto",
     email: "123@mail.com",
     password: "secret",
-    password_confirmation: "secret"
+    password_confirmation: "secret",
+    language: "Japanese",
+    nationality: "Japan",
+    nickname: "T-man",
+    occupation: "HR director",
+    background: "15 yrs of experience in a non-Japanese corporation",
+    web_url: "www.linkedin.com/TaroPorto",
+    sempai: true,
   },
-  { first_name: "Jon",
+  { first_name: "Javier",
     last_name: "Port",
     email: "abc123@mail.com",
     password: "secret",
-    password_confirmation: "secret"
+    password_confirmation: "secret",
+    language: "English",
+    nationality: "Mexico",
+    nickname: "Javo",
   },
   { first_name: "Mary",
     last_name: "Porto",
     email: "456@mail.com",
     password: "secret",
-    password_confirmation: "secret"
+    password_confirmation: "secret",
+    language: "English",
+    nationality: "United Kingdom",
+    nickname: "Britgirl",
   },
   { first_name: "Min",
     last_name: "Portal",
     email: "abc456@mail.com",
     password: "secret",
-    password_confirmation: "secret"
+    password_confirmation: "secret",
+    language: "English",
+    nationality: "South Korea",
+    nickname: "Gamer",
   },
   { first_name: "Ali",
     last_name: "Portal",
     email: "789@mail.com",
     password: "secret",
-    password_confirmation: "secret"
+    password_confirmation: "secret",
+    language: "English",
+    nationality: "Indonesia",
+    nickname: "Traveller",
   },
-  { first_name: "Jun",
+  { first_name: "Annu",
     last_name: "Port",
     email: "abc789@mail.com",
     password: "secret",
-    password_confirmation: "secret"
+    password_confirmation: "secret",
+    language: "English",
+    nationality: "India",
+    nickname: "Designer",
   },
-  { first_name: "Bob",
-    last_name: "Porto",
-    email: "xyz@mail.com",
-    password: "secret",
-    password_confirmation: "secret"
-  },
-  { first_name: "Coco",
-    last_name: "Portal",
-    email: "xyz123@mail.com",
-    password: "secret",
-    password_confirmation: "secret"
-  },
+  # { first_name: "Bob",
+  #   last_name: "Porto",
+  #   email: "xyz@mail.com",
+  #   password: "secret",
+  #   password_confirmation: "secret"
+  # },
+  # { first_name: "Mimi",
+  #   last_name: "Portal",
+  #   email: "xyz123@mail.com",
+  #   password: "secret",
+  #   password_confirmation: "secret"
+  # },
 ]
 
 users.each do |user_data|
-  user = User.create(user_data)
+  user = User.create!(user_data)
   t = Topic.new(topics.sample)
-  t.user = user.sample
+  t.tag_list.add(topic_tags.sample)
+  t.user = user
   t.save
   if user.sempai
-    user.expertises_list.add(*expert_tags)
+    user.expertise_list.add(expert_tags.sample, expert_tags.sample)
     user.save
   else
-    user.tags_list.add(*topic_tags)
+    user.tag_list.add(topic_tags.sample)
     user.save
   end
-  # t.each do |tag|
-  #   ActsAsTaggableOn::Tag.new(tags[:category]).save
 end
 puts "done"
 
@@ -159,30 +193,6 @@ puts "done"
 #   end
 # end
 # puts "done"
-
-# puts "Creating Languages..."
-
-# languages = [
-#   {language: "English"},
-#   {language: "Spanish"},
-#   {language: "French"},
-#   {language: "German"},
-#   {language: "Portuguese"},
-#   {language: "Russian"},
-#   {language: "Chinese"},
-#   {language: "Korean"},
-#   {language: "Spanish"},
-#   {language: "French"},
-# ]
-
-# 10.times do |i|
-#   selected_language = languages.sample
-#     Language.create!(
-#       # language
-#     language: selected_language[:language],
-#   )
-#   end
-#   puts "done"
 
 
 # puts "Creating Topics..."
