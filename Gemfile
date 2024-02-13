@@ -62,7 +62,10 @@ gem 'acts-as-taggable-on', '~> 9.0'
 # Use Pry as your rails console [
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
+
+# add browser prefixes to CSS rules
+gem "autoprefixer-rails"
 
 #gem faker
 gem 'faker'
