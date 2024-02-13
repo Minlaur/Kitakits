@@ -13,10 +13,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
-    recommended_sempais = User.where(sempai: true)
-    recommended_sempais.each do |sempai|
     # currently built and will conflict here, update with Martin's
-    end
   end
 
   def edit
