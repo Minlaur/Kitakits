@@ -4,14 +4,14 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   get '/dashboard', to: 'dashboard#show'
-  resources :users, only: [:show] do
-    get '/sempais/:id', to: 'users#show', as: 'sempai'
-  end
+
+  get '/sempais/:id', to: 'users#show', as: 'sempai'
 
   namespace :sempais do
-    get '/bookings', to: 'bookings#index'
-    get '/bookings/:id', to: 'bookings#show'
-    patch '/bookings/:id', to: 'bookings#update'
+    get '/bookings', to: 'sempais/bookings#index'
+    get '/bookings/:id', to: 'sempais/bookings#show'
+    patch '/bookings/:id', to: 'sempais/bookings#update'
+
   end
 
   resources :topics, except: [:index, :destroy] do
@@ -22,6 +22,5 @@ Rails.application.routes.draw do
   resources :bookings, only: [:index, :show, :edit, :update] do
     resources :messages, only: [:create]
   end
-
-  resources :users, only: [:show, :edit, :update]
+  resources :bookings, only: [:show, :edit, :update,]
 end

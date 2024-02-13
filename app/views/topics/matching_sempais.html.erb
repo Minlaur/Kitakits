@@ -4,7 +4,7 @@
       <div class="card-body">
         <h5 class="card-title"><%= sempai.nickname %></h5>
         <p class="card-text"><%= sempai.background %></p>
-        <%= link_to "see more", user_sempai_path(sempai.id), class: "btn" %>
+        <%= link_to "see more", sempai_path(sempai.id), class: "btn" %>
       </div>
     </div>
   <% end %>

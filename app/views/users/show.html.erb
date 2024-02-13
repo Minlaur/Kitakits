@@ -1,1 +1,21 @@
-<h1>hahaha</h1>
+<div class="container d-flex gap-4">
+  <div class="col-6">
+    <div class="card mt-5">
+      <div class="card-body">
+        <h5 class="card-title fs-2"> <%= @sempai.nickname %></h5>
+        <p class="card-text"> <%= @sempai.background %></p>
+        <p class="card-text"><%= @sempai.occupation %></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-4 flex-column">
+    <div>
+      <%= link_to "BOOKING", root_path, class:"btn btn-success" %>
+    </div>
+    <div class="card mt-5">
+      <div class="card-body">
+        <p>HERE REVIEW</p>
+      </div>
+    </div>
+  </div>
+</div>
