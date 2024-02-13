@@ -17,6 +17,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :topics, dependent: :destroy
+  acts_as_taggable_on :tags
   acts_as_taggable_on :expertises
 
   validates :first_name, presence: true, length: { minimum: 1, maximum: 100 }
@@ -24,7 +25,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { minimum: 1, maximum: 100 }
   validates :password, presence: true, length: { minimum: 1, maximum: 100 }
   validates :nationality, presence: true
-  validates :Language, presence: true
+  validates :language, presence: true
   validates :nickname, presence: true
 
   if :sempai == true
