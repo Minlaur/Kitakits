@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
       redirect_to topics_path
       # should update, redirect to the recommended sempais path
     else
-      render :new, status: :unprocessable_entity
+      render :show, status: :unprocessable_entity
     end
   end
 
