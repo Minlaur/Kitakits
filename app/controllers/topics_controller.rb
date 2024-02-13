@@ -30,6 +30,11 @@ class TopicsController < ApplicationController
     end
   end
 
+  def matching_sempais
+    @topic = Topic.find(params[:topic_id])
+    @sempais = User.where(sempai: true)
+  end
+
   private
 
   def topic_params
