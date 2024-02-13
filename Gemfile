@@ -73,6 +73,9 @@ gem 'faker'
 # Use dotenv to load environment variables from .env into ENV in development [
 gem "dotenv-rails"
 
+# Use Cloudinary for image upload
+gem "cloudinary"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
