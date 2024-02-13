@@ -4,7 +4,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_params)
     @topic.user = current_user
     if @topic.save
-      redirect_to topics_path
+      redirect_to @topic
       # should update, redirect to the recommended sempais path
     else
       render 'pages/home', status: :unprocessable_entity
@@ -13,7 +13,10 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
-    @topics = Topic.all
+    recommended_sempais = User.where(sempai: true)
+    recommended_sempais.each do |sempai|
+    # currently built and will conflict here, update with Martin's
+    end
   end
 
   def edit
