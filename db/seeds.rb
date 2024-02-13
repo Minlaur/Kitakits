@@ -26,7 +26,7 @@ topic_tags = [
 ]
 
 topics = [
-  { name: "Visa renewal",description: "Hi, I'm a digital nomad and I need advice on my visa renewal application process."},
+  { name: "Visa renewal", description: "Hi, I'm a digital nomad and I need advice on my visa renewal application process."},
   { name:"Visa", description: "Hola, necesito ayuda con mi declaración de impuestos."},
   { name:"Visa", description: "Bonjour, je suis un étudiant et j'ai besoin d'aide pour rédiger mon CV."},
   { name:"Visa", description: "Hallo, ich bin ein digitaler Nomade und ich brauche Hilfe bei meinem Visumverlängerungsantrag."},
@@ -51,6 +51,11 @@ users = [
     password: "secret",
     password_confirmation: "secret",
     sempai: true,
+    occupation: "Engineer",
+    background: "I have been working in Japan for 5 years and I have experience in the tech industry.",
+    nationality: "French",
+    language: "French",
+    nickname: "Marty"
   },
   { first_name: "Laurice",
     last_name: "Port",

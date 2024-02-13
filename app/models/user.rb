@@ -24,14 +24,12 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { minimum: 1, maximum: 100 }
   validates :password, presence: true, length: { minimum: 1, maximum: 100 }
   validates :nationality, presence: true
-  validates :Language, presence: true
+  validates :language, presence: true
   validates :nickname, presence: true
 
   if :sempai == true
     validates :occupation, presence: true
     validates :background, presence: true
-    validates :start_date_time, presence: true
-    validates :end_date_time, presence: true
   end
 
 
@@ -42,6 +40,10 @@ class User < ApplicationRecord
 
   def end_date_time
     end_date_time.strftime("%m/%d/%Y at %I:%M%p")
+  end
+
+  def sempai?
+    self.sempai == true
   end
 
 end
