@@ -2,17 +2,18 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
+    @topic.user = current_user
     if @topic.save
-      redirect_to topics_path
+      redirect_to @topic
       # should update, redirect to the recommended sempais path
     else
-      render :new, status: :unprocessable_entity
+      render 'pages/home', status: :unprocessable_entity
     end
   end
 
   def show
     @topic = Topic.find(params[:id])
-    @topics = Topic.all
+    # currently built and will conflict here, update with Martin's
   end
 
   def edit
