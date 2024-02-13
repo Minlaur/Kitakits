@@ -24,7 +24,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { minimum: 1, maximum: 100 }
   validates :password, presence: true, length: { minimum: 1, maximum: 100 }
   validates :nationality, presence: true
-  validates :Language, presence: true
+  validates :language, presence: true
   validates :nickname, presence: true
 
   if :sempai == true
