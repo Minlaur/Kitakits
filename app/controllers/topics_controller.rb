@@ -4,7 +4,8 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_params)
     @topic.user = current_user
     if @topic.save
-      redirect_to topic_path(@topic)
+      # @topic = Topic.find(params[:topic_id])
+      redirect_to @topic
       # should update, redirect to the recommended sempais path
     else
       render 'pages/home', status: :unprocessable_entity
@@ -12,7 +13,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:id])
+    # @topic = Topic.find(params[:topic_id])
     # currently built and will conflict here, update with Martin's
     matching_sempais
   end
@@ -33,7 +34,7 @@ class TopicsController < ApplicationController
   end
 
   def matching_sempais
-    @topic = Topic.find(params[:topic_id])
+    @topic = Topic.find(params[:id])
     @sempais = User.where(sempai: true)
   end
 
