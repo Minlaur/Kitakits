@@ -4,7 +4,6 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_params)
     @topic.user = current_user
     if @topic.save
-      raise
       # @topic = Topic.find(params[:topic_id])
       redirect_to @topic
       # should update, redirect to the recommended sempais path
