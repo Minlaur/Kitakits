@@ -6,8 +6,9 @@
 <p> <%= @topic.description %> </p>
 <%# update with the details of sempais here %>
 <%# render what Martin has made %>
-<%= render 'topics/matching_sempais', sempais: @sempais %>
-<div class="card-deck">
+<%= render 'matching_sempais', sempais: [@sempais] %>
+<p> sample </p>
+<%# <div class="card-deck">
   <div class="card">
     <img class="card-img-top" src="http://www.orseu-concours.com/451-615-thickbox/selor-test-de-raisonnement-abstrait-niveau-a.jpg" alt="Company logo">
     <div class="card-body">
