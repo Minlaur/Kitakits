@@ -78,6 +78,7 @@
       top: 12px;
       right: 30px;
   }
+
   .single_advisor_profile .single_advisor_details_info h6 {
       margin-bottom: 0.25rem;
       -webkit-transition-duration: 500ms;
@@ -99,6 +100,19 @@
           font-size: 12px;
       }
   }
+
+  // .container_expertise {
+  //   display: flex;
+  //   justify-content: flex-end;
+  // }
+
+  // .card-tags {
+  //   background-color: aquamarine;
+  //   width: 50px;
+  //   text-align: center;
+  //     }
+
+
   .single_advisor_profile:hover .advisor_thumb::after,
   .single_advisor_profile:focus .advisor_thumb::after {
       background-color: #070a57;

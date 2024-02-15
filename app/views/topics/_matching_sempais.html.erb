@@ -24,15 +24,16 @@
           <div class="single_advisor_details_info">
             <h6><%= sempai.nickname %></h6>
             <p class="designation"><%= sempai.occupation %> / <%= sempai.background %></p>
-            <% sempai.expertises.each do |expertise| %>
-              <ul>
-                <li> <%= expertise %> </li>
-              </ul>
-            <% end %>
+            <div class="container_expertise" style= "display: inline-flex;">
+              <% sempai.expertises.each do |expertise| %>
+                <div class="card-tags" style= "background-color: aliceblue; text-align: center;border-radius:  8em;padding: 2px 8px;font-size: .8em;bottom: 8px;right: 25px;"> <%= expertise %> </div>
+              <% end %>
+            </div>
           </div>
-          <%= link_to "see more", sempai_path(sempai.id), class: "btn" %>
         </div>
+        <%= link_to "see more", sempai_path(sempai.id), class: "btn" %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+</div>
 </div>
