@@ -24,6 +24,11 @@
           <div class="single_advisor_details_info">
             <h6><%= sempai.nickname %></h6>
             <p class="designation"><%= sempai.occupation %> / <%= sempai.background %></p>
+            <% sempai.expertises.each do |expertise| %>
+              <ul>
+                <li> <%= expertise %> </li>
+              </ul>
+            <% end %>
           </div>
           <%= link_to "see more", sempai_path(sempai.id), class: "btn" %>
         </div>
