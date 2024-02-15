@@ -49,7 +49,7 @@ gem "bootsnap", require: false
 gem "bootstrap", "~> 5.1.3"
 
 # use font-awesome for icons
-gem "font-awesome-sass", "~> 6.1"
+gem "font-awesome-sass", "~> 6.5.1"
 
 # use simple form for forms
 gem "simple_form"
