@@ -1,0 +1,23 @@
+<%# simple form for a new booking %>
+  <div>
+    <%= simple_form_for([@topic, @booking]) do |f| %>
+    <%= f.error_notification %>
+    <div class="form">
+      <div class="form-inputs flex-grow-1">
+        <div class="form flex-grow-1">
+          <%# Needs to display the availabilites from the Sempai availability creation %>
+          <%= f.input :start_date,
+          as: :string,
+          input_html: { data: { controller: "datepicker" } },
+            enableTime: true, label: false, placeholder: 'Start date', class: "form_border"%>
+          <%= f.input :end_date,
+            as: :string,
+          input_html: { data: { controller: "datepicker" } }, label: false, placeholder: 'End date', class: "form-border" %>
+          <div class="form-actions">
+            <%= f.button :submit, class: 'btn-primary', value: 'Reserve' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
