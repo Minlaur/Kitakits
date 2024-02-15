@@ -1,5 +1,6 @@
 <div class="container">
-  <p> Sample </p>
+  <h2> Meet Your Recommended Sempai </h2>
+  <p> </p>
   <% @sempais.each do |sempai| %>
     <div class="card mt-5">
       <div class="card-body">
@@ -9,4 +10,36 @@
       </div>
     </div>
   <% end %>
+</div>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-lg-6">
+      <!-- Section Heading-->
+      <div class="section_heading text-center wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+        <h3>Meet Your Recommended <span> Sempai</span></h3>
+        <p>A solution might be a chat or a booking away.</p>
+        <div class="line"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <% @sempais.each do |sempai| %>
+      <!-- Single Advisor-->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+          <!-- Team Thumb-->
+          <div class="advisor_thumb"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+            <!-- Social Info-->
+            <div class="social-info"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a></div>
+          </div>
+          <!-- Team Details-->
+          <div class="single_advisor_details_info">
+            <h6><%= sempai.nickname %></h6>
+            <p class="designation"><%= sempai.occupation %> / <%= sempai.background %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
