@@ -291,7 +291,7 @@ DEPENDENCIES
   debug
   devise
   faker
-  font-awesome-sass (~> 6.1)
+  font-awesome-sass (~> 6.5.1)
   importmap-rails
   jbuilder
   kaminari
