@@ -2,15 +2,12 @@
 <%# 2. User needs to show the recommended list of 2-3sempai %>
 <%# 3. User should be able to edit/update the topic name and description %>
 <%# 3.a. Optional - recommended list of sempai updates according to the updated topic %>
-<div class="row justify-content-center">
-  <div class="col-12 col-sm-8 col-lg-6">
-    <div class="section_heading text-center wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-      <h1><%= @topic.name %></h1>
-      <h3><%= @topic.description %></h3>
-      <div class="line">
-        <hr>
-      </div>
-    </div>
+<div class="justify-content-center">
+  <div class="chat-message">
+    <h1><%= @topic.name %></h1>
+    <h3><%= @topic.description %></h3>
+    <hr>
   </div>
+  <%# </div> %>
 </div>
 <%= render 'matching_sempais', sempais: [@sempais] %>
