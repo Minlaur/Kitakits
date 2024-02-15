@@ -16,6 +16,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :picture
   has_many :topics, dependent: :destroy
   acts_as_taggable_on :tags
   acts_as_taggable_on :expertises
