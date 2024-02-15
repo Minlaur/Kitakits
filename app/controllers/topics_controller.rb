@@ -4,6 +4,7 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_params)
     @topic.user = current_user
     if @topic.save
+      # @topic = Topic.find(params[:topic_id])
       redirect_to @topic
       # should update, redirect to the recommended sempais path
     else
@@ -12,8 +13,8 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:id])
-    # currently built and will conflict here, update with Martin's
+    # @topic = Topic.find(params[:topic_id])
+    matching_sempais
   end
 
   def edit
@@ -32,7 +33,7 @@ class TopicsController < ApplicationController
   end
 
   def matching_sempais
-    @topic = Topic.find(params[:topic_id])
+    @topic = Topic.find(params[:id])
     @sempais = User.where(sempai: true)
   end
 
