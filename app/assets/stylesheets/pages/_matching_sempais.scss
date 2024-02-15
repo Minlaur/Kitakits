@@ -1,6 +1,3 @@
-body{margin-top:20px;
-  background:#eee;
-  }
   .single_advisor_profile {
       position: relative;
       margin-bottom: 50px;
@@ -17,7 +14,7 @@ body{margin-top:20px;
       border-radius: 15px 15px 0 0;
       margin: 0 auto;
       padding: 30px 30px 0 30px;
-      background-color: #3f43fd;
+      background-color: #337ccf;
       overflow: hidden;
   }
   .single_advisor_profile .advisor_thumb::after {
@@ -54,7 +51,7 @@ body{margin-top:20px;
   }
   .single_advisor_profile .advisor_thumb .social-info a:hover,
   .single_advisor_profile .advisor_thumb .social-info a:focus {
-      color: #3f43fd;
+      color: #337ccf;
   }
   .single_advisor_profile .advisor_thumb .social-info a:last-child {
       padding-right: 0;
@@ -76,7 +73,7 @@ body{margin-top:20px;
       z-index: 1;
       width: 50px;
       height: 3px;
-      background-color: #3f43fd;
+      background-color: #337ccf;
       content: "";
       top: 12px;
       right: 30px;
