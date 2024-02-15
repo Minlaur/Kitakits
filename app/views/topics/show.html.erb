@@ -2,11 +2,14 @@
 <%# 2. User needs to show the recommended list of 2-3sempai %>
 <%# 3. User should be able to edit/update the topic name and description %>
 <%# 3.a. Optional - recommended list of sempai updates according to the updated topic %>
-<div class="row justify-content-center">
-  <div class="chat-message">
-    <h1><%= @topic.name %></h1>
-    <h3><%= @topic.description %></h3>
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url()">
+  <div class="row justify-content-center">
+    <div class="chat-message">
+      <h1><%= @topic.name %></h1>
+      <p><%= @topic.description %></p>
+    </div>
   </div>
-  <%# </div> %>
 </div>
-<%= render 'matching_sempais', sempais: [@sempais] %>
+<div class="container" style="margin-top: 50px;">
+  <%= render 'matching_sempais', sempais: [@sempais] %>
+</div>
