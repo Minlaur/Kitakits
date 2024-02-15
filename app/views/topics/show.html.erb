@@ -1,4 +1,13 @@
 <%# 1. User needs to see the topic at the top %>
 <%# 2. User needs to show the recommended list of 2-3sempai %>
 <%# 3. User should be able to edit/update the topic name and description %>
-    <%# 3.a. Optional - recommended list of sempai updates according to the updated topic %>
+<%# 3.a. Optional - recommended list of sempai updates according to the updated topic %>
+<div class="justify-content-center">
+  <div class="chat-message">
+    <h1><%= @topic.name %></h1>
+    <h3><%= @topic.description %></h3>
+    <hr>
+  </div>
+  <%# </div> %>
+</div>
+<%= render 'matching_sempais', sempais: [@sempais] %>

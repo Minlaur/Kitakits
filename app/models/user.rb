@@ -16,6 +16,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :picture
   has_many :topics, dependent: :destroy
   acts_as_taggable_on :tags
   acts_as_taggable_on :expertises
@@ -31,8 +32,6 @@ class User < ApplicationRecord
   if :sempai == true
     validates :occupation, presence: true
     validates :background, presence: true
-    validates :start_date_time, presence: true
-    validates :end_date_time, presence: true
   end
 
 
@@ -43,6 +42,10 @@ class User < ApplicationRecord
 
   def end_date_time
     end_date_time.strftime("%m/%d/%Y at %I:%M%p")
+  end
+
+  def sempai?
+    self.sempai == true
   end
 
 end

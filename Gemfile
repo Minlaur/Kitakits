@@ -49,7 +49,7 @@ gem "bootsnap", require: false
 gem "bootstrap", "~> 5.1.3"
 
 # use font-awesome for icons
-gem "font-awesome-sass", "~> 6.1"
+gem "font-awesome-sass", "~> 6.5.1"
 
 # use simple form for forms
 gem "simple_form"
@@ -69,6 +69,12 @@ gem "autoprefixer-rails"
 
 #gem faker
 gem 'faker'
+
+# Use dotenv to load environment variables from .env into ENV in development [
+gem "dotenv-rails"
+
+# Use Cloudinary for image upload
+gem "cloudinary"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

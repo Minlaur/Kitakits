@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  # devise_for :users
+  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: "pages#home"
 
   get '/dashboard', to: 'dashboard#show'
 
-  get '/sempais/:id', to: 'users#show'
+  get '/sempais/:id', to: 'users#show', as: 'sempai'
 
   namespace :sempais do
     get '/bookings', to: 'sempais/bookings#index'
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :topics, except: [:index, :destroy] do
     resources :bookings, only: [:new, :create]
+    get '/sempais', to: 'topics#matching_sempais'
   end
 
   resources :bookings, only: [:index, :show, :edit, :update] do

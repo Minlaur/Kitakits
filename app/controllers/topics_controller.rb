@@ -2,17 +2,19 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
+    @topic.user = current_user
     if @topic.save
-      redirect_to topics_path
+      # @topic = Topic.find(params[:topic_id])
+      redirect_to @topic
       # should update, redirect to the recommended sempais path
     else
-      render :new, status: :unprocessable_entity
+      render 'pages/home', status: :unprocessable_entity
     end
   end
 
   def show
-    @topic = Topic.find(params[:id])
-    @topics = Topic.all
+    # @topic = Topic.find(params[:topic_id])
+    matching_sempais
   end
 
   def edit
@@ -28,6 +30,11 @@ class TopicsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def matching_sempais
+    @topic = Topic.find(params[:id])
+    @sempais = User.where(sempai: true)
   end
 
   private
