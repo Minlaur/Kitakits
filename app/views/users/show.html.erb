@@ -1,18 +1,25 @@
-<div class="container d-flex gap-4">
-  <div class="col-6">
-    <div class="card mt-5">
+<div class="container-cards d-flex gap-5 mt-5 h-100">
+  <div class="main-card flex-2 w-100">
+    <div class="card shadow">
       <div class="card-body">
         <h5 class="card-title fs-2"> <%= @sempai.nickname %></h5>
         <p class="card-text"> <%= @sempai.background %></p>
         <p class="card-text"><%= @sempai.occupation %></p>
+        <div class="flag-container d-flex gap-2">
+          <span class="fi fi-fr"></span>
+          <span class="fi fi-jp"></span>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-4 flex-column">
-    <div>
-      <%= link_to "BOOKING", root_path, class:"btn btn-success" %>
+  <div class="aside-container d-flex flex-column w-100 gap-5">
+    <div class="link-cards card shadow">
+      <div class="link p-3 d-flex justify-content-center gap-5">
+        <%= link_to "BOOKING", root_path, class:"btn btn-info mr-2" %>
+        <%= link_to "I'm' online", root_path, class:"btn btn-primary" %>
+      </div>
     </div>
-    <div class="card mt-5">
+    <div class="card shadow review-cards d-flex h-100">
       <div class="card-body">
         <p>HERE REVIEW</p>
       </div>
