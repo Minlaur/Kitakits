@@ -1,5 +1,5 @@
 .footer {
-  position: fixed;
+  position: relative;
      left: 0;
      bottom: 0;
      width: 100%;
@@ -7,7 +7,7 @@
      align-items: center;
     justify-content: center;
      height: 100px;
-     padding: 0px 50px;
+     padding: 1em;
      color: rgba(0,0,0,0.3);
 
   .footer-container {
@@ -16,7 +16,12 @@
     align-items: center;
     margin: 0 auto;
 
+    .footer-brand {
+      margin-right: 8px;
+    }
+
     .footer-nav {
+      margin: 3px;
       a {
         color: rgba(0,0,0,0.3);
         margin: 0 10px;
@@ -29,8 +34,9 @@
     }
 
     .footer-social {
-      display: flex;
+      display: inline-flex;
       align-items: center;
+      margin-left: 8px;
       a {
         margin: 0 5px;
         i {
