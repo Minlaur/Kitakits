@@ -57,11 +57,6 @@ users = [
     background: "20 yrs of experience in Japan",
     web_url: "www.linkedin.com/MartinPortal",
     sempai: true,
-    occupation: "Engineer",
-    background: "I have been working in Japan for 5 years and I have experience in the tech industry.",
-    nationality: "French",
-    language: "French",
-    nickname: "Marty"
   },
   { first_name: "Laurice",
     last_name: "Port",
