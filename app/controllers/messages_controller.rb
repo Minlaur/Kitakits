@@ -1,17 +1,13 @@
 class MessagesController < ApplicationController
-
-  def show
-    @booking = Booking.find(params[:id])
-    @message = Message.new
-  end
+  before_action :authenticate_user!
 
   def create
-    @booking = Booking.find(params[:id])
+    @booking = Booking.find(params[:booking_id])
     @message = Message.new(message_params)
     @message.booking = @booking
     @message.user = current_user
     if @message.save
-      redirect_to booking_messages_path(@booking)
+      redirect_to booking_path(@booking)
     else
       render "users/show", status: :unprocessable_entity
     end
