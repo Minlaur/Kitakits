@@ -8,6 +8,7 @@ end
 def new
   @booking = Booking.new
   @topic = Topic.find(params[:topic_id])
+  @sempai = User.find(params[:user_id])
   @user = current_user.id
   @booking.topic = @topic
 end

@@ -15,8 +15,10 @@
   <div class="aside-container d-flex flex-column w-100 gap-5">
     <div class="link-cards card shadow">
       <div class="link p-3 d-flex justify-content-center gap-5">
-        <%= link_to "BOOKING", sempais_user_bookings_path(@sempai), class:"btn btn-success" %>
-        <%= link_to "I'm' online", root_path, class:"btn btn-primary" %>
+        <% if @topic.present? %>
+          <%= link_to "BOOKING", new_topic_booking_path(topic_id: @topic.id, user_id: @sempai.id), class:"btn btn-success" %>
+          <%= link_to "I'm' online", root_path, class:"btn btn-primary" %>
+        <% end %>
       </div>
     </div>
     <div class="card shadow review-cards d-flex h-100">
