@@ -33,8 +33,12 @@ class TopicsController < ApplicationController
   end
 
   def matching_sempais
+    # find the record of topic and sets it to @topic
     @topic = Topic.find(params[:id])
-    @sempais = User.where(sempai: true)
+    # finds the record of users and sets it as @sempais
+    tags = @topic.name.split(" ") + @topic.description.split(" ")
+    @sempais = User.where(sempai: true).tagged_with(tags, any: true)
+    # @sempais = User.where(sempai: true).tagged_with([@topic.where(params[:query])], on: :expertises, any: true)
   end
 
   private

@@ -1,10 +1,27 @@
-<%= simple_form_for [@booking, @message],
-  html: {class: "d-flex"} do |f|
-%>
-  <%= f.input :content,
-    label: false,
-    placeholder: "Message ##{@topic.name}",
-    wrapper_html: {class: "flex-grow-1"}
-  %>
-  <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-<% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10 justify-center">
+    <h3 class="m-3">Welcome to Livechat</h3>
+      <div class="card" id="chat1" style="border-radius: 15px;">
+            <div class="d-flex flex-row justify-content-start m-4">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                alt="avatar 1" style="width: 45px; height: 100%;">
+              <div class="p-3 ms-4" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                <p class="fs-5 mb-0">Hi user, thanks for reaching out to me! How can I help?</p>
+              </div>
+            </div>
+            <div class="form-outline">
+              <%= simple_form_for [@booking, @message],
+                html: {class: "h-100 custom-height m-3"} do |f| %>
+                <%= f.input :content,
+                  label: false,
+                  placeholder: "Enter message ##{@topic.name}",
+                  wrapper_html: {class: "flex-grow-1"}
+                %>
+                  <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+              <% end %>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
