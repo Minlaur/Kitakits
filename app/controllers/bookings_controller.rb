@@ -8,19 +8,17 @@ end
 def new
   @booking = Booking.new
   @topic = Topic.find(params[:topic_id])
-  @sempai = User.find(params[:user_id])
-  @user = current_user.id
   @booking.topic = @topic
+  # raise
 end
-# I can create a new booking
-require_relative '../models/booking' # Add missing import statement
 
+# I can create a new booking
 def create
-  @booking = Booking.new(booking_params)
   @topic = Topic.find(params[:topic_id])
+  # raise
+  @booking = Booking.new(booking_params)
   @booking.topic = @topic
   if @booking.save
-    # raise
     redirect_to booking_path(@booking) # Modify redirect path to include booking ID
   else
     render :new, status: :unprocessable_entity
@@ -39,6 +37,6 @@ end
 private
 
   def booking_params
-    params.require(:booking).permit(:status, :topic_id).merge(user_id: current_user.id, status: "pending")
+    params.require(:booking).permit(:status, :time, :topic_id).merge(user_id: current_user.id, status: "pending")
   end
 end
