@@ -7,7 +7,12 @@
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                 alt="avatar 1" style="width: 45px; height: 100%;">
               <div class="p-3 ms-4" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                <p class="fs-5 mb-0">Hi user, thanks for reaching out to me! How can I help?</p>
+                <div>
+                  <%= simple_form_for @topic do |f| %>
+                    <%= f.input :description, label: false , placeholder: 'Eg. I made a mistake about my visa renewal. What should I do?'%>
+                  <% end %>
+                </div>
+                <p class="fs-5 mb-0">Hi <%= current_user.nickname %>, thanks for reaching out to me!</p>
               </div>
             </div>
             <div class="form-outline">
