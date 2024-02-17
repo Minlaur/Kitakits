@@ -22,13 +22,8 @@
   <div class="aside-container d-flex flex-column w-100 gap-5">
     <div class="link-cards card shadow">
       <div class="link p-3 d-flex justify-content-center gap-5">
-        <%# go to booking page %>
         <%= link_to "chat later", sempais_user_bookings_path(@sempai), class:"btn btn-info" %>
-        <%# go to chat page %>
-        <%# <div class="tooltip"> %>
-        <%= link_to "chat now", root_path, class:"btn btn-primary" %>
-        <%# <span class="tooltiptext">I'm online for a private chat message.</span> %>
-        <%# </div> %>
+        <%= button_to "chat now", topic_bookings_path(topic_id: @topic.id, booking: {sempai_id: @sempai.id}, redirect_to: "chat"), class:"btn btn-primary" %>
       </div>
     </div>
     <div class="card shadow review-cards d-flex h-100">
