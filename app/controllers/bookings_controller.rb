@@ -12,23 +12,32 @@ def new
   @booking.topic = @topic
 end
 # I can create a new booking
+require_relative '../models/booking' # Add missing import statement
+
 def create
   @booking = Booking.new(booking_params)
-    @topic = Topic.find(params[:topic_id])
-    @booking.topic = @topic
-    if @booking.save
-      redirect_to bookings_path
-    else
-      render :new, status: :unprocessable_entity
-    end
+  @topic = Topic.find(params[:topic_id])
+  @booking.topic = @topic
+  if @booking.save
+    # raise
+    redirect_to booking_path(@booking) # Modify redirect path to include booking ID
+  else
+    render :new, status: :unprocessable_entity
+  end
 end
 
+# I can see the details of a booking
+def show
+  @booking = Booking.find(params[:id])
+  @topic = @booking.topic
+  @message = Message.new
+end
 # accept or reject the booking by clicking on a button
 
 
 private
 
   def booking_params
-    params.require(:booking).permit(:status, :created_at, :updated_at, :topic_id).merge(user_id: current_user.id, status: "pending")
+    params.require(:booking).permit(:status, :topic_id).merge(user_id: current_user.id, status: "pending")
   end
 end
