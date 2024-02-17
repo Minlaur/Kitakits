@@ -1,30 +1,46 @@
-
-.chat-message {
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  border-radius: 50px;
-  background: #5a99ee;
+.blob {
+  border-radius: 40% 70% 60% 67% / 67% 37% 56% 34%;
+  width: 800px;
+  height: fit-content;
+  background: #ffc436;
+  background-image: linear-gradient(90deg, #337ccf 0%, #ffc436 100%);
+  box-shadow: -10vmin 10vmin 0 rgba(255, 255, 255, 0.07);
   display: inline-block;
-  padding: 10px 20px;
-  position: relative;
+  padding: 20px 20px;
+  // position: relative;
+  text-align: center;
+  margin-top: 4px;
+  border-style: dashed;
 }
 
-.chat-message:before {
-  content: "";
-  position: absolute;
-  top: 15px;
-  width: 0;
-  height: 0;
-}
+// .chat-message {
+//   -webkit-border-radius: 50px;
+//   -moz-border-radius: 50px;
+//   border-radius: 50px;
+//   background: #FFC436;
+//   display: inline-block;
+//   padding: 20px 20px;
+//   position: relative;
+//   text-align: center;
+//   width: fit-content;
+// }
 
-.chat-message h1 {
+// .chat-message:before {
+//   content: "";
+//   position: absolute;
+//   top: 15px;
+//   width: 0;
+//   height: 0;
+// }
+
+.blob h1 {
   margin: 0 0 5px 0;
-  font-weight: 600;
+  font-weight: 800;
   line-height: 100%;
-  font-size: .9rem;
+  color: rgb(56, 56, 56);
 }
 
-.chat-message h3 {
+.blob p {
   line-height: 18px;
   margin: 0;
   padding: 0;
