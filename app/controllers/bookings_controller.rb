@@ -7,13 +7,10 @@ end
 # I can display a new booking
 def new
   @booking = Booking.new
-  @topic = Topic.find(params[:topic_id])
-  @sempai = User.find(params[:user_id])
-  @user = current_user.id
+  @topic = Topic.find_by(id: params[:topic_id])
+  # @user = current_user.id
   @booking.topic = @topic
 end
-# I can create a new booking
-require_relative '../models/booking' # Add missing import statement
 
 def create
   @booking = Booking.new(booking_params)

@@ -1,17 +1,13 @@
-%# simple form for a new booking %>
   <div>
-    <%= simple_form_form(@sempais) do |f| %>
+    <%= simple_form_for(@booking) do |f| %>
     <%= f.error_notification %>
     <div class="form">
       <div class="form-inputs flex-grow-1">
         <div class="form flex-grow-1">
-          <%= f.input :start_date,
+          <%= f.input :time,
           as: :string,
           input_html: { data: { controller: "datepicker" } },
             enableTime: true, label: false, placeholder: 'Start time', class: "form_border"%>
-          <%= f.input :end_date,
-            as: :string,
-          input_html: { data: { controller: "datepicker" } }, label: false, placeholder: 'End time', class: "form-border" %>
           <div class="form-actions">
             <%= f.button :submit, class: 'btn-primary', value: 'Book' %>
           </div>
