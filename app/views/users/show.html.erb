@@ -2,7 +2,14 @@
   <div class="main-card flex-2 w-100">
     <div class="card shadow">
       <div class="card-body">
+        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="sempai.picture">
         <h5 class="card-title fs-2"> <%= @sempai.nickname %></h5>
+        <%# if online, update bottom %>
+        <div style="display: inline-flex; align-items: center;">
+          <i class="fa-solid fa-circle" style="color: #33cfab;"> </i>
+          <p class="card-text mx-1" style="color: #33cfab"> Online</p>
+        </div>
+        <hr>
         <p class="card-text"> <%= @sempai.background %></p>
         <p class="card-text"><%= @sempai.occupation %></p>
         <div class="flag-container d-flex gap-2">
@@ -15,13 +22,18 @@
   <div class="aside-container d-flex flex-column w-100 gap-5">
     <div class="link-cards card shadow">
       <div class="link p-3 d-flex justify-content-center gap-5">
-        <%= link_to "BOOKING", sempais_user_bookings_path(@sempai), class:"btn btn-success" %>
-        <%= link_to "I'm' online", root_path, class:"btn btn-primary" %>
+        <%# go to booking page %>
+        <%= link_to "chat later", sempais_user_bookings_path(@sempai), class:"btn btn-info" %>
+        <%# go to chat page %>
+        <%# <div class="tooltip"> %>
+        <%= link_to "chat now", root_path, class:"btn btn-primary" %>
+        <%# <span class="tooltiptext">I'm online for a private chat message.</span> %>
+        <%# </div> %>
       </div>
     </div>
     <div class="card shadow review-cards d-flex h-100">
       <div class="card-body">
-        <p>HERE REVIEW</p>
+        <p>Booking Reviews</p>
       </div>
     </div>
   </div>
