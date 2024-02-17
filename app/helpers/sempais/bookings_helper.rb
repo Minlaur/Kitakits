@@ -1,0 +1,2 @@
+module Sempais::BookingsHelper
+end

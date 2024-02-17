@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   get '/sempais/:id', to: 'users#show', as: 'sempai'
 
   namespace :sempais do
-    get '/bookings', to: 'sempais/bookings#index'
+    # added "booking/index" into sempai users to identify sempais' bookings
+    get 'bookings/index'
+    resources :users, only: [] do
+      resources :bookings, only: [:index]
+    end
+    # end
     get '/bookings/:id', to: 'sempais/bookings#show'
     patch '/bookings/:id', to: 'sempais/bookings#update'
 
@@ -22,5 +27,6 @@ Rails.application.routes.draw do
   resources :bookings, only: [:index, :show, :edit, :update] do
     resources :messages, only: [:create]
   end
-  resources :bookings, only: [:show, :edit, :update,]
+  resources :bookings, only: [:show, :edit, :update]
+
 end
