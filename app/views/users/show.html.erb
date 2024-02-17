@@ -22,7 +22,7 @@
   <div class="aside-container d-flex flex-column w-100 gap-5">
     <div class="link-cards card shadow">
       <div class="link p-3 d-flex justify-content-center gap-5">
-        <%= link_to "chat later", sempais_user_bookings_path(@sempai), class:"btn btn-info" %>
+        <%= link_to "chat later", new_topic_booking_path(topic_id: @topic.id, booking: {sempai_id: @sempai.id}), class:"btn btn-info" %>
         <%= button_to "chat now", topic_bookings_path(topic_id: @topic.id, booking: {sempai_id: @sempai.id}, redirect_to: "chat"), class:"btn btn-primary" %>
       </div>
     </div>
