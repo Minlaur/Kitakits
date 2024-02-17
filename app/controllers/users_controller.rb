@@ -6,5 +6,4 @@ class UsersController < ApplicationController
     @message = Message.new
     @topic= Topic.find_by(id: params[:topic_id])
   end
-
 end
