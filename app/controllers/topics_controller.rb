@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  skip_before_action :authenticate_user!, only:[:show, :create, :matching_sempais]
 
   def create
     @topic = Topic.new(topic_params)
