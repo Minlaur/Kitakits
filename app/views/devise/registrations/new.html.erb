@@ -280,9 +280,36 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
     </div>
     <div class="actions my-3">
-      <%= f.submit "Sign up", class: "btn btn-primary" %>
+      <%= f.submit "Sign up", class: "btn btn-info" %>
+    </div>
+    <%# if the user click on the checkbox "become a sempai"%>
+    <div class="field">
+      <%= f.check_box :sempai, class: "btn-check mt-1", id:"btn-check-outlined" %>
+      <%= f.label :want_to_be_sempai_?, class: "btn btn-outline-primary", for: "btn-check-outlined" %>
+    </div>
+    <div class="toggle">
+      <div class="field">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :background %>
+        <%= f.text_area :background, class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :occupation %>
+        <%= f.text_field :occupation, class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :web_url %>
+        <%= f.text_field :web_url, class: "form-control" %>
+      </div>
+      <%# show the other part of the form %>
     </div>
   <% end %>
   <%= render "devise/shared/links" %>
-</div>
 </div>
