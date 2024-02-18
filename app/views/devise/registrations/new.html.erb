@@ -1,5 +1,5 @@
 <h2>Sign up</h2>
-<div class="container">
+<div class="container " data-controller="toggle">
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form d-flex flex-column card p-3 mb-3 gap-3" }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
     <div class="field">
@@ -284,10 +284,10 @@
     </div>
     <%# if the user click on the checkbox "become a sempai"%>
     <div class="field">
-      <%= f.check_box :sempai, class: "btn-check mt-1", id:"btn-check-outlined" %>
+      <%= f.check_box :sempai, class: "btn-check mt-1", id:"btn-check-outlined", data: {action: "click->toggle#fire"} %>
       <%= f.label :want_to_be_sempai_?, class: "btn btn-outline-primary", for: "btn-check-outlined" %>
     </div>
-    <div class="toggle">
+    <div class="d-none" data-toggle-target="togglableElement">
       <div class="field">
         <%= f.label :first_name %>
         <%= f.text_field :first_name, class: "form-control" %>
