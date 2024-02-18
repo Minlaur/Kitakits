@@ -13,10 +13,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
   <body>
-    <%= render 'layouts/nav_bar'%>
-    <%= yield %>
-    <%= render 'layouts/footer' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="page-frame-content">
+      <div class="page-frame-header">
+        <%= render 'layouts/nav_bar'%>
+      </div>
+      <div class="page-frame-body">
+        <%= yield %>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+      <div class="page-frame-footer">
+        <%= render 'layouts/footer' %>
+      </div>
+    </div>
   </body>
 </html>
