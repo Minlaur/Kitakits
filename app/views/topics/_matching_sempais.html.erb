@@ -21,10 +21,13 @@
         <div class="single_advisor_details_info">
           <div class="row-2">
             <h6><strong> <%= sempai.nickname %></strong> </h6>
-            <i class="fa-solid fa-circle" style="color: #33cfab;"></i>
+            <div style="display: inline-flex; align-items: center;">
+              <i class="fa-solid fa-circle" style="color: #33cfab;"> </i>
+              <p class="card-text mx-1" style="color: #33cfab"> Online</p>
+            </div>
             <%# Icon above is if online %>
           </div>
-          <p class="designation" style="color:#337CCF;"><%= sempai.occupation %> <strong>/</strong> </p>
+          <p class="designation" style="color:#337CCF;"><%= sempai.occupation %></p>
           <p class="designation"><%= sempai.background %></p>
           <!-- Tags here -->
           <div class="container_expertise" style= "display: inline-flex;">
@@ -33,7 +36,7 @@
             <% end %>
           </div>
           <div>
-            <%= link_to "book a chat", sempai_path(id: sempai.id, topic_id: topic.id), class: "btn btn-info my-4" %>
+            <%= link_to "See Details", sempai_path(id: sempai.id, topic_id: topic.id), class: "btn btn-info my-4" %>
           </div>
         </div>
       </div>
