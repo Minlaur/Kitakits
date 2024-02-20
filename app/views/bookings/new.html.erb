@@ -1,10 +1,12 @@
-<h1>Hello</h1>
-<p style="color: red">Find me in app/views/sempais/bookings/index.html.erb</p>
 <div class="container-fluid">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center m-3">
     <div class="col-md-12">
-      <h1 class="fw-bold">All Availabilities</h1>
-      <div class="calendar-availability">
+    <div class="card-category">
+      <div class="blob">
+        <h3 class="fw-bold m-3 text-center">All Availabilities</h3>
+      </div>
+    </div>
+      <div class="calendar-availability p-3 m-3">
         <div>
           <%= render "bookings/new_form", sempais: [@topic, @booking] %> <%#passing to partial% %>
         </div>
