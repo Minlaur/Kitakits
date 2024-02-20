@@ -2,42 +2,45 @@
   <div class="row justify-content-center">
     <div class="col-12 col-sm-8 col-lg-6">
       <!-- Section Heading-->
-      <div class="section_heading text-center wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-        <h4>With a sempai, a solution might be a chat or a booking away.</h4>
-        <div class="line"></div>
-      </div>
+      <%# <div class="section_heading text-center wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;"> %>
+      <%# <h4>With a sempai, a solution might be a chat or a booking away.</h4>
+        <div class="line"></div> %>
     </div>
   </div>
-  <div class="row justify-content-center" style="margin-top: 24px;">
-    <% @sempais.each do |sempai| %>
-      <!-- Single Advisor-->
-      <div class="col-md-3" style="width: 20rem;">
-        <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-          <!-- Team Thumb-->
-          <div class="advisor_thumb">
-            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="sempai.picture">
+</div>
+<div class="row justify-content-center" style="margin-top: 24px;">
+  <% @sempais.each do |sempai| %>
+    <!-- Single Advisor-->
+    <div class="col-md-3" style="width: 20rem;">
+      <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+        <!-- Team Thumb-->
+        <div class="advisor_thumb">
+          <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="sempai.picture">
+        </div>
+        <!-- Team Details-->
+        <div class="single_advisor_details_info">
+          <div class="row-2">
+            <h6><strong> <%= sempai.nickname %></strong> </h6>
+            <div style="display: inline-flex; align-items: center;">
+              <i class="fa-solid fa-circle" style="color: #33cfab;"> </i>
+              <p class="card-text mx-1" style="color: #33cfab"> Online</p>
+            </div>
+            <%# Icon above is if online %>
           </div>
-          <!-- Team Details-->
-          <div class="single_advisor_details_info">
-            <div class="row-2">
-              <h6><strong> <%= sempai.nickname %></strong> </h6>
-              <i class="fa-solid fa-circle" style="color: #33cfab;"></i>
-              <%# Icon above is if online %>
-            </div>
-            <p class="designation" style="color:#337CCF;"><%= sempai.occupation %> <strong>/</strong> </p>
-            <p class="designation"><%= sempai.background %></p>
-            <!-- Tags here -->
-            <div class="container_expertise" style= "display: inline-flex;">
-              <% sempai.expertises.each do |expertise| %>
-                <div class="card-tags" style= "background-color: aliceblue; text-align: center;border-radius:  8em;padding: 2px 8px;font-size: .8em;bottom: 8px;right: 25px;"> <%= expertise %> </div>
-              <% end %>
-            </div>
-            <div>
-              <%= link_to "book a chat", sempai_path(id: sempai.id, topic_id: topic.id), class: "btn btn-info my-4" %>
-            </div>
+          <p class="designation" style="color:#337CCF;"><%= sempai.occupation %></p>
+          <p class="designation"><%= sempai.background %></p>
+          <!-- Tags here -->
+          <div class="container_expertise" style= "display: inline-flex;">
+            <% sempai.expertises.each do |expertise| %>
+              <div class="card-tags" style= "background-color: aliceblue; text-align: center;border-radius:  8em;padding: 2px 8px;font-size: .8em;bottom: 8px;right: 25px;"> <%= expertise %> </div>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to "See Details", sempai_path(id: sempai.id, topic_id: topic.id), class: "btn btn-info my-4" %>
           </div>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+</div>
 </div>
