@@ -8,13 +8,12 @@
 #  tag_id      :bigint
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#
 
 
 class Topic < ApplicationRecord
   belongs_to :user
   has_many :bookings, dependent: :destroy
-  acts_as_taggable_on :tags
+  # acts_as_taggable_on :tags
 
   validates :name, presence: true, length: { minimum: 1, maximum: 100 }
   validates :description, presence: true, length: { minimum: 1, maximum: 1000 }
