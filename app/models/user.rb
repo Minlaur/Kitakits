@@ -26,8 +26,6 @@ class User < ApplicationRecord
   acts_as_taggable_on :tags
   acts_as_taggable_on :expertises
 
-  validates :first_name, presence: true, length: { minimum: 1, maximum: 100 }
-  validates :last_name, presence: true, length: { minimum: 1, maximum: 100 }
   validates :email, presence: true, length: { minimum: 1, maximum: 100 }
   validates :password, presence: true, length: { minimum: 1, maximum: 100 }
   validates :nationality, presence: true
@@ -37,6 +35,8 @@ class User < ApplicationRecord
   if :sempai == true
     validates :occupation, presence: true
     validates :background, presence: true
+    validates :first_name, presence: true, length: { minimum: 1, maximum: 100 }
+    validates :last_name, presence: true, length: { minimum: 1, maximum: 100 }
   end
 
 

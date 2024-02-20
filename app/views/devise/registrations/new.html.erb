@@ -1,29 +1,432 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container text-center">
+  <div class="" data-controller="toggle">
+    <%= simple_form_for(resource,
+    as: resource_name,
+    url: registration_path(resource_name),
+    html: { class: "form  card p-3 mb-3 gap-3" }) do |f| %>
+      <%# first part of the form %>
+      <div class="test">
+        <div class="col-6 mx-auto">
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="field nickname">
+            <%= f.label :nickname %><br />
+            <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", class: "form-control" %>
+          </div>
+          <div class="field email">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+          </div>
+          <div class="field">
+            <%= f.input :nationality, as: :select, collection:[
+            "Afghanistan",
+            "Åland Islands",
+            "Albania",
+            "Algeria",
+            "American Samoa",
+            "Andorra",
+            "Angola",
+            "Anguilla",
+            "Antarctica",
+            "Antigua & Barbuda",
+            "Argentina",
+            "Armenia",
+            "Aruba",
+            "Australia",
+            "Austria",
+            "Azerbaijan",
+            "Bahamas",
+            "Bahrain",
+            "Bangladesh",
+            "Barbados",
+            "Belarus",
+            "Belgium",
+            "Belize",
+            "Benin",
+            "Bermuda",
+            "Bhutan",
+            "Bolivia",
+            "Bosnia & Herzegovina",
+            "Botswana",
+            "Bouvet Island",
+            "Brazil",
+            "British Indian Ocean Territory",
+            "British Virgin Islands",
+            "Brunei",
+            "Bulgaria",
+            "Burkina Faso",
+            "Burundi",
+            "Cambodia",
+            "Cameroon",
+            "Canada",
+            "Cape Verde",
+            "Caribbean Netherlands",
+            "Cayman Islands",
+            "Central African Republic",
+            "Chad",
+            "Chile",
+            "China",
+            "Christmas Island",
+            "Cocos (Keeling) Islands",
+            "Colombia",
+            "Comoros",
+            "Congo - Brazzaville",
+            "Congo - Kinshasa",
+            "Cook Islands",
+            "Costa Rica",
+            "Côte d’Ivoire",
+            "Croatia",
+            "Cuba",
+            "Curaçao",
+            "Cyprus",
+            "Czechia",
+            "Denmark",
+            "Djibouti",
+            "Dominica",
+            "Dominican Republic",
+            "Ecuador",
+            "Egypt",
+            "El Salvador",
+            "Equatorial Guinea",
+            "Eritrea",
+            "Estonia",
+            "Eswatini",
+            "Ethiopia",
+            "Falkland Islands",
+            "Faroe Islands",
+            "Fiji",
+            "Finland",
+            "France",
+            "French Guiana",
+            "French Polynesia",
+            "French Southern Territories",
+            "Gabon",
+            "Gambia",
+            "Georgia",
+            "Germany",
+            "Ghana",
+            "Gibraltar",
+            "Greece",
+            "Greenland",
+            "Grenada",
+            "Guadeloupe",
+            "Guam",
+            "Guatemala",
+            "Guernsey",
+            "Guinea",
+            "Guinea-Bissau",
+            "Guyana",
+            "Haiti",
+            "Heard & McDonald Islands",
+            "Honduras",
+            "Hong Kong SAR China",
+            "Hungary",
+            "Iceland",
+            "India",
+            "Indonesia",
+            "Iran",
+            "Iraq",
+            "Ireland",
+            "Isle of Man",
+            "Israel",
+            "Italy",
+            "Jamaica",
+            "Japan",
+            "Jersey",
+            "Jordan",
+            "Kazakhstan",
+            "Kenya",
+            "Kiribati",
+            "Kuwait",
+            "Kyrgyzstan",
+            "Laos",
+            "Latvia",
+            "Lebanon",
+            "Lesotho",
+            "Liberia",
+            "Libya",
+            "Liechtenstein",
+            "Lithuania",
+            "Luxembourg",
+            "Macao SAR China",
+            "Madagascar",
+            "Malawi",
+            "Malaysia",
+            "Maldives",
+            "Mali",
+            "Malta",
+            "Marshall Islands",
+            "Martinique",
+            "Mauritania",
+            "Mauritius",
+            "Mayotte",
+            "Mexico",
+            "Micronesia",
+            "Moldova",
+            "Monaco",
+            "Mongolia",
+            "Montenegro",
+            "Montserrat",
+            "Morocco",
+            "Mozambique",
+            "Myanmar (Burma)",
+            "Namibia",
+            "Nauru",
+            "Nepal",
+            "Netherlands",
+            "New Caledonia",
+            "New Zealand",
+            "Nicaragua",
+            "Niger",
+            "Nigeria",
+            "Niue",
+            "Norfolk Island",
+            "North Korea",
+            "North Macedonia",
+            "Northern Mariana Islands",
+            "Norway",
+            "Oman",
+            "Pakistan",
+            "Palau",
+            "Palestinian Territories",
+            "Panama",
+            "Papua New Guinea",
+            "Paraguay",
+            "Peru",
+            "Philippines",
+            "Pitcairn Islands",
+            "Poland",
+            "Portugal",
+            "Puerto Rico",
+            "Qatar",
+            "Réunion",
+            "Romania",
+            "Russia",
+            "Rwanda",
+            "Samoa",
+            "San Marino",
+            "São Tomé & Príncipe",
+            "Saudi Arabia",
+            "Senegal",
+            "Serbia",
+            "Seychelles",
+            "Sierra Leone",
+            "Singapore",
+            "Sint Maarten",
+            "Slovakia",
+            "Slovenia",
+            "Solomon Islands",
+            "Somalia",
+            "South Africa",
+            "South Georgia & South Sandwich Islands",
+            "South Korea",
+            "South Sudan",
+            "Spain",
+            "Sri Lanka",
+            "St. Barthélemy",
+            "St. Helena",
+            "St. Kitts & Nevis",
+            "St. Lucia",
+            "St. Martin",
+            "St. Pierre & Miquelon",
+            "St. Vincent & Grenadines",
+            "Sudan",
+            "Suriname",
+            "Svalbard & Jan Mayen",
+            "Sweden",
+            "Switzerland",
+            "Syria",
+            "Taiwan",
+            "Tajikistan",
+            "Tanzania",
+            "Thailand",
+            "Timor-Leste",
+            "Togo",
+            "Tokelau",
+            "Tonga",
+            "Trinidad & Tobago",
+            "Tunisia",
+            "Turkey",
+            "Turkmenistan",
+            "Turks & Caicos Islands",
+            "Tuvalu",
+            "U.S. Outlying Islands",
+            "U.S. Virgin Islands",
+            "Uganda",
+            "Ukraine",
+            "United Arab Emirates",
+            "United Kingdom",
+            "United States",
+            "Uruguay",
+            "Uzbekistan",
+            "Vanuatu",
+            "Vatican City",
+            "Venezuela",
+            "Vietnam",
+            "Wallis & Futuna",
+            "Western Sahara",
+            "Yemen",
+            "Zambia",
+            "Zimbabwe"
+          ]%>
+          </div>
+          <div class="field">
+            <%= f.input :language, as: :select, collection: [
+            "Afrikaans",
+            "Albanian",
+            "Amharic",
+            "Arabic",
+            "Armenian (Eastern)",
+            "Armenian (Western)",
+            "Azerbaijani (Azeri)",
+            "Bassa",
+            "Belarusian",
+            "Bengali",
+            "Bosnian",
+            "Braille",
+            "Bulgarian",
+            "Burmese",
+            "Cambodian (Khmer)",
+            "Cape Verde Creole",
+            "Cebuano",
+            "Chinese (Simplified)",
+            "Chinese (Traditional)",
+            "Chuukese",
+            "Croatian",
+            "Czech",
+            "Danish",
+            "Dari",
+            "Dutch",
+            "English",
+            "Estonian",
+            "Farsi (Persian)",
+            "Finnish",
+            "Flemish",
+            "French (Canada)",
+            "French (France)",
+            "Fulani",
+            "Georgian",
+            "German",
+            "Greek",
+            "Gujarati",
+            "Haitian Creole",
+            "Hakha Chin",
+            "Hakka (Chinese)",
+            "Hebrew",
+            "Hindi",
+            "Hmong",
+            "Hungarian",
+            "Icelandic",
+            "Igbo/Ibo",
+            "Ilocano",
+            "Ilonggo (Hiligaynon)",
+            "Indonesian",
+            "Italian",
+            "Japanese",
+            "Javanese",
+            "Kannada",
+            "Karen",
+            "Kazakh",
+            "Kinyarwanda",
+            "Kirundi",
+            "Korean",
+            "Kurdish (Kurmanji dialect)",
+            "Kurdish (Sorani dialect)",
+            "Kyrgyz/Kirgiz",
+            "Lao (Laotian)",
+            "Latvian",
+            "Lithuanian",
+            "Macedonian",
+            "Malay (Malaysian)",
+            "Mandinka",
+            "Marathi",
+            "Marshallese",
+            "Mien",
+            "Mongolian",
+            "Montenegrin",
+            "Navajo",
+            "Nepali",
+            "Norwegian",
+            "Oromo",
+            "Pashto",
+            "Polish",
+            "Portuguese (Brazil)",
+            "Portuguese (Portugal)",
+            "Punjabi",
+            "Rohingya",
+            "Romanian (Moldavan)",
+            "Russian",
+            "Serbian",
+            "Slovak",
+            "Slovenian",
+            "Somali",
+            "Spanish (Castilian)",
+            "Spanish (Latin American)",
+            "Spanish (other varieties)",
+            "Swahili",
+            "Swedish",
+            "Tagalog",
+            "Tamil",
+            "Telugu",
+            "Thai",
+            "Tibetan",
+            "Tigrinya",
+            "Turkish",
+            "Ukrainian",
+            "Urdu",
+            "Uzbek",
+            "Vietnamese",
+            "Wolof",
+            "Yoruba"
+          ]%>
+          </div>
+          <div class="field">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+          </div>
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+          </div>
+          <div class="actions my-3">
+            <%= f.submit "Sign up", class: "btn btn-info" %>
+          </div>
+          <%# if the user click on the checkbox "become a sempai"%>
+          <div class="field">
+            <%= f.check_box :sempai, class: "btn-check mt-1", id:"btn-check-outlined", data: {action: "click->toggle#fire"} %>
+            <%= f.label :want_to_be_sempai_?, class: "btn btn-outline-primary", for: "btn-check-outlined" %>
+          </div>
+        </div>
+      </div>
+      <%# this other part of the form will be hidden by default %>
+      <div  class="col-6 mx-auto">
+        <div class="d-none" data-toggle-target="togglableElement">
+          <div class="field">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, class: "form-control" %>
+          </div>
+          <div class="field">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, class: "form-control" %>
+          </div>
+          <div class="field">
+            <%= f.label :background %>
+            <%= f.text_area :background, class: "form-control" %>
+          </div>
+          <div class="field">
+            <%= f.label :occupation %>
+            <%= f.text_field :occupation, class: "form-control" %>
+          </div>
+          <div class="field">
+            <%= f.label :web_url %>
+            <%= f.text_field :web_url, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
+</div>
