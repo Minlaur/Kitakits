@@ -3,22 +3,24 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
     @topic.user = current_user
+    authorize @topic
+
     if @topic.save
-      # @topic = Topic.find(params[:topic_id])
-      redirect_to topic_path(@topic)
-      # should update, redirect to the recommended sempais path
+      redirect_to @topic, notice: 'Topic was successfully created.'
     else
-      render 'pages/home', status: :unprocessable_entity
+      render :new
     end
   end
 
   def show
-   # find the record of topic and sets it to @topic
-   @topic = Topic.find(params[:id])
-   # finds the record of users and sets it as @sempais
-   tags = @topic.name.split(" ") + @topic.description.split(" ")
-   @sempais = User.where(sempai: true).tagged_with(tags, any: true)
-   # @sempais = User.where(sempai: true).tagged_with([@topic.where(params[:query])], on: :expertises, any: true)
+    # find the record of topic and sets it to @topic
+    @topic = Topic.find(params[:id])
+    # finds the record of users and sets it as @sempais
+    tags = @topic.name.split(" ") + @topic.description.split(" ")
+    @sempais = User.where(sempai: true).tagged_with(tags, any: true)
+    authorize @topic
+
+    # @sempais = User.where(sempai: true).tagged_with([@topic.where(params[:query])], on: :expertises, any: true)
   end
 
   def edit
@@ -48,7 +50,7 @@ class TopicsController < ApplicationController
   private
 
   def topic_params
-    params.require(:topic).permit(:name, :description)
+    params.require(:topic).permit(:name, :description).merge(user_id: current_user.id)
     # .merge; assuming we can submit a topic if signed in? .merge(user_id: current_user.id, status: "pending")
   end
 end
