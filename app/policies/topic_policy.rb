@@ -14,4 +14,8 @@ class TopicPolicy < ApplicationPolicy
     user.present? # Anyone can create a topic
   end
 
+  def update?
+    return true if user.present? && user == topic.user
+  end
+
 end

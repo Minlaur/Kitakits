@@ -5,5 +5,6 @@ class UsersController < ApplicationController
     @booking = Booking.create
     @message = Message.new
     @topic= Topic.find_by(id: params[:topic_id])
+    authorize @sempai
   end
 end

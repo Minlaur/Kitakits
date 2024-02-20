@@ -30,6 +30,7 @@ class TopicsController < ApplicationController
   def update
     @topics = Topic.all
     @topic = Topic.find(params[:id])
+    authorize @topic
     if @topic.update(topic_params)
       redirect_to topics_path
       # once we have the requests#index to include params[:mine],change to redirect_to topics_path(mine: true)
