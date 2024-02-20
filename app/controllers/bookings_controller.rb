@@ -9,6 +9,7 @@ def new
   @booking = Booking.new
   @topic = Topic.find(params[:topic_id])
   @booking.topic = @topic
+  authorize @booking
   # raise
 end
 
@@ -18,6 +19,7 @@ def create
   # raise
   @booking = Booking.new(booking_params)
   @booking.topic = @topic
+  authorize @booking
   if @booking.save
     redirect_to booking_path(@booking) # Modify redirect path to include booking ID
   else
@@ -30,6 +32,7 @@ def show
   @booking = Booking.find(params[:id])
   @topic = @booking.topic
   @message = Message.new
+  authorize @booking
 end
 # accept or reject the booking by clicking on a button
 
