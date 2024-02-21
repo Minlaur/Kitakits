@@ -3,6 +3,7 @@
   <head>
     <title>Kitakits</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%# CSRF (Cross-Site Request Forgery) token will be needed for online_indicator_controller as well %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
