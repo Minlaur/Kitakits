@@ -6,7 +6,7 @@ export default class extends Controller {
 static values = {
   user: Object,
   userId: Number,
-  lastSeen: ,
+  lastSeen: Date(),
 }
 
   connect() {
