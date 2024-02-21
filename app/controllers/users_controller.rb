@@ -16,7 +16,8 @@ class UsersController < ApplicationController
   # end
 
   def update
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    @user = current_user
     # should be the current user's timezone. Define in the application controller
     @user.update(last_seen: Time.zone.now)
     head :ok
