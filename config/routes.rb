@@ -7,6 +7,12 @@ Rails.application.routes.draw do
 
   get '/sempais/:id', to: 'users#show', as: 'sempai'
 
+  devise_scope :user do
+    # get 'users/:id', to: 'users#show', as: 'user'
+    get 'users/:id/edit', to: 'users#edit', as: 'edit_user'
+    patch 'users/:id' => 'users#patch'
+  end
+
   namespace :sempais do
     # added "booking/index" into sempai users to identify sempais' bookings
     get 'bookings/index'
