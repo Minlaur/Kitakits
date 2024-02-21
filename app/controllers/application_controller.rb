@@ -15,4 +15,5 @@ class ApplicationController < ActionController::Base
       :web_url
     ])
   end
+
 end
