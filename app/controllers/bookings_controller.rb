@@ -2,6 +2,7 @@ class BookingsController < ApplicationController
 # as a user I can see all bookings I made
 def index
   Booking.all
+  @bookings = current_user.bookings
 end
 
 # I can display a new booking
@@ -37,7 +38,7 @@ def update
   #   render :new, status: :unprocessable_entity
   # end
   if @booking.update
-  redirect_to new_topic_booking_path(@booking), notice: "Booking was successfully updated!"
+  redirect_to booking_path(@booking), notice: "Booking was successfully updated!"
   else
     render :new, status: :unprocessable_entity
   end
@@ -49,9 +50,7 @@ def create
   #raise
   @booking = Booking.new(booking_params)
   @booking.topic = @topic
-  if @booking.update(booking_params)
-    redirect_to new_topic_booking_path(@booking), notice: "Booking has been confirmed!"
-  elsif @booking.save
+  if @booking.save
   redirect_to booking_path(@booking) # Modify redirect path to include booking ID
   else
     render :new, status: :unprocessable_entity
