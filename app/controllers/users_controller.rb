@@ -9,17 +9,24 @@ class UsersController < ApplicationController
     @topic= Topic.find_by(id: params[:topic_id])
   end
 
-  # need to set the time zone for users controller
-  # def set_time_zone
-  #   #current user is a devise method see https://github.com/plataformatec/devise
-  #   Time.zone = current_user.Time.zone if current_user
-  # end
-
   def update
     # @user = User.find(params[:id])
     @user = current_user
+    puts "is it working?"
     # should be the current user's timezone. Define in the application controller
-    @user.update(last_seen: Time.zone.now)
+    # This works but not in rails c ~ @user.update_columns(last_seen: Time.zone.now)
+    # This works also but not in rails c
+    @user.update_without_password(last_seen: [Time.zone.now, params[:user][:last_seen]])
+
+    puts "update working till end"
+    @user.save
+    puts "record saved"
     head :ok
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:password)
   end
 end
