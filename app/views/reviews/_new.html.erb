@@ -1,0 +1,4 @@
+<%= simple_form_for [@user, @review] do |f| %>
+  <%= f.input :rating, as: :integer, label: 'Rating' %>
+  <%= f.input :content, as: :text, label: 'Content' %>
+<% end %>

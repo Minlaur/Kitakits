@@ -8,15 +8,16 @@ Rails.application.routes.draw do
   get '/sempais/:id', to: 'users#show', as: 'sempai'
 
   namespace :sempais do
-    # added "booking/index" into sempai users to identify sempais' bookings
     get 'bookings/index'
     resources :users, only: [] do
       resources :bookings, only: [:index]
     end
-    # end
     get '/bookings/:id', to: 'sempais/bookings#show'
     patch '/bookings/:id', to: 'sempais/bookings#update'
+  end
 
+  resources :users do
+    resources :reviews, only: [:new, :create, :index]
   end
 
   resources :topics, except: [:index, :destroy] do

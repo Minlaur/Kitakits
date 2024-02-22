@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_17_023452) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_22_103714) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_17_023452) do
     t.string "image"
     t.index ["booking_id"], name: "index_messages_on_booking_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -133,6 +142,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_17_023452) do
   add_foreign_key "bookings", "users"
   add_foreign_key "messages", "bookings"
   add_foreign_key "messages", "users"
+  add_foreign_key "reviews", "users"
   add_foreign_key "taggings", "tags"
   add_foreign_key "topics", "users"
 end
