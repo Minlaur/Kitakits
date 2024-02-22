@@ -3,10 +3,11 @@ class UsersController < ApplicationController
   # ,:set_time_zone
 
   def show
-    @sempai = User.find(params[:id])
+    @user = User.find(params[:id])
     @booking = Booking.create
     @message = Message.new
     @topic= Topic.find_by(id: params[:topic_id])
+    authorize @user
   end
 
   def update

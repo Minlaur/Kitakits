@@ -1,37 +1,17 @@
 .blob {
-  border-radius: 40% 70% 60% 67% / 67% 37% 56% 34%;
+  border-radius: 200px 153px 200px 0px;
+  -webkit-border-radius: 200px 153px 200px 0px;
+  -moz-border-radius: 200px 153px 200px 0px;
   width: 800px;
   height: fit-content;
   background: #ffc436;
   background-image: linear-gradient(90deg, #337ccf 0%, #ffc436 100%);
   box-shadow: -10vmin 10vmin 0 rgba(255, 255, 255, 0.07);
   display: inline-block;
-  padding: 20px 20px;
-  // position: relative;
+  padding: 2.5rem;
   text-align: center;
-  margin-top: 4px;
-  border-style: dashed;
+  margin-top: 2rem;
 }
-
-// .chat-message {
-//   -webkit-border-radius: 50px;
-//   -moz-border-radius: 50px;
-//   border-radius: 50px;
-//   background: #FFC436;
-//   display: inline-block;
-//   padding: 20px 20px;
-//   position: relative;
-//   text-align: center;
-//   width: fit-content;
-// }
-
-// .chat-message:before {
-//   content: "";
-//   position: absolute;
-//   top: 15px;
-//   width: 0;
-//   height: 0;
-// }
 
 .blob h1 {
   margin: 0 0 5px 0;

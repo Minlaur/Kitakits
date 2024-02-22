@@ -52,7 +52,7 @@ class User < ApplicationRecord
   end
 
   def sempai?
-    self.sempai == true
+    sempai
   end
 
 end
