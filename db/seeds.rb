@@ -5,8 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'rest-client'
 require 'net/http'
 require 'json'
+require 'open-uri'
 
 expert_tags = [
    "visa",
@@ -143,10 +145,23 @@ users = [
   # },
 ]
 
+
+
 users.each do |user_data|
   user = User.create!(user_data)
+  url = URI("https://randomuser.me/api/")
+  response = Net::HTTP.get(url)
+  json = JSON.parse(response)
+  results = json["results"]
+  results.each do |result|
+    picture = URI.open(result["picture"]["large"])
+    user.picture.attach(io:picture, filename:"profile.jpg")
+  user.topics.create(topics.sample)
+  end
+
+
   t = Topic.new(topics.sample)
-  t.tag_list.add(topic_tags.sample)
+  # t.tag_list.add(topic_tags.sample)
   t.user = user
   t.save
   if user.sempai
