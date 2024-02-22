@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
   </head>
-  <body data-controller="online-indicator" data-online-indicator-user-id-value = "<%= current_user.id if current_user%>" data-online-indicator-last-seen-value = "<%= DateTime.now %>">
+  <body data-controller="online-indicator" data-online-indicator-user-id-value = "<%= current_user.id if current_user%>">
     <div class="page-frame-content">
       <div class="page-frame-header">
         <%= render 'layouts/nav_bar'%>

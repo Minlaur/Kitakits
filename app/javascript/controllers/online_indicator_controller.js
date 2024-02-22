@@ -22,7 +22,7 @@ static values = {
     // to update the last_seen value
     const form = new FormData();
     // previously "user[last_seen]"; replace back as it seems not working
-    form.append(`${this.user}[last_seen]`, new Date(this.lastSeenValue));
+    form.append(`user[last_seen]`, new Date(this.lastSeenValue));
 
     fetch(url, {
       method: "PATCH",
