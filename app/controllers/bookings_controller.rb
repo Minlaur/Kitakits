@@ -1,4 +1,6 @@
 class BookingsController < ApplicationController
+  before_action :set_topic
+
 # as a user I can see all bookings I made
 def index
   Booking.all
@@ -19,14 +21,22 @@ end
 
 def new
   @booking = Booking.new
-  @topic = Topic.find(params[:topic_id])
   @booking.topic = @topic
   authorize @booking
+end
+
+# I can create a new booking
+def create
+  # raise
+  @booking = Booking.new(booking_params)
+  @booking.topic = @topic
+  # raise
+  authorize @booking
   if @booking.save
-    redirect_to booking_path(@booking) # Modify redirect path to include booking ID
+    redirect_to topic_booking_path(topic_id: @topic.id, id: @booking.id), notice: "Booking was successfully created!" # Modify redirect path to include booking ID and add notice
   else
     render :new, status: :unprocessable_entity
-   end
+  end
 end
 
 
@@ -42,20 +52,6 @@ def update
   else
     render :new, status: :unprocessable_entity
   end
-end
-
-
-def create
-  @topic = Topic.find(params[:topic_id])
-  #raise
-  @booking = Booking.new(booking_params)
-  @booking.topic = @topic
-  authorize @booking
-  if @booking.save
-  redirect_to booking_path(@booking) # Modify redirect path to include booking ID
-  else
-    render :new, status: :unprocessable_entity
-   end
 end
 
 
@@ -75,6 +71,10 @@ end
 
 
 private
+
+  def set_topic
+    @topic = Topic.find(params[:topic_id])
+  end
 
   def booking_params
     params.require(:booking).permit(:status, :time, :topic_id).merge(user_id: current_user.id, status: "pending")
