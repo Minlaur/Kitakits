@@ -8,14 +8,6 @@ def index
 end
 
 # I can display a new booking
-# def new
-#   @booking = Booking.new
-#   @topic = Topic.find(params[:topic_id])
-#   @booking.topic = @topic
-#   # raise
-# end
-
-
 def new
   @booking = Booking.new
   @booking.topic = @topic
@@ -52,9 +44,6 @@ def update
 end
 
 
-
-# I can create a new booking
-
 # I can see the details of a booking
 def show
   @booking = Booking.find(params[:id])
@@ -63,9 +52,6 @@ def show
   authorize @booking
 end
 # accept or reject the booking by clicking on a button
-
-
-
 
 private
 

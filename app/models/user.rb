@@ -22,6 +22,7 @@ class User < ApplicationRecord
   has_many :topics, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :bookings
+  has_many :messages
   # need to add relationship between User and booking
   # has_many :bookings
   # has_many :bookings_as_sempais through: :topics
