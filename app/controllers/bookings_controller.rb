@@ -14,9 +14,6 @@ end
 # end
 
 
-
-
-
 def new
   @booking = Booking.new
   @topic = Topic.find(params[:topic_id])
