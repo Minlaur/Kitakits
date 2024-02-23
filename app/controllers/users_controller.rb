@@ -2,9 +2,11 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   # ,:set_time_zone
 
+  # define the topic and user for the show page
+
   def show
     @user = User.find(params[:id])
-    @topic = Topic.find_by(id: params[:topic_id])
+    @topic = Topic.find_by(user_id: @user.id)
     @booking = Booking.create
     @message = Message.new
     @review = Review.new(user_id: @user.id)
