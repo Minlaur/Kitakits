@@ -11,11 +11,7 @@ static values = {
 }
 
   connect() {
-    console.log(this.userIdValue)
-    console.log(this.userValue)
-    console.log(this.lastSeenValue)
     const url = `/users/${this.userIdValue}/`;
-    console.log(url)
     // need to verify CSRF token authenticity mentioned in the head of application.html.erb
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -32,9 +28,9 @@ static values = {
 
     .then(response => {
       if (response.ok) {
-        console.log("Last seen updated successfully");
+        // console.log("Last seen updated successfully");
       } else {
-        console.error("Failed to update last seen");
+        // console.error("Failed to update last seen");
       }
     })
     .catch(error => {
