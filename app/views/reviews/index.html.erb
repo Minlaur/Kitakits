@@ -1,0 +1,8 @@
+<% @user.reviews.each do |review| %>
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text"> <%= review.content %></p>
+      <p class="card-text"> <%= review.rating %></p>
+    </div>
+  </div>
+<% end %>
