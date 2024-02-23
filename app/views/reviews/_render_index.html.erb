@@ -1,7 +1,12 @@
-<% @reviews.each do |review| %>
-  <div class="card">
+<% @reviews.take(6).each do |review| %>
+  <div class="card mt-2">
     <div class="card-body">
-      <p class="card-text"> <%= review.rating %></p>
+      <p><%= @user.topic[:name] %></p>
+      <p class="card-text flex-inline">
+        <% review.rating.times do %>
+          <i class="fa-solid fa-star"></i>
+        <% end %>
+      </p>
       <p class="card-text"> <%= review.content %></p>
     </div>
   </div>
