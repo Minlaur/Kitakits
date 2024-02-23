@@ -2,12 +2,11 @@
   <div class="main-card flex-2 w-100">
     <div class="card shadow">
       <div class="card-body">
-        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="sempai.picture">
+        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="User Picture">
         <h5 class="card-title fs-2"> <%= @user.nickname %></h5>
-        <%# if online, update bottom %>
         <div style="display: inline-flex; align-items: center;">
-          <i class="fa-solid fa-circle" style="color: #33cfab;"> </i>
-          <p class="card-text mx-1" style="color: #33cfab"> Online</p>
+          <i class="fa-solid fa-circle" style="color: #33cfab;"></i>
+          <p class="card-text mx-1" style="color: #33cfab;"> Online</p>
         </div>
         <hr>
         <p class="card-text"> <%= @user.background %></p>
@@ -22,8 +21,8 @@
   <div class="aside-container d-flex flex-column w-100 gap-5">
     <div class="link-cards card shadow">
       <div class="link p-3 d-flex justify-content-center gap-5">
-        <%= link_to "chat later", new_topic_booking_path(topic_id: @topic.id, booking: {sempai_id: @user.id}), class:"btn btn-info" %>
-        <%= button_to "chat now", topic_bookings_path(topic_id: @topic.id, booking: {sempai_id: @user.id}, redirect_to: "chat"), class:"btn btn-primary" %>
+        <%= link_to "Chat Later", new_topic_booking_path(topic_id: @topic.id, booking: { sempai_id: @user.id }), class: "btn btn-info" %>
+        <%= button_to "Chat Now", topic_bookings_path(topic_id: @topic.id, booking: { sempai_id: @user.id }, redirect_to: "chat"), class: "btn btn-primary" %>
       </div>
     </div>
     <div class="card shadow review-cards d-flex h-100">
@@ -31,28 +30,31 @@
         <p>Booking Reviews</p>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Launch demo modal
+          Launch Demo Modal
         </button>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Title</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
-                <%= render 'reviews/new' %>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <%= link_to "Send review", user_reviews_path(user_id: @user.id), class:"btn btn-primary" %>
-              </div>
+              <%= simple_form_for [@user, @review] do |f| %>
+                <div class="modal-body">
+                  <%= f.input :rating %>
+                  <%= f.input :content %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <%= f.button :submit, class: "btn btn-primary" %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
         <div class="div">
-          <%= render 'reviews/index' %>
+          <%= render 'reviews/render_index' %>
         </div>
       </div>
     </div>
