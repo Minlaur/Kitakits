@@ -22,8 +22,21 @@
           <div class="row-2">
             <h6><strong> <%= sempai.nickname %></strong> </h6>
             <div style="display: inline-flex; align-items: center;">
-              <i class="fa-solid fa-circle" style="color: #33cfab;"> </i>
-              <p class="card-text mx-1" style="color: #33cfab"> Online</p>
+              <% if sempai.last_seen == nil %>
+                <p class="card-text mx-1" style="color: grey">
+                  Offline for a while
+                </p>
+              <% elsif (Time.now - sempai.last_seen) - 1.hour %>
+                <i class="fa-solid fa-circle" style="color: #33cfab;"> </i>
+                <p class="card-text mx-1" style="color: #33cfab">
+                  Online <%= time_ago_in_words(sempai.last_seen) %> ago
+                </p>
+              <% else %>
+                <i class="fa-solid fa-circle" style="color: grey"> </i>
+                <p class="card-text mx-1" style="color: grey">
+                  Online <%= time_ago_in_words(sempai.last_seen) %> ago
+                </p>
+              <% end %>
             </div>
             <%# Icon above is if online %>
           </div>

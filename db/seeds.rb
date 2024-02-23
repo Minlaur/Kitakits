@@ -146,14 +146,15 @@ users = [
 users.each do |user_data|
   user = User.create!(user_data)
   t = Topic.new(topics.sample)
-  t.tag_list.add(topic_tags.sample)
+  # t.tag_list.add(topic_tags.sample)
+  # commented for now because it causes error on seeds
   t.user = user
   t.save
   if user.sempai
     user.expertise_list.add(expert_tags.sample, expert_tags.sample)
     user.save
   else
-    user.tag_list.add(topic_tags.sample)
+    # user.tag_list.add(topic_tags.sample)
     user.save
   end
 end

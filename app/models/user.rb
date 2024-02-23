@@ -16,6 +16,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  attribute :last_seen, :datetime
+
   has_one_attached :picture
   has_many :topics, dependent: :destroy
   has_many :reviews, dependent: :destroy

@@ -9,4 +9,8 @@ class UserPolicy < ApplicationPolicy
   def show?
     true # Anyone can view a user
   end
+
+  def update?
+    record == user
+  end
 end
