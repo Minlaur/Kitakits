@@ -2,11 +2,12 @@
   <div class="main-card flex-2 w-100">
     <div class="card shadow">
       <div class="card-body">
-        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="User Picture">
+        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="sempai.picture">
         <h5 class="card-title fs-2"> <%= @user.nickname %></h5>
+        <%# if online, update bottom %>
         <div style="display: inline-flex; align-items: center;">
-          <i class="fa-solid fa-circle" style="color: #33cfab;"></i>
-          <p class="card-text mx-1" style="color: #33cfab;"> Online</p>
+          <i class="fa-solid fa-circle" style="color: #33cfab;"> </i>
+          <p class="card-text mx-1" style="color: #33cfab"> Online</p>
         </div>
         <hr>
         <p class="card-text"> <%= @user.background %></p>
@@ -19,14 +20,12 @@
     </div>
   </div>
   <div class="aside-container d-flex flex-column w-100 gap-5">
-    <% if @topic %>
-      <div class="link-cards card shadow">
-        <div class="link p-3 d-flex justify-content-center gap-5">
-          <%= link_to "Chat Later", new_topic_booking_path(topic_id: @topic.id, booking: { sempai_id: @user.id }), class: "btn btn-info" %>
-          <%= button_to "Chat Now", topic_bookings_path(topic_id: @topic.id, booking: { sempai_id: @user.id }, redirect_to: "chat"), class: "btn btn-primary" %>
-        </div>
+    <div class="link-cards card shadow">
+      <div class="link p-3 d-flex justify-content-center gap-5">
+        <%= link_to "chat later", new_topic_booking_path(topic_id: @topic.id, booking: {sempai_id: @user.id}), class:"btn btn-info" %>
+        <%= button_to "chat now", topic_bookings_path(topic_id: @topic.id, booking: {sempai_id: @user.id}, redirect_to: "chat"), class:"btn btn-primary" %>
       </div>
-    <% end %>
+    </div>
     <div class="card shadow review-cards d-flex h-100">
       <div class="card-body">
         <!-- Button trigger modal -->
