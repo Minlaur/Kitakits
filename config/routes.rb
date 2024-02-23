@@ -29,11 +29,12 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
     get '/sempais', to: 'topics#matching_sempais'
   end
+  
+  resources :bookings, only: [:edit, :update]
 
   resources :bookings, only: [:show] do
     resources :messages, only: [:index, :create, :show]
   end
 
-  resources :bookings, only: [:edit, :update]
 
 end
