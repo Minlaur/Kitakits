@@ -19,12 +19,14 @@
     </div>
   </div>
   <div class="aside-container d-flex flex-column w-100 gap-5">
-    <div class="link-cards card shadow">
-      <div class="link p-3 d-flex justify-content-center gap-5">
-        <%= link_to "Chat Later", new_topic_booking_path(topic_id: @topic.id, booking: { sempai_id: @user.id }), class: "btn btn-info" %>
-        <%= button_to "Chat Now", topic_bookings_path(topic_id: @topic.id, booking: { sempai_id: @user.id }, redirect_to: "chat"), class: "btn btn-primary" %>
+    <% if @topic %>
+      <div class="link-cards card shadow">
+        <div class="link p-3 d-flex justify-content-center gap-5">
+          <%= link_to "Chat Later", new_topic_booking_path(topic_id: @topic.id, booking: { sempai_id: @user.id }), class: "btn btn-info" %>
+          <%= button_to "Chat Now", topic_bookings_path(topic_id: @topic.id, booking: { sempai_id: @user.id }, redirect_to: "chat"), class: "btn btn-primary" %>
+        </div>
       </div>
-    </div>
+    <% end %>
     <div class="card shadow review-cards d-flex h-100">
       <div class="card-body">
         <p>Booking Reviews</p>

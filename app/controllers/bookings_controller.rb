@@ -1,4 +1,6 @@
 class BookingsController < ApplicationController
+  before_action :set_topic
+
 # as a user I can see all bookings I made
 def index
   Booking.all
@@ -7,15 +9,12 @@ end
 # I can display a new booking
 def new
   @booking = Booking.new
-  @topic = Topic.find(params[:topic_id])
   @booking.topic = @topic
   authorize @booking
-  # raise
 end
 
 # I can create a new booking
 def create
-  @topic = Topic.find(params[:topic_id])
   # raise
   @booking = Booking.new(booking_params)
   @booking.topic = @topic
@@ -38,6 +37,10 @@ end
 
 
 private
+
+  def set_topic
+    @topic = Topic.find(params[:topic_id])
+  end
 
   def booking_params
     params.require(:booking).permit(:status, :time, :topic_id).merge(user_id: current_user.id, status: "pending")
