@@ -30,12 +30,13 @@ def create
   # raise
   @booking = Booking.new(booking_params)
   @booking.topic = @topic
+  # raise
   authorize @booking
   if @booking.save
-    redirect_to booking_path(@booking) # Modify redirect path to include booking ID
+    redirect_to topic_booking_path(topic_id: @topic.id, id: @booking.id), notice: "Booking was successfully created!" # Modify redirect path to include booking ID and add notice
   else
     render :new, status: :unprocessable_entity
-   end
+  end
 end
 
 
@@ -51,20 +52,6 @@ def update
   else
     render :new, status: :unprocessable_entity
   end
-end
-
-
-def create
-  @topic = Topic.find(params[:topic_id])
-  #raise
-  @booking = Booking.new(booking_params)
-  @booking.topic = @topic
-  authorize @booking
-  if @booking.save
-  redirect_to booking_path(@booking) # Modify redirect path to include booking ID
-  else
-    render :new, status: :unprocessable_entity
-   end
 end
 
 

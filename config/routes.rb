@@ -27,13 +27,13 @@ Rails.application.routes.draw do
   end
 
   resources :topics, except: [:index, :destroy] do
-    resources :bookings, only: [:new, :create]
+    resources :bookings, only: [:new, :create, :show]
     get '/sempais', to: 'topics#matching_sempais'
   end
-  
+
   resources :bookings, only: [:edit, :update]
 
-  resources :bookings, only: [:show] do
+  resources :bookings, only: [:show]do
     resources :messages, only: [:index, :create, :show]
   end
 
