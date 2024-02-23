@@ -1,7 +1,6 @@
 <% @reviews.take(6).each do |review| %>
   <div class="card mt-2">
     <div class="card-body">
-      <p><%= @user.topic[:name] %></p>
       <p class="card-text flex-inline">
         <% review.rating.times do %>
           <i class="fa-solid fa-star"></i>
