@@ -6,6 +6,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.booking = @booking
     @message.user = current_user
+    authorize @message
     if @message.save
       redirect_to booking_path(@booking)
     else

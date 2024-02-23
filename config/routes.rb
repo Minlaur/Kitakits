@@ -7,6 +7,12 @@ Rails.application.routes.draw do
 
   get '/sempais/:id', to: 'users#show', as: 'sempai'
 
+  devise_scope :user do
+    # the edit and patch will be used for the last_seen attribute change connected to the online_indicator_controller.js
+    get 'users/:id/edit', to: 'users#edit', as: 'edit_user'
+    patch 'users/:id' => 'users#update', as: 'update_user'
+  end
+
   namespace :sempais do
     # added "booking/index" into sempai users to identify sempais' bookings
     get 'bookings/index'

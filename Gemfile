@@ -6,6 +6,9 @@ ruby "3.1.2"
 # use device to manage user authentication
 gem "devise"
 
+# use pundit for authorization
+gem "pundit"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"
 
