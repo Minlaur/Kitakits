@@ -26,4 +26,8 @@ class TopicPolicy < ApplicationPolicy
   def resolved?
     update?
   end
+
+  def cancelled?
+    update?
+  end
 end

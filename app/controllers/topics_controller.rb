@@ -51,19 +51,25 @@ before_action :set_user
   # end
 
   def resolved
-  @topic = Topic.find(params[:id])
-  authorize @topic
+    @topic = Topic.find(params[:id])
+    authorize @topic
     if @topic.update(status: 'resolved')
-          # need to redirect to the same page, @topic?
-          # need to suggest leaving a review
       redirect_to user_topics_path(@topic), notice: 'Your topic is resolved.'
     else
-      render :show, alert: 'Failed to accept booking.', status: :unprocessable_entity
+      render :show, alert: 'Failed to resolve topic.', status: :unprocessable_entity
     end
   end
 
-  # def cancelled
-  # end
+  def cancelled
+    @topic = Topic.find(params[:id])
+    authorize @topic
+    if @topic.update(status: 'cancelled')
+          # need to suggest leaving a review
+      redirect_to user_topics_path(@topic), notice: 'Your topic is cancelled.'
+    else
+      render :show, alert: 'Failed to cancel topic.', status: :unprocessable_entity
+    end
+  end
 
   private
 
