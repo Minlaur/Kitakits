@@ -11,100 +11,27 @@
   <div class="row pb-5 ps-5 pe-5">
     <%# <div class="section p-3"> %>
     <div class="col-md-6" id="chat1" style="border-radius: 15px; background-color: white;">
-      <div class="justify-content-start m-4">
-        <div class="card-category">
-          <div class="blob">
-            <h3 class="m-1">Your KitaKits Chat</h3>
-          </div>
-        </div>
-        <%# Sempai response %>
-        <div class="container booking-chatroom">
-        <h1>#<%= @booking.name %></h1>
-
-        <div class="messages">
-          <% @booking.messages.each do |message| %>
-            <div id="message-<%= message.id %>">
-              <small>
-                <strong><%= message.user.nickname %></strong>
-                <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-              </small>
-              <p><%= message.content %></p>
+      <%= render 'bookings/chatroom' %>
+    </div>
+  </div>
+  <div class="section p-3">
+    <div class="col-md-6" id="confirmation" style="border-radius: 15px; background-color: white;">
+      <div class="row justify-content-center mb-4">
+        <div class="col-10 justify-center p-3">
+          <div class="card-category">
+            <div class="blob">
+              <h3 class="m-1">See your Bookings</h3>
             </div>
-          <% end %>
+          </div>
         </div>
       </div>
-
-
-
-
-
-
-
-
-        <%# <div class="d-flex flex-row justify-content-start m-3">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                    alt="avatar 1" style="width: 45px; height: 100%;">
-          <div class="p-3 ms-4" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-            <div>
-              <%= simple_form_for @topic do |f| %>
-                <%# <%= f.input :description, label: false , placeholder: 'Eg. I made a mistake about my visa renewal. What should I do?'%> %>
-              <%# <% end %> %>
-            <%# </div> %>
-            <%# <p class="fs-5 mb-0">Hi <%= current_user.nickname %>, thanks for reaching out to me!</p> %>
-          <%# </div> %>
-        <%# </div> %>
-      <%# </div> %>
-      <%# Customer response %>
-      <%# <div class="d-flex flex-row justify-content-end m-3"> %>
-        <%# <div class="p-3 me-4 fs-5" style="border-radius: 15px; background-color: rgba(255,229,153);"> %>
-          <%# <p class="medium p-2 me-3 text-gray rounded-3"> %>
-            <%# <p>Hi sempai, can you please help me? I have an issue with visa renewal.</p> %>
-            <%# <%= simple_form_for [@booking, @message],
-                      html: {class: "h-100 custom-height m-3"} do |f| %>
-              <%# <%= f.input :content,
-                      label: false,
-                      placeholder: "Enter message ##{@topic.name}",
-                      wrapper_html: {class: "flex-grow-1"}%>
-            <%# </p> %>
-          <%# </div> %>
-          <%# <div class="flex pe-3 mb-3"> %>
-            <%# <p class="mb-1"><%= current_user.nickname %></p> %>
-            <%# <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp" %>
-                            <%# alt="avatar 1" style="width: 45px; height: 100%;"> %>
-          <%# </div> %>
-        <%# </div> %>
-        <%# <div class="d-flex justify-content-start align-items-center p-3"> %>
-          <%# <div class="form-outline col-12"> %>
-            <%# <%= simple_form_for [@booking, @message], %>
-                    <%# html: {class: "h-100 custom-height m-3 p-3 d-flex"} do |f| %> %>
-              <%# <%= f.input :content, %>
-                      <%# label: false, %>
-                      <%# placeholder: "Enter message ##{@topic.name}", %>
-                      <%# wrapper_html: {class: "flex-grow-1"} %>
-                    <%# %> %>
-              <%# <%= f.submit "Send", class: "btn btn-primary text-white mb-3 col-2 fs-5" %> %>
-            <%# </div> %>
-          <%# <% end %> %>
-        <%# </div> %>
-      <%# </div> %> %>
-
-
-      <div class="col-md-6" id="confirmation" style="border-radius: 15px; background-color: white;">
-        <div class="row justify-content-center mb-4">
-          <div class="col-10 justify-center p-3">
-            <div class="card-category">
-              <div class="blob">
-                <h3 class="m-1">See your Bookings</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="justify-content-center">
-          <% if @booking.time? %>
-            <h3 class="text-center text-black">Confirmed your booking on</h3>
-            <p class="fs-3 text-center"><strong></strong><%= @booking.time.strftime("%m-%d %H:%M") %> </p>
-          <% end %>
-        </div>
+      <div class="justify-content-center">
+        <% if @booking.time? %>
+          <h3 class="text-center text-black">Confirmed your booking on</h3>
+          <p class="fs-3 text-center"><strong></strong><%= @booking.time.strftime("%m-%d %H:%M") %> </p>
+        <% end %>
       </div>
     </div>
   </div>
+  <%# </div> %>
+</div>

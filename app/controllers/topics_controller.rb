@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
     if @topic.save
       redirect_to @topic, notice: 'Topic was successfully created.'
     else
-      render :new
+      render "pages/home", status: :unprocessable_entity
     end
   end
 

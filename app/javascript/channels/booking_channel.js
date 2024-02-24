@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import consumer from "./consumer"
 
 // Connects to data-controller="booking_subscription"
+=======
+import consumer from "channels/consumer"
+
+>>>>>>> master
 consumer.subscriptions.create("BookingChannel", {
   connected() {
     // Called when the subscription is ready for use on the server

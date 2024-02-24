@@ -48,7 +48,7 @@ end
 def show
   @booking = Booking.find(params[:id])
   @topic = @booking.topic
-  @message = Message.new
+  @messages = Message.new
   authorize @booking
 end
 # accept or reject the booking by clicking on a button
