@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h1>Booking Details</h1>
+    </div>
+    <div class="card-body">
+      <% if @booking.time %>
+        <p><strong>Booking Time:</strong> <%= @booking.time %></p>
+      <% end %>
+      <p><strong>Booking Status:</strong>
+        <% if @booking.status == "pending" %>
+          <i class="fa-solid fa-hourglass-end" style="font-size: 24px"></i>
+        <% elsif @booking.status == "accepted" %>
+          <i class="fa-solid fa-check" style="color:green; font-size: 36px"></i>
+        <% else %>
+          <i class="fa-solid fa-times" style="color:red; font-size: 36px"></i>
+        <% end %>
+      </p>
+      <p><strong>Booking Username:</strong> <%= @booking.user.nickname %></p>
+    </div>
+  </div>
+  <div class="card mt-4">
+    <div class="card-header">
+      <h2>Booking Messages</h2>
+    </div>
+    <div class="card-body">
+      <% @booking.messages.each do |message| %>
+        <div class="message">
+          <p><strong>From:</strong> <%= message.user.nickname %>, created on: <%= message.created_at.strftime("%m-%d %H:%M") %> </p>
+          <p class="mx-5 mb-2"><%= message.content %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
