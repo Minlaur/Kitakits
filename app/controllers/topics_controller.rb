@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+before_action :set_user
 
   def create
     @topic = Topic.new(topic_params)
@@ -39,6 +40,9 @@ class TopicsController < ApplicationController
     end
   end
 
+  def index
+    @topics = @user.topics
+  end
   # def matching_sempais
   #   # find the record of topic and sets it to @topic
   #   @topic = Topic.find(params[:id])
@@ -54,4 +58,9 @@ class TopicsController < ApplicationController
     params.require(:topic).permit(:name, :description).merge(user_id: current_user.id)
     # .merge; assuming we can submit a topic if signed in? .merge(user_id: current_user.id, status: "pending")
   end
+
+  def set_user
+    @user = current_user
+  end
+
 end

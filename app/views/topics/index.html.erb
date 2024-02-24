@@ -1,0 +1,9 @@
+<% @user.topics.each do |topic| %>
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text"> <%= topic.name %></p>
+      <p class="card-text"> <%= topic.description %></p>
+      <p class="card-text"> <%= topic.status %></p>
+    </div>
+  </div>
+<% end %>
