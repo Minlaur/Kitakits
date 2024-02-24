@@ -20,7 +20,10 @@ class TopicPolicy < ApplicationPolicy
   end
 
   def update?
-    return true if user.present? && user == topic.user
+    return true if user.present? && user == record.user
   end
 
+  def resolved?
+    update?
+  end
 end

@@ -3,8 +3,8 @@
 <%# 3. Be able to resolve the topic  %>
 <%# 3. a. routes - patch for resolved and cancelled (OK)
 b. model - status -> pending, resolved, cancelled (OK) %>
-c. controller - def for resolved and cancelled
-d. update view
+<%# c. controller - def for resolved and cancelled %>
+<%# d. update view %>
 <%# 4. update the navbar to go to my topics %>
 <% @topics.each do |topic| %>
   <div class="card">
@@ -15,10 +15,10 @@ d. update view
       <% topic.bookings.each do |booking| %>
         <%= link_to booking.user.nickname, topic_booking_path(id: booking.id, topic_id: topic.id), class: "btn btn-primary" %>
       <% end %>
-      <%# need to update to change status to Resolved %>
-      <%= simple_form_for booking, url: rejected_booking_path(booking), method: :patch do |f| %>
-        <%= f.button :submit, 'Reject', class: 'btn btn-light' %>
+      <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
+        <%= f.button :submit, 'Resolved', class: "btn btn-primary" %>
       <% end %>
+      <%# need to update to change status to Resolved %>
       <%# <a href="#" class="btn btn-primary">Resolve</a> %>
     </div>
     <div class="card-footer text-muted">

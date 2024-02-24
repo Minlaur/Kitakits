@@ -5,7 +5,6 @@ before_action :set_user
     @topic = Topic.new(topic_params)
     @topic.user = current_user
     authorize @topic
-
     if @topic.save
       redirect_to @topic, notice: 'Topic was successfully created.'
     else
@@ -52,10 +51,19 @@ before_action :set_user
   # end
 
   def resolved
+  @topic = Topic.find(params[:id])
+  authorize @topic
+    if @topic.update(status: 'resolved')
+          # need to redirect to the same page, @topic?
+          # need to suggest leaving a review
+      redirect_to user_topics_path(@topic), notice: 'Your topic is resolved.'
+    else
+      render :show, alert: 'Failed to accept booking.', status: :unprocessable_entity
+    end
   end
 
-  def cancelled
-  end
+  # def cancelled
+  # end
 
   private
 

@@ -28,11 +28,11 @@ Rails.application.routes.draw do
   end
 
   resources :topics, except: [:index, :destroy] do
+    member do
+      patch :resolved
+      patch :cancelled
+    end
     resources :bookings, only: [:new, :create, :show]
-      member do
-        patch :resolved
-        patch :cancelled
-      end
     get '/sempais', to: 'topics#matching_sempais'
   end
 
