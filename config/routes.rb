@@ -31,6 +31,10 @@ Rails.application.routes.draw do
   resources :bookings, only: [:edit, :update]
 
   resources :bookings, only: [:show]do
+    member do
+      patch 'accepted'
+      patch 'rejected'
+    end
     resources :messages, only: [:index, :create, :show]
   end
 

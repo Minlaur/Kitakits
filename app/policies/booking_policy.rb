@@ -18,4 +18,11 @@ class BookingPolicy < ApplicationPolicy
     return true if user.present? && user == booking.user
   end
 
+  def accepted?
+    true
+  end
+
+  def rejected?
+    true
+  end
 end
