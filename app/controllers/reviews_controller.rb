@@ -3,10 +3,8 @@ class ReviewsController < ApplicationController
   before_action :set_reviews, only: [:index]
 
   def index
-
     @reviews = policy_scope(Review)
   end
-
 
   def new
     @review = Review.new

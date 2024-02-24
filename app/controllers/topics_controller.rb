@@ -20,7 +20,6 @@ before_action :set_user
     tags = @topic.name.split(" ") + @topic.description.split(" ")
     @sempais = User.where(sempai: true).tagged_with(tags, any: true)
     authorize @topic
-
     # @sempais = User.where(sempai: true).tagged_with([@topic.where(params[:query])], on: :expertises, any: true)
   end
 
@@ -41,7 +40,7 @@ before_action :set_user
   end
 
   def index
-    @topics = @user.topics
+    @topics = policy_scope(Topic).where(user_id: @user.id)
   end
   # def matching_sempais
   #   # find the record of topic and sets it to @topic
@@ -62,5 +61,4 @@ before_action :set_user
   def set_user
     @user = current_user
   end
-
 end
