@@ -1,12 +1,5 @@
 class BookingChannel < ApplicationCable::Channel
   def subscribed
-<<<<<<< HEAD
-    stream_from "chatroom"
-  end
-
-  def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
-=======
     if params[:id]
       chatroom = Booking.find_by(id: params[:id])
       if chatroom
@@ -24,6 +17,5 @@ class BookingChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
->>>>>>> master
   end
 end
