@@ -1,7 +1,7 @@
  <div class="container-fluid">
   <div class="row justify-content-center mb-4">
     <div class="col-10 justify-center p-3">
-      <div class="card-category">
+      <div class="card-category2">
         <div class="blob">
           <h3 class="m-1">Welcome to Your Dashboard</h3>
         </div>
@@ -10,7 +10,7 @@
   </div>
 
 <div class="d-flex">
-  <div class="section p-0">
+  <p>test</p>
     <div class="col-md-6" id="chat1" style="border-radius: 15px; background-color: white;">
       <div class="justify-content-start m-4">
         <div class="card-category">
@@ -19,30 +19,32 @@
           </div>
         </div>
         <div class="row pb-5 ps-5 pe-5">
-            <div class="col-md-6" id="chat1" style="border-radius: 15px; background-color: white;">
+            <%# <div class="col-md-6" id="chat1" style="border-radius: 15px; background-color: white;"> %>
               <%= render 'bookings/chatroom' %>
-            </div>
+            <%# </div> %>
         </div>
-        </div>
+      </div>
     </div>
-  </div>
-    <div class="d-flex p-0">
-        <div class="col-md-6" id="confirmation" style="border-radius: 15px; background-color: white;">
-          <div class="row justify-content-center mb-4">
-            <div class="col-10 justify-center p-3">
-              <div class="card-category">
-                <div class="blob">
-                  <h3 class="m-1">See your Bookings</h3>
-                </div>
+  <p>test</p>
+    <div class="d-flex col-md-6">
+    <p>test</p>
+      <div class="content" id="confirmation" style="border-radius: 15px; background-color: white;">
+        <div class="row justify-content-center mb-4">
+          <div class="justify-center p-3">
+            <div class="card-category">
+              <div class="blob">
+                <h3 class="m-1">See your Bookings</h3>
               </div>
             </div>
           </div>
-          <div class="justify-content-center">
-            <% if @booking.time? %>
-            <h3 class="text-center text-black">Confirmed your booking on</h3>
-            <p class="fs-3 text-center"><strong></strong><%= @booking.time.strftime("%m-%d %H:%M") %> </p>
-          <% end %>
-          </div>
+              <div class="row pb-5 ps-5 pe-5 justify-content-center">
+                <% if @booking.time? %>
+                <h3 class="text-center text-black">Confirmed your booking on</h3>
+                <p class="fs-3 text-center"><strong></strong><%= @booking.time.strftime("%m-%d %H:%M") %> </p>
+                <% end %>
+              </div>
         </div>
+      </div>
     </div>
+  <p>test</p>
 </div>

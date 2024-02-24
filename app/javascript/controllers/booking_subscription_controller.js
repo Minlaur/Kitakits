@@ -1,11 +1,4 @@
 import { Controller } from "@hotwired/stimulus"
-<<<<<<< HEAD
-
-// Connects to data-controller="booking-subscription"
-export default class extends Controller {
-  connect() {
-  }
-=======
 import { createConsumer } from "@rails/actioncable"
 
 // Connects to data-controller="booking-subscription"
@@ -32,5 +25,4 @@ export default class extends Controller {
     console.log("Unsubscribed from the chatroom")
     this.channel.unsubscribe()
 }
->>>>>>> master
 }
