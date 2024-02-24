@@ -22,11 +22,9 @@ class User < ApplicationRecord
   has_many :topics, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :bookings
-  # need to add relationship between User and booking
-  # has_many :bookings
-  # has_many :bookings_as_sempais through: :topics
-  # end
-  # in the table, tags
+
+  has_many :bookings_as_sempai, through: :topics, source: :bookings
+
   acts_as_taggable_on :tags
   acts_as_taggable_on :expertises
 
