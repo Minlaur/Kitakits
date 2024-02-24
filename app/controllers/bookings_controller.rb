@@ -1,22 +1,11 @@
 class BookingsController < ApplicationController
-  before_action :set_topic
+  before_action :set_topic, except: [:accepted, :rejected]
 
 # as a user I can see all bookings I made
 def index
   Booking.all
   @bookings = current_user.bookings
 end
-
-# I can display a new booking
-# def new
-#   @booking = Booking.new
-#   @topic = Topic.find(params[:topic_id])
-#   @booking.topic = @topic
-#   # raise
-# end
-
-
-
 
 
 def new
@@ -25,12 +14,12 @@ def new
   authorize @booking
 end
 
-# I can create a new booking
+
 def create
-  # raise
+
   @booking = Booking.new(booking_params)
   @booking.topic = @topic
-  # raise
+
   authorize @booking
   if @booking.save
     redirect_to topic_booking_path(topic_id: @topic.id, id: @booking.id), notice: "Booking was successfully created!" # Modify redirect path to include booking ID and add notice
@@ -41,12 +30,6 @@ end
 
 
 def update
-  # @booking = Booking.find(params[:id])
-  # if @booking.update(booking_params)
-  #   redirect_to new_topic_booking_path(@booking), notice: "Booking was successfully updated!"
-  # else
-  #   render :new, status: :unprocessable_entity
-  # end
   if @booking.update
   redirect_to booking_path(@booking), notice: "Booking was successfully updated!"
   else
@@ -55,18 +38,33 @@ def update
 end
 
 
-
-# I can create a new booking
-
-# I can see the details of a booking
 def show
   @booking = Booking.find(params[:id])
   @topic = @booking.topic
   @messages = Message.new
   authorize @booking
 end
-# accept or reject the booking by clicking on a button
 
+
+def accepted
+  @booking = Booking.find(params[:id])
+  authorize @booking
+  if @booking.update(status: 'accepted')
+    redirect_to sempais_user_booking_path(@booking), notice: 'Booking was accepted.'
+  else
+    redirect_to sempais_user_booking_path(@booking), alert: 'Failed to accept booking.'
+  end
+end
+
+def rejected
+  @booking = Booking.find(params[:id])
+  authorize @booking
+  if @booking.update(status: 'rejected')
+    redirect_to sempais_user_booking_path(@booking), notice: 'Booking was rejected.'
+  else
+    redirect_to sempais_user_booking_path(@booking), alert: 'Failed to reject booking.'
+  end
+end
 
 
 

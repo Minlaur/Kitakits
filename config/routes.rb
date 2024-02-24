@@ -14,12 +14,9 @@ Rails.application.routes.draw do
   end
 
   namespace :sempais do
-    get 'bookings/index'
     resources :users, only: [] do
-      resources :bookings, only: [:index]
+      resources :bookings, only: [:index, :show, :update]
     end
-    get '/bookings/:id', to: 'sempais/bookings#show'
-    patch '/bookings/:id', to: 'sempais/bookings#update'
   end
 
   resources :users do
@@ -34,6 +31,10 @@ Rails.application.routes.draw do
   resources :bookings, only: [:edit, :update]
 
   resources :bookings, only: [:show]do
+    member do
+      patch 'accepted'
+      patch 'rejected'
+    end
     resources :messages, only: [:index, :create, :show]
   end
 
