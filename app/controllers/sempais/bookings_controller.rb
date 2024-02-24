@@ -1,5 +1,9 @@
 class Sempais::BookingsController < ApplicationController
   def index
+    @bookings = policy_scope(Booking).where(user: current_user)
+    @user = current_user # or however you are retrieving the user
+    @bookings = @user.bookings
+    authorize @bookings
   end
 
   def show
