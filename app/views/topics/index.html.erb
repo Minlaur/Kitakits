@@ -1,17 +1,13 @@
 <%# 1. View all topics %>
 <%# 2. Add a link to the topic  %>
 <%# 3. Be able to resolve the topic  %>
+<%# 3. a. routes - patch for resolved and cancelled (OK)
+b. model - status -> pending, resolved, cancelled (OK) %>
+c. controller - def for resolved and cancelled
+d. update view
+<%# 4. update the navbar to go to my topics %>
 <% @topics.each do |topic| %>
-  <%# <div class="card">
-    <div class="card-body">
-      <p class="card-text"> <%= topic.name %>
-  <%# <p class="card-text"> <%= topic.description</p> %>
-  <%# <p class="card-text"> <%= topic.status %>
-  <%# </div> %>
   <div class="card">
-    <div class="card-header">
-      Featured
-    </div>
     <div class="card-body">
       <h5 class="card-title"><%= topic.name %></h5>
       <p class="card-text"><%= topic.description %></p>
@@ -20,7 +16,10 @@
         <%= link_to booking.user.nickname, topic_booking_path(id: booking.id, topic_id: topic.id), class: "btn btn-primary" %>
       <% end %>
       <%# need to update to change status to Resolved %>
-      <a href="#" class="btn btn-primary">Resolve</a>
+      <%= simple_form_for booking, url: rejected_booking_path(booking), method: :patch do |f| %>
+        <%= f.button :submit, 'Reject', class: 'btn btn-light' %>
+      <% end %>
+      <%# <a href="#" class="btn btn-primary">Resolve</a> %>
     </div>
     <div class="card-footer text-muted">
       2 days ago

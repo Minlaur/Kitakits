@@ -51,6 +51,12 @@ before_action :set_user
   #   # @sempais = User.where(sempai: true).tagged_with([@topic.where(params[:query])], on: :expertises, any: true)
   # end
 
+  def resolved
+  end
+
+  def cancelled
+  end
+
   private
 
   def topic_params
