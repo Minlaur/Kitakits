@@ -41,6 +41,7 @@ before_action :set_user
   def index
     @topics = policy_scope(Topic).where(user_id: @user.id)
     @topic = Topic.find(params[:user_id])
+    # tags = @topics.flat_map { |topic| topic.name.split(" ") + topic.description.split(" ") }
     tags = @topic.name.split(" ") + @topic.description.split(" ")
     @sempais = User.where(sempai: true).tagged_with(tags, any: true)
   end

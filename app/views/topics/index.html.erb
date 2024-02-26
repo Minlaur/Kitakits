@@ -9,42 +9,29 @@
 <% @topics.each do |topic| %>
   <div class="card">
     <div class="card-body">
-      <p> trying out </p>
+      <%# <% if !topic.cancelled?%>
       <h5 class="card-title"><%= topic.name %></h5>
       <p class="card-text"><%= topic.description %></p>
-      <p class="card-text"><%= topic.user.nickname %></p>
       <% @sempais.each do |sempai| %>
         <p class="card-text"><%= sempai.nickname %></p>
       <% end %>
-      <% if !topic.resolved?%>
-        <h5 class="card-title"><%= topic.name %></h5>
-        <p class="card-text"><%= topic.description %></p>
-        <% topic.bookings.each do |booking| %>
-          <%= link_to booking.user.nickname, topic_booking_path(id: booking.id, topic_id: topic.id), class: "btn btn-primary" %>
-        <% end %>
-        <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
-          <%= f.button :submit, 'Resolved', class: "btn btn-primary" %>
-        <% end %>
-        <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
-          <%= f.button :submit, 'Cancel', class: "btn btn-primary" %>
-        <% end %>
-      <% else %>
-        <h5 class="card-title opacity-50"><%= topic.name %> - Resolved </h5>
-        <p class="card-text opacity-50"><%= topic.description %></p>
-        <% topic.bookings.each do |booking| %>
-          <h5> Sempai Booked - <%= booking.user.nickname%> </h5>
-          <%= link_to booking.user.nickname, topic_booking_path(id: booking.id, topic_id: topic.id), class: "btn btn-primary", style: 'opacity: 0.5;'%>
-        <% end %>
-        <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
-          <%= f.button :submit, 'Resolved', class: "d-none" %>
-        <% end %>
-        <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
-          <%= f.button :submit, 'Cancel', class: "d-none" %>
-        <% end %>
+      <%# this below does not connect to individual booking yet %>
+      <% topic.bookings.each do |booking| %>
+        <%= link_to sempai.nickname, sempai_path(sempai_id: sempai.id, id: topic.id), class: "btn btn-primary" %>
       <% end %>
-    </div>
-    <div class="card-footer text-muted">
-      2 days ago
+      <%# below code does not work again. maybe because we have removed the routes from under booking to topic %>
+      <% topic.bookings.each do |booking| %>
+        <%= link_to booking.user.nickname, topic_booking_path(id: booking.id, topic_id: topic.id), class: "btn btn-primary" %>
+      <% end %>
+      <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
+        <%= f.button :submit, 'Resolved', class: "btn btn-primary" %>
+      <% end %>
+      <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
+        <%= f.button :submit, 'Cancel', class: "btn btn-primary" %>
+      <% end %>
+      <div class="card-footer text-muted">
+        2 days ago
+      </div>
     </div>
   </div>
 <% end %>
