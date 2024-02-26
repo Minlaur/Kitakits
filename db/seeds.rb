@@ -155,13 +155,19 @@ users = [
     last_name: "Porto",
     email: "xyz@mail.com",
     password: "secret",
-    password_confirmation: "secret"
+    password_confirmation: "secret",
+    language: "English",
+    nationality: "Australia",
+    nickname: "Digital nomad"
   },
   { first_name: "Mimi",
     last_name: "Portal",
     email: "xyz123@mail.com",
     password: "secret",
-    password_confirmation: "secret"
+    password_confirmation: "secret",
+    language: "English",
+    nationality: "Hong Kong",
+    nickname: "New to Japan",
   },
 ]
 

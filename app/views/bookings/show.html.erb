@@ -39,8 +39,8 @@
                   <p class="fs-3 text-center"><strong></strong><%= @booking.time.strftime("%m-%d %H:%M") %> </p>
                     <% if @booking.user.web_url.present? %>
                       <%= RQRCode::QRCode.new(@booking.user.web_url).as_svg(module_size: 4).html_safe %>
-                        <%= link_to @booking.user.meet_url %>
                     <% end %>
+                        <%= link_to @booking.user.meet_url %>
                   <% end %>
                 </div>
           </div>
