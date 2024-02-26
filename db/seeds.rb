@@ -13,6 +13,17 @@ expert_tags = [
    "taxes",
    "employment",
    "communication",
+   "career",
+   "insurance",
+   "banking",
+   "medical care",
+   "housing",
+   "language",
+   "investing",
+   "relationships",
+   "education",
+   "religion",
+   "community",
 ]
 
 topic_tags = [
@@ -23,6 +34,17 @@ topic_tags = [
   "marriage",
   "childcare",
   "lifestyle",
+  "medical care",
+  "work relationships",
+  "cultural adaptation",
+  "banking issues",
+  "health insurance",
+  "employment insurance",
+  "job search",
+  "housing search",
+  "mental health",
+  "career guidance",
+  "communication advice",
 ]
 
 topics = [
