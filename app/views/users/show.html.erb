@@ -21,9 +21,20 @@
   </div>
   <div class="aside-container d-flex flex-column w-100 gap-5">
     <div class="link-cards card shadow">
-      <div class="link p-3 d-flex justify-content-center gap-5">
-        <%= link_to "chat later", new_topic_booking_path(topic_id: @topic.id, booking: {sempai_id: @user.id}), class:"btn btn-info" %>
-        <%= button_to "chat now", topic_bookings_path(topic_id: @topic.id, booking: {sempai_id: @user.id}, redirect_to: "chat"), class:"btn btn-primary" %>
+      <div class="link p-3 flex-column justify-content-center gap-5"><nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link" id="nav-booking-tab" data-bs-toggle="tab" data-bs-target="#nav-booking" type="button" role="tab" aria-controls="nav-booking" aria-selected="false">Booking</button>
+            <%= button_to "chat now", topic_booking_messages_path(booking_id: @booking.id, topic_id: @topic.id), {class:"btn btn-primary nav-link active", id: "nav-chatroom-tab", "data-bs-toggle": "tab", "data-bs-target": "#nav-chatroom", type: "button", role: "tab", "aria-controls": "nav-chatroom", "aria-selected": "true"} %>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-chatroom" role="tabpanel" aria-labelledby="nav-chatroom-tab" tabindex="0">
+            <%= render 'bookings/chatroom' %>
+          </div>
+          <div class="tab-pane fade" id="nav-booking" role="tabpanel" aria-labelledby="nav-booking-tab" tabindex="0">...</div>
+        </div>
+        <%# <%= link_to "chat later", new_topic_booking_path(topic_id: @topic.id, booking: {sempai_id: @user.id}), class:"btn btn-info" %>
+        <%# <%= button_to "chat now", topic_bookings_path(topic_id: @topic.id, booking: {sempai_id: @user.id}, redirect_to: "chat"), class:"btn btn-primary" %>
       </div>
     </div>
     <div class="card shadow review-cards d-flex h-100">
