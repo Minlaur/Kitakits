@@ -6,10 +6,6 @@ class MessagePolicy < ApplicationPolicy
     # end
   end
 
-  def index?
-    true # Anyone can view a list of messages
-  end
-
   def create?
     user.present? # Anyone can create a message
   end
