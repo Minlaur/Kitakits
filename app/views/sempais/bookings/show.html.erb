@@ -22,6 +22,23 @@
       <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Let a review!
       </button>
+      <div class="d-flex gap-2">
+        <% if @booking.time && @booking.time >= Time.now && @booking.rejected? == false%>
+          <%= simple_form_for @booking, url: accepted_booking_path(@booking), method: :patch do |f| %>
+            <%= f.button :submit, 'Accept', class: 'btn btn-primary m-1' %>
+          <% end %>
+          <%= simple_form_for @booking, url: rejected_booking_path(@booking), method: :patch do |f| %>
+            <%= f.button :submit, 'Reject', class: 'btn btn-danger m-1' %>
+          <% end %>
+        <% else %>
+          <%= simple_form_for @booking, url: accepted_booking_path(@booking), method: :patch do |f| %>
+            <%= f.button :submit, 'Accept', class: 'btn btn-primary m-1', disabled: true, style: 'opacity: 0.5;' %>
+          <% end %>
+          <%= simple_form_for @booking, url: rejected_booking_path(@booking), method: :patch do |f| %>
+            <%= f.button :submit, 'Reject', class: 'btn btn-danger m-1', disabled: true, style: 'opacity: 0.5;' %>
+          <% end %>
+        <% end %>
+      </div>
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -32,23 +49,6 @@
             </div>
             <%= render 'bookings/chatroom' %>
           </div>
-        </div>
-        <div class="d-flex gap-2">
-          <% if @booking.time && @booking.time >= Time.now && @booking.rejected? == false%>
-            <%= simple_form_for @booking, url: accepted_booking_path(@booking), method: :patch do |f| %>
-              <%= f.button :submit, 'Accept', class: 'btn btn-primary m-1' %>
-            <% end %>
-            <%= simple_form_for @booking, url: rejected_booking_path(@booking), method: :patch do |f| %>
-              <%= f.button :submit, 'Reject', class: 'btn btn-danger m-1' %>
-            <% end %>
-          <% else %>
-            <%= simple_form_for @booking, url: accepted_booking_path(@booking), method: :patch do |f| %>
-              <%= f.button :submit, 'Accept', class: 'btn btn-primary m-1', disabled: true, style: 'opacity: 0.5;' %>
-            <% end %>
-            <%= simple_form_for @booking, url: rejected_booking_path(@booking), method: :patch do |f| %>
-              <%= f.button :submit, 'Reject', class: 'btn btn-danger m-1', disabled: true, style: 'opacity: 0.5;' %>
-            <% end %>
-          <% end %>
         </div>
       </div>
     </div>
@@ -62,5 +62,6 @@
       </div>
     </div>
   </div>
+  <%= link_to "Go back", sempais_user_bookings_path, class:"btn btn-info mt-2" %>
 </div>
 </div>
