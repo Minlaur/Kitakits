@@ -1,7 +1,7 @@
-<div class="container-cards d-flex gap-5 mt-5 h-100">
+<div class="container-cards d-flex gap-3 mt-2 h-100">
   <div class="main-card flex-2 w-100">
     <div class="card shadow">
-      <div class="card-body">
+      <div class="card-body h-100">
         <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="sempai.picture">
         <h5 class="card-title fs-2"> <%= @user.nickname %></h5>
         <%# if online, update bottom %>
@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <div class="aside-container d-flex flex-column w-100 gap-5">
+  <div class="aside-container d-flex flex-column w-100 gap-5 mb-3">
     <div class="link-cards card shadow">
       <div class="link p-3 flex-column justify-content-center gap-5"><nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -37,35 +37,26 @@
         <%# <%= button_to "chat now", topic_bookings_path(topic_id: @topic.id, booking: {sempai_id: @user.id}, redirect_to: "chat"), class:"btn btn-primary" %>
       </div>
     </div>
-    <div class="card shadow review-cards d-flex h-100">
-      <div class="card-body">
+    <div class="card shadow review-cards d-flex">
+      <div class="card-body" data-controller="insert-in-list">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Let a review!
         </button>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <%= simple_form_for [@user, @review] do |f| %>
-                <div class="modal-body">
-                  <%= f.input :rating %>
-                  <%= f.input :content %>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <%= f.button :submit, class: "btn btn-primary" %>
-                </div>
-              <% end %>
+              <%= render 'reviews/new' %>
             </div>
           </div>
         </div>
-        <div class="div">
-          <%= render 'reviews/render_index' %>
+        <div class="render-review" data-insert-in-list-target="items">
+          <%= render partial: 'reviews/render_index', locals: { reviews: @reviews } %>
         </div>
       </div>
     </div>
