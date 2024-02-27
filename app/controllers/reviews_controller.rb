@@ -3,9 +3,10 @@ class ReviewsController < ApplicationController
   before_action :set_reviews, only: [:index]
 
   def index
-
     @reviews = policy_scope(Review)
   end
+
+
 
 
   def new
@@ -16,9 +17,17 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.user = @user
+    @reviews = Review.all.where(user: @user).order(created_at: :desc)
     authorize @review
-    if @review.save
-      redirect_to sempai_path(@user.id), notice: 'Review was successfully created.'
+
+    respond_to do |format|
+      if @review.save
+        format.html { redirect_to sempais_path(@user) }
+        format.json # Follows the classic Rails flow and look for a create.json view
+      else
+        format.html { render "user/show", status: :unprocessable_entity }
+        format.json # Follows the classic Rails flow and look for a create.json view
+      end
     end
   end
 
