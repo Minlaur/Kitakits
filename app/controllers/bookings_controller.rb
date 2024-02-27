@@ -27,6 +27,13 @@ def create
   end
 end
 
+def edit
+  if @booking.update(booking_params)
+    redirect_to edit_booking_path(topic_id: @topic.id, id: @booking.id), notice: "Booking was successfully updated!"
+    else
+      render :new, status: :unprocessable_entity
+    end
+end
 
 def update
   if @booking.update(booking_params)
