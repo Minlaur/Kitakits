@@ -1,0 +1,68 @@
+<%# 1. View all topics %>
+<%# 2. Add a link to the topic  %>
+<%# 3. Be able to resolve the topic  %>
+<%# 3. a. routes - patch for resolved and cancelled (OK)
+<%# b. model - status -> pending, resolved, cancelled (OK) %>
+<%# c. controller - def for resolved and cancelled %>
+<%# d. update view - simple form and conditional to show if status is OOO, class="d-none" %>
+<%# 4. update the navbar to go to my topics %>
+<% @topics.each do |topic| %>
+  <%# if topic is resolved %>
+  <% if !topic.resolved? %>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= topic.name %></h5>
+        <p class="card-text"><%= topic.description %></p>
+        <% @sempais_by_topic[topic].each do |sempai| %>
+          <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "btn btn-primary" %>
+        <% end %>
+        <% topic.bookings.each do |booking| %>
+          <%= link_to booking.user.nickname, topic_booking_path(id: booking.id, topic_id: topic.id), class: "btn btn-primary" %>
+        <% end %>
+        <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
+          <%= f.button :submit, 'Resolved', class: "btn btn-primary" %>
+        <% end %>
+        <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
+          <%= f.button :submit, 'Cancel', class: "btn btn-primary" %>
+        <% end %>
+        <%# <div class="card-footer text-muted">
+        Sample text here
+        </div> %>
+        <%# elsif topic is cancelled,  %>
+      <% elsif %>
+        <h5 class="card-title"><%= topic.name %></h5>
+        <p class="card-text"><%= topic.description %></p>
+        <% @sempais_by_topic[topic].each do |sempai| %>
+          <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "btn btn-primary" %>
+        <% end %>
+        <% topic.bookings.each do |booking| %>
+          <%= link_to booking.user.nickname, topic_booking_path(id: booking.id, topic_id: topic.id), class: "btn btn-primary" %>
+        <% end %>
+        <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
+          <%= f.button :submit, 'Resolved', class: "btn btn-primary", disabled: true, style: 'opacity: 0.5' %>
+        <% end %>
+        <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
+          <%= f.button :submit, 'Cancel', class: "btn btn-primary", disabled: true, style: 'opacity: 0.5'  %>
+        <% end %>
+        <%# if topic is resolved %>
+      <% else %>
+        <% if !topic.resolved? %>
+          <h5 class="card-title"><%= topic.name %></h5>
+          <p class="card-text"><%= topic.description %></p>
+          <% @sempais_by_topic[topic].each do |sempai| %>
+            <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "btn btn-primary" %>
+          <% end %>
+          <% topic.bookings.each do |booking| %>
+            <%= link_to booking.user.nickname, topic_booking_path(id: booking.id, topic_id: topic.id), class: "btn btn-primary" %>
+          <% end %>
+          <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
+            <%= f.button :submit, 'Resolved', class: "btn btn-primary", disabled: true, style: 'opacity: 0.5;' %>
+          <% end %>
+          <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
+            <%= f.button :submit, 'Cancel', class: "btn btn-primary", disabled: true, style: 'opacity: 0.5;' %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
