@@ -1,0 +1,22 @@
+<div class="content" id="confirmation" style="border-radius: 15px; background-color: white;">
+  <div class="row justify-content-center mb-4">
+    <div class="justify-center p-3">
+      <div class="card-category">
+        <div class="blob">
+          <h3 class="m-1">See your Bookings</h3>
+        </div>
+      </div>
+    </div>
+        <div class="row pb-5 ps-5 pe-5 justify-content-center">
+          <% if @booking.time? %>
+          <h3 class="text-center text-black">Confirmed your booking on</h3>
+          <p class="fs-3 text-center"><strong></strong><%= @booking.time.strftime("%m-%d %H:%M") %> </p>
+            <% if @booking.user.web_url.present? %>
+              <%= RQRCode::QRCode.new(@booking.user.web_url).as_svg(module_size: 4).html_safe %>
+            <% end %>
+                <%= link_to @booking.user.meet_url %>
+                <%= link_to "Edit", edit_booking_path, class:"btn btn-info mt-2" %>
+          <% end %>
+        </div>
+  </div>
+</div>
