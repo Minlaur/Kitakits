@@ -33,6 +33,7 @@
           <% @sempais_by_topic[topic].each do |sempai| %>
             <p class="card-text"> Your Topic Sempai:
               <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "text-primary" %>
+              <%= link_to '(Leave a Review)', new_user_review_path(id: sempai.id), class: "text-secondary" %>
             </p>
           <% end %>
           <% topic.bookings.each do |booking| %>
@@ -41,9 +42,6 @@
             <% end %>
             <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
               <%= f.button :submit, 'Cancel', class: "btn btn-danger" %>
-            <% end %>
-            <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
-              <%= f.button :submit, 'Leave a Review', class: "btn btn-info" %>
             <% end %>
           <% end %>
         <% end %>
