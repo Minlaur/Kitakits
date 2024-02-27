@@ -7,7 +7,6 @@ def index
   @bookings = current_user.bookings
 end
 
-
 def new
   @booking = Booking.new
   @booking.topic = @topic

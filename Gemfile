@@ -73,6 +73,9 @@ gem "autoprefixer-rails"
 #gem faker
 gem 'faker'
 
+#gem qrcode
+gem "rqrcode", "~> 2.0"
+
 # Use dotenv to load environment variables from .env into ENV in development [
 # gem "dotenv-rails"
 
