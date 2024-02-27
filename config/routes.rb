@@ -24,7 +24,10 @@ Rails.application.routes.draw do
   end
 
   resources :topics, except: [:index, :destroy] do
-    resources :bookings, only: [:new, :create, :show]
+    resources :bookings, only: [:new, :create, :show] do
+      resources :messages, only: [:index, :create] # Add this line
+    end
+    post '/sempais/:id', to: 'bookings#create', as: 'create_booking_chat'
     get '/sempais', to: 'topics#matching_sempais'
   end
 
