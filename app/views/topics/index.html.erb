@@ -12,26 +12,25 @@
       <%# <% if !topic.cancelled?%>
       <h5 class="card-title"><%= topic.name %></h5>
       <p class="card-text"><%= topic.description %></p>
-      <% @sempais.each do |sempai| %>
-        <p class="card-text"><%= sempai.nickname %></p>
+      <% @sempais_by_topic[topic].each do |sempai| %>
+        <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "btn btn-primary" %>
       <% end %>
-      <%# this below does not connect to individual booking yet %>
-      <% topic.bookings.each do |booking| %>
-        <%= link_to sempai.nickname, sempai_path(sempai_id: sempai.id, id: topic.id), class: "btn btn-primary" %>
-      <% end %>
-      <%# below code does not work again. maybe because we have removed the routes from under booking to topic %>
-      <% topic.bookings.each do |booking| %>
-        <%= link_to booking.user.nickname, topic_booking_path(id: booking.id, topic_id: topic.id), class: "btn btn-primary" %>
-      <% end %>
-      <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
-        <%= f.button :submit, 'Resolved', class: "btn btn-primary" %>
-      <% end %>
-      <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
-        <%= f.button :submit, 'Cancel', class: "btn btn-primary" %>
-      <% end %>
-      <div class="card-footer text-muted">
-        2 days ago
+      <%# this below does not connect to individual booking yet, is this okay? can be nested under sempai %>
+      <%# <% topic.bookings.each do |booking| %>
+        <%# <% end %>
+        <%# below code does not work again. maybe because we have removed the routes from under booking to topic %>
+        <% topic.bookings.each do |booking| %>
+          <%= link_to booking.user.nickname, topic_booking_path(id: booking.id, topic_id: topic.id), class: "btn btn-primary" %>
+        <% end %>
+        <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
+          <%= f.button :submit, 'Resolved', class: "btn btn-primary" %>
+        <% end %>
+        <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
+          <%= f.button :submit, 'Cancel', class: "btn btn-primary" %>
+        <% end %>
+        <div class="card-footer text-muted">
+          2 days ago
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
