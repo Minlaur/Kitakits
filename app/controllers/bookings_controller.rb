@@ -29,8 +29,8 @@ end
 
 
 def update
-  if @booking.update
-  redirect_to booking_path(@booking), notice: "Booking was successfully updated!"
+  if @booking.update(booking_params)
+  redirect_to topic_booking_path(topic_id: @topic.id, id: @booking.id), notice: "Booking was successfully updated!"
   else
     render :new, status: :unprocessable_entity
   end
