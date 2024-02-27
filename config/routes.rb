@@ -21,10 +21,18 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :reviews, only: [:new, :create, :index]
+    resources :topics, only: [:index, :show]
   end
 
   resources :topics, except: [:index, :destroy] do
-    resources :bookings, only: [:new, :create, :show]
+    member do
+      patch :resolved
+      patch :cancelled
+    end
+    resources :bookings, only: [:new, :create, :show] do
+      resources :messages, only: [:index, :create] # Add this line
+    end
+    post '/sempais/:id', to: 'bookings#create', as: 'create_booking_chat'
     get '/sempais', to: 'topics#matching_sempais'
   end
 
