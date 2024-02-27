@@ -4,17 +4,6 @@ class Booking < ApplicationRecord
   has_many :messages, dependent: :destroy
 
   validates :status, presence: true
-  enum status: { pending: 0, confirmed: 1, cancelled: 2}
+  enum status: { pending: 0, accepted: 1, rejected: 2}
 
-  def pending?
-    status == 'pending'
-  end
-
-  def accepted?
-    status == 'accepted'
-  end
-
-  def rejected?
-    status == 'rejected'
-  end
 end

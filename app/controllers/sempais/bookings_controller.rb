@@ -1,8 +1,14 @@
 class Sempais::BookingsController < ApplicationController
   def index
-    # Find the user with the id in the url
-    # Validate sempai=true
-    # find all the booking as a sempai through topics
-
+    @bookings = policy_scope(current_user.bookings_as_sempai)
+    @user = current_user # or however you are retrieving the user
   end
+
+  def show
+    @booking = Booking.find(params[:id])
+    @topic = @booking.topic
+    @user = @booking.user
+    authorize @booking
+  end
+
 end

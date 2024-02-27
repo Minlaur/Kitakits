@@ -2,17 +2,31 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   # ,:set_time_zone
 
-  # define the topic and user for the show page
 
-  def show
-    @user = User.find(params[:id])
-    @topic = Topic.find_by(user_id: @user.id)
-    @booking = Booking.create
-    @message = Message.new
-    @review = Review.new(user_id: @user.id)
-    @reviews = @user.reviews
-    authorize @user
-  end
+    # Create a booking associated with the user
+    def show
+      @user = User.find(params[:id])
+      @topic = Topic.find_by(id: params[:topic_id])
+
+      # Vérifier si une réservation existe déjà pour cet utilisateur et ce sujet
+      @booking = current_user.bookings.find_by(topic: @topic)
+
+      if @booking
+        @messages = @booking.messages
+        authorize @messages
+      else
+        # Créer une nouvelle réservation si aucune réservation n'existe encore
+        @booking = Booking.create(user: current_user, topic: @topic, status: "pending")
+        @message = Message.new
+      end
+
+      @review = Review.new(user_id: @user.id)
+      @reviews = @user.reviews
+
+      authorize @user
+    end
+
+
 
   def update
     # @user = User.find(params[:id])

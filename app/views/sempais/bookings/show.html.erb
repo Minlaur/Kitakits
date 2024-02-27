@@ -1,0 +1,67 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h1>Booking Details</h1>
+    </div>
+    <div class="card-body">
+      <% if @booking.time %>
+        <p><strong>Booking Time:</strong> <%= @booking.time %></p>
+      <% end %>
+      <p><strong>Booking Status:</strong>
+        <% if @booking.status == "pending" %>
+          <i class="fa-solid fa-hourglass-end" style="font-size: 24px"></i>
+        <% elsif @booking.status == "accepted" %>
+          <i class="fa-solid fa-check" style="color:green; font-size: 36px"></i>
+        <% else %>
+          <i class="fa-solid fa-times" style="color:red; font-size: 36px"></i>
+        <% end %>
+      </p>
+      <p class="mb-3"><strong>Booking Username:</strong> <%= @booking.user.nickname %></p>
+      <%= link_to "Go back to discussion", topic_booking_path(topic_id: @topic.id), class:"btn btn-primary" %>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Let a review!
+      </button>
+      <div class="d-flex gap-2">
+        <% if @booking.time && @booking.time >= Time.now && @booking.rejected? == false%>
+          <%= simple_form_for @booking, url: accepted_booking_path(@booking), method: :patch do |f| %>
+            <%= f.button :submit, 'Accept', class: 'btn btn-primary m-1' %>
+          <% end %>
+          <%= simple_form_for @booking, url: rejected_booking_path(@booking), method: :patch do |f| %>
+            <%= f.button :submit, 'Reject', class: 'btn btn-danger m-1' %>
+          <% end %>
+        <% else %>
+          <%= simple_form_for @booking, url: accepted_booking_path(@booking), method: :patch do |f| %>
+            <%= f.button :submit, 'Accept', class: 'btn btn-primary m-1', disabled: true, style: 'opacity: 0.5;' %>
+          <% end %>
+          <%= simple_form_for @booking, url: rejected_booking_path(@booking), method: :patch do |f| %>
+            <%= f.button :submit, 'Reject', class: 'btn btn-danger m-1', disabled: true, style: 'opacity: 0.5;' %>
+          <% end %>
+        <% end %>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <%= render 'bookings/chatroom' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mt-4">
+      <div class="card-header">
+        <h2>topic Description</h2>
+      </div>
+      <div class="card-body">
+        <h3><%= @topic.name %></h3>
+        <p><%= @topic.description %></p>
+      </div>
+    </div>
+  </div>
+  <%= link_to "Go back", sempais_user_bookings_path, class:"btn btn-info mt-2" %>
+</div>
+</div>
