@@ -1,11 +1,14 @@
-<%# 1. View all topics %>
-<%# 2. Add a link to the topic  %>
-<%# 3. Be able to resolve the topic  %>
-<%# 3. a. routes - patch for resolved and cancelled (OK)
-<%# b. model - status -> pending, resolved, cancelled (OK) %>
-<%# c. controller - def for resolved and cancelled %>
-<%# d. update view - simple form and conditional to show if status is OOO, class="d-none" %>
-<%# 4. update the navbar to go to my topics %>
+<%# OK 1. View all topics %>
+<%# OK 2. Add a link to the topic  %>
+<%# OK 3. Be able to resolve the topic  %>
+<%# OK 3. a. routes - patch for resolved and cancelled
+<%# OK b. model - status -> pending, resolved, cancelled %>
+<%# OK c. controller - def for resolved and cancelled %>
+<%# OK 4. update the navbar to go to my topics %>
+<%# 5. update view
+        a.simple form and conditional to show if status changes then what
+        b. if user booked it, hide name %>
+<%# 6. if user booked it, hide the link to user's name%>
 <div class = "card-container">
   <% @topics.each do |topic| %>
     <div class="card">
