@@ -9,43 +9,50 @@
         a.simple form and conditional to show if status changes then what
         b. if user booked it, hide name %>
 <%# 6. if user booked it, hide the link to user's name%>
-<div class = "card-container">
-  <% @topics.each do |topic| %>
-    <div class="card">
-      <div class="card-body">
-        <%# if topic is cancelled %>
-        <% if topic.cancelled? %>
-          <h5 class="card-title-muted"><%= topic.name %> - Cancelled </h5>
-          <p class="card-text-muted"><%= topic.description %></p>
-          <% @sempais_by_topic[topic].map do |sempai| %>
-            <p class="card-text-muted"><%= sempai.nickname %></p>
-          <% end %>
-          <%# if topic is resolved %>
-        <% elsif topic.resolved? %>
-          <h5 class="card-title-muted"><%= topic.name %> - Resolved</h5>
-          <p class="card-text-muted"><%= topic.description %></p>
-          <% @sempais_by_topic[topic].each do |sempai| %>
-            <p class="card-text-muted"><%= sempai.nickname %></p>
-          <% end %>
-        <% else %>
-          <h5 class="card-title"><%= topic.name %></h5>
-          <p class="card-text"><%= topic.description %></p>
-          <% @sempais_by_topic[topic].each do |sempai| %>
-            <p class="card-text"> Your Topic Sempai:
-              <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "text-primary" %>
-              <%= link_to '(Leave a Review)', new_user_review_path(id: sempai.id), class: "text-secondary" %>
-            </p>
-          <% end %>
-          <% topic.bookings.each do |booking| %>
-            <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
-              <%= f.button :submit, 'Resolve', class: "btn btn-primary" %>
-            <% end %>
-            <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
-              <%= f.button :submit, 'Cancel', class: "btn btn-danger" %>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-3">
     </div>
-  <% end %>
+    <div class = "card-container col-9">
+      <% @topics.each do |topic| %>
+        <div class="card">
+          <div class="card-body">
+            <%# if topic is cancelled %>
+            <% if topic.cancelled? %>
+              <h5 class="card-title-muted"><%= topic.name %> - Cancelled </h5>
+              <p class="card-text-muted"><%= topic.description %></p>
+              <% @sempais_by_topic[topic].map do |sempai| %>
+                <p class="card-text-muted"><%= sempai.nickname %></p>
+              <% end %>
+              <%# if topic is resolved %>
+            <% elsif topic.resolved? %>
+              <h5 class="card-title-muted"><%= topic.name %> - Resolved</h5>
+              <p class="card-text-muted"><%= topic.description %></p>
+              <% @sempais_by_topic[topic].each do |sempai| %>
+                <p class="card-text-muted"> Your Topic Sempai:
+                  <%= sempai.nickname %></p>
+              <% end %>
+            <% else %>
+              <h5 class="card-title"><%= topic.name %></h5>
+              <p class="card-text"><%= topic.description %></p>
+              <% @sempais_by_topic[topic].each do |sempai| %>
+                <p class="card-text"> Your Topic Sempai:
+                  <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "text-primary" %>
+                  <%= link_to '(Leave a Review)', new_user_review_path(id: sempai.id), class: "text-success" %>
+                </p>
+              <% end %>
+              <% topic.bookings.each do |booking| %>
+                <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
+                  <%= f.button :submit, 'Resolve', class: "btn btn-primary" %>
+                <% end %>
+                <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
+                  <%= f.button :submit, 'Cancel', class: "btn btn-danger" %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

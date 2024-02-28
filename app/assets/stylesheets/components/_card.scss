@@ -25,6 +25,19 @@
   padding: 0.5em;
 }
 
+.card {
+  margin: 0.4em;
+}
+
+.card-container {
+  padding: 8px;
+  margin: 0.4em 0;
+}
+
+.card-body {
+box-shadow: unset;
+}
+
 .card-text-muted {
   color: lightgrey;
 }
