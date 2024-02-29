@@ -40,18 +40,21 @@
                 <% @sempais_by_topic[topic].each do |sempai| %>
                   <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "text-primary" %>
                   <%= link_to '(Leave a Review)', sempai_path(id: sempai.id, topic_id: topic.id), class: "text-success" %>
-                <% end %>
-              </p>
-              <% topic.bookings.each do |booking| %>
-                <div class="row my-2">
-                  <div class="col col-lg-2">
-                    <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
-                      <%= f.button :submit, 'Resolve', class: "btn btn-primary" %>
-                    <% end %>
-                  </div>
-                  <div class="col col-lg-2">
-                    <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
-                      <%= f.button :submit, 'Cancel', class: "btn btn-danger" %>
+                </p>
+                <%# clause below is so that it will not iterate if sempai access the same booking/chat %>
+                <% if current_user != sempai %>
+                  <% topic.bookings.each do |booking| %>
+                    <div class="row my-2">
+                      <div class="col col-lg-2">
+                        <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
+                          <%= f.button :submit, 'Resolve', class: "btn btn-primary" %>
+                        <% end %>
+                      </div>
+                      <div class="col col-lg-2">
+                        <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
+                          <%= f.button :submit, 'Cancel', class: "btn btn-danger" %>
+                        <% end %>
+                      <% end %>
                     <% end %>
                   </div>
                 </div>
