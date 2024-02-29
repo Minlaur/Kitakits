@@ -21,11 +21,7 @@ def create
 
   authorize @booking
   if @booking.save
-    if @booking.time.present?
-      render "bookings/confirmation_page"
-    else
       redirect_to sempais_path(@user), notice: "Register a date and time"
-    end
     # redirect_to sempais_path(@user), notice: "Booking was successfully created!" # Modify redirect path to include booking ID and add notice
   else
     render :new, status: :unprocessable_entity
@@ -43,9 +39,9 @@ def update
 
   if @booking.update(booking_params)
     if @booking.time.present?
-      render "bookings/confirmation_page", notice: "Booking was successfully updated!"
+      render "bookings/_confirmation_page", notice: "Booking was successfully updated!"
     else
-      redirect_to user_topic, notice: "Register a date and time"
+      redirect_to sempais_path(@user), notice: "Register a date and time"
     end
   else
     render :edit, status: :unprocessable_entity
