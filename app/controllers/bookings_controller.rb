@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_topic, except: [:accepted, :rejected]
+  before_action :set_topic, except: [:accepted, :rejected, :update, :edit, :show]
 
 # as a user I can see all bookings I made
 def index
@@ -27,13 +27,20 @@ def create
   end
 end
 
+def edit
+  @booking = Booking.find(params[:id])
+  authorize @booking
+end
 
 def update
-  if @booking.update
-  redirect_to booking_path(@booking), notice: "Booking was successfully updated!"
+  @booking = Booking.find(params[:id])
+  @booking.topic = @topic
+  if @booking.update(booking_params)
+    redirect_to topic_booking_path(topic_id: @topic.id, id: @booking.id), notice: "Booking was successfully updated!"
   else
     render :new, status: :unprocessable_entity
   end
+  authorize @booking
 end
 
 

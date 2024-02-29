@@ -18,8 +18,14 @@ class BookingPolicy < ApplicationPolicy
     true # Anyone can view a booking
   end
 
+  def edit?
+    # return true if user.present? && user == @booking.user
+    true
+  end
+
   def update?
-    return true if user.present? && user == booking.user
+    # return true if user.present? && user == @booking.user
+    true
   end
 
   def accepted?
@@ -29,4 +35,5 @@ class BookingPolicy < ApplicationPolicy
   def rejected?
     true
   end
+
 end
