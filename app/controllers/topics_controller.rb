@@ -44,7 +44,8 @@ before_action :set_user
     # needed to find sempais under this topic, _by_ is an association extension in Active Record / Rails
     @topics.each do |topic|
       tags = topic.name.split(" ") + topic.description.split(" ")
-      @sempais_by_topic[topic] = User.where(sempai: true).tagged_with(tags, any: true)
+      tagged_sempais = User.where(sempai: true).tagged_with(tags, any: true)
+      @sempais_by_topic[topic] = tagged_sempais.reject { |sempai| sempai == @user }
     end
   end
   # def matching_sempais
