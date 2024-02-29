@@ -24,8 +24,8 @@
       <div class="link p-3 flex-column justify-content-center gap-5">
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <%= button_to "chat now", topic_booking_messages_path(booking_id: @booking.id, topic_id: @topic.id), {class:"btn btn-primary nav-link active", id: "nav-chatroom-tab", "data-bs-toggle": "tab", "data-bs-target": "#nav-chatroom", type: "button", role: "tab", "aria-controls": "nav-chatroom", "aria-selected": "true"} %>
-            <button class="nav-link" id="nav-booking-tab" data-bs-toggle="tab" data-bs-target="#nav-booking" type="button" role="tab" aria-controls="nav-booking" aria-selected="false">Booking</button>
+            <%= button_to "chat now", topic_booking_messages_path(booking_id: @booking.id, topic_id: @topic.id), {class:"nav-link", id: "nav-chatroom-tab", "data-bs-toggle": "tab", "data-bs-target": "#nav-chatroom", type: "button", role: "tab", "aria-controls": "nav-chatroom", "aria-selected": "true"} %>
+            <button class="nav-link" id="nav-booking-tab" data-bs-toggle="tab" data-bs-target="#nav-booking" type="button" role="tab" aria-controls="nav-booking" aria-selected="true">Booking</button>
           </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
