@@ -10,29 +10,37 @@
   // height: 120px; Commented this to adjust to the height of the content
   border-radius: 16px;
   // box-shadow: 0 0 2px rgba(0,0,0,0.3); commented so it won't appear with the blob
-  -webkit-border-radius: 200px 153px 0px 200px;
-  -moz-border-radius: 200px 153px 200px 0px;
+  -webkit-border-radius: 200px 200px 15px 153px;
+  -moz-border-radius: 200px 200px 200px 0px;
   height: fit-content;
   background: #ffc436;
-  background-image: linear-gradient(90deg, rgba(51, 124, 207, 0.8) 0%, rgba(255, 196, 54, 0.8) 100%);
+  background-image: linear-gradient(90deg, rgba(51, 124, 207, 0) 0%, rgba(255, 196, 54, 0.8) 100%);
   box-shadow: -10vmin 10vmin 0 rgba(255, 255, 255, 0.07);
-  margin-top: 1em;
-  color: #333333;
-  text-align: end;
+  margin-top: 3em;
+  color: #222222;
+  text-align: left;
 }
 
 .item-3d-content {
   // padding-top: 20px;
   // padding-bottom: 20px;
-  padding: 20px;
+  padding: 4rem;
+}
+
+.item-3d-icon {
+  img {
+    margin: -5rem;
+  }
 }
 
 .item-3d h2 {
   /*customizable*/
-  margin: 0;
+  margin: 2rem;
+  font-size: calc(2.3rem + 0.9vw);
 }
 
 .item-3d p {
   /*customizable*/
-  margin: 0;
+  margin: 2rem;
+  font-size: calc(0.8rem + 0.9vw);
 }

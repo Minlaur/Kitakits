@@ -14,12 +14,11 @@
     <div class = "col-5">
       <div class="item-3d">
         <div class="item-3d-content">
-          <h2>Hi <%= current_user.nickname %>,</h2>
-          <p> Have your resolved a topic of concern lately?</p>
+          <h2><strong><%= current_user.nickname %></strong>, we hope you're well.</h2>
+          <p> Have you resolved a topic lately?</p>
         </div>
         <div class="item-3d-icon">
-          <%= image_tag "1 Lady Clap.png", alt: "", width: '125%' %>
-          <%# <img src="assets/images/1 Lady Clap.png" alt=""> %>
+          <%= image_tag "1 Lady Clap.png", alt: "", width: "350vh" %>
         </div>
       </div>
     </div>
@@ -28,6 +27,7 @@
     <div class = "card-container col-6">
       <div class="page-header">
         <h2>My Topics</h2>
+        <hr>
       </div>
       <% @sorted_topics.each do |topic| %>
         <div class="card">
@@ -51,7 +51,7 @@
             <% else %>
               <h5 class="card-title"><%= topic.name %></h5>
               <p class="card-text"><%= topic.description %></p>
-              <p class="card-text"> Topic Sempai:
+              <p class="card-text"> Topic Sempai/s:
                 <% @sempais_by_topic[topic].each do |sempai| %>
                   <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "text-primary" %>
                   <%= link_to '(Leave a Review)', sempai_path(id: sempai.id, topic_id: topic.id), class: "text-success" %>
