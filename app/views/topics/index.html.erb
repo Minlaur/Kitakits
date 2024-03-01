@@ -11,9 +11,24 @@
 <%# 6. if user booked it, hide the link to user's name%>
 <div class = "container">
   <div class = "row">
-    <div class = "col-3">
+    <div class = "col-5">
+      <div class="item-3d">
+        <div class="item-3d-content">
+          <h2>Hi <%= current_user.nickname %>,</h2>
+          <p> Have your resolved a topic of concern lately?</p>
+        </div>
+        <div class="item-3d-icon">
+          <%= image_tag "1 Lady Clap.png", alt: "", width: '125%' %>
+          <%# <img src="assets/images/1 Lady Clap.png" alt=""> %>
+        </div>
+      </div>
     </div>
-    <div class = "card-container col-9">
+    <div class = "col-1">
+    </div>
+    <div class = "card-container col-6">
+      <div class="page-header">
+        <h2>My Topics</h2>
+      </div>
       <% @sorted_topics.each do |topic| %>
         <div class="card">
           <div class="card-body">
