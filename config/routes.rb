@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     get '/sempais', to: 'topics#matching_sempais'
   end
 
-  resources :bookings, only: [:edit, :update]
+  resources :bookings, only: [:index, :edit, :update]
 
   resources :bookings, only: [:show]do
     member do

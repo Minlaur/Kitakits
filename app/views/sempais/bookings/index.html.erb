@@ -16,7 +16,7 @@
                 <% end %>
                 <p class="card-text mb-2"><strong style="color: #28a745;">Booking Status:</strong> <%= booking.status %></p>
                 <p class="card-text mb-4"><strong style="color: #007bff;">Booking Sempai:</strong> <%= booking.topic.user.nickname %></p>
-                <%= link_to "More details", sempais_user_booking_path(user_id: @user.id, id: booking.id), class:"btn btn-success" %>
+                <%# <%= link_to "More details", sempais_user_booking_path(user_id: @user.id, id: booking.id), class:"btn btn-success" %> %>
                 <div class="mt-auto"></div>
                 <!-- This pushes the content to the top -->
               </div>

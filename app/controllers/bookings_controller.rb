@@ -1,10 +1,11 @@
 class BookingsController < ApplicationController
-  before_action :set_topic, except: [:accepted, :rejected, :update, :edit, :show]
+  before_action :set_topic, except: [:index, :accepted, :rejected, :update, :edit, :show]
 
 # as a user I can see all bookings I made
 def index
-  Booking.all
-  @bookings = current_user.bookings
+  @bookings = policy_scope(current_user.bookings) #as a customer, what user requested
+  @bookings_as_sempai = policy_scope(current_user.bookings_as_sempai) #as a senpai, what user got
+  @user = current_user
 end
 
 def new
