@@ -7,6 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'net/http'
 require 'json'
+require 'rest-client'
+require 'open-uri'
 
 expert_tags = [
    "taxes",
@@ -79,6 +81,7 @@ users = [
     web_url: "www.linkedin.com/MartinBernard",
     meet_url: "www.meet.google.com/dsj-pzzh-eru",
     sempai: true,
+    image_file: "app/assets/images/sample_sempai.jpg"
   },
   { first_name: "Annabelle",
     last_name: "Gomez",
@@ -93,6 +96,7 @@ users = [
     web_url: "www.linkedin.com/AnnabelleGomez",
     meet_url:"www.meet.google.com/dsj-pzzh-eru",
     sempai: true,
+    image_file: "app/assets/images/ann_sempai.jpg"
   },
   { first_name: "Taro",
     last_name: "Yamada",
@@ -107,6 +111,7 @@ users = [
     web_url: "www.linkedin.com/TaroYamada",
     meet_url: "www.meet.google.com/dsj-pzzh-eru",
     sempai: true,
+    image_file: "app/assets/images/tman-sempai.jpg"
   },
   { first_name: "Jane",
     last_name: "Tanaka",
@@ -121,6 +126,7 @@ users = [
     web_url: "www.linkedin.com/JaneTanaka",
     meet_url: "www.meet.google.com/dsj-pzzh-eru",
     sempai: true,
+    image_file: "app/assets/images/jane_sempai.jpg"
   },
   { first_name: "Javier",
     last_name: "Rodriguez",
@@ -188,12 +194,15 @@ users = [
 ]
 
 users.each do |user_data|
+  file = user_data.delete(:image_file) || "app/assets/images/sample_sempai.jpg"
   user = User.create!(user_data)
   # t = Topic.new(topics.sample)
   # t.tag_list.add(topic_tags.sample)
   # commented for now because it causes error on seeds
   # t.user = user
   # t.save
+  picture = File.open(file)
+  user.picture.attach(io: picture, filename: "profile.jpg")
   if user.nickname == "Marty" || user.nickname == "Ann" || user.nickname == "T-man"
     user.expertise_list.add("visa","employment","communication")
     user.save

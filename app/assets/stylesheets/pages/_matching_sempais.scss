@@ -16,7 +16,7 @@ body{
     z-index: 1;
     border-radius: 15px 15px 0 0;
     margin: 0 auto;
-    padding: 30px 30px 0 30px;
+    padding: 1px 1px 1px 1px;
     background-color: #337ccf;
     overflow: hidden;
 }
@@ -26,12 +26,12 @@ body{
     position: absolute;
     width: 150%;
     height: 80px;
-    bottom: -45px;
+    bottom: -35px;
     left: -25%;
     content: "";
     background-color: #070a57;
     -webkit-transform: rotate(-15deg);
-    transform: rotate(-15deg);
+    transform: rotate(-7deg);
 }
 @media only screen and (max-width: 575px) {
     .single_advisor_profile .advisor_thumb::after {
@@ -62,7 +62,7 @@ body{
 .single_advisor_profile .single_advisor_details_info {
     position: relative;
     z-index: 1;
-    padding: 30px;
+    padding: 0px 30px 30px 30px;
     text-align: right;
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;

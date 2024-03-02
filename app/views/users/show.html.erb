@@ -2,7 +2,7 @@
   <div class="main-card flex-2 w-100">
     <div class="card shadow">
       <div class="card-body h-100">
-        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="sempai.picture">
+        <%= cl_image_tag @user.picture.key, crop: :fill %>
         <h5 class="card-title fs-2"> <%= @user.nickname %></h5>
         <%# if online, update bottom %>
         <div style="display: inline-flex; align-items: center;">
