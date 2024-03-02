@@ -39,10 +39,11 @@ before_action :set_user
   end
 
   def index
-    @topics = policy_scope(Topic).where(user_id: @user.id)
+    statuses = [ 'pending', 'resolved', 'cancelled' ]
+    @sorted_topics = policy_scope(Topic).where(user_id: @user.id).sort_by { |topic| statuses.index(topic.status)}
     @sempais_by_topic = {}
     # needed to find sempais under this topic, _by_ is an association extension in Active Record / Rails
-    @topics.each do |topic|
+    @sorted_topics.each do |topic|
       tags = topic.name.split(" ") + topic.description.split(" ")
       tagged_sempais = User.where(sempai: true).tagged_with(tags, any: true)
       @sempais_by_topic[topic] = tagged_sempais.reject { |sempai| sempai == @user }

@@ -1,0 +1,46 @@
+// From https://yannklein.github.io/yann-uikit/#cards-section ~ m(_ _)m
+
+.item-3d {
+  /*fixed*/
+  display: flex;
+  align-items: center;
+  /*customizable*/
+  width: 700px;
+  max-width: 100%;
+  // height: 120px; Commented this to adjust to the height of the content
+  border-radius: 16px;
+  // box-shadow: 0 0 2px rgba(0,0,0,0.3); commented so it won't appear with the blob
+  -webkit-border-radius: 200px 200px 15px 153px;
+  -moz-border-radius: 200px 200px 200px 0px;
+  height: fit-content;
+  background: #ffc436;
+  background-image: linear-gradient(90deg, rgba(51, 124, 207, 0) 0%, rgba(255, 196, 54, 0.8) 100%);
+  box-shadow: -10vmin 10vmin 0 rgba(255, 255, 255, 0.07);
+  margin-top: 3em;
+  color: #222222;
+  text-align: left;
+}
+
+.item-3d-content {
+  // padding-top: 20px;
+  // padding-bottom: 20px;
+  padding: 4rem;
+}
+
+.item-3d-icon {
+  img {
+    margin: -5rem;
+  }
+}
+
+.item-3d h2 {
+  /*customizable*/
+  margin: 2rem;
+  font-size: calc(2.3rem + 0.9vw);
+}
+
+.item-3d p {
+  /*customizable*/
+  margin: 2rem;
+  font-size: calc(0.8rem + 0.9vw);
+}
