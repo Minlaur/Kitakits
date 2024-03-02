@@ -9,7 +9,6 @@ require 'net/http'
 require 'json'
 
 expert_tags = [
-   "visa",
    "taxes",
    "employment",
    "communication",
@@ -81,17 +80,17 @@ users = [
     meet_url: "www.meet.google.com/dsj-pzzh-eru",
     sempai: true,
   },
-  { first_name: "Laurice",
+  { first_name: "Annabelle",
     last_name: "Gomez",
     email: "abc@mail.com",
     password: "secret",
     password_confirmation: "secret",
     language: "English",
     nationality: "Philippines",
-    nickname: "Laur",
+    nickname: "Ann",
     occupation: "Immigration Consultant",
-    background: "After obtaining her Master's in social services, Laur has worked in the Ministry of Foreign Affairs. Currently, she works in the Tokyo city office.",
-    web_url: "www.linkedin.com/LauriceGomez",
+    background: "After obtaining her Master's in social services, Ann has worked in the Ministry of Foreign Affairs. Currently, she works in the Tokyo city office.",
+    web_url: "www.linkedin.com/AnnabelleGomez",
     meet_url:"www.meet.google.com/dsj-pzzh-eru",
     sempai: true,
   },
@@ -111,12 +110,12 @@ users = [
   },
   { first_name: "Jane",
     last_name: "Tanaka",
-    email: "123@mail.com",
+    email: "mail123123@mail.com",
     password: "secret",
     password_confirmation: "secret",
     language: "English",
     nationality: "Brazil",
-    nickname: "Housing expert",
+    nickname: "Jane the housing expert",
     occupation: "Real Estate entrpreneur",
     background: "Jane is a property consultant with 15 years of experience. She currently owns and operates 10 sharehouses.",
     web_url: "www.linkedin.com/JaneTanaka",
@@ -195,7 +194,13 @@ users.each do |user_data|
   # commented for now because it causes error on seeds
   # t.user = user
   # t.save
-  if user.sempai
+  if user.nickname == "Marty" || user.nickname == "Ann" || user.nickname == "T-man"
+    user.expertise_list.add("visa","employment","communication")
+    user.save
+  elsif user.nickname == "Jane the housing expert"
+    user.expertise_list.add("housing","lifestyle")
+    user.save
+  elsif user.sempai
     user.expertise_list.add(expert_tags.sample, expert_tags.sample, expert_tags.sample)
     user.save
   else
