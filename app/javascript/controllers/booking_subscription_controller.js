@@ -20,7 +20,7 @@ export default class extends Controller {
 
   resetForm(event) {
     console.log("Form submitted");
-    event.target.reset();
+    event.target.reset(); // Reset the form
   }
 
   insertMessageAndScrollDown(data) {
