@@ -2,8 +2,10 @@
   <div class="chatroom-container">
     <div class="chatroom" data-controller="booking-subscription" data-booking-subscription-booking-id-value="<%= @booking.id %>">
       <div class="messages" data-booking-subscription-target="messages">
-        <% @booking.messages.each do |message| %>
-          <%= render "messages/message", message: message %>
+        <% if  @booking.messages%>
+          <% @booking.messages.each do |message| %>
+            <%= render "messages/message", message: message %>
+          <% end %>
         <% end %>
       </div>
     </div>
