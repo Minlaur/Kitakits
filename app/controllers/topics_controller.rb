@@ -31,7 +31,7 @@ before_action :set_user
     @topic = Topic.find(params[:id])
     authorize @topic
     if @topic.update(topic_params)
-      redirect_to user_topics_path
+      redirect_to user_topics_path(current_user)
     else
       render :edit, status: :unprocessable_entity
     end

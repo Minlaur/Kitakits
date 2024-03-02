@@ -90,7 +90,10 @@
                 </div>
               </div>
             <% end %> <%# end for if %>
-            <%= render 'edit_form' %>
+            <p>Note:
+              <%= topic.note %>
+            </p>
+            <%= render 'edit_form', topic: topic %>
           </div>
         </div>
       <% end %>

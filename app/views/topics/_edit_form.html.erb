@@ -1,12 +1,8 @@
 <div>
-  <p>Notes: </p>
-  <%= simple_form_for @topic, method: :patch do |f| %>
-    <% f.input :name, label: false, value: @topic.name %>
-    <% f.input :name, label: false, value: @topic.description %>
+  <%= simple_form_for topic do |f| %>
+    <% f.input :name, label: false, value: topic.name %>
+    <% f.input :description, label: false, value: topic.description %>
     <%= f.input :note, label: false, placeholder: 'Your resolution notes here...'%>
     <%= f.button :submit, class: 'btn btn-primary', value: 'update'%>
   <% end %>
 </div>
-<%# <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
-  <%# <%= f.button :submit, 'Cancel', class: "btn btn-danger" %>
-  <%# <% end %>
