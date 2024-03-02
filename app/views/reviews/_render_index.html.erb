@@ -1,9 +1,9 @@
 <% @reviews.each do |review| %>
-  <div class="card m-2">
+  <div class="card-review m-2">
     <div class="card-body">
       <p class="card-text flex-inline">
         <% review.rating.times do %>
-          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star text-info"></i>
         <% end %>
       </p>
       <p class="card-text"> <%= review.content %></p>
