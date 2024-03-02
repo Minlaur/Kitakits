@@ -29,7 +29,7 @@ class User < ApplicationRecord
   # end
   # in the table, tags
 
-  has_many :bookings_as_sempai, through: :topics, source: :bookings
+  has_many :bookings_as_sempai
 
   acts_as_taggable_on :tags
   acts_as_taggable_on :expertises
