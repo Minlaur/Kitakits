@@ -6,20 +6,8 @@ class UsersController < ApplicationController
     # Create a booking associated with the user
     def show
       @user = User.find(params[:id])
+      @booking = Booking.new(user_id: @user.id)
       @topic = Topic.find_by(id: params[:topic_id])
-
-      # Vérifier si une réservation existe déjà pour cet utilisateur et ce sujet
-      @booking = current_user.bookings.find_by(topic: @topic)
-
-      if @booking
-        @messages = @booking.messages
-        authorize @messages
-      else
-        # Créer une nouvelle réservation si aucune réservation n'existe encore
-        @booking = Booking.create(user: current_user, topic: @topic, status: "pending")
-        @message = Message.new
-      end
-
       @review = Review.new(user_id: @user.id)
       @reviews = @user.reviews
 

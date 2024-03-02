@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_topic, except: [:accepted, :rejected, :update, :show, :index, :new, :create, :edit]
+  before_action :set_topic, only: [:new, :create, :show]
 
 # as a user I can see all bookings I made
 def index
@@ -15,14 +15,12 @@ end
 
 
 def create
-
   @booking = Booking.new(booking_params)
   @booking.topic = @topic
 
   authorize @booking
   if @booking.save
-      redirect_to sempais_path(@user), notice: "Register a date and time"
-    # redirect_to sempais_path(@user), notice: "Booking was successfully created!" # Modify redirect path to include booking ID and add notice
+      redirect_to topic_booking_path(@booking.topic, @booking)
   else
     render :new, status: :unprocessable_entity
   end
@@ -39,9 +37,7 @@ def update
 
   if @booking.update(booking_params)
     if @booking.time.present?
-      render "bookings/_confirmation_page", notice: "Booking was successfully updated!"
-    else
-      redirect_to sempais_path(@user), notice: "Register a date and time"
+      redirect_to topic_booking_path(@booking)
     end
   else
     render :edit, status: :unprocessable_entity
@@ -50,8 +46,7 @@ end
 
 
 def show
-  @booking = Booking.find(params[:id])
-  @topic = @booking.topic
+  @booking = Booking.find_by(id: params[:id])
   @messages = Message.new
   authorize @booking
 end
@@ -81,11 +76,11 @@ end
 
 private
 
-  def set_topic
-    @topic = Topic.find(params[:topic_id])
-  end
+def set_topic
+  @topic = Topic.find(params[:topic_id])
+end
 
   def booking_params
-    params.require(:booking).permit(:status, :time, :topic_id, :user_id).merge(status: "pending")
+    params.require(:booking).permit(:status, :time, :user_id ).merge(status: "pending")
   end
 end
