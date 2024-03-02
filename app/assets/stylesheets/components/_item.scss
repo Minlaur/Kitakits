@@ -18,29 +18,29 @@
   box-shadow: -10vmin 10vmin 0 rgba(255, 255, 255, 0.07);
   margin-top: 3em;
   color: #222222;
-  text-align: left;
+  text-align: center;
+  flex-direction: row-reverse;
 }
 
 .item-3d-content {
   // padding-top: 20px;
   // padding-bottom: 20px;
-  padding: 4rem;
+  padding: 2rem;
+
 }
 
 .item-3d-icon {
   img {
-    margin: -5rem;
+    margin-right: -4rem;
   }
 }
 
-.item-3d h2 {
+.item-3d h4 {
   /*customizable*/
-  margin: 2rem;
-  font-size: calc(2.3rem + 0.9vw);
+  font-size: 18px;
 }
 
 .item-3d p {
   /*customizable*/
-  margin: 2rem;
-  font-size: calc(0.8rem + 0.9vw);
+  margin-bottom: 0.8em;
 }

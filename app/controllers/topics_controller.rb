@@ -39,6 +39,7 @@ before_action :set_user
   end
 
   def index
+    @topic = Topic.new
     statuses = [ 'pending', 'resolved', 'cancelled' ]
     @sorted_topics = policy_scope(Topic).where(user_id: @user.id).sort_by { |topic| statuses.index(topic.status)}
     @sempais_by_topic = {}

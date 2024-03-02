@@ -14,11 +14,14 @@
     <div class = "col-5">
       <div class="item-3d">
         <div class="item-3d-content">
-          <h2><strong><%= current_user.nickname %></strong>, we hope you're well.</h2>
-          <p> Have you resolved a topic lately?</p>
+          <h4>Hi <strong><%= current_user.nickname %></strong>, how are you?</h4>
+          <p>Do you have a new topic?</p>
+          <div>
+            <%= render 'topic_form' %>
+          </div>
         </div>
         <div class="item-3d-icon">
-          <%= image_tag "1 Lady Clap.png", alt: "", width: "350vh" %>
+          <%= image_tag "1 Lady Clap.png", alt: "", width: "250vh" %>
         </div>
       </div>
     </div>
