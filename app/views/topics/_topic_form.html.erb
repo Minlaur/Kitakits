@@ -4,7 +4,6 @@
 <%# 4. update the style%>
 <div>
   <%= simple_form_for @topic do |f| %>
-    <p>A solution might be a chat away. What's your concern?</p>
     <%= f.input :name, label: false, placeholder: "Eg. About Visa Renewal"%>
     <%= f.input :description, label: false , placeholder: 'Eg. I made a mistake about my visa renewal. What should I do?'%>
     <%= f.button :submit, class: 'btn btn-primary', value: 'Reach Out'%>

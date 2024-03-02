@@ -31,14 +31,14 @@ before_action :set_user
     @topic = Topic.find(params[:id])
     authorize @topic
     if @topic.update(topic_params)
-      redirect_to topics_path
-      # once we have the requests#index to include params[:mine],change to redirect_to topics_path(mine: true)
+      redirect_to user_topics_path(current_user)
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def index
+    @topic = Topic.new
     statuses = [ 'pending', 'resolved', 'cancelled' ]
     @sorted_topics = policy_scope(Topic).where(user_id: @user.id).sort_by { |topic| statuses.index(topic.status)}
     @sempais_by_topic = {}
@@ -82,7 +82,7 @@ before_action :set_user
   private
 
   def topic_params
-    params.require(:topic).permit(:name, :description).merge(user_id: current_user.id)
+    params.require(:topic).permit(:name, :description, :note).merge(user_id: current_user.id)
     # .merge; assuming we can submit a topic if signed in? .merge(user_id: current_user.id, status: "pending")
   end
 

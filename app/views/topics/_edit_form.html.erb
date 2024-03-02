@@ -1,7 +1,8 @@
 <div>
-  <%= simple_form_for @topic do |f| %>
-    <%= f.input :name, label: false, placeholder: 'topic.name'%>
-    <%= f.input :description, label: false , placeholder: 'topic.description'%>
+  <%= simple_form_for topic do |f| %>
+    <% f.input :name, label: false, value: topic.name %>
+    <% f.input :description, label: false, value: topic.description %>
+    <%= f.input :note, label: false, placeholder: 'Your resolution notes here...'%>
     <%= f.button :submit, class: 'btn btn-primary', value: 'update'%>
   <% end %>
 </div>
