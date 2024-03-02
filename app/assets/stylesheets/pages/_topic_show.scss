@@ -30,4 +30,10 @@
 .col-md-3 {
   flex-grow: 1;
   margin: 6px;
+  height: 200px;
+}
+
+.row-2 {
+  display: flex;
+  justify-content: space-between;
 }

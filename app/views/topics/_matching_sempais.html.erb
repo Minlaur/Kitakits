@@ -15,13 +15,13 @@
       <div class="single_advisor_profile wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
         <!-- Team Thumb-->
         <div class="advisor_thumb">
-        <%= cl_image_tag sempai.picture.key, height: 400, width: 300, crop: :fill %>
+        <%= cl_image_tag sempai.picture.key, height: 400, width: 470, crop: :fill %>
         </div>
         <!-- Team Details-->
         <div class="single_advisor_details_info">
           <div class="row-2">
-            <h6><strong> <%= sempai.nickname %></strong> </h6>
-            <div style="display: inline-flex; align-items: center;">
+            <h1 style="color: #f78183"><strong> <%= sempai.nickname %></strong> </h1>
+            <div style="display: d-flex; align-items: center;">
               <% if sempai.last_seen == nil %>
                 <p class="card-text mx-1" style="color: grey">
                   Offline for a while
@@ -41,7 +41,7 @@
             <%# Icon above is if online %>
           </div>
           <p class="designation" style="color:#337CCF;"><%= sempai.occupation %></p>
-          <p class="designation"><%= sempai.background %></p>
+          <p class="designation"><%= sempai.background.split(' ').take(20).join(' ')... %></p>
           <!-- Tags here -->
           <div class="container_expertise" style= "display: inline-flex;">
             <% sempai.expertises.each do |expertise| %>
@@ -49,7 +49,7 @@
             <% end %>
           </div>
           <div>
-            <%= link_to "See Details", sempai_path(id: sempai.id, topic_id: topic.id), class: "btn btn-info my-4" %>
+            <%= link_to "See Details", sempai_path(id: sempai.id, topic_id: topic.id), class: "btn btn-info mt-4" %>
           </div>
         </div>
       </div>
