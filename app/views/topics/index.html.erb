@@ -14,7 +14,8 @@
     <div class = "col-5">
       <div class="item-3d">
         <div class="item-3d-content">
-          <h4>Hi <strong><%= current_user.nickname %></strong>, how are you?</h4>
+          <h4>Hi <strong><%= current_user.nickname %></strong>,<br>
+            how are you?</h4>
           <p>Do you have a new topic?</p>
           <div>
             <%= render 'topic_form' %>
@@ -34,7 +35,7 @@
       </div>
       <% @sorted_topics.each do |topic| %>
         <div class="card">
-          <div class="card-body">
+          <div class="card-body" style=<%= "background-color:antiquewhite;" if topic.pending? %>>
             <%# if topic is cancelled %>
             <% if topic.cancelled? %>
               <h5 class="card-title-muted"><%= topic.name %> - Cancelled </h5>
