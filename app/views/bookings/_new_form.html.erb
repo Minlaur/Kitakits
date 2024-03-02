@@ -1,7 +1,8 @@
-<%= simple_form_for @booking do |f| %>
+<%= simple_form_for [topic, booking] do |f| %>
   <%= f.input :time,
           as: :string,
           input_html: { data: { controller: "datepicker" }, class: "input-group bg-white" },
             enableTime: true, label: false, placeholder: 'Start time', class: "form_border"%>
+  <%= f.input :user_id, as: :hidden, value: user.id %>
   <%= f.button :submit, 'Book', class: 'btn btn-primary text-white mb-3 col-2 fs-5'%>
 <% end %>
