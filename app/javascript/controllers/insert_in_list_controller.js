@@ -21,7 +21,7 @@ export default class extends Controller {
     .then((data) => {
       if (data.inserted_item) {
         // beforeend could also be dynamic with Stimulus values
-        this.itemsTarget.insertAdjacentHTML("afterbegin", data.inserted_item)
+        this.itemsTarget.innerHTML = data.inserted_item
       }
       this.formTarget.outerHTML = data.form
     })
