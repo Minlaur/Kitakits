@@ -45,19 +45,28 @@
                 <% end %></p>
               <%# if topic is resolved %>
             <% elsif topic.resolved? %>
-              <h5 class="card-title-muted"><%= topic.name %> - Resolved</h5>
-              <p class="card-text-muted"><%= topic.description %></p>
-              <p class="card-text-muted"> Topic Sempai:
+              <h5 class="card-title"><%= topic.name %> - Resolved</h5>
+              <p class="card-text"><%= topic.description %></p>
+              <p class="card-text"> Topic Sempai:
                 <% @sempais_by_topic[topic].each do |sempai| %>
-                  <%= sempai.nickname %>
+                  <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "text-primary" %>
+                  <%= link_to '(Leave a Review)', sempai_path(id: sempai.id, topic_id: topic.id), class: "text-success" %>
                 <% end %></p>
+              <div class="row my-2" style="display: inline-flex;">
+                <div class="col">
+                  <% topic.bookings.each do |booking| %>
+                    <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
+                      <%= f.button :submit, 'See Chat History', class: "btn btn-secondary" %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
             <% else %>
               <h5 class="card-title"><%= topic.name %></h5>
               <p class="card-text"><%= topic.description %></p>
               <p class="card-text"> Topic Sempai/s:
                 <% @sempais_by_topic[topic].each do |sempai| %>
                   <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "text-primary" %>
-                  <%= link_to '(Leave a Review)', sempai_path(id: sempai.id, topic_id: topic.id), class: "text-success" %>
                 <% end %>
               </p>
               <div class="row my-2" style="display: inline-flex;">
