@@ -34,36 +34,36 @@
     </div>
   </div>
   <div class="aside-container d-flex flex-column w-100 gap-5 mb-3">
-    <div class="link-cards card shadow">
-      <div class="link p-3 flex-column justify-content-center gap-5">
-        <%= render partial: 'bookings/new_form', locals: {topic: @topic, user: @user, booking: @booking} %>
+      <div class="link-cards card shadow">
+        <div class="link p-3 flex-column justify-content-center gap-5">
+          <%= render partial: 'bookings/new_form', locals: {topic: @topic, user: @user, booking: @booking} %>
+        </div>
       </div>
-    </div>
-    <div class="image-position">
-      <%= image_tag "5 Man Thinking.png", alt: "", width: "200vh" %>
-    </div>
-    <div class="card shadow review-cards d-flex">
-      <div class="card-body" data-controller="insert-in-list">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Leave a review!
-        </button>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">New Review</h1>
-                <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="card shadow review-cards d-flex">
+        <div class="card-body" data-controller="insert-in-list">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Leave a review!
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">New Review</h1>
+                  <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <%= render 'reviews/new' %>
               </div>
-              <%= render 'reviews/new' %>
             </div>
           </div>
-        </div>
-        <div class="render-review" data-insert-in-list-target="items">
-          <%= render partial: 'reviews/render_index', locals: { reviews: @reviews } %>
+          <div class="render-review" data-insert-in-list-target="items">
+            <%= render partial: 'reviews/render_index', locals: { reviews: @reviews } %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <div class="image">
+      <%= image_tag "5 Man Thinking.png", alt: "", width: "150vh" %>
+    </div>
 </div>
