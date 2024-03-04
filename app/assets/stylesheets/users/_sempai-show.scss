@@ -13,6 +13,15 @@
   margin: 5rem;
 }
 
+.image-position {
+  img {
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: -1;
+    margin-left: 30rem;
+  }
+}
+
 // tooltip explaining that the sempai is online
 // .tooltip {
 //   position: relative;
