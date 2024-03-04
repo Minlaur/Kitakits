@@ -1,282 +1,12 @@
-/*!
-* sweetalert2 v11.10.5
-* Released under the MIT License.
-*/
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Sweetalert2 = factory());
-})(this, (function () { 'use strict';
-
-  function _callSuper(t, o, e) {
-    return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e));
-  }
-  function _construct(t, e, r) {
-    if (_isNativeReflectConstruct()) return Reflect.construct.apply(null, arguments);
-    var o = [null];
-    o.push.apply(o, e);
-    var p = new (t.bind.apply(t, o))();
-    return r && _setPrototypeOf(p, r.prototype), p;
-  }
-  function _isNativeReflectConstruct() {
-    try {
-      var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    } catch (t) {}
-    return (_isNativeReflectConstruct = function () {
-      return !!t;
-    })();
-  }
-  function _iterableToArrayLimit(r, l) {
-    var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
-    if (null != t) {
-      var e,
-        n,
-        i,
-        u,
-        a = [],
-        f = !0,
-        o = !1;
-      try {
-        if (i = (t = t.call(r)).next, 0 === l) {
-          if (Object(t) !== t) return;
-          f = !1;
-        } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
-      } catch (r) {
-        o = !0, n = r;
-      } finally {
-        try {
-          if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return;
-        } finally {
-          if (o) throw n;
-        }
-      }
-      return a;
-    }
-  }
-  function _toPrimitive(t, r) {
-    if ("object" != typeof t || !t) return t;
-    var e = t[Symbol.toPrimitive];
-    if (void 0 !== e) {
-      var i = e.call(t, r || "default");
-      if ("object" != typeof i) return i;
-      throw new TypeError("@@toPrimitive must return a primitive value.");
-    }
-    return ("string" === r ? String : Number)(t);
-  }
-  function _toPropertyKey(t) {
-    var i = _toPrimitive(t, "string");
-    return "symbol" == typeof i ? i : String(i);
-  }
-  function _typeof(o) {
-    "@babel/helpers - typeof";
-
-    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
-      return typeof o;
-    } : function (o) {
-      return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
-    }, _typeof(o);
-  }
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
-  function _defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor);
-    }
-  }
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    Object.defineProperty(Constructor, "prototype", {
-      writable: false
-    });
-    return Constructor;
-  }
-  function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-      throw new TypeError("Super expression must either be null or a function");
-    }
-    subClass.prototype = Object.create(superClass && superClass.prototype, {
-      constructor: {
-        value: subClass,
-        writable: true,
-        configurable: true
-      }
-    });
-    Object.defineProperty(subClass, "prototype", {
-      writable: false
-    });
-    if (superClass) _setPrototypeOf(subClass, superClass);
-  }
-  function _getPrototypeOf(o) {
-    _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
-      return o.__proto__ || Object.getPrototypeOf(o);
-    };
-    return _getPrototypeOf(o);
-  }
-  function _setPrototypeOf(o, p) {
-    _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
-      o.__proto__ = p;
-      return o;
-    };
-    return _setPrototypeOf(o, p);
-  }
-  function _assertThisInitialized(self) {
-    if (self === void 0) {
-      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }
-    return self;
-  }
-  function _possibleConstructorReturn(self, call) {
-    if (call && (typeof call === "object" || typeof call === "function")) {
-      return call;
-    } else if (call !== void 0) {
-      throw new TypeError("Derived constructors may only return object or undefined");
-    }
-    return _assertThisInitialized(self);
-  }
-  function _superPropBase(object, property) {
-    while (!Object.prototype.hasOwnProperty.call(object, property)) {
-      object = _getPrototypeOf(object);
-      if (object === null) break;
-    }
-    return object;
-  }
-  function _get() {
-    if (typeof Reflect !== "undefined" && Reflect.get) {
-      _get = Reflect.get.bind();
-    } else {
-      _get = function _get(target, property, receiver) {
-        var base = _superPropBase(target, property);
-        if (!base) return;
-        var desc = Object.getOwnPropertyDescriptor(base, property);
-        if (desc.get) {
-          return desc.get.call(arguments.length < 3 ? target : receiver);
-        }
-        return desc.value;
-      };
-    }
-    return _get.apply(this, arguments);
-  }
-  function _slicedToArray(arr, i) {
-    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
-  }
-  function _toConsumableArray(arr) {
-    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
-  }
-  function _arrayWithoutHoles(arr) {
-    if (Array.isArray(arr)) return _arrayLikeToArray(arr);
-  }
-  function _arrayWithHoles(arr) {
-    if (Array.isArray(arr)) return arr;
-  }
-  function _iterableToArray(iter) {
-    if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
-  }
-  function _unsupportedIterableToArray(o, minLen) {
-    if (!o) return;
-    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(o);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-  }
-  function _arrayLikeToArray(arr, len) {
-    if (len == null || len > arr.length) len = arr.length;
-    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
-    return arr2;
-  }
-  function _nonIterableSpread() {
-    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-  function _nonIterableRest() {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-  function _classPrivateFieldGet(receiver, privateMap) {
-    var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get");
-    return _classApplyDescriptorGet(receiver, descriptor);
-  }
-  function _classPrivateFieldSet(receiver, privateMap, value) {
-    var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "set");
-    _classApplyDescriptorSet(receiver, descriptor, value);
-    return value;
-  }
-  function _classExtractFieldDescriptor(receiver, privateMap, action) {
-    if (!privateMap.has(receiver)) {
-      throw new TypeError("attempted to " + action + " private field on non-instance");
-    }
-    return privateMap.get(receiver);
-  }
-  function _classApplyDescriptorGet(receiver, descriptor) {
-    if (descriptor.get) {
-      return descriptor.get.call(receiver);
-    }
-    return descriptor.value;
-  }
-  function _classApplyDescriptorSet(receiver, descriptor, value) {
-    if (descriptor.set) {
-      descriptor.set.call(receiver, value);
-    } else {
-      if (!descriptor.writable) {
-        throw new TypeError("attempted to set read only private field");
-      }
-      descriptor.value = value;
-    }
-  }
-  function _checkPrivateRedeclaration(obj, privateCollection) {
-    if (privateCollection.has(obj)) {
-      throw new TypeError("Cannot initialize the same private elements twice on an object");
-    }
-  }
-  function _classPrivateFieldInitSpec(obj, privateMap, value) {
-    _checkPrivateRedeclaration(obj, privateMap);
-    privateMap.set(obj, value);
-  }
-
-  var RESTORE_FOCUS_TIMEOUT = 100;
-
-  /** @type {GlobalState} */
-  var globalState = {};
-  var focusPreviousActiveElement = function focusPreviousActiveElement() {
-    if (globalState.previousActiveElement instanceof HTMLElement) {
-      globalState.previousActiveElement.focus();
-      globalState.previousActiveElement = null;
-    } else if (document.body) {
-      document.body.focus();
-    }
-  };
-
-  /**
+var e=typeof globalThis!=="undefined"?globalThis:typeof self!=="undefined"?self:global;var t={};(function(e,n){t=n()})(0,(function(){function _callSuper(e,t,n){return t=_getPrototypeOf(t),_possibleConstructorReturn(e,_isNativeReflectConstruct()?Reflect.construct(t,n||[],_getPrototypeOf(e).constructor):t.apply(e,n))}function _construct(e,t,n){if(_isNativeReflectConstruct())return Reflect.construct.apply(null,arguments);var a=[null];a.push.apply(a,t);var r=new(e.bind.apply(e,a));return n&&_setPrototypeOf(r,n.prototype),r}function _isNativeReflectConstruct(){try{var e=!Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){})))}catch(e){}return(_isNativeReflectConstruct=function(){return!!e})()}function _iterableToArrayLimit(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"];if(null!=n){var a,r,o,i,s=[],l=!0,c=!1;try{if(o=(n=n.call(e)).next,0===t){if(Object(n)!==n)return;l=!1}else for(;!(l=(a=o.call(n)).done)&&(s.push(a.value),s.length!==t);l=!0);}catch(e){c=!0,r=e}finally{try{if(!l&&null!=n.return&&(i=n.return(),Object(i)!==i))return}finally{if(c)throw r}}return s}}function _toPrimitive(e,t){if("object"!=typeof e||!e)return e;var n=e[Symbol.toPrimitive];if(void 0!==n){var a=n.call(e,t||"default");if("object"!=typeof a)return a;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===t?String:Number)(e)}function _toPropertyKey(e){var t=_toPrimitive(e,"string");return"symbol"==typeof t?t:String(t)}function _typeof(e){return _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},_typeof(e)}function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function _defineProperties(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||false;a.configurable=true;"value"in a&&(a.writable=true);Object.defineProperty(e,_toPropertyKey(a.key),a)}}function _createClass(e,t,n){t&&_defineProperties(e.prototype,t);n&&_defineProperties(e,n);Object.defineProperty(e,"prototype",{writable:false});return e}function _inherits(e,t){if(typeof t!=="function"&&t!==null)throw new TypeError("Super expression must either be null or a function");e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:true,configurable:true}});Object.defineProperty(e,"prototype",{writable:false});t&&_setPrototypeOf(e,t)}function _getPrototypeOf(e){_getPrototypeOf=Object.setPrototypeOf?Object.getPrototypeOf.bind():function _getPrototypeOf(e){return e.__proto__||Object.getPrototypeOf(e)};return _getPrototypeOf(e)}function _setPrototypeOf(e,t){_setPrototypeOf=Object.setPrototypeOf?Object.setPrototypeOf.bind():function _setPrototypeOf(e,t){e.__proto__=t;return e};return _setPrototypeOf(e,t)}function _assertThisInitialized(e){if(e===void 0)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function _possibleConstructorReturn(e,t){if(t&&(typeof t==="object"||typeof t==="function"))return t;if(t!==void 0)throw new TypeError("Derived constructors may only return object or undefined");return _assertThisInitialized(e)}function _superPropBase(e,t){while(!Object.prototype.hasOwnProperty.call(e,t)){e=_getPrototypeOf(e);if(e===null)break}return e}function _get(){_get=typeof Reflect!=="undefined"&&Reflect.get?Reflect.get.bind():function _get(e,t,n){var a=_superPropBase(e,t);if(a){var r=Object.getOwnPropertyDescriptor(a,t);return r.get?r.get.call(arguments.length<3?e:n):r.value}};return _get.apply(this||e,arguments)}function _slicedToArray(e,t){return _arrayWithHoles(e)||_iterableToArrayLimit(e,t)||_unsupportedIterableToArray(e,t)||_nonIterableRest()}function _toConsumableArray(e){return _arrayWithoutHoles(e)||_iterableToArray(e)||_unsupportedIterableToArray(e)||_nonIterableSpread()}function _arrayWithoutHoles(e){if(Array.isArray(e))return _arrayLikeToArray(e)}function _arrayWithHoles(e){if(Array.isArray(e))return e}function _iterableToArray(e){if(typeof Symbol!=="undefined"&&e[Symbol.iterator]!=null||e["@@iterator"]!=null)return Array.from(e)}function _unsupportedIterableToArray(e,t){if(e){if(typeof e==="string")return _arrayLikeToArray(e,t);var n=Object.prototype.toString.call(e).slice(8,-1);n==="Object"&&e.constructor&&(n=e.constructor.name);return n==="Map"||n==="Set"?Array.from(e):n==="Arguments"||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)?_arrayLikeToArray(e,t):void 0}}function _arrayLikeToArray(e,t){(t==null||t>e.length)&&(t=e.length);for(var n=0,a=new Array(t);n<t;n++)a[n]=e[n];return a}function _nonIterableSpread(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}function _nonIterableRest(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}function _classPrivateFieldGet(e,t){var n=_classExtractFieldDescriptor(e,t,"get");return _classApplyDescriptorGet(e,n)}function _classPrivateFieldSet(e,t,n){var a=_classExtractFieldDescriptor(e,t,"set");_classApplyDescriptorSet(e,a,n);return n}function _classExtractFieldDescriptor(e,t,n){if(!t.has(e))throw new TypeError("attempted to "+n+" private field on non-instance");return t.get(e)}function _classApplyDescriptorGet(e,t){return t.get?t.get.call(e):t.value}function _classApplyDescriptorSet(e,t,n){if(t.set)t.set.call(e,n);else{if(!t.writable)throw new TypeError("attempted to set read only private field");t.value=n}}function _checkPrivateRedeclaration(e,t){if(t.has(e))throw new TypeError("Cannot initialize the same private elements twice on an object")}function _classPrivateFieldInitSpec(e,t,n){_checkPrivateRedeclaration(e,t);t.set(e,n)}var t=100;
+/** @type {GlobalState} */var n={};var a=function focusPreviousActiveElement(){if(n.previousActiveElement instanceof HTMLElement){n.previousActiveElement.focus();n.previousActiveElement=null}else document.body&&document.body.focus()};
+/**
    * Restore previous active (focused) element
    *
    * @param {boolean} returnFocus
    * @returns {Promise<void>}
-   */
-  var restoreActiveElement = function restoreActiveElement(returnFocus) {
-    return new Promise(function (resolve) {
-      if (!returnFocus) {
-        return resolve();
-      }
-      var x = window.scrollX;
-      var y = window.scrollY;
-      globalState.restoreFocusTimeout = setTimeout(function () {
-        focusPreviousActiveElement();
-        resolve();
-      }, RESTORE_FOCUS_TIMEOUT); // issues/900
-
-      window.scrollTo(x, y);
-    });
-  };
-
-  var swalPrefix = 'swal2-';
-
-  /**
+   */var r=function restoreActiveElement(e){return new Promise((function(r){if(!e)return r();var o=window.scrollX;var i=window.scrollY;n.restoreFocusTimeout=setTimeout((function(){a();r()}),t);window.scrollTo(o,i)}))};var o="swal2-";
+/**
    * @typedef
    * { | 'container'
    *   | 'shown'
@@ -350,3327 +80,788 @@
    * } SwalClass
    * @typedef {Record<SwalClass, string>} SwalClasses
    */
-
-  /**
+/**
    * @typedef {'success' | 'warning' | 'info' | 'question' | 'error'} SwalIcon
    * @typedef {Record<SwalIcon, string>} SwalIcons
    */
-
-  /** @type {SwalClass[]} */
-  var classNames = ['container', 'shown', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'no-transition', 'toast', 'toast-shown', 'show', 'hide', 'close', 'title', 'html-container', 'actions', 'confirm', 'deny', 'cancel', 'default-outline', 'footer', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'input-label', 'validation-message', 'progress-steps', 'active-progress-step', 'progress-step', 'progress-step-line', 'loader', 'loading', 'styled', 'top', 'top-start', 'top-end', 'top-left', 'top-right', 'center', 'center-start', 'center-end', 'center-left', 'center-right', 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl', 'timer-progress-bar', 'timer-progress-bar-container', 'scrollbar-measure', 'icon-success', 'icon-warning', 'icon-info', 'icon-question', 'icon-error'];
-  var swalClasses = classNames.reduce(function (acc, className) {
-    acc[className] = swalPrefix + className;
-    return acc;
-  }, /** @type {SwalClasses} */{});
-
-  /** @type {SwalIcon[]} */
-  var icons = ['success', 'warning', 'info', 'question', 'error'];
-  var iconTypes = icons.reduce(function (acc, icon) {
-    acc[icon] = swalPrefix + icon;
-    return acc;
-  }, /** @type {SwalIcons} */{});
-
-  var consolePrefix = 'SweetAlert2:';
-
-  /**
+/** @type {SwalClass[]} */var i=["container","shown","height-auto","iosfix","popup","modal","no-backdrop","no-transition","toast","toast-shown","show","hide","close","title","html-container","actions","confirm","deny","cancel","default-outline","footer","icon","icon-content","image","input","file","range","select","radio","checkbox","label","textarea","inputerror","input-label","validation-message","progress-steps","active-progress-step","progress-step","progress-step-line","loader","loading","styled","top","top-start","top-end","top-left","top-right","center","center-start","center-end","center-left","center-right","bottom","bottom-start","bottom-end","bottom-left","bottom-right","grow-row","grow-column","grow-fullscreen","rtl","timer-progress-bar","timer-progress-bar-container","scrollbar-measure","icon-success","icon-warning","icon-info","icon-question","icon-error"];var s=i.reduce((function(e,t){e[t]=o+t;return e}),/** @type {SwalClasses} */{});
+/** @type {SwalIcon[]} */var l=["success","warning","info","question","error"];var c=l.reduce((function(e,t){e[t]=o+t;return e}),/** @type {SwalIcons} */{});var u="SweetAlert2:";
+/**
    * Capitalize the first letter of a string
    *
    * @param {string} str
    * @returns {string}
-   */
-  var capitalizeFirstLetter = function capitalizeFirstLetter(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
-
-  /**
+   */var d=function capitalizeFirstLetter(e){return e.charAt(0).toUpperCase()+e.slice(1)};
+/**
    * Standardize console warnings
    *
    * @param {string | string[]} message
-   */
-  var warn = function warn(message) {
-    console.warn("".concat(consolePrefix, " ").concat(_typeof(message) === 'object' ? message.join(' ') : message));
-  };
-
-  /**
+   */var p=function warn(e){console.warn("".concat(u," ").concat(_typeof(e)==="object"?e.join(" "):e))};
+/**
    * Standardize console errors
    *
    * @param {string} message
-   */
-  var error = function error(message) {
-    console.error("".concat(consolePrefix, " ").concat(message));
-  };
-
-  /**
+   */var w=function error(e){console.error("".concat(u," ").concat(e))};
+/**
    * Private global state for `warnOnce`
    *
    * @type {string[]}
    * @private
-   */
-  var previousWarnOnceMessages = [];
-
-  /**
+   */var f=[];
+/**
    * Show a console warning, but only if it hasn't already been shown
    *
    * @param {string} message
-   */
-  var warnOnce = function warnOnce(message) {
-    if (!previousWarnOnceMessages.includes(message)) {
-      previousWarnOnceMessages.push(message);
-      warn(message);
-    }
-  };
-
-  /**
+   */var m=function warnOnce(e){if(!f.includes(e)){f.push(e);p(e)}};
+/**
    * Show a one-time console warning about deprecated params/methods
    *
    * @param {string} deprecatedParam
    * @param {string} useInstead
-   */
-  var warnAboutDeprecation = function warnAboutDeprecation(deprecatedParam, useInstead) {
-    warnOnce("\"".concat(deprecatedParam, "\" is deprecated and will be removed in the next major release. Please use \"").concat(useInstead, "\" instead."));
-  };
-
-  /**
+   */var h=function warnAboutDeprecation(e,t){m('"'.concat(e,'" is deprecated and will be removed in the next major release. Please use "').concat(t,'" instead.'))};
+/**
    * If `arg` is a function, call it (with no arguments or context) and return the result.
    * Otherwise, just pass the value through
    *
    * @param {Function | any} arg
    * @returns {any}
-   */
-  var callIfFunction = function callIfFunction(arg) {
-    return typeof arg === 'function' ? arg() : arg;
-  };
-
-  /**
+   */var v=function callIfFunction(e){return typeof e==="function"?e():e};
+/**
    * @param {any} arg
    * @returns {boolean}
-   */
-  var hasToPromiseFn = function hasToPromiseFn(arg) {
-    return arg && typeof arg.toPromise === 'function';
-  };
-
-  /**
+   */var g=function hasToPromiseFn(e){return e&&typeof e.toPromise==="function"};
+/**
    * @param {any} arg
    * @returns {Promise<any>}
-   */
-  var asPromise = function asPromise(arg) {
-    return hasToPromiseFn(arg) ? arg.toPromise() : Promise.resolve(arg);
-  };
-
-  /**
+   */var b=function asPromise(e){return g(e)?e.toPromise():Promise.resolve(e)};
+/**
    * @param {any} arg
    * @returns {boolean}
-   */
-  var isPromise = function isPromise(arg) {
-    return arg && Promise.resolve(arg) === arg;
-  };
-
-  /**
+   */var y=function isPromise(e){return e&&Promise.resolve(e)===e};
+/**
    * Gets the popup container which contains the backdrop and the popup itself.
    *
    * @returns {HTMLElement | null}
-   */
-  var getContainer = function getContainer() {
-    return document.body.querySelector(".".concat(swalClasses.container));
-  };
-
-  /**
+   */var C=function getContainer(){return document.body.querySelector(".".concat(s.container))};
+/**
    * @param {string} selectorString
    * @returns {HTMLElement | null}
-   */
-  var elementBySelector = function elementBySelector(selectorString) {
-    var container = getContainer();
-    return container ? container.querySelector(selectorString) : null;
-  };
-
-  /**
+   */var k=function elementBySelector(e){var t=C();return t?t.querySelector(e):null};
+/**
    * @param {string} className
    * @returns {HTMLElement | null}
-   */
-  var elementByClass = function elementByClass(className) {
-    return elementBySelector(".".concat(className));
-  };
-
-  /**
+   */var x=function elementByClass(e){return k(".".concat(e))};
+/**
    * @returns {HTMLElement | null}
-   */
-  var getPopup = function getPopup() {
-    return elementByClass(swalClasses.popup);
-  };
-
-  /**
+   */var A=function getPopup(){return x(s.popup)};
+/**
    * @returns {HTMLElement | null}
-   */
-  var getIcon = function getIcon() {
-    return elementByClass(swalClasses.icon);
-  };
-
-  /**
+   */var P=function getIcon(){return x(s.icon)};
+/**
    * @returns {HTMLElement | null}
-   */
-  var getIconContent = function getIconContent() {
-    return elementByClass(swalClasses['icon-content']);
-  };
-
-  /**
+   */var B=function getIconContent(){return x(s["icon-content"])};
+/**
    * @returns {HTMLElement | null}
-   */
-  var getTitle = function getTitle() {
-    return elementByClass(swalClasses.title);
-  };
-
-  /**
+   */var S=function getTitle(){return x(s.title)};
+/**
    * @returns {HTMLElement | null}
-   */
-  var getHtmlContainer = function getHtmlContainer() {
-    return elementByClass(swalClasses['html-container']);
-  };
-
-  /**
+   */var T=function getHtmlContainer(){return x(s["html-container"])};
+/**
    * @returns {HTMLElement | null}
-   */
-  var getImage = function getImage() {
-    return elementByClass(swalClasses.image);
-  };
-
-  /**
+   */var _=function getImage(){return x(s.image)};
+/**
    * @returns {HTMLElement | null}
-   */
-  var getProgressSteps = function getProgressSteps() {
-    return elementByClass(swalClasses['progress-steps']);
-  };
-
-  /**
+   */var E=function getProgressSteps(){return x(s["progress-steps"])};
+/**
    * @returns {HTMLElement | null}
-   */
-  var getValidationMessage = function getValidationMessage() {
-    return elementByClass(swalClasses['validation-message']);
-  };
-
-  /**
+   */var O=function getValidationMessage(){return x(s["validation-message"])};
+/**
    * @returns {HTMLButtonElement | null}
-   */
-  var getConfirmButton = function getConfirmButton() {
-    return /** @type {HTMLButtonElement} */elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.confirm));
-  };
-
-  /**
+   */var I=function getConfirmButton(){/** @type {HTMLButtonElement} */
+return k(".".concat(s.actions," .").concat(s.confirm))};
+/**
    * @returns {HTMLButtonElement | null}
-   */
-  var getCancelButton = function getCancelButton() {
-    return /** @type {HTMLButtonElement} */elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.cancel));
-  };
-
-  /**
+   */var L=function getCancelButton(){/** @type {HTMLButtonElement} */
+return k(".".concat(s.actions," .").concat(s.cancel))};
+/**
    * @returns {HTMLButtonElement | null}
-   */
-  var getDenyButton = function getDenyButton() {
-    return /** @type {HTMLButtonElement} */elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.deny));
-  };
-
-  /**
+   */var j=function getDenyButton(){/** @type {HTMLButtonElement} */
+return k(".".concat(s.actions," .").concat(s.deny))};
+/**
    * @returns {HTMLElement | null}
-   */
-  var getInputLabel = function getInputLabel() {
-    return elementByClass(swalClasses['input-label']);
-  };
-
-  /**
+   */var M=function getInputLabel(){return x(s["input-label"])};
+/**
    * @returns {HTMLElement | null}
-   */
-  var getLoader = function getLoader() {
-    return elementBySelector(".".concat(swalClasses.loader));
-  };
-
-  /**
+   */var D=function getLoader(){return k(".".concat(s.loader))};
+/**
    * @returns {HTMLElement | null}
-   */
-  var getActions = function getActions() {
-    return elementByClass(swalClasses.actions);
-  };
-
-  /**
+   */var H=function getActions(){return x(s.actions)};
+/**
    * @returns {HTMLElement | null}
-   */
-  var getFooter = function getFooter() {
-    return elementByClass(swalClasses.footer);
-  };
-
-  /**
+   */var V=function getFooter(){return x(s.footer)};
+/**
    * @returns {HTMLElement | null}
-   */
-  var getTimerProgressBar = function getTimerProgressBar() {
-    return elementByClass(swalClasses['timer-progress-bar']);
-  };
-
-  /**
+   */var z=function getTimerProgressBar(){return x(s["timer-progress-bar"])};
+/**
    * @returns {HTMLElement | null}
-   */
-  var getCloseButton = function getCloseButton() {
-    return elementByClass(swalClasses.close);
-  };
-
-  // https://github.com/jkup/focusable/blob/master/index.js
-  var focusable = "\n  a[href],\n  area[href],\n  input:not([disabled]),\n  select:not([disabled]),\n  textarea:not([disabled]),\n  button:not([disabled]),\n  iframe,\n  object,\n  embed,\n  [tabindex=\"0\"],\n  [contenteditable],\n  audio[controls],\n  video[controls],\n  summary\n";
-  /**
+   */var R=function getCloseButton(){return x(s.close)};var q='\n  a[href],\n  area[href],\n  input:not([disabled]),\n  select:not([disabled]),\n  textarea:not([disabled]),\n  button:not([disabled]),\n  iframe,\n  object,\n  embed,\n  [tabindex="0"],\n  [contenteditable],\n  audio[controls],\n  video[controls],\n  summary\n';
+/**
    * @returns {HTMLElement[]}
-   */
-  var getFocusableElements = function getFocusableElements() {
-    var popup = getPopup();
-    if (!popup) {
-      return [];
-    }
-    /** @type {NodeListOf<HTMLElement>} */
-    var focusableElementsWithTabindex = popup.querySelectorAll('[tabindex]:not([tabindex="-1"]):not([tabindex="0"])');
-    var focusableElementsWithTabindexSorted = Array.from(focusableElementsWithTabindex)
-    // sort according to tabindex
-    .sort(function (a, b) {
-      var tabindexA = parseInt(a.getAttribute('tabindex') || '0');
-      var tabindexB = parseInt(b.getAttribute('tabindex') || '0');
-      if (tabindexA > tabindexB) {
-        return 1;
-      } else if (tabindexA < tabindexB) {
-        return -1;
-      }
-      return 0;
-    });
-
-    /** @type {NodeListOf<HTMLElement>} */
-    var otherFocusableElements = popup.querySelectorAll(focusable);
-    var otherFocusableElementsFiltered = Array.from(otherFocusableElements).filter(function (el) {
-      return el.getAttribute('tabindex') !== '-1';
-    });
-    return _toConsumableArray(new Set(focusableElementsWithTabindexSorted.concat(otherFocusableElementsFiltered))).filter(function (el) {
-      return isVisible$1(el);
-    });
-  };
-
-  /**
+   */var F=function getFocusableElements(){var e=A();if(!e)return[];
+/** @type {NodeListOf<HTMLElement>} */var t=e.querySelectorAll('[tabindex]:not([tabindex="-1"]):not([tabindex="0"])');var n=Array.from(t).sort((function(e,t){var n=parseInt(e.getAttribute("tabindex")||"0");var a=parseInt(t.getAttribute("tabindex")||"0");return n>a?1:n<a?-1:0}));
+/** @type {NodeListOf<HTMLElement>} */var a=e.querySelectorAll(q);var r=Array.from(a).filter((function(e){return e.getAttribute("tabindex")!=="-1"}));return _toConsumableArray(new Set(n.concat(r))).filter((function(e){return le(e)}))};
+/**
    * @returns {boolean}
-   */
-  var isModal = function isModal() {
-    return hasClass(document.body, swalClasses.shown) && !hasClass(document.body, swalClasses['toast-shown']) && !hasClass(document.body, swalClasses['no-backdrop']);
-  };
-
-  /**
+   */var N=function isModal(){return K(document.body,s.shown)&&!K(document.body,s["toast-shown"])&&!K(document.body,s["no-backdrop"])};
+/**
    * @returns {boolean}
-   */
-  var isToast = function isToast() {
-    var popup = getPopup();
-    if (!popup) {
-      return false;
-    }
-    return hasClass(popup, swalClasses.toast);
-  };
-
-  /**
+   */var W=function isToast(){var e=A();return!!e&&K(e,s.toast)};
+/**
    * @returns {boolean}
-   */
-  var isLoading = function isLoading() {
-    var popup = getPopup();
-    if (!popup) {
-      return false;
-    }
-    return popup.hasAttribute('data-loading');
-  };
-
-  /**
+   */var U=function isLoading(){var e=A();return!!e&&e.hasAttribute("data-loading")};
+/**
    * Securely set innerHTML of an element
    * https://github.com/sweetalert2/sweetalert2/issues/1926
    *
    * @param {HTMLElement} elem
    * @param {string} html
-   */
-  var setInnerHtml = function setInnerHtml(elem, html) {
-    elem.textContent = '';
-    if (html) {
-      var parser = new DOMParser();
-      var parsed = parser.parseFromString(html, "text/html");
-      var head = parsed.querySelector('head');
-      head && Array.from(head.childNodes).forEach(function (child) {
-        elem.appendChild(child);
-      });
-      var body = parsed.querySelector('body');
-      body && Array.from(body.childNodes).forEach(function (child) {
-        if (child instanceof HTMLVideoElement || child instanceof HTMLAudioElement) {
-          elem.appendChild(child.cloneNode(true)); // https://github.com/sweetalert2/sweetalert2/issues/2507
-        } else {
-          elem.appendChild(child);
-        }
-      });
-    }
-  };
-
-  /**
+   */var $=function setInnerHtml(e,t){e.textContent="";if(t){var n=new DOMParser;var a=n.parseFromString(t,"text/html");var r=a.querySelector("head");r&&Array.from(r.childNodes).forEach((function(t){e.appendChild(t)}));var o=a.querySelector("body");o&&Array.from(o.childNodes).forEach((function(t){t instanceof HTMLVideoElement||t instanceof HTMLAudioElement?e.appendChild(t.cloneNode(true)):e.appendChild(t)}))}};
+/**
    * @param {HTMLElement} elem
    * @param {string} className
    * @returns {boolean}
-   */
-  var hasClass = function hasClass(elem, className) {
-    if (!className) {
-      return false;
-    }
-    var classList = className.split(/\s+/);
-    for (var i = 0; i < classList.length; i++) {
-      if (!elem.classList.contains(classList[i])) {
-        return false;
-      }
-    }
-    return true;
-  };
-
-  /**
+   */var K=function hasClass(e,t){if(!t)return false;var n=t.split(/\s+/);for(var a=0;a<n.length;a++)if(!e.classList.contains(n[a]))return false;return true};
+/**
    * @param {HTMLElement} elem
    * @param {SweetAlertOptions} params
-   */
-  var removeCustomClasses = function removeCustomClasses(elem, params) {
-    Array.from(elem.classList).forEach(function (className) {
-      if (!Object.values(swalClasses).includes(className) && !Object.values(iconTypes).includes(className) && !Object.values(params.showClass || {}).includes(className)) {
-        elem.classList.remove(className);
-      }
-    });
-  };
-
-  /**
+   */var Z=function removeCustomClasses(e,t){Array.from(e.classList).forEach((function(n){Object.values(s).includes(n)||Object.values(c).includes(n)||Object.values(t.showClass||{}).includes(n)||e.classList.remove(n)}))};
+/**
    * @param {HTMLElement} elem
    * @param {SweetAlertOptions} params
    * @param {string} className
-   */
-  var applyCustomClass = function applyCustomClass(elem, params, className) {
-    removeCustomClasses(elem, params);
-    if (params.customClass && params.customClass[className]) {
-      if (typeof params.customClass[className] !== 'string' && !params.customClass[className].forEach) {
-        warn("Invalid type of customClass.".concat(className, "! Expected string or iterable object, got \"").concat(_typeof(params.customClass[className]), "\""));
-        return;
-      }
-      addClass(elem, params.customClass[className]);
-    }
-  };
-
-  /**
+   */var Y=function applyCustomClass(e,t,n){Z(e,t);if(t.customClass&&t.customClass[n]){if(typeof t.customClass[n]!=="string"&&!t.customClass[n].forEach){p("Invalid type of customClass.".concat(n,'! Expected string or iterable object, got "').concat(_typeof(t.customClass[n]),'"'));return}Q(e,t.customClass[n])}};
+/**
    * @param {HTMLElement} popup
    * @param {import('./renderers/renderInput').InputClass | SweetAlertInput} inputClass
    * @returns {HTMLInputElement | null}
-   */
-  var getInput$1 = function getInput(popup, inputClass) {
-    if (!inputClass) {
-      return null;
-    }
-    switch (inputClass) {
-      case 'select':
-      case 'textarea':
-      case 'file':
-        return popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses[inputClass]));
-      case 'checkbox':
-        return popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses.checkbox, " input"));
-      case 'radio':
-        return popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses.radio, " input:checked")) || popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses.radio, " input:first-child"));
-      case 'range':
-        return popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses.range, " input"));
-      default:
-        return popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses.input));
-    }
-  };
-
-  /**
+   */var G=function getInput(e,t){if(!t)return null;switch(t){case"select":case"textarea":case"file":return e.querySelector(".".concat(s.popup," > .").concat(s[t]));case"checkbox":return e.querySelector(".".concat(s.popup," > .").concat(s.checkbox," input"));case"radio":return e.querySelector(".".concat(s.popup," > .").concat(s.radio," input:checked"))||e.querySelector(".".concat(s.popup," > .").concat(s.radio," input:first-child"));case"range":return e.querySelector(".".concat(s.popup," > .").concat(s.range," input"));default:return e.querySelector(".".concat(s.popup," > .").concat(s.input))}};
+/**
    * @param {HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement} input
-   */
-  var focusInput = function focusInput(input) {
-    input.focus();
-
-    // place cursor at end of text in text input
-    if (input.type !== 'file') {
-      // http://stackoverflow.com/a/2345915
-      var val = input.value;
-      input.value = '';
-      input.value = val;
-    }
-  };
-
-  /**
+   */var X=function focusInput(e){e.focus();if(e.type!=="file"){var t=e.value;e.value="";e.value=t}};
+/**
    * @param {HTMLElement | HTMLElement[] | null} target
    * @param {string | string[] | readonly string[] | undefined} classList
    * @param {boolean} condition
-   */
-  var toggleClass = function toggleClass(target, classList, condition) {
-    if (!target || !classList) {
-      return;
-    }
-    if (typeof classList === 'string') {
-      classList = classList.split(/\s+/).filter(Boolean);
-    }
-    classList.forEach(function (className) {
-      if (Array.isArray(target)) {
-        target.forEach(function (elem) {
-          condition ? elem.classList.add(className) : elem.classList.remove(className);
-        });
-      } else {
-        condition ? target.classList.add(className) : target.classList.remove(className);
-      }
-    });
-  };
-
-  /**
+   */var J=function toggleClass(e,t,n){if(e&&t){typeof t==="string"&&(t=t.split(/\s+/).filter(Boolean));t.forEach((function(t){Array.isArray(e)?e.forEach((function(e){n?e.classList.add(t):e.classList.remove(t)})):n?e.classList.add(t):e.classList.remove(t)}))}};
+/**
    * @param {HTMLElement | HTMLElement[] | null} target
    * @param {string | string[] | readonly string[] | undefined} classList
-   */
-  var addClass = function addClass(target, classList) {
-    toggleClass(target, classList, true);
-  };
-
-  /**
+   */var Q=function addClass(e,t){J(e,t,true)};
+/**
    * @param {HTMLElement | HTMLElement[] | null} target
    * @param {string | string[] | readonly string[] | undefined} classList
-   */
-  var removeClass = function removeClass(target, classList) {
-    toggleClass(target, classList, false);
-  };
-
-  /**
+   */var ee=function removeClass(e,t){J(e,t,false)};
+/**
    * Get direct child of an element by class name
    *
    * @param {HTMLElement} elem
    * @param {string} className
    * @returns {HTMLElement | undefined}
-   */
-  var getDirectChildByClass = function getDirectChildByClass(elem, className) {
-    var children = Array.from(elem.children);
-    for (var i = 0; i < children.length; i++) {
-      var child = children[i];
-      if (child instanceof HTMLElement && hasClass(child, className)) {
-        return child;
-      }
-    }
-  };
-
-  /**
+   */var te=function getDirectChildByClass(e,t){var n=Array.from(e.children);for(var a=0;a<n.length;a++){var r=n[a];if(r instanceof HTMLElement&&K(r,t))return r}};
+/**
    * @param {HTMLElement} elem
    * @param {string} property
    * @param {*} value
-   */
-  var applyNumericalStyle = function applyNumericalStyle(elem, property, value) {
-    if (value === "".concat(parseInt(value))) {
-      value = parseInt(value);
-    }
-    if (value || parseInt(value) === 0) {
-      elem.style.setProperty(property, typeof value === 'number' ? "".concat(value, "px") : value);
-    } else {
-      elem.style.removeProperty(property);
-    }
-  };
-
-  /**
+   */var ne=function applyNumericalStyle(e,t,n){n==="".concat(parseInt(n))&&(n=parseInt(n));n||parseInt(n)===0?e.style.setProperty(t,typeof n==="number"?"".concat(n,"px"):n):e.style.removeProperty(t)};
+/**
    * @param {HTMLElement | null} elem
    * @param {string} display
-   */
-  var show = function show(elem) {
-    var display = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'flex';
-    elem && (elem.style.display = display);
-  };
-
-  /**
+   */var ae=function show(e){var t=arguments.length>1&&arguments[1]!==void 0?arguments[1]:"flex";e&&(e.style.display=t)};
+/**
    * @param {HTMLElement | null} elem
-   */
-  var hide = function hide(elem) {
-    elem && (elem.style.display = 'none');
-  };
-
-  /**
+   */var re=function hide(e){e&&(e.style.display="none")};
+/**
    * @param {HTMLElement | null} elem
    * @param {string} display
-   */
-  var showWhenInnerHtmlPresent = function showWhenInnerHtmlPresent(elem) {
-    var display = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'block';
-    if (!elem) {
-      return;
-    }
-    new MutationObserver(function () {
-      toggle(elem, elem.innerHTML, display);
-    }).observe(elem, {
-      childList: true,
-      subtree: true
-    });
-  };
-
-  /**
+   */var oe=function showWhenInnerHtmlPresent(e){var t=arguments.length>1&&arguments[1]!==void 0?arguments[1]:"block";e&&new MutationObserver((function(){se(e,e.innerHTML,t)})).observe(e,{childList:true,subtree:true})};
+/**
    * @param {HTMLElement} parent
    * @param {string} selector
    * @param {string} property
    * @param {string} value
-   */
-  var setStyle = function setStyle(parent, selector, property, value) {
-    /** @type {HTMLElement | null} */
-    var el = parent.querySelector(selector);
-    if (el) {
-      el.style.setProperty(property, value);
-    }
-  };
-
-  /**
+   */var ie=function setStyle(e,t,n,a){
+/** @type {HTMLElement | null} */
+var r=e.querySelector(t);r&&r.style.setProperty(n,a)};
+/**
    * @param {HTMLElement} elem
    * @param {any} condition
    * @param {string} display
-   */
-  var toggle = function toggle(elem, condition) {
-    var display = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'flex';
-    condition ? show(elem, display) : hide(elem);
-  };
-
-  /**
+   */var se=function toggle(e,t){var n=arguments.length>2&&arguments[2]!==void 0?arguments[2]:"flex";t?ae(e,n):re(e)};
+/**
    * borrowed from jquery $(elem).is(':visible') implementation
    *
    * @param {HTMLElement | null} elem
    * @returns {boolean}
-   */
-  var isVisible$1 = function isVisible(elem) {
-    return !!(elem && (elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length));
-  };
-
-  /**
+   */var le=function isVisible(e){return!!(e&&(e.offsetWidth||e.offsetHeight||e.getClientRects().length))};
+/**
    * @returns {boolean}
-   */
-  var allButtonsAreHidden = function allButtonsAreHidden() {
-    return !isVisible$1(getConfirmButton()) && !isVisible$1(getDenyButton()) && !isVisible$1(getCancelButton());
-  };
-
-  /**
+   */var ce=function allButtonsAreHidden(){return!le(I())&&!le(j())&&!le(L())};
+/**
    * @param {HTMLElement} elem
    * @returns {boolean}
-   */
-  var isScrollable = function isScrollable(elem) {
-    return !!(elem.scrollHeight > elem.clientHeight);
-  };
-
-  /**
+   */var ue=function isScrollable(e){return!!(e.scrollHeight>e.clientHeight)};
+/**
    * borrowed from https://stackoverflow.com/a/46352119
    *
    * @param {HTMLElement} elem
    * @returns {boolean}
-   */
-  var hasCssAnimation = function hasCssAnimation(elem) {
-    var style = window.getComputedStyle(elem);
-    var animDuration = parseFloat(style.getPropertyValue('animation-duration') || '0');
-    var transDuration = parseFloat(style.getPropertyValue('transition-duration') || '0');
-    return animDuration > 0 || transDuration > 0;
-  };
-
-  /**
+   */var de=function hasCssAnimation(e){var t=window.getComputedStyle(e);var n=parseFloat(t.getPropertyValue("animation-duration")||"0");var a=parseFloat(t.getPropertyValue("transition-duration")||"0");return n>0||a>0};
+/**
    * @param {number} timer
    * @param {boolean} reset
-   */
-  var animateTimerProgressBar = function animateTimerProgressBar(timer) {
-    var reset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    var timerProgressBar = getTimerProgressBar();
-    if (!timerProgressBar) {
-      return;
-    }
-    if (isVisible$1(timerProgressBar)) {
-      if (reset) {
-        timerProgressBar.style.transition = 'none';
-        timerProgressBar.style.width = '100%';
-      }
-      setTimeout(function () {
-        timerProgressBar.style.transition = "width ".concat(timer / 1000, "s linear");
-        timerProgressBar.style.width = '0%';
-      }, 10);
-    }
-  };
-  var stopTimerProgressBar = function stopTimerProgressBar() {
-    var timerProgressBar = getTimerProgressBar();
-    if (!timerProgressBar) {
-      return;
-    }
-    var timerProgressBarWidth = parseInt(window.getComputedStyle(timerProgressBar).width);
-    timerProgressBar.style.removeProperty('transition');
-    timerProgressBar.style.width = '100%';
-    var timerProgressBarFullWidth = parseInt(window.getComputedStyle(timerProgressBar).width);
-    var timerProgressBarPercent = timerProgressBarWidth / timerProgressBarFullWidth * 100;
-    timerProgressBar.style.width = "".concat(timerProgressBarPercent, "%");
-  };
-
-  /**
+   */var pe=function animateTimerProgressBar(e){var t=arguments.length>1&&arguments[1]!==void 0&&arguments[1];var n=z();if(n&&le(n)){if(t){n.style.transition="none";n.style.width="100%"}setTimeout((function(){n.style.transition="width ".concat(e/1e3,"s linear");n.style.width="0%"}),10)}};var we=function stopTimerProgressBar(){var e=z();if(e){var t=parseInt(window.getComputedStyle(e).width);e.style.removeProperty("transition");e.style.width="100%";var n=parseInt(window.getComputedStyle(e).width);var a=t/n*100;e.style.width="".concat(a,"%")}};
+/**
    * Detect Node env
    *
    * @returns {boolean}
-   */
-  var isNodeEnv = function isNodeEnv() {
-    return typeof window === 'undefined' || typeof document === 'undefined';
-  };
-
-  var sweetHTML = "\n <div aria-labelledby=\"".concat(swalClasses.title, "\" aria-describedby=\"").concat(swalClasses['html-container'], "\" class=\"").concat(swalClasses.popup, "\" tabindex=\"-1\">\n   <button type=\"button\" class=\"").concat(swalClasses.close, "\"></button>\n   <ul class=\"").concat(swalClasses['progress-steps'], "\"></ul>\n   <div class=\"").concat(swalClasses.icon, "\"></div>\n   <img class=\"").concat(swalClasses.image, "\" />\n   <h2 class=\"").concat(swalClasses.title, "\" id=\"").concat(swalClasses.title, "\"></h2>\n   <div class=\"").concat(swalClasses['html-container'], "\" id=\"").concat(swalClasses['html-container'], "\"></div>\n   <input class=\"").concat(swalClasses.input, "\" id=\"").concat(swalClasses.input, "\" />\n   <input type=\"file\" class=\"").concat(swalClasses.file, "\" />\n   <div class=\"").concat(swalClasses.range, "\">\n     <input type=\"range\" />\n     <output></output>\n   </div>\n   <select class=\"").concat(swalClasses.select, "\" id=\"").concat(swalClasses.select, "\"></select>\n   <div class=\"").concat(swalClasses.radio, "\"></div>\n   <label class=\"").concat(swalClasses.checkbox, "\">\n     <input type=\"checkbox\" id=\"").concat(swalClasses.checkbox, "\" />\n     <span class=\"").concat(swalClasses.label, "\"></span>\n   </label>\n   <textarea class=\"").concat(swalClasses.textarea, "\" id=\"").concat(swalClasses.textarea, "\"></textarea>\n   <div class=\"").concat(swalClasses['validation-message'], "\" id=\"").concat(swalClasses['validation-message'], "\"></div>\n   <div class=\"").concat(swalClasses.actions, "\">\n     <div class=\"").concat(swalClasses.loader, "\"></div>\n     <button type=\"button\" class=\"").concat(swalClasses.confirm, "\"></button>\n     <button type=\"button\" class=\"").concat(swalClasses.deny, "\"></button>\n     <button type=\"button\" class=\"").concat(swalClasses.cancel, "\"></button>\n   </div>\n   <div class=\"").concat(swalClasses.footer, "\"></div>\n   <div class=\"").concat(swalClasses['timer-progress-bar-container'], "\">\n     <div class=\"").concat(swalClasses['timer-progress-bar'], "\"></div>\n   </div>\n </div>\n").replace(/(^|\n)\s*/g, '');
-
-  /**
+   */var fe=function isNodeEnv(){return typeof window==="undefined"||typeof document==="undefined"};var me='\n <div aria-labelledby="'.concat(s.title,'" aria-describedby="').concat(s["html-container"],'" class="').concat(s.popup,'" tabindex="-1">\n   <button type="button" class="').concat(s.close,'"></button>\n   <ul class="').concat(s["progress-steps"],'"></ul>\n   <div class="').concat(s.icon,'"></div>\n   <img class="').concat(s.image,'" />\n   <h2 class="').concat(s.title,'" id="').concat(s.title,'"></h2>\n   <div class="').concat(s["html-container"],'" id="').concat(s["html-container"],'"></div>\n   <input class="').concat(s.input,'" id="').concat(s.input,'" />\n   <input type="file" class="').concat(s.file,'" />\n   <div class="').concat(s.range,'">\n     <input type="range" />\n     <output></output>\n   </div>\n   <select class="').concat(s.select,'" id="').concat(s.select,'"></select>\n   <div class="').concat(s.radio,'"></div>\n   <label class="').concat(s.checkbox,'">\n     <input type="checkbox" id="').concat(s.checkbox,'" />\n     <span class="').concat(s.label,'"></span>\n   </label>\n   <textarea class="').concat(s.textarea,'" id="').concat(s.textarea,'"></textarea>\n   <div class="').concat(s["validation-message"],'" id="').concat(s["validation-message"],'"></div>\n   <div class="').concat(s.actions,'">\n     <div class="').concat(s.loader,'"></div>\n     <button type="button" class="').concat(s.confirm,'"></button>\n     <button type="button" class="').concat(s.deny,'"></button>\n     <button type="button" class="').concat(s.cancel,'"></button>\n   </div>\n   <div class="').concat(s.footer,'"></div>\n   <div class="').concat(s["timer-progress-bar-container"],'">\n     <div class="').concat(s["timer-progress-bar"],'"></div>\n   </div>\n </div>\n').replace(/(^|\n)\s*/g,"");
+/**
    * @returns {boolean}
-   */
-  var resetOldContainer = function resetOldContainer() {
-    var oldContainer = getContainer();
-    if (!oldContainer) {
-      return false;
-    }
-    oldContainer.remove();
-    removeClass([document.documentElement, document.body], [swalClasses['no-backdrop'], swalClasses['toast-shown'], swalClasses['has-column']]);
-    return true;
-  };
-  var resetValidationMessage$1 = function resetValidationMessage() {
-    globalState.currentInstance.resetValidationMessage();
-  };
-  var addInputChangeListeners = function addInputChangeListeners() {
-    var popup = getPopup();
-    var input = getDirectChildByClass(popup, swalClasses.input);
-    var file = getDirectChildByClass(popup, swalClasses.file);
-    /** @type {HTMLInputElement} */
-    var range = popup.querySelector(".".concat(swalClasses.range, " input"));
-    /** @type {HTMLOutputElement} */
-    var rangeOutput = popup.querySelector(".".concat(swalClasses.range, " output"));
-    var select = getDirectChildByClass(popup, swalClasses.select);
-    /** @type {HTMLInputElement} */
-    var checkbox = popup.querySelector(".".concat(swalClasses.checkbox, " input"));
-    var textarea = getDirectChildByClass(popup, swalClasses.textarea);
-    input.oninput = resetValidationMessage$1;
-    file.onchange = resetValidationMessage$1;
-    select.onchange = resetValidationMessage$1;
-    checkbox.onchange = resetValidationMessage$1;
-    textarea.oninput = resetValidationMessage$1;
-    range.oninput = function () {
-      resetValidationMessage$1();
-      rangeOutput.value = range.value;
-    };
-    range.onchange = function () {
-      resetValidationMessage$1();
-      rangeOutput.value = range.value;
-    };
-  };
-
-  /**
+   */var he=function resetOldContainer(){var e=C();if(!e)return false;e.remove();ee([document.documentElement,document.body],[s["no-backdrop"],s["toast-shown"],s["has-column"]]);return true};var ve=function resetValidationMessage(){n.currentInstance.resetValidationMessage()};var ge=function addInputChangeListeners(){var e=A();var t=te(e,s.input);var n=te(e,s.file);
+/** @type {HTMLInputElement} */var a=e.querySelector(".".concat(s.range," input"));
+/** @type {HTMLOutputElement} */var r=e.querySelector(".".concat(s.range," output"));var o=te(e,s.select);
+/** @type {HTMLInputElement} */var i=e.querySelector(".".concat(s.checkbox," input"));var l=te(e,s.textarea);t.oninput=ve;n.onchange=ve;o.onchange=ve;i.onchange=ve;l.oninput=ve;a.oninput=function(){ve();r.value=a.value};a.onchange=function(){ve();r.value=a.value}};
+/**
    * @param {string | HTMLElement} target
    * @returns {HTMLElement}
-   */
-  var getTarget = function getTarget(target) {
-    return typeof target === 'string' ? document.querySelector(target) : target;
-  };
-
-  /**
+   */var be=function getTarget(e){return typeof e==="string"?document.querySelector(e):e};
+/**
    * @param {SweetAlertOptions} params
-   */
-  var setupAccessibility = function setupAccessibility(params) {
-    var popup = getPopup();
-    popup.setAttribute('role', params.toast ? 'alert' : 'dialog');
-    popup.setAttribute('aria-live', params.toast ? 'polite' : 'assertive');
-    if (!params.toast) {
-      popup.setAttribute('aria-modal', 'true');
-    }
-  };
-
-  /**
+   */var ye=function setupAccessibility(e){var t=A();t.setAttribute("role",e.toast?"alert":"dialog");t.setAttribute("aria-live",e.toast?"polite":"assertive");e.toast||t.setAttribute("aria-modal","true")};
+/**
    * @param {HTMLElement} targetElement
-   */
-  var setupRTL = function setupRTL(targetElement) {
-    if (window.getComputedStyle(targetElement).direction === 'rtl') {
-      addClass(getContainer(), swalClasses.rtl);
-    }
-  };
-
-  /**
+   */var Ce=function setupRTL(e){window.getComputedStyle(e).direction==="rtl"&&Q(C(),s.rtl)};
+/**
    * Add modal + backdrop + no-war message for Russians to DOM
    *
    * @param {SweetAlertOptions} params
-   */
-  var init = function init(params) {
-    // Clean up the old popup container if it exists
-    var oldContainerExisted = resetOldContainer();
-    if (isNodeEnv()) {
-      error('SweetAlert2 requires document to initialize');
-      return;
-    }
-    var container = document.createElement('div');
-    container.className = swalClasses.container;
-    if (oldContainerExisted) {
-      addClass(container, swalClasses['no-transition']);
-    }
-    setInnerHtml(container, sweetHTML);
-    var targetElement = getTarget(params.target);
-    targetElement.appendChild(container);
-    setupAccessibility(params);
-    setupRTL(targetElement);
-    addInputChangeListeners();
-  };
-
-  /**
+   */var ke=function init(e){var t=he();if(fe())w("SweetAlert2 requires document to initialize");else{var n=document.createElement("div");n.className=s.container;t&&Q(n,s["no-transition"]);$(n,me);var a=be(e.target);a.appendChild(n);ye(e);Ce(a);ge()}};
+/**
    * @param {HTMLElement | object | string} param
    * @param {HTMLElement} target
-   */
-  var parseHtmlToContainer = function parseHtmlToContainer(param, target) {
-    // DOM element
-    if (param instanceof HTMLElement) {
-      target.appendChild(param);
-    }
-
-    // Object
-    else if (_typeof(param) === 'object') {
-      handleObject(param, target);
-    }
-
-    // Plain string
-    else if (param) {
-      setInnerHtml(target, param);
-    }
-  };
-
-  /**
+   */var xe=function parseHtmlToContainer(e,t){e instanceof HTMLElement?t.appendChild(e):_typeof(e)==="object"?Ae(e,t):e&&$(t,e)};
+/**
    * @param {any} param
    * @param {HTMLElement} target
-   */
-  var handleObject = function handleObject(param, target) {
-    // JQuery element(s)
-    if (param.jquery) {
-      handleJqueryElem(target, param);
-    }
-
-    // For other objects use their string representation
-    else {
-      setInnerHtml(target, param.toString());
-    }
-  };
-
-  /**
+   */var Ae=function handleObject(e,t){e.jquery?Pe(t,e):$(t,e.toString())};
+/**
    * @param {HTMLElement} target
    * @param {any} elem
-   */
-  var handleJqueryElem = function handleJqueryElem(target, elem) {
-    target.textContent = '';
-    if (0 in elem) {
-      for (var i = 0; (i in elem); i++) {
-        target.appendChild(elem[i].cloneNode(true));
-      }
-    } else {
-      target.appendChild(elem.cloneNode(true));
-    }
-  };
-
-  /**
+   */var Pe=function handleJqueryElem(e,t){e.textContent="";if(0 in t)for(var n=0;n in t;n++)e.appendChild(t[n].cloneNode(true));else e.appendChild(t.cloneNode(true))};
+/**
    * @returns {'webkitAnimationEnd' | 'animationend' | false}
-   */
-  var animationEndEvent = function () {
-    // Prevent run in Node env
-    if (isNodeEnv()) {
-      return false;
-    }
-    var testEl = document.createElement('div');
-
-    // Chrome, Safari and Opera
-    if (typeof testEl.style.webkitAnimation !== 'undefined') {
-      return 'webkitAnimationEnd';
-    }
-
-    // Standard syntax
-    if (typeof testEl.style.animation !== 'undefined') {
-      return 'animationend';
-    }
-    return false;
-  }();
-
-  /**
+   */var Be=function(){if(fe())return false;var e=document.createElement("div");return typeof e.style.webkitAnimation!=="undefined"?"webkitAnimationEnd":typeof e.style.animation!=="undefined"&&"animationend"}();
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var renderActions = function renderActions(instance, params) {
-    var actions = getActions();
-    var loader = getLoader();
-    if (!actions || !loader) {
-      return;
-    }
-
-    // Actions (buttons) wrapper
-    if (!params.showConfirmButton && !params.showDenyButton && !params.showCancelButton) {
-      hide(actions);
-    } else {
-      show(actions);
-    }
-
-    // Custom class
-    applyCustomClass(actions, params, 'actions');
-
-    // Render all the buttons
-    renderButtons(actions, loader, params);
-
-    // Loader
-    setInnerHtml(loader, params.loaderHtml || '');
-    applyCustomClass(loader, params, 'loader');
-  };
-
-  /**
+   */var Se=function renderActions(e,t){var n=H();var a=D();if(n&&a){t.showConfirmButton||t.showDenyButton||t.showCancelButton?ae(n):re(n);Y(n,t,"actions");renderButtons(n,a,t);$(a,t.loaderHtml||"");Y(a,t,"loader")}};
+/**
    * @param {HTMLElement} actions
    * @param {HTMLElement} loader
    * @param {SweetAlertOptions} params
-   */
-  function renderButtons(actions, loader, params) {
-    var confirmButton = getConfirmButton();
-    var denyButton = getDenyButton();
-    var cancelButton = getCancelButton();
-    if (!confirmButton || !denyButton || !cancelButton) {
-      return;
-    }
-
-    // Render buttons
-    renderButton(confirmButton, 'confirm', params);
-    renderButton(denyButton, 'deny', params);
-    renderButton(cancelButton, 'cancel', params);
-    handleButtonsStyling(confirmButton, denyButton, cancelButton, params);
-    if (params.reverseButtons) {
-      if (params.toast) {
-        actions.insertBefore(cancelButton, confirmButton);
-        actions.insertBefore(denyButton, confirmButton);
-      } else {
-        actions.insertBefore(cancelButton, loader);
-        actions.insertBefore(denyButton, loader);
-        actions.insertBefore(confirmButton, loader);
-      }
-    }
-  }
-
-  /**
+   */function renderButtons(e,t,n){var a=I();var r=j();var o=L();if(a&&r&&o){renderButton(a,"confirm",n);renderButton(r,"deny",n);renderButton(o,"cancel",n);handleButtonsStyling(a,r,o,n);if(n.reverseButtons)if(n.toast){e.insertBefore(o,a);e.insertBefore(r,a)}else{e.insertBefore(o,t);e.insertBefore(r,t);e.insertBefore(a,t)}}}
+/**
    * @param {HTMLElement} confirmButton
    * @param {HTMLElement} denyButton
    * @param {HTMLElement} cancelButton
    * @param {SweetAlertOptions} params
-   */
-  function handleButtonsStyling(confirmButton, denyButton, cancelButton, params) {
-    if (!params.buttonsStyling) {
-      removeClass([confirmButton, denyButton, cancelButton], swalClasses.styled);
-      return;
-    }
-    addClass([confirmButton, denyButton, cancelButton], swalClasses.styled);
-
-    // Buttons background colors
-    if (params.confirmButtonColor) {
-      confirmButton.style.backgroundColor = params.confirmButtonColor;
-      addClass(confirmButton, swalClasses['default-outline']);
-    }
-    if (params.denyButtonColor) {
-      denyButton.style.backgroundColor = params.denyButtonColor;
-      addClass(denyButton, swalClasses['default-outline']);
-    }
-    if (params.cancelButtonColor) {
-      cancelButton.style.backgroundColor = params.cancelButtonColor;
-      addClass(cancelButton, swalClasses['default-outline']);
-    }
-  }
-
-  /**
+   */function handleButtonsStyling(e,t,n,a){if(a.buttonsStyling){Q([e,t,n],s.styled);if(a.confirmButtonColor){e.style.backgroundColor=a.confirmButtonColor;Q(e,s["default-outline"])}if(a.denyButtonColor){t.style.backgroundColor=a.denyButtonColor;Q(t,s["default-outline"])}if(a.cancelButtonColor){n.style.backgroundColor=a.cancelButtonColor;Q(n,s["default-outline"])}}else ee([e,t,n],s.styled)}
+/**
    * @param {HTMLElement} button
    * @param {'confirm' | 'deny' | 'cancel'} buttonType
    * @param {SweetAlertOptions} params
-   */
-  function renderButton(button, buttonType, params) {
-    var buttonName = /** @type {'Confirm' | 'Deny' | 'Cancel'} */capitalizeFirstLetter(buttonType);
-    toggle(button, params["show".concat(buttonName, "Button")], 'inline-block');
-    setInnerHtml(button, params["".concat(buttonType, "ButtonText")] || ''); // Set caption text
-    button.setAttribute('aria-label', params["".concat(buttonType, "ButtonAriaLabel")] || ''); // ARIA label
-
-    // Add buttons custom classes
-    button.className = swalClasses[buttonType];
-    applyCustomClass(button, params, "".concat(buttonType, "Button"));
-  }
-
-  /**
+   */function renderButton(e,t,n){var a=/** @type {'Confirm' | 'Deny' | 'Cancel'} */d(t);se(e,n["show".concat(a,"Button")],"inline-block");$(e,n["".concat(t,"ButtonText")]||"");e.setAttribute("aria-label",n["".concat(t,"ButtonAriaLabel")]||"");e.className=s[t];Y(e,n,"".concat(t,"Button"))}
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var renderCloseButton = function renderCloseButton(instance, params) {
-    var closeButton = getCloseButton();
-    if (!closeButton) {
-      return;
-    }
-    setInnerHtml(closeButton, params.closeButtonHtml || '');
-
-    // Custom class
-    applyCustomClass(closeButton, params, 'closeButton');
-    toggle(closeButton, params.showCloseButton);
-    closeButton.setAttribute('aria-label', params.closeButtonAriaLabel || '');
-  };
-
-  /**
+   */var Te=function renderCloseButton(e,t){var n=R();if(n){$(n,t.closeButtonHtml||"");Y(n,t,"closeButton");se(n,t.showCloseButton);n.setAttribute("aria-label",t.closeButtonAriaLabel||"")}};
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var renderContainer = function renderContainer(instance, params) {
-    var container = getContainer();
-    if (!container) {
-      return;
-    }
-    handleBackdropParam(container, params.backdrop);
-    handlePositionParam(container, params.position);
-    handleGrowParam(container, params.grow);
-
-    // Custom class
-    applyCustomClass(container, params, 'container');
-  };
-
-  /**
+   */var _e=function renderContainer(e,t){var n=C();if(n){handleBackdropParam(n,t.backdrop);handlePositionParam(n,t.position);handleGrowParam(n,t.grow);Y(n,t,"container")}};
+/**
    * @param {HTMLElement} container
    * @param {SweetAlertOptions['backdrop']} backdrop
-   */
-  function handleBackdropParam(container, backdrop) {
-    if (typeof backdrop === 'string') {
-      container.style.background = backdrop;
-    } else if (!backdrop) {
-      addClass([document.documentElement, document.body], swalClasses['no-backdrop']);
-    }
-  }
-
-  /**
+   */function handleBackdropParam(e,t){typeof t==="string"?e.style.background=t:t||Q([document.documentElement,document.body],s["no-backdrop"])}
+/**
    * @param {HTMLElement} container
    * @param {SweetAlertOptions['position']} position
-   */
-  function handlePositionParam(container, position) {
-    if (!position) {
-      return;
-    }
-    if (position in swalClasses) {
-      addClass(container, swalClasses[position]);
-    } else {
-      warn('The "position" parameter is not valid, defaulting to "center"');
-      addClass(container, swalClasses.center);
-    }
-  }
-
-  /**
+   */function handlePositionParam(e,t){if(t)if(t in s)Q(e,s[t]);else{p('The "position" parameter is not valid, defaulting to "center"');Q(e,s.center)}}
+/**
    * @param {HTMLElement} container
    * @param {SweetAlertOptions['grow']} grow
-   */
-  function handleGrowParam(container, grow) {
-    if (!grow) {
-      return;
-    }
-    addClass(container, swalClasses["grow-".concat(grow)]);
-  }
-
-  /**
-   * This module contains `WeakMap`s for each effectively-"private  property" that a `Swal` has.
-   * For example, to set the private property "foo" of `this` to "bar", you can `privateProps.foo.set(this, 'bar')`
-   * This is the approach that Babel will probably take to implement private methods/fields
-   *   https://github.com/tc39/proposal-private-methods
-   *   https://github.com/babel/babel/pull/7555
-   * Once we have the changes from that PR in Babel, and our core class fits reasonable in *one module*
-   *   then we can use that language feature.
-   */
-
-  var privateProps = {
-    innerParams: new WeakMap(),
-    domCache: new WeakMap()
-  };
-
-  /** @type {InputClass[]} */
-  var inputClasses = ['input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea'];
-
-  /**
+   */function handleGrowParam(e,t){t&&Q(e,s["grow-".concat(t)])}var Ee={innerParams:new WeakMap,domCache:new WeakMap};
+/** @type {InputClass[]} */var Oe=["input","file","range","select","radio","checkbox","textarea"];
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var renderInput = function renderInput(instance, params) {
-    var popup = getPopup();
-    if (!popup) {
-      return;
-    }
-    var innerParams = privateProps.innerParams.get(instance);
-    var rerender = !innerParams || params.input !== innerParams.input;
-    inputClasses.forEach(function (inputClass) {
-      var inputContainer = getDirectChildByClass(popup, swalClasses[inputClass]);
-      if (!inputContainer) {
-        return;
-      }
-
-      // set attributes
-      setAttributes(inputClass, params.inputAttributes);
-
-      // set class
-      inputContainer.className = swalClasses[inputClass];
-      if (rerender) {
-        hide(inputContainer);
-      }
-    });
-    if (params.input) {
-      if (rerender) {
-        showInput(params);
-      }
-      // set custom class
-      setCustomClass(params);
-    }
-  };
-
-  /**
+   */var Ie=function renderInput(e,t){var n=A();if(n){var a=Ee.innerParams.get(e);var r=!a||t.input!==a.input;Oe.forEach((function(e){var a=te(n,s[e]);if(a){Me(e,t.inputAttributes);a.className=s[e];r&&re(a)}}));if(t.input){r&&Le(t);De(t)}}};
+/**
    * @param {SweetAlertOptions} params
-   */
-  var showInput = function showInput(params) {
-    if (!params.input) {
-      return;
-    }
-    if (!renderInputType[params.input]) {
-      error("Unexpected type of input! Expected ".concat(Object.keys(renderInputType).join(' | '), ", got \"").concat(params.input, "\""));
-      return;
-    }
-    var inputContainer = getInputContainer(params.input);
-    var input = renderInputType[params.input](inputContainer, params);
-    show(inputContainer);
-
-    // input autofocus
-    if (params.inputAutoFocus) {
-      setTimeout(function () {
-        focusInput(input);
-      });
-    }
-  };
-
-  /**
+   */var Le=function showInput(e){if(e.input)if(qe[e.input]){var t=ze(e.input);var n=qe[e.input](t,e);ae(t);e.inputAutoFocus&&setTimeout((function(){X(n)}))}else w("Unexpected type of input! Expected ".concat(Object.keys(qe).join(" | "),', got "').concat(e.input,'"'))};
+/**
    * @param {HTMLInputElement} input
-   */
-  var removeAttributes = function removeAttributes(input) {
-    for (var i = 0; i < input.attributes.length; i++) {
-      var attrName = input.attributes[i].name;
-      if (!['id', 'type', 'value', 'style'].includes(attrName)) {
-        input.removeAttribute(attrName);
-      }
-    }
-  };
-
-  /**
+   */var je=function removeAttributes(e){for(var t=0;t<e.attributes.length;t++){var n=e.attributes[t].name;["id","type","value","style"].includes(n)||e.removeAttribute(n)}};
+/**
    * @param {InputClass} inputClass
    * @param {SweetAlertOptions['inputAttributes']} inputAttributes
-   */
-  var setAttributes = function setAttributes(inputClass, inputAttributes) {
-    var input = getInput$1(getPopup(), inputClass);
-    if (!input) {
-      return;
-    }
-    removeAttributes(input);
-    for (var attr in inputAttributes) {
-      input.setAttribute(attr, inputAttributes[attr]);
-    }
-  };
-
-  /**
+   */var Me=function setAttributes(e,t){var n=G(A(),e);if(n){je(n);for(var a in t)n.setAttribute(a,t[a])}};
+/**
    * @param {SweetAlertOptions} params
-   */
-  var setCustomClass = function setCustomClass(params) {
-    var inputContainer = getInputContainer(params.input);
-    if (_typeof(params.customClass) === 'object') {
-      addClass(inputContainer, params.customClass.input);
-    }
-  };
-
-  /**
+   */var De=function setCustomClass(e){var t=ze(e.input);_typeof(e.customClass)==="object"&&Q(t,e.customClass.input)};
+/**
    * @param {HTMLInputElement | HTMLTextAreaElement} input
    * @param {SweetAlertOptions} params
-   */
-  var setInputPlaceholder = function setInputPlaceholder(input, params) {
-    if (!input.placeholder || params.inputPlaceholder) {
-      input.placeholder = params.inputPlaceholder;
-    }
-  };
-
-  /**
+   */var He=function setInputPlaceholder(e,t){e.placeholder&&!t.inputPlaceholder||(e.placeholder=t.inputPlaceholder)};
+/**
    * @param {Input} input
    * @param {Input} prependTo
    * @param {SweetAlertOptions} params
-   */
-  var setInputLabel = function setInputLabel(input, prependTo, params) {
-    if (params.inputLabel) {
-      var label = document.createElement('label');
-      var labelClass = swalClasses['input-label'];
-      label.setAttribute('for', input.id);
-      label.className = labelClass;
-      if (_typeof(params.customClass) === 'object') {
-        addClass(label, params.customClass.inputLabel);
-      }
-      label.innerText = params.inputLabel;
-      prependTo.insertAdjacentElement('beforebegin', label);
-    }
-  };
-
-  /**
+   */var Ve=function setInputLabel(e,t,n){if(n.inputLabel){var a=document.createElement("label");var r=s["input-label"];a.setAttribute("for",e.id);a.className=r;_typeof(n.customClass)==="object"&&Q(a,n.customClass.inputLabel);a.innerText=n.inputLabel;t.insertAdjacentElement("beforebegin",a)}};
+/**
    * @param {SweetAlertOptions['input']} inputType
    * @returns {HTMLElement}
-   */
-  var getInputContainer = function getInputContainer(inputType) {
-    return getDirectChildByClass(getPopup(), swalClasses[inputType] || swalClasses.input);
-  };
-
-  /**
+   */var ze=function getInputContainer(e){return te(A(),s[e]||s.input)};
+/**
    * @param {HTMLInputElement | HTMLOutputElement | HTMLTextAreaElement} input
    * @param {SweetAlertOptions['inputValue']} inputValue
-   */
-  var checkAndSetInputValue = function checkAndSetInputValue(input, inputValue) {
-    if (['string', 'number'].includes(_typeof(inputValue))) {
-      input.value = "".concat(inputValue);
-    } else if (!isPromise(inputValue)) {
-      warn("Unexpected type of inputValue! Expected \"string\", \"number\" or \"Promise\", got \"".concat(_typeof(inputValue), "\""));
-    }
-  };
-
-  /** @type {Record<SweetAlertInput, (input: Input | HTMLElement, params: SweetAlertOptions) => Input>} */
-  var renderInputType = {};
-
-  /**
+   */var Re=function checkAndSetInputValue(e,t){["string","number"].includes(_typeof(t))?e.value="".concat(t):y(t)||p('Unexpected type of inputValue! Expected "string", "number" or "Promise", got "'.concat(_typeof(t),'"'))};
+/** @type {Record<SweetAlertInput, (input: Input | HTMLElement, params: SweetAlertOptions) => Input>} */var qe={};
+/**
    * @param {HTMLInputElement} input
    * @param {SweetAlertOptions} params
    * @returns {HTMLInputElement}
-   */
-  renderInputType.text = renderInputType.email = renderInputType.password = renderInputType.number = renderInputType.tel = renderInputType.url = renderInputType.search = renderInputType.date = renderInputType['datetime-local'] = renderInputType.time = renderInputType.week = renderInputType.month = function (input, params) {
-    checkAndSetInputValue(input, params.inputValue);
-    setInputLabel(input, input, params);
-    setInputPlaceholder(input, params);
-    input.type = params.input;
-    return input;
-  };
-
-  /**
+   */qe.text=qe.email=qe.password=qe.number=qe.tel=qe.url=qe.search=qe.date=qe["datetime-local"]=qe.time=qe.week=qe.month=function(e,t){Re(e,t.inputValue);Ve(e,e,t);He(e,t);e.type=t.input;return e};
+/**
    * @param {HTMLInputElement} input
    * @param {SweetAlertOptions} params
    * @returns {HTMLInputElement}
-   */
-  renderInputType.file = function (input, params) {
-    setInputLabel(input, input, params);
-    setInputPlaceholder(input, params);
-    return input;
-  };
-
-  /**
+   */qe.file=function(e,t){Ve(e,e,t);He(e,t);return e};
+/**
    * @param {HTMLInputElement} range
    * @param {SweetAlertOptions} params
    * @returns {HTMLInputElement}
-   */
-  renderInputType.range = function (range, params) {
-    var rangeInput = range.querySelector('input');
-    var rangeOutput = range.querySelector('output');
-    checkAndSetInputValue(rangeInput, params.inputValue);
-    rangeInput.type = params.input;
-    checkAndSetInputValue(rangeOutput, params.inputValue);
-    setInputLabel(rangeInput, range, params);
-    return range;
-  };
-
-  /**
+   */qe.range=function(e,t){var n=e.querySelector("input");var a=e.querySelector("output");Re(n,t.inputValue);n.type=t.input;Re(a,t.inputValue);Ve(n,e,t);return e};
+/**
    * @param {HTMLSelectElement} select
    * @param {SweetAlertOptions} params
    * @returns {HTMLSelectElement}
-   */
-  renderInputType.select = function (select, params) {
-    select.textContent = '';
-    if (params.inputPlaceholder) {
-      var placeholder = document.createElement('option');
-      setInnerHtml(placeholder, params.inputPlaceholder);
-      placeholder.value = '';
-      placeholder.disabled = true;
-      placeholder.selected = true;
-      select.appendChild(placeholder);
-    }
-    setInputLabel(select, select, params);
-    return select;
-  };
-
-  /**
+   */qe.select=function(e,t){e.textContent="";if(t.inputPlaceholder){var n=document.createElement("option");$(n,t.inputPlaceholder);n.value="";n.disabled=true;n.selected=true;e.appendChild(n)}Ve(e,e,t);return e};
+/**
    * @param {HTMLInputElement} radio
    * @returns {HTMLInputElement}
-   */
-  renderInputType.radio = function (radio) {
-    radio.textContent = '';
-    return radio;
-  };
-
-  /**
+   */qe.radio=function(e){e.textContent="";return e};
+/**
    * @param {HTMLLabelElement} checkboxContainer
    * @param {SweetAlertOptions} params
    * @returns {HTMLInputElement}
-   */
-  renderInputType.checkbox = function (checkboxContainer, params) {
-    var checkbox = getInput$1(getPopup(), 'checkbox');
-    checkbox.value = '1';
-    checkbox.checked = Boolean(params.inputValue);
-    var label = checkboxContainer.querySelector('span');
-    setInnerHtml(label, params.inputPlaceholder);
-    return checkbox;
-  };
-
-  /**
+   */qe.checkbox=function(e,t){var n=G(A(),"checkbox");n.value="1";n.checked=Boolean(t.inputValue);var a=e.querySelector("span");$(a,t.inputPlaceholder);return n};
+/**
    * @param {HTMLTextAreaElement} textarea
    * @param {SweetAlertOptions} params
    * @returns {HTMLTextAreaElement}
-   */
-  renderInputType.textarea = function (textarea, params) {
-    checkAndSetInputValue(textarea, params.inputValue);
-    setInputPlaceholder(textarea, params);
-    setInputLabel(textarea, textarea, params);
-
-    /**
+   */qe.textarea=function(e,t){Re(e,t.inputValue);He(e,t);Ve(e,e,t);
+/**
      * @param {HTMLElement} el
      * @returns {number}
-     */
-    var getMargin = function getMargin(el) {
-      return parseInt(window.getComputedStyle(el).marginLeft) + parseInt(window.getComputedStyle(el).marginRight);
-    };
-
-    // https://github.com/sweetalert2/sweetalert2/issues/2291
-    setTimeout(function () {
-      // https://github.com/sweetalert2/sweetalert2/issues/1699
-      if ('MutationObserver' in window) {
-        var initialPopupWidth = parseInt(window.getComputedStyle(getPopup()).width);
-        var textareaResizeHandler = function textareaResizeHandler() {
-          // check if texarea is still in document (i.e. popup wasn't closed in the meantime)
-          if (!document.body.contains(textarea)) {
-            return;
-          }
-          var textareaWidth = textarea.offsetWidth + getMargin(textarea);
-          if (textareaWidth > initialPopupWidth) {
-            getPopup().style.width = "".concat(textareaWidth, "px");
-          } else {
-            applyNumericalStyle(getPopup(), 'width', params.width);
-          }
-        };
-        new MutationObserver(textareaResizeHandler).observe(textarea, {
-          attributes: true,
-          attributeFilter: ['style']
-        });
-      }
-    });
-    return textarea;
-  };
-
-  /**
+     */var n=function getMargin(e){return parseInt(window.getComputedStyle(e).marginLeft)+parseInt(window.getComputedStyle(e).marginRight)};setTimeout((function(){if("MutationObserver"in window){var a=parseInt(window.getComputedStyle(A()).width);var r=function textareaResizeHandler(){if(document.body.contains(e)){var r=e.offsetWidth+n(e);r>a?A().style.width="".concat(r,"px"):ne(A(),"width",t.width)}};new MutationObserver(r).observe(e,{attributes:true,attributeFilter:["style"]})}}));return e};
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var renderContent = function renderContent(instance, params) {
-    var htmlContainer = getHtmlContainer();
-    if (!htmlContainer) {
-      return;
-    }
-    showWhenInnerHtmlPresent(htmlContainer);
-    applyCustomClass(htmlContainer, params, 'htmlContainer');
-
-    // Content as HTML
-    if (params.html) {
-      parseHtmlToContainer(params.html, htmlContainer);
-      show(htmlContainer, 'block');
-    }
-
-    // Content as plain text
-    else if (params.text) {
-      htmlContainer.textContent = params.text;
-      show(htmlContainer, 'block');
-    }
-
-    // No content
-    else {
-      hide(htmlContainer);
-    }
-    renderInput(instance, params);
-  };
-
-  /**
+   */var Fe=function renderContent(e,t){var n=T();if(n){oe(n);Y(n,t,"htmlContainer");if(t.html){xe(t.html,n);ae(n,"block")}else if(t.text){n.textContent=t.text;ae(n,"block")}else re(n);Ie(e,t)}};
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var renderFooter = function renderFooter(instance, params) {
-    var footer = getFooter();
-    if (!footer) {
-      return;
-    }
-    showWhenInnerHtmlPresent(footer);
-    toggle(footer, params.footer, 'block');
-    if (params.footer) {
-      parseHtmlToContainer(params.footer, footer);
-    }
-
-    // Custom class
-    applyCustomClass(footer, params, 'footer');
-  };
-
-  /**
+   */var Ne=function renderFooter(e,t){var n=V();if(n){oe(n);se(n,t.footer,"block");t.footer&&xe(t.footer,n);Y(n,t,"footer")}};
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var renderIcon = function renderIcon(instance, params) {
-    var innerParams = privateProps.innerParams.get(instance);
-    var icon = getIcon();
-    if (!icon) {
-      return;
-    }
-
-    // if the given icon already rendered, apply the styling without re-rendering the icon
-    if (innerParams && params.icon === innerParams.icon) {
-      // Custom or default content
-      setContent(icon, params);
-      applyStyles(icon, params);
-      return;
-    }
-    if (!params.icon && !params.iconHtml) {
-      hide(icon);
-      return;
-    }
-    if (params.icon && Object.keys(iconTypes).indexOf(params.icon) === -1) {
-      error("Unknown icon! Expected \"success\", \"error\", \"warning\", \"info\" or \"question\", got \"".concat(params.icon, "\""));
-      hide(icon);
-      return;
-    }
-    show(icon);
-
-    // Custom or default content
-    setContent(icon, params);
-    applyStyles(icon, params);
-
-    // Animate icon
-    addClass(icon, params.showClass && params.showClass.icon);
-  };
-
-  /**
+   */var We=function renderIcon(e,t){var n=Ee.innerParams.get(e);var a=P();if(a)if(n&&t.icon===n.icon){Ye(a,t);Ue(a,t)}else if(t.icon||t.iconHtml)if(t.icon&&Object.keys(c).indexOf(t.icon)===-1){w('Unknown icon! Expected "success", "error", "warning", "info" or "question", got "'.concat(t.icon,'"'));re(a)}else{ae(a);Ye(a,t);Ue(a,t);Q(a,t.showClass&&t.showClass.icon)}else re(a)};
+/**
    * @param {HTMLElement} icon
    * @param {SweetAlertOptions} params
-   */
-  var applyStyles = function applyStyles(icon, params) {
-    for (var _i = 0, _Object$entries = Object.entries(iconTypes); _i < _Object$entries.length; _i++) {
-      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-        iconType = _Object$entries$_i[0],
-        iconClassName = _Object$entries$_i[1];
-      if (params.icon !== iconType) {
-        removeClass(icon, iconClassName);
-      }
-    }
-    addClass(icon, params.icon && iconTypes[params.icon]);
-
-    // Icon color
-    setColor(icon, params);
-
-    // Success icon background color
-    adjustSuccessIconBackgroundColor();
-
-    // Custom class
-    applyCustomClass(icon, params, 'icon');
-  };
-
-  // Adjust success icon background color to match the popup background color
-  var adjustSuccessIconBackgroundColor = function adjustSuccessIconBackgroundColor() {
-    var popup = getPopup();
-    if (!popup) {
-      return;
-    }
-    var popupBackgroundColor = window.getComputedStyle(popup).getPropertyValue('background-color');
-    /** @type {NodeListOf<HTMLElement>} */
-    var successIconParts = popup.querySelectorAll('[class^=swal2-success-circular-line], .swal2-success-fix');
-    for (var i = 0; i < successIconParts.length; i++) {
-      successIconParts[i].style.backgroundColor = popupBackgroundColor;
-    }
-  };
-  var successIconHtml = "\n  <div class=\"swal2-success-circular-line-left\"></div>\n  <span class=\"swal2-success-line-tip\"></span> <span class=\"swal2-success-line-long\"></span>\n  <div class=\"swal2-success-ring\"></div> <div class=\"swal2-success-fix\"></div>\n  <div class=\"swal2-success-circular-line-right\"></div>\n";
-  var errorIconHtml = "\n  <span class=\"swal2-x-mark\">\n    <span class=\"swal2-x-mark-line-left\"></span>\n    <span class=\"swal2-x-mark-line-right\"></span>\n  </span>\n";
-
-  /**
+   */var Ue=function applyStyles(e,t){for(var n=0,a=Object.entries(c);n<a.length;n++){var r=_slicedToArray(a[n],2),o=r[0],i=r[1];t.icon!==o&&ee(e,i)}Q(e,t.icon&&c[t.icon]);Ge(e,t);$e();Y(e,t,"icon")};var $e=function adjustSuccessIconBackgroundColor(){var e=A();if(e){var t=window.getComputedStyle(e).getPropertyValue("background-color");
+/** @type {NodeListOf<HTMLElement>} */var n=e.querySelectorAll("[class^=swal2-success-circular-line], .swal2-success-fix");for(var a=0;a<n.length;a++)n[a].style.backgroundColor=t}};var Ke='\n  <div class="swal2-success-circular-line-left"></div>\n  <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>\n  <div class="swal2-success-ring"></div> <div class="swal2-success-fix"></div>\n  <div class="swal2-success-circular-line-right"></div>\n';var Ze='\n  <span class="swal2-x-mark">\n    <span class="swal2-x-mark-line-left"></span>\n    <span class="swal2-x-mark-line-right"></span>\n  </span>\n';
+/**
    * @param {HTMLElement} icon
    * @param {SweetAlertOptions} params
-   */
-  var setContent = function setContent(icon, params) {
-    if (!params.icon && !params.iconHtml) {
-      return;
-    }
-    var oldContent = icon.innerHTML;
-    var newContent = '';
-    if (params.iconHtml) {
-      newContent = iconContent(params.iconHtml);
-    } else if (params.icon === 'success') {
-      newContent = successIconHtml;
-      oldContent = oldContent.replace(/ style=".*?"/g, ''); // undo adjustSuccessIconBackgroundColor()
-    } else if (params.icon === 'error') {
-      newContent = errorIconHtml;
-    } else if (params.icon) {
-      var defaultIconHtml = {
-        question: '?',
-        warning: '!',
-        info: 'i'
-      };
-      newContent = iconContent(defaultIconHtml[params.icon]);
-    }
-    if (oldContent.trim() !== newContent.trim()) {
-      setInnerHtml(icon, newContent);
-    }
-  };
-
-  /**
+   */var Ye=function setContent(e,t){if(t.icon||t.iconHtml){var n=e.innerHTML;var a="";if(t.iconHtml)a=Xe(t.iconHtml);else if(t.icon==="success"){a=Ke;n=n.replace(/ style=".*?"/g,"")}else if(t.icon==="error")a=Ze;else if(t.icon){var r={question:"?",warning:"!",info:"i"};a=Xe(r[t.icon])}n.trim()!==a.trim()&&$(e,a)}};
+/**
    * @param {HTMLElement} icon
    * @param {SweetAlertOptions} params
-   */
-  var setColor = function setColor(icon, params) {
-    if (!params.iconColor) {
-      return;
-    }
-    icon.style.color = params.iconColor;
-    icon.style.borderColor = params.iconColor;
-    for (var _i2 = 0, _arr = ['.swal2-success-line-tip', '.swal2-success-line-long', '.swal2-x-mark-line-left', '.swal2-x-mark-line-right']; _i2 < _arr.length; _i2++) {
-      var sel = _arr[_i2];
-      setStyle(icon, sel, 'background-color', params.iconColor);
-    }
-    setStyle(icon, '.swal2-success-ring', 'border-color', params.iconColor);
-  };
-
-  /**
+   */var Ge=function setColor(e,t){if(t.iconColor){e.style.color=t.iconColor;e.style.borderColor=t.iconColor;for(var n=0,a=[".swal2-success-line-tip",".swal2-success-line-long",".swal2-x-mark-line-left",".swal2-x-mark-line-right"];n<a.length;n++){var r=a[n];ie(e,r,"background-color",t.iconColor)}ie(e,".swal2-success-ring","border-color",t.iconColor)}};
+/**
    * @param {string} content
    * @returns {string}
-   */
-  var iconContent = function iconContent(content) {
-    return "<div class=\"".concat(swalClasses['icon-content'], "\">").concat(content, "</div>");
-  };
-
-  /**
+   */var Xe=function iconContent(e){return'<div class="'.concat(s["icon-content"],'">').concat(e,"</div>")};
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var renderImage = function renderImage(instance, params) {
-    var image = getImage();
-    if (!image) {
-      return;
-    }
-    if (!params.imageUrl) {
-      hide(image);
-      return;
-    }
-    show(image, '');
-
-    // Src, alt
-    image.setAttribute('src', params.imageUrl);
-    image.setAttribute('alt', params.imageAlt || '');
-
-    // Width, height
-    applyNumericalStyle(image, 'width', params.imageWidth);
-    applyNumericalStyle(image, 'height', params.imageHeight);
-
-    // Class
-    image.className = swalClasses.image;
-    applyCustomClass(image, params, 'image');
-  };
-
-  /**
+   */var Je=function renderImage(e,t){var n=_();if(n)if(t.imageUrl){ae(n,"");n.setAttribute("src",t.imageUrl);n.setAttribute("alt",t.imageAlt||"");ne(n,"width",t.imageWidth);ne(n,"height",t.imageHeight);n.className=s.image;Y(n,t,"image")}else re(n)};
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var renderPopup = function renderPopup(instance, params) {
-    var container = getContainer();
-    var popup = getPopup();
-    if (!container || !popup) {
-      return;
-    }
-
-    // Width
-    // https://github.com/sweetalert2/sweetalert2/issues/2170
-    if (params.toast) {
-      applyNumericalStyle(container, 'width', params.width);
-      popup.style.width = '100%';
-      var loader = getLoader();
-      loader && popup.insertBefore(loader, getIcon());
-    } else {
-      applyNumericalStyle(popup, 'width', params.width);
-    }
-
-    // Padding
-    applyNumericalStyle(popup, 'padding', params.padding);
-
-    // Color
-    if (params.color) {
-      popup.style.color = params.color;
-    }
-
-    // Background
-    if (params.background) {
-      popup.style.background = params.background;
-    }
-    hide(getValidationMessage());
-
-    // Classes
-    addClasses$1(popup, params);
-  };
-
-  /**
+   */var Qe=function renderPopup(e,t){var n=C();var a=A();if(n&&a){if(t.toast){ne(n,"width",t.width);a.style.width="100%";var r=D();r&&a.insertBefore(r,P())}else ne(a,"width",t.width);ne(a,"padding",t.padding);t.color&&(a.style.color=t.color);t.background&&(a.style.background=t.background);re(O());et(a,t)}};
+/**
    * @param {HTMLElement} popup
    * @param {SweetAlertOptions} params
-   */
-  var addClasses$1 = function addClasses(popup, params) {
-    var showClass = params.showClass || {};
-    // Default Class + showClass when updating Swal.update({})
-    popup.className = "".concat(swalClasses.popup, " ").concat(isVisible$1(popup) ? showClass.popup : '');
-    if (params.toast) {
-      addClass([document.documentElement, document.body], swalClasses['toast-shown']);
-      addClass(popup, swalClasses.toast);
-    } else {
-      addClass(popup, swalClasses.modal);
-    }
-
-    // Custom class
-    applyCustomClass(popup, params, 'popup');
-    if (typeof params.customClass === 'string') {
-      addClass(popup, params.customClass);
-    }
-
-    // Icon class (#1842)
-    if (params.icon) {
-      addClass(popup, swalClasses["icon-".concat(params.icon)]);
-    }
-  };
-
-  /**
+   */var et=function addClasses(e,t){var n=t.showClass||{};e.className="".concat(s.popup," ").concat(le(e)?n.popup:"");if(t.toast){Q([document.documentElement,document.body],s["toast-shown"]);Q(e,s.toast)}else Q(e,s.modal);Y(e,t,"popup");typeof t.customClass==="string"&&Q(e,t.customClass);t.icon&&Q(e,s["icon-".concat(t.icon)])};
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var renderProgressSteps = function renderProgressSteps(instance, params) {
-    var progressStepsContainer = getProgressSteps();
-    if (!progressStepsContainer) {
-      return;
-    }
-    var progressSteps = params.progressSteps,
-      currentProgressStep = params.currentProgressStep;
-    if (!progressSteps || progressSteps.length === 0 || currentProgressStep === undefined) {
-      hide(progressStepsContainer);
-      return;
-    }
-    show(progressStepsContainer);
-    progressStepsContainer.textContent = '';
-    if (currentProgressStep >= progressSteps.length) {
-      warn('Invalid currentProgressStep parameter, it should be less than progressSteps.length ' + '(currentProgressStep like JS arrays starts from 0)');
-    }
-    progressSteps.forEach(function (step, index) {
-      var stepEl = createStepElement(step);
-      progressStepsContainer.appendChild(stepEl);
-      if (index === currentProgressStep) {
-        addClass(stepEl, swalClasses['active-progress-step']);
-      }
-      if (index !== progressSteps.length - 1) {
-        var lineEl = createLineElement(params);
-        progressStepsContainer.appendChild(lineEl);
-      }
-    });
-  };
-
-  /**
+   */var tt=function renderProgressSteps(e,t){var n=E();if(n){var a=t.progressSteps,r=t.currentProgressStep;if(a&&a.length!==0&&r!==void 0){ae(n);n.textContent="";r>=a.length&&p("Invalid currentProgressStep parameter, it should be less than progressSteps.length (currentProgressStep like JS arrays starts from 0)");a.forEach((function(e,o){var i=nt(e);n.appendChild(i);o===r&&Q(i,s["active-progress-step"]);if(o!==a.length-1){var l=at(t);n.appendChild(l)}}))}else re(n)}};
+/**
    * @param {string} step
    * @returns {HTMLLIElement}
-   */
-  var createStepElement = function createStepElement(step) {
-    var stepEl = document.createElement('li');
-    addClass(stepEl, swalClasses['progress-step']);
-    setInnerHtml(stepEl, step);
-    return stepEl;
-  };
-
-  /**
+   */var nt=function createStepElement(e){var t=document.createElement("li");Q(t,s["progress-step"]);$(t,e);return t};
+/**
    * @param {SweetAlertOptions} params
    * @returns {HTMLLIElement}
-   */
-  var createLineElement = function createLineElement(params) {
-    var lineEl = document.createElement('li');
-    addClass(lineEl, swalClasses['progress-step-line']);
-    if (params.progressStepsDistance) {
-      applyNumericalStyle(lineEl, 'width', params.progressStepsDistance);
-    }
-    return lineEl;
-  };
-
-  /**
+   */var at=function createLineElement(e){var t=document.createElement("li");Q(t,s["progress-step-line"]);e.progressStepsDistance&&ne(t,"width",e.progressStepsDistance);return t};
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var renderTitle = function renderTitle(instance, params) {
-    var title = getTitle();
-    if (!title) {
-      return;
-    }
-    showWhenInnerHtmlPresent(title);
-    toggle(title, params.title || params.titleText, 'block');
-    if (params.title) {
-      parseHtmlToContainer(params.title, title);
-    }
-    if (params.titleText) {
-      title.innerText = params.titleText;
-    }
-
-    // Custom class
-    applyCustomClass(title, params, 'title');
-  };
-
-  /**
+   */var rt=function renderTitle(e,t){var n=S();if(n){oe(n);se(n,t.title||t.titleText,"block");t.title&&xe(t.title,n);t.titleText&&(n.innerText=t.titleText);Y(n,t,"title")}};
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var render = function render(instance, params) {
-    renderPopup(instance, params);
-    renderContainer(instance, params);
-    renderProgressSteps(instance, params);
-    renderIcon(instance, params);
-    renderImage(instance, params);
-    renderTitle(instance, params);
-    renderCloseButton(instance, params);
-    renderContent(instance, params);
-    renderActions(instance, params);
-    renderFooter(instance, params);
-    var popup = getPopup();
-    if (typeof params.didRender === 'function' && popup) {
-      params.didRender(popup);
-    }
-  };
-
-  /*
-   * Global function to determine if SweetAlert2 popup is shown
-   */
-  var isVisible = function isVisible() {
-    return isVisible$1(getPopup());
-  };
-
-  /*
-   * Global function to click 'Confirm' button
-   */
-  var clickConfirm = function clickConfirm() {
-    var _dom$getConfirmButton;
-    return (_dom$getConfirmButton = getConfirmButton()) === null || _dom$getConfirmButton === void 0 ? void 0 : _dom$getConfirmButton.click();
-  };
-
-  /*
-   * Global function to click 'Deny' button
-   */
-  var clickDeny = function clickDeny() {
-    var _dom$getDenyButton;
-    return (_dom$getDenyButton = getDenyButton()) === null || _dom$getDenyButton === void 0 ? void 0 : _dom$getDenyButton.click();
-  };
-
-  /*
-   * Global function to click 'Cancel' button
-   */
-  var clickCancel = function clickCancel() {
-    var _dom$getCancelButton;
-    return (_dom$getCancelButton = getCancelButton()) === null || _dom$getCancelButton === void 0 ? void 0 : _dom$getCancelButton.click();
-  };
-
-  /** @typedef {'cancel' | 'backdrop' | 'close' | 'esc' | 'timer'} DismissReason */
-
-  /** @type {Record<DismissReason, DismissReason>} */
-  var DismissReason = Object.freeze({
-    cancel: 'cancel',
-    backdrop: 'backdrop',
-    close: 'close',
-    esc: 'esc',
-    timer: 'timer'
-  });
-
-  /**
+   */var ot=function render(e,t){Qe(e,t);_e(e,t);tt(e,t);We(e,t);Je(e,t);rt(e,t);Te(e,t);Fe(e,t);Se(e,t);Ne(e,t);var n=A();typeof t.didRender==="function"&&n&&t.didRender(n)};var it=function isVisible(){return le(A())};var st=function clickConfirm(){var e;return(e=I())===null||e===void 0?void 0:e.click()};var lt=function clickDeny(){var e;return(e=j())===null||e===void 0?void 0:e.click()};var ct=function clickCancel(){var e;return(e=L())===null||e===void 0?void 0:e.click()};
+/** @typedef {'cancel' | 'backdrop' | 'close' | 'esc' | 'timer'} DismissReason */
+/** @type {Record<DismissReason, DismissReason>} */var ut=Object.freeze({cancel:"cancel",backdrop:"backdrop",close:"close",esc:"esc",timer:"timer"});
+/**
    * @param {GlobalState} globalState
-   */
-  var removeKeydownHandler = function removeKeydownHandler(globalState) {
-    if (globalState.keydownTarget && globalState.keydownHandlerAdded) {
-      globalState.keydownTarget.removeEventListener('keydown', globalState.keydownHandler, {
-        capture: globalState.keydownListenerCapture
-      });
-      globalState.keydownHandlerAdded = false;
-    }
-  };
-
-  /**
+   */var dt=function removeKeydownHandler(e){if(e.keydownTarget&&e.keydownHandlerAdded){e.keydownTarget.removeEventListener("keydown",e.keydownHandler,{capture:e.keydownListenerCapture});e.keydownHandlerAdded=false}};
+/**
    * @param {GlobalState} globalState
    * @param {SweetAlertOptions} innerParams
    * @param {*} dismissWith
-   */
-  var addKeydownHandler = function addKeydownHandler(globalState, innerParams, dismissWith) {
-    removeKeydownHandler(globalState);
-    if (!innerParams.toast) {
-      globalState.keydownHandler = function (e) {
-        return keydownHandler(innerParams, e, dismissWith);
-      };
-      globalState.keydownTarget = innerParams.keydownListenerCapture ? window : getPopup();
-      globalState.keydownListenerCapture = innerParams.keydownListenerCapture;
-      globalState.keydownTarget.addEventListener('keydown', globalState.keydownHandler, {
-        capture: globalState.keydownListenerCapture
-      });
-      globalState.keydownHandlerAdded = true;
-    }
-  };
-
-  /**
+   */var pt=function addKeydownHandler(e,t,n){dt(e);if(!t.toast){e.keydownHandler=function(e){return ht(t,e,n)};e.keydownTarget=t.keydownListenerCapture?window:A();e.keydownListenerCapture=t.keydownListenerCapture;e.keydownTarget.addEventListener("keydown",e.keydownHandler,{capture:e.keydownListenerCapture});e.keydownHandlerAdded=true}};
+/**
    * @param {number} index
    * @param {number} increment
-   */
-  var setFocus = function setFocus(index, increment) {
-    var _dom$getPopup;
-    var focusableElements = getFocusableElements();
-    // search for visible elements and select the next possible match
-    if (focusableElements.length) {
-      index = index + increment;
-
-      // rollover to first item
-      if (index === focusableElements.length) {
-        index = 0;
-
-        // go to last item
-      } else if (index === -1) {
-        index = focusableElements.length - 1;
-      }
-      focusableElements[index].focus();
-      return;
-    }
-    // no visible focusable elements, focus the popup
-    (_dom$getPopup = getPopup()) === null || _dom$getPopup === void 0 || _dom$getPopup.focus();
-  };
-  var arrowKeysNextButton = ['ArrowRight', 'ArrowDown'];
-  var arrowKeysPreviousButton = ['ArrowLeft', 'ArrowUp'];
-
-  /**
+   */var wt=function setFocus(e,t){var n;var a=F();if(a.length){e+=t;e===a.length?e=0:e===-1&&(e=a.length-1);a[e].focus()}else(n=A())===null||n===void 0||n.focus()};var ft=["ArrowRight","ArrowDown"];var mt=["ArrowLeft","ArrowUp"];
+/**
    * @param {SweetAlertOptions} innerParams
    * @param {KeyboardEvent} event
    * @param {Function} dismissWith
-   */
-  var keydownHandler = function keydownHandler(innerParams, event, dismissWith) {
-    if (!innerParams) {
-      return; // This instance has already been destroyed
-    }
-
-    // Ignore keydown during IME composition
-    // https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event#ignoring_keydown_during_ime_composition
-    // https://github.com/sweetalert2/sweetalert2/issues/720
-    // https://github.com/sweetalert2/sweetalert2/issues/2406
-    if (event.isComposing || event.keyCode === 229) {
-      return;
-    }
-    if (innerParams.stopKeydownPropagation) {
-      event.stopPropagation();
-    }
-
-    // ENTER
-    if (event.key === 'Enter') {
-      handleEnter(event, innerParams);
-    }
-
-    // TAB
-    else if (event.key === 'Tab') {
-      handleTab(event);
-    }
-
-    // ARROWS - switch focus between buttons
-    else if ([].concat(arrowKeysNextButton, arrowKeysPreviousButton).includes(event.key)) {
-      handleArrows(event.key);
-    }
-
-    // ESC
-    else if (event.key === 'Escape') {
-      handleEsc(event, innerParams, dismissWith);
-    }
-  };
-
-  /**
+   */var ht=function keydownHandler(e,t,n){if(e&&!t.isComposing&&t.keyCode!==229){e.stopKeydownPropagation&&t.stopPropagation();t.key==="Enter"?vt(t,e):t.key==="Tab"?gt(t):[].concat(ft,mt).includes(t.key)?bt(t.key):t.key==="Escape"&&yt(t,e,n)}};
+/**
    * @param {KeyboardEvent} event
    * @param {SweetAlertOptions} innerParams
-   */
-  var handleEnter = function handleEnter(event, innerParams) {
-    // https://github.com/sweetalert2/sweetalert2/issues/2386
-    if (!callIfFunction(innerParams.allowEnterKey)) {
-      return;
-    }
-    var input = getInput$1(getPopup(), innerParams.input);
-    if (event.target && input && event.target instanceof HTMLElement && event.target.outerHTML === input.outerHTML) {
-      if (['textarea', 'file'].includes(innerParams.input)) {
-        return; // do not submit
-      }
-      clickConfirm();
-      event.preventDefault();
-    }
-  };
-
-  /**
+   */var vt=function handleEnter(e,t){if(v(t.allowEnterKey)){var n=G(A(),t.input);if(e.target&&n&&e.target instanceof HTMLElement&&e.target.outerHTML===n.outerHTML){if(["textarea","file"].includes(t.input))return;st();e.preventDefault()}}};
+/**
    * @param {KeyboardEvent} event
-   */
-  var handleTab = function handleTab(event) {
-    var targetElement = event.target;
-    var focusableElements = getFocusableElements();
-    var btnIndex = -1;
-    for (var i = 0; i < focusableElements.length; i++) {
-      if (targetElement === focusableElements[i]) {
-        btnIndex = i;
-        break;
-      }
-    }
-
-    // Cycle to the next button
-    if (!event.shiftKey) {
-      setFocus(btnIndex, 1);
-    }
-
-    // Cycle to the prev button
-    else {
-      setFocus(btnIndex, -1);
-    }
-    event.stopPropagation();
-    event.preventDefault();
-  };
-
-  /**
+   */var gt=function handleTab(e){var t=e.target;var n=F();var a=-1;for(var r=0;r<n.length;r++)if(t===n[r]){a=r;break}e.shiftKey?wt(a,-1):wt(a,1);e.stopPropagation();e.preventDefault()};
+/**
    * @param {string} key
-   */
-  var handleArrows = function handleArrows(key) {
-    var actions = getActions();
-    var confirmButton = getConfirmButton();
-    var denyButton = getDenyButton();
-    var cancelButton = getCancelButton();
-    if (!actions || !confirmButton || !denyButton || !cancelButton) {
-      return;
-    }
-    /** @type HTMLElement[] */
-    var buttons = [confirmButton, denyButton, cancelButton];
-    if (document.activeElement instanceof HTMLElement && !buttons.includes(document.activeElement)) {
-      return;
-    }
-    var sibling = arrowKeysNextButton.includes(key) ? 'nextElementSibling' : 'previousElementSibling';
-    var buttonToFocus = document.activeElement;
-    if (!buttonToFocus) {
-      return;
-    }
-    for (var i = 0; i < actions.children.length; i++) {
-      buttonToFocus = buttonToFocus[sibling];
-      if (!buttonToFocus) {
-        return;
-      }
-      if (buttonToFocus instanceof HTMLButtonElement && isVisible$1(buttonToFocus)) {
-        break;
-      }
-    }
-    if (buttonToFocus instanceof HTMLButtonElement) {
-      buttonToFocus.focus();
-    }
-  };
-
-  /**
+   */var bt=function handleArrows(e){var t=H();var n=I();var a=j();var r=L();if(t&&n&&a&&r){
+/** @type HTMLElement[] */
+var o=[n,a,r];if(!(document.activeElement instanceof HTMLElement)||o.includes(document.activeElement)){var i=ft.includes(e)?"nextElementSibling":"previousElementSibling";var s=document.activeElement;if(s){for(var l=0;l<t.children.length;l++){s=s[i];if(!s)return;if(s instanceof HTMLButtonElement&&le(s))break}s instanceof HTMLButtonElement&&s.focus()}}}};
+/**
    * @param {KeyboardEvent} event
    * @param {SweetAlertOptions} innerParams
    * @param {Function} dismissWith
-   */
-  var handleEsc = function handleEsc(event, innerParams, dismissWith) {
-    if (callIfFunction(innerParams.allowEscapeKey)) {
-      event.preventDefault();
-      dismissWith(DismissReason.esc);
-    }
-  };
-
-  /**
-   * This module contains `WeakMap`s for each effectively-"private  property" that a `Swal` has.
-   * For example, to set the private property "foo" of `this` to "bar", you can `privateProps.foo.set(this, 'bar')`
-   * This is the approach that Babel will probably take to implement private methods/fields
-   *   https://github.com/tc39/proposal-private-methods
-   *   https://github.com/babel/babel/pull/7555
-   * Once we have the changes from that PR in Babel, and our core class fits reasonable in *one module*
-   *   then we can use that language feature.
-   */
-
-  var privateMethods = {
-    swalPromiseResolve: new WeakMap(),
-    swalPromiseReject: new WeakMap()
-  };
-
-  // From https://developer.paciellogroup.com/blog/2018/06/the-current-state-of-modal-dialog-accessibility/
-  // Adding aria-hidden="true" to elements outside of the active modal dialog ensures that
-  // elements not within the active modal dialog will not be surfaced if a user opens a screen
-  // reader’s list of elements (headings, form controls, landmarks, etc.) in the document.
-
-  var setAriaHidden = function setAriaHidden() {
-    var bodyChildren = Array.from(document.body.children);
-    bodyChildren.forEach(function (el) {
-      if (el === getContainer() || el.contains(getContainer())) {
-        return;
-      }
-      if (el.hasAttribute('aria-hidden')) {
-        el.setAttribute('data-previous-aria-hidden', el.getAttribute('aria-hidden') || '');
-      }
-      el.setAttribute('aria-hidden', 'true');
-    });
-  };
-  var unsetAriaHidden = function unsetAriaHidden() {
-    var bodyChildren = Array.from(document.body.children);
-    bodyChildren.forEach(function (el) {
-      if (el.hasAttribute('data-previous-aria-hidden')) {
-        el.setAttribute('aria-hidden', el.getAttribute('data-previous-aria-hidden') || '');
-        el.removeAttribute('data-previous-aria-hidden');
-      } else {
-        el.removeAttribute('aria-hidden');
-      }
-    });
-  };
-
-  // @ts-ignore
-  var isSafariOrIOS = typeof window !== 'undefined' && !!window.GestureEvent; // true for Safari desktop + all iOS browsers https://stackoverflow.com/a/70585394
-
-  /**
-   * Fix iOS scrolling
-   * http://stackoverflow.com/q/39626302
-   */
-  var iOSfix = function iOSfix() {
-    if (isSafariOrIOS && !hasClass(document.body, swalClasses.iosfix)) {
-      var offset = document.body.scrollTop;
-      document.body.style.top = "".concat(offset * -1, "px");
-      addClass(document.body, swalClasses.iosfix);
-      lockBodyScroll();
-    }
-  };
-
-  /**
-   * https://github.com/sweetalert2/sweetalert2/issues/1246
-   */
-  var lockBodyScroll = function lockBodyScroll() {
-    var container = getContainer();
-    if (!container) {
-      return;
-    }
-    /** @type {boolean} */
-    var preventTouchMove;
-    /**
+   */var yt=function handleEsc(e,t,n){if(v(t.allowEscapeKey)){e.preventDefault();n(ut.esc)}};var Ct={swalPromiseResolve:new WeakMap,swalPromiseReject:new WeakMap};var kt=function setAriaHidden(){var e=Array.from(document.body.children);e.forEach((function(e){if(e!==C()&&!e.contains(C())){e.hasAttribute("aria-hidden")&&e.setAttribute("data-previous-aria-hidden",e.getAttribute("aria-hidden")||"");e.setAttribute("aria-hidden","true")}}))};var xt=function unsetAriaHidden(){var e=Array.from(document.body.children);e.forEach((function(e){if(e.hasAttribute("data-previous-aria-hidden")){e.setAttribute("aria-hidden",e.getAttribute("data-previous-aria-hidden")||"");e.removeAttribute("data-previous-aria-hidden")}else e.removeAttribute("aria-hidden")}))};var At=typeof window!=="undefined"&&!!window.GestureEvent;var Pt=function iOSfix(){if(At&&!K(document.body,s.iosfix)){var e=document.body.scrollTop;document.body.style.top="".concat(e*-1,"px");Q(document.body,s.iosfix);Bt()}};var Bt=function lockBodyScroll(){var e=C();if(e){
+/** @type {boolean} */
+var t;
+/**
      * @param {TouchEvent} event
-     */
-    container.ontouchstart = function (event) {
-      preventTouchMove = shouldPreventTouchMove(event);
-    };
-    /**
+     */e.ontouchstart=function(e){t=St(e)};
+/**
      * @param {TouchEvent} event
-     */
-    container.ontouchmove = function (event) {
-      if (preventTouchMove) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-    };
-  };
-
-  /**
+     */e.ontouchmove=function(e){if(t){e.preventDefault();e.stopPropagation()}}}};
+/**
    * @param {TouchEvent} event
    * @returns {boolean}
-   */
-  var shouldPreventTouchMove = function shouldPreventTouchMove(event) {
-    var target = event.target;
-    var container = getContainer();
-    var htmlContainer = getHtmlContainer();
-    if (!container || !htmlContainer) {
-      return false;
-    }
-    if (isStylus(event) || isZoom(event)) {
-      return false;
-    }
-    if (target === container) {
-      return true;
-    }
-    if (!isScrollable(container) && target instanceof HTMLElement && target.tagName !== 'INPUT' &&
-    // #1603
-    target.tagName !== 'TEXTAREA' &&
-    // #2266
-    !(isScrollable(htmlContainer) &&
-    // #1944
-    htmlContainer.contains(target))) {
-      return true;
-    }
-    return false;
-  };
-
-  /**
+   */var St=function shouldPreventTouchMove(e){var t=e.target;var n=C();var a=T();return!(!n||!a)&&(!Tt(e)&&!_t(e)&&(t===n||!ue(n)&&t instanceof HTMLElement&&t.tagName!=="INPUT"&&t.tagName!=="TEXTAREA"&&(!ue(a)||!a.contains(t))))};
+/**
    * https://github.com/sweetalert2/sweetalert2/issues/1786
    *
    * @param {*} event
    * @returns {boolean}
-   */
-  var isStylus = function isStylus(event) {
-    return event.touches && event.touches.length && event.touches[0].touchType === 'stylus';
-  };
-
-  /**
+   */var Tt=function isStylus(e){return e.touches&&e.touches.length&&e.touches[0].touchType==="stylus"};
+/**
    * https://github.com/sweetalert2/sweetalert2/issues/1891
    *
    * @param {TouchEvent} event
    * @returns {boolean}
-   */
-  var isZoom = function isZoom(event) {
-    return event.touches && event.touches.length > 1;
-  };
-  var undoIOSfix = function undoIOSfix() {
-    if (hasClass(document.body, swalClasses.iosfix)) {
-      var offset = parseInt(document.body.style.top, 10);
-      removeClass(document.body, swalClasses.iosfix);
-      document.body.style.top = '';
-      document.body.scrollTop = offset * -1;
-    }
-  };
-
-  /**
+   */var _t=function isZoom(e){return e.touches&&e.touches.length>1};var Et=function undoIOSfix(){if(K(document.body,s.iosfix)){var e=parseInt(document.body.style.top,10);ee(document.body,s.iosfix);document.body.style.top="";document.body.scrollTop=e*-1}};
+/**
    * Measure scrollbar width for padding body during modal show/hide
    * https://github.com/twbs/bootstrap/blob/master/js/src/modal.js
    *
    * @returns {number}
-   */
-  var measureScrollbar = function measureScrollbar() {
-    var scrollDiv = document.createElement('div');
-    scrollDiv.className = swalClasses['scrollbar-measure'];
-    document.body.appendChild(scrollDiv);
-    var scrollbarWidth = scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth;
-    document.body.removeChild(scrollDiv);
-    return scrollbarWidth;
-  };
-
-  /**
+   */var Ot=function measureScrollbar(){var e=document.createElement("div");e.className=s["scrollbar-measure"];document.body.appendChild(e);var t=e.getBoundingClientRect().width-e.clientWidth;document.body.removeChild(e);return t};
+/**
    * Remember state in cases where opening and handling a modal will fiddle with it.
    * @type {number | null}
-   */
-  var previousBodyPadding = null;
-
-  /**
+   */var It=null;
+/**
    * @param {string} initialBodyOverflow
-   */
-  var replaceScrollbarWithPadding = function replaceScrollbarWithPadding(initialBodyOverflow) {
-    // for queues, do not do this more than once
-    if (previousBodyPadding !== null) {
-      return;
-    }
-    // if the body has overflow
-    if (document.body.scrollHeight > window.innerHeight || initialBodyOverflow === 'scroll' // https://github.com/sweetalert2/sweetalert2/issues/2663
-    ) {
-      // add padding so the content doesn't shift after removal of scrollbar
-      previousBodyPadding = parseInt(window.getComputedStyle(document.body).getPropertyValue('padding-right'));
-      document.body.style.paddingRight = "".concat(previousBodyPadding + measureScrollbar(), "px");
-    }
-  };
-  var undoReplaceScrollbarWithPadding = function undoReplaceScrollbarWithPadding() {
-    if (previousBodyPadding !== null) {
-      document.body.style.paddingRight = "".concat(previousBodyPadding, "px");
-      previousBodyPadding = null;
-    }
-  };
-
-  /**
+   */var Lt=function replaceScrollbarWithPadding(e){if(It===null&&(document.body.scrollHeight>window.innerHeight||e==="scroll")){It=parseInt(window.getComputedStyle(document.body).getPropertyValue("padding-right"));document.body.style.paddingRight="".concat(It+Ot(),"px")}};var jt=function undoReplaceScrollbarWithPadding(){if(It!==null){document.body.style.paddingRight="".concat(It,"px");It=null}};
+/**
    * @param {SweetAlert} instance
    * @param {HTMLElement} container
    * @param {boolean} returnFocus
    * @param {Function} didClose
-   */
-  function removePopupAndResetState(instance, container, returnFocus, didClose) {
-    if (isToast()) {
-      triggerDidCloseAndDispose(instance, didClose);
-    } else {
-      restoreActiveElement(returnFocus).then(function () {
-        return triggerDidCloseAndDispose(instance, didClose);
-      });
-      removeKeydownHandler(globalState);
-    }
-
-    // workaround for https://github.com/sweetalert2/sweetalert2/issues/2088
-    // for some reason removing the container in Safari will scroll the document to bottom
-    if (isSafariOrIOS) {
-      container.setAttribute('style', 'display:none !important');
-      container.removeAttribute('class');
-      container.innerHTML = '';
-    } else {
-      container.remove();
-    }
-    if (isModal()) {
-      undoReplaceScrollbarWithPadding();
-      undoIOSfix();
-      unsetAriaHidden();
-    }
-    removeBodyClasses();
-  }
-
-  /**
-   * Remove SweetAlert2 classes from body
-   */
-  function removeBodyClasses() {
-    removeClass([document.documentElement, document.body], [swalClasses.shown, swalClasses['height-auto'], swalClasses['no-backdrop'], swalClasses['toast-shown']]);
-  }
-
-  /**
+   */function removePopupAndResetState(e,t,a,o){if(W())Rt(e,o);else{r(a).then((function(){return Rt(e,o)}));dt(n)}if(At){t.setAttribute("style","display:none !important");t.removeAttribute("class");t.innerHTML=""}else t.remove();if(N()){jt();Et();xt()}removeBodyClasses()}function removeBodyClasses(){ee([document.documentElement,document.body],[s.shown,s["height-auto"],s["no-backdrop"],s["toast-shown"]])}
+/**
    * Instance method to close sweetAlert
    *
    * @param {any} resolveValue
-   */
-  function close(resolveValue) {
-    resolveValue = prepareResolveValue(resolveValue);
-    var swalPromiseResolve = privateMethods.swalPromiseResolve.get(this);
-    var didClose = triggerClosePopup(this);
-    if (this.isAwaitingPromise) {
-      // A swal awaiting for a promise (after a click on Confirm or Deny) cannot be dismissed anymore #2335
-      if (!resolveValue.isDismissed) {
-        handleAwaitingPromise(this);
-        swalPromiseResolve(resolveValue);
-      }
-    } else if (didClose) {
-      // Resolve Swal promise
-      swalPromiseResolve(resolveValue);
-    }
-  }
-  var triggerClosePopup = function triggerClosePopup(instance) {
-    var popup = getPopup();
-    if (!popup) {
-      return false;
-    }
-    var innerParams = privateProps.innerParams.get(instance);
-    if (!innerParams || hasClass(popup, innerParams.hideClass.popup)) {
-      return false;
-    }
-    removeClass(popup, innerParams.showClass.popup);
-    addClass(popup, innerParams.hideClass.popup);
-    var backdrop = getContainer();
-    removeClass(backdrop, innerParams.showClass.backdrop);
-    addClass(backdrop, innerParams.hideClass.backdrop);
-    handlePopupAnimation(instance, popup, innerParams);
-    return true;
-  };
-
-  /**
+   */function close(t){t=Ht(t);var n=Ct.swalPromiseResolve.get(this||e);var a=Mt(this||e);if((this||e).isAwaitingPromise){if(!t.isDismissed){Dt(this||e);n(t)}}else a&&n(t)}var Mt=function triggerClosePopup(e){var t=A();if(!t)return false;var n=Ee.innerParams.get(e);if(!n||K(t,n.hideClass.popup))return false;ee(t,n.showClass.popup);Q(t,n.hideClass.popup);var a=C();ee(a,n.showClass.backdrop);Q(a,n.hideClass.backdrop);Vt(e,t,n);return true};
+/**
    * @param {any} error
-   */
-  function rejectPromise(error) {
-    var rejectPromise = privateMethods.swalPromiseReject.get(this);
-    handleAwaitingPromise(this);
-    if (rejectPromise) {
-      // Reject Swal promise
-      rejectPromise(error);
-    }
-  }
-
-  /**
+   */function rejectPromise(t){var n=Ct.swalPromiseReject.get(this||e);Dt(this||e);n&&n(t)}
+/**
    * @param {SweetAlert} instance
-   */
-  var handleAwaitingPromise = function handleAwaitingPromise(instance) {
-    if (instance.isAwaitingPromise) {
-      delete instance.isAwaitingPromise;
-      // The instance might have been previously partly destroyed, we must resume the destroy process in this case #2335
-      if (!privateProps.innerParams.get(instance)) {
-        instance._destroy();
-      }
-    }
-  };
-
-  /**
+   */var Dt=function handleAwaitingPromise(e){if(e.isAwaitingPromise){delete e.isAwaitingPromise;Ee.innerParams.get(e)||e._destroy()}};
+/**
    * @param {any} resolveValue
    * @returns {SweetAlertResult}
-   */
-  var prepareResolveValue = function prepareResolveValue(resolveValue) {
-    // When user calls Swal.close()
-    if (typeof resolveValue === 'undefined') {
-      return {
-        isConfirmed: false,
-        isDenied: false,
-        isDismissed: true
-      };
-    }
-    return Object.assign({
-      isConfirmed: false,
-      isDenied: false,
-      isDismissed: false
-    }, resolveValue);
-  };
-
-  /**
+   */var Ht=function prepareResolveValue(e){return typeof e==="undefined"?{isConfirmed:false,isDenied:false,isDismissed:true}:Object.assign({isConfirmed:false,isDenied:false,isDismissed:false},e)};
+/**
    * @param {SweetAlert} instance
    * @param {HTMLElement} popup
    * @param {SweetAlertOptions} innerParams
-   */
-  var handlePopupAnimation = function handlePopupAnimation(instance, popup, innerParams) {
-    var container = getContainer();
-    // If animation is supported, animate
-    var animationIsSupported = animationEndEvent && hasCssAnimation(popup);
-    if (typeof innerParams.willClose === 'function') {
-      innerParams.willClose(popup);
-    }
-    if (animationIsSupported) {
-      animatePopup(instance, popup, container, innerParams.returnFocus, innerParams.didClose);
-    } else {
-      // Otherwise, remove immediately
-      removePopupAndResetState(instance, container, innerParams.returnFocus, innerParams.didClose);
-    }
-  };
-
-  /**
+   */var Vt=function handlePopupAnimation(e,t,n){var a=C();var r=Be&&de(t);typeof n.willClose==="function"&&n.willClose(t);r?zt(e,t,a,n.returnFocus,n.didClose):removePopupAndResetState(e,a,n.returnFocus,n.didClose)};
+/**
    * @param {SweetAlert} instance
    * @param {HTMLElement} popup
    * @param {HTMLElement} container
    * @param {boolean} returnFocus
    * @param {Function} didClose
-   */
-  var animatePopup = function animatePopup(instance, popup, container, returnFocus, didClose) {
-    if (!animationEndEvent) {
-      return;
-    }
-    globalState.swalCloseEventFinishedCallback = removePopupAndResetState.bind(null, instance, container, returnFocus, didClose);
-    popup.addEventListener(animationEndEvent, function (e) {
-      if (e.target === popup) {
-        globalState.swalCloseEventFinishedCallback();
-        delete globalState.swalCloseEventFinishedCallback;
-      }
-    });
-  };
-
-  /**
+   */var zt=function animatePopup(e,t,a,r,o){if(Be){n.swalCloseEventFinishedCallback=removePopupAndResetState.bind(null,e,a,r,o);t.addEventListener(Be,(function(e){if(e.target===t){n.swalCloseEventFinishedCallback();delete n.swalCloseEventFinishedCallback}}))}};
+/**
    * @param {SweetAlert} instance
    * @param {Function} didClose
-   */
-  var triggerDidCloseAndDispose = function triggerDidCloseAndDispose(instance, didClose) {
-    setTimeout(function () {
-      if (typeof didClose === 'function') {
-        didClose.bind(instance.params)();
-      }
-      // instance might have been destroyed already
-      if (instance._destroy) {
-        instance._destroy();
-      }
-    });
-  };
-
-  /**
+   */var Rt=function triggerDidCloseAndDispose(e,t){setTimeout((function(){typeof t==="function"&&t.bind(e.params)();e._destroy&&e._destroy()}))};
+/**
    * Shows loader (spinner), this is useful with AJAX requests.
    * By default the loader be shown instead of the "Confirm" button.
    *
    * @param {HTMLButtonElement | null} [buttonToReplace]
-   */
-  var showLoading = function showLoading(buttonToReplace) {
-    var popup = getPopup();
-    if (!popup) {
-      new Swal(); // eslint-disable-line no-new
-    }
-    popup = getPopup();
-    if (!popup) {
-      return;
-    }
-    var loader = getLoader();
-    if (isToast()) {
-      hide(getIcon());
-    } else {
-      replaceButton(popup, buttonToReplace);
-    }
-    show(loader);
-    popup.setAttribute('data-loading', 'true');
-    popup.setAttribute('aria-busy', 'true');
-    popup.focus();
-  };
-
-  /**
+   */var qt=function showLoading(e){var t=A();t||new xa;t=A();if(t){var n=D();W()?re(P()):Ft(t,e);ae(n);t.setAttribute("data-loading","true");t.setAttribute("aria-busy","true");t.focus()}};
+/**
    * @param {HTMLElement} popup
    * @param {HTMLButtonElement | null} [buttonToReplace]
-   */
-  var replaceButton = function replaceButton(popup, buttonToReplace) {
-    var actions = getActions();
-    var loader = getLoader();
-    if (!actions || !loader) {
-      return;
-    }
-    if (!buttonToReplace && isVisible$1(getConfirmButton())) {
-      buttonToReplace = getConfirmButton();
-    }
-    show(actions);
-    if (buttonToReplace) {
-      hide(buttonToReplace);
-      loader.setAttribute('data-button-to-replace', buttonToReplace.className);
-      actions.insertBefore(loader, buttonToReplace);
-    }
-    addClass([popup, actions], swalClasses.loading);
-  };
-
-  /**
+   */var Ft=function replaceButton(e,t){var n=H();var a=D();if(n&&a){!t&&le(I())&&(t=I());ae(n);if(t){re(t);a.setAttribute("data-button-to-replace",t.className);n.insertBefore(a,t)}Q([e,n],s.loading)}};
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var handleInputOptionsAndValue = function handleInputOptionsAndValue(instance, params) {
-    if (params.input === 'select' || params.input === 'radio') {
-      handleInputOptions(instance, params);
-    } else if (['text', 'email', 'number', 'tel', 'textarea'].some(function (i) {
-      return i === params.input;
-    }) && (hasToPromiseFn(params.inputValue) || isPromise(params.inputValue))) {
-      showLoading(getConfirmButton());
-      handleInputValue(instance, params);
-    }
-  };
-
-  /**
+   */var Nt=function handleInputOptionsAndValue(e,t){if(t.input==="select"||t.input==="radio")Zt(e,t);else if(["text","email","number","tel","textarea"].some((function(e){return e===t.input}))&&(g(t.inputValue)||y(t.inputValue))){qt(I());Yt(e,t)}};
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} innerParams
    * @returns {SweetAlertInputValue}
-   */
-  var getInputValue = function getInputValue(instance, innerParams) {
-    var input = instance.getInput();
-    if (!input) {
-      return null;
-    }
-    switch (innerParams.input) {
-      case 'checkbox':
-        return getCheckboxValue(input);
-      case 'radio':
-        return getRadioValue(input);
-      case 'file':
-        return getFileValue(input);
-      default:
-        return innerParams.inputAutoTrim ? input.value.trim() : input.value;
-    }
-  };
-
-  /**
+   */var Wt=function getInputValue(e,t){var n=e.getInput();if(!n)return null;switch(t.input){case"checkbox":return Ut(n);case"radio":return $t(n);case"file":return Kt(n);default:return t.inputAutoTrim?n.value.trim():n.value}};
+/**
    * @param {HTMLInputElement} input
    * @returns {number}
-   */
-  var getCheckboxValue = function getCheckboxValue(input) {
-    return input.checked ? 1 : 0;
-  };
-
-  /**
+   */var Ut=function getCheckboxValue(e){return e.checked?1:0};
+/**
    * @param {HTMLInputElement} input
    * @returns {string | null}
-   */
-  var getRadioValue = function getRadioValue(input) {
-    return input.checked ? input.value : null;
-  };
-
-  /**
+   */var $t=function getRadioValue(e){return e.checked?e.value:null};
+/**
    * @param {HTMLInputElement} input
    * @returns {FileList | File | null}
-   */
-  var getFileValue = function getFileValue(input) {
-    return input.files && input.files.length ? input.getAttribute('multiple') !== null ? input.files : input.files[0] : null;
-  };
-
-  /**
+   */var Kt=function getFileValue(e){return e.files&&e.files.length?e.getAttribute("multiple")!==null?e.files:e.files[0]:null};
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var handleInputOptions = function handleInputOptions(instance, params) {
-    var popup = getPopup();
-    if (!popup) {
-      return;
-    }
-    /**
+   */var Zt=function handleInputOptions(e,t){var n=A();if(n){
+/**
      * @param {Record<string, any>} inputOptions
      */
-    var processInputOptions = function processInputOptions(inputOptions) {
-      if (params.input === 'select') {
-        populateSelectOptions(popup, formatInputOptions(inputOptions), params);
-      } else if (params.input === 'radio') {
-        populateRadioOptions(popup, formatInputOptions(inputOptions), params);
-      }
-    };
-    if (hasToPromiseFn(params.inputOptions) || isPromise(params.inputOptions)) {
-      showLoading(getConfirmButton());
-      asPromise(params.inputOptions).then(function (inputOptions) {
-        instance.hideLoading();
-        processInputOptions(inputOptions);
-      });
-    } else if (_typeof(params.inputOptions) === 'object') {
-      processInputOptions(params.inputOptions);
-    } else {
-      error("Unexpected type of inputOptions! Expected object, Map or Promise, got ".concat(_typeof(params.inputOptions)));
-    }
-  };
-
-  /**
+var a=function processInputOptions(e){t.input==="select"?populateSelectOptions(n,Gt(e),t):t.input==="radio"&&populateRadioOptions(n,Gt(e),t)};if(g(t.inputOptions)||y(t.inputOptions)){qt(I());b(t.inputOptions).then((function(t){e.hideLoading();a(t)}))}else _typeof(t.inputOptions)==="object"?a(t.inputOptions):w("Unexpected type of inputOptions! Expected object, Map or Promise, got ".concat(_typeof(t.inputOptions)))}};
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertOptions} params
-   */
-  var handleInputValue = function handleInputValue(instance, params) {
-    var input = instance.getInput();
-    if (!input) {
-      return;
-    }
-    hide(input);
-    asPromise(params.inputValue).then(function (inputValue) {
-      input.value = params.input === 'number' ? "".concat(parseFloat(inputValue) || 0) : "".concat(inputValue);
-      show(input);
-      input.focus();
-      instance.hideLoading();
-    })["catch"](function (err) {
-      error("Error in inputValue promise: ".concat(err));
-      input.value = '';
-      show(input);
-      input.focus();
-      instance.hideLoading();
-    });
-  };
-
-  /**
+   */var Yt=function handleInputValue(e,t){var n=e.getInput();if(n){re(n);b(t.inputValue).then((function(a){n.value=t.input==="number"?"".concat(parseFloat(a)||0):"".concat(a);ae(n);n.focus();e.hideLoading()})).catch((function(t){w("Error in inputValue promise: ".concat(t));n.value="";ae(n);n.focus();e.hideLoading()}))}};
+/**
    * @param {HTMLElement} popup
    * @param {InputOptionFlattened[]} inputOptions
    * @param {SweetAlertOptions} params
-   */
-  function populateSelectOptions(popup, inputOptions, params) {
-    var select = getDirectChildByClass(popup, swalClasses.select);
-    if (!select) {
-      return;
-    }
-    /**
+   */function populateSelectOptions(e,t,n){var a=te(e,s.select);if(a){
+/**
      * @param {HTMLElement} parent
      * @param {string} optionLabel
      * @param {string} optionValue
      */
-    var renderOption = function renderOption(parent, optionLabel, optionValue) {
-      var option = document.createElement('option');
-      option.value = optionValue;
-      setInnerHtml(option, optionLabel);
-      option.selected = isSelected(optionValue, params.inputValue);
-      parent.appendChild(option);
-    };
-    inputOptions.forEach(function (inputOption) {
-      var optionValue = inputOption[0];
-      var optionLabel = inputOption[1];
-      // <optgroup> spec:
-      // https://www.w3.org/TR/html401/interact/forms.html#h-17.6
-      // "...all OPTGROUP elements must be specified directly within a SELECT element (i.e., groups may not be nested)..."
-      // check whether this is a <optgroup>
-      if (Array.isArray(optionLabel)) {
-        // if it is an array, then it is an <optgroup>
-        var optgroup = document.createElement('optgroup');
-        optgroup.label = optionValue;
-        optgroup.disabled = false; // not configurable for now
-        select.appendChild(optgroup);
-        optionLabel.forEach(function (o) {
-          return renderOption(optgroup, o[1], o[0]);
-        });
-      } else {
-        // case of <option>
-        renderOption(select, optionLabel, optionValue);
-      }
-    });
-    select.focus();
-  }
-
-  /**
+var r=function renderOption(e,t,a){var r=document.createElement("option");r.value=a;$(r,t);r.selected=Xt(a,n.inputValue);e.appendChild(r)};t.forEach((function(e){var t=e[0];var n=e[1];if(Array.isArray(n)){var o=document.createElement("optgroup");o.label=t;o.disabled=false;a.appendChild(o);n.forEach((function(e){return r(o,e[1],e[0])}))}else r(a,n,t)}));a.focus()}}
+/**
    * @param {HTMLElement} popup
    * @param {InputOptionFlattened[]} inputOptions
    * @param {SweetAlertOptions} params
-   */
-  function populateRadioOptions(popup, inputOptions, params) {
-    var radio = getDirectChildByClass(popup, swalClasses.radio);
-    if (!radio) {
-      return;
-    }
-    inputOptions.forEach(function (inputOption) {
-      var radioValue = inputOption[0];
-      var radioLabel = inputOption[1];
-      var radioInput = document.createElement('input');
-      var radioLabelElement = document.createElement('label');
-      radioInput.type = 'radio';
-      radioInput.name = swalClasses.radio;
-      radioInput.value = radioValue;
-      if (isSelected(radioValue, params.inputValue)) {
-        radioInput.checked = true;
-      }
-      var label = document.createElement('span');
-      setInnerHtml(label, radioLabel);
-      label.className = swalClasses.label;
-      radioLabelElement.appendChild(radioInput);
-      radioLabelElement.appendChild(label);
-      radio.appendChild(radioLabelElement);
-    });
-    var radios = radio.querySelectorAll('input');
-    if (radios.length) {
-      radios[0].focus();
-    }
-  }
-
-  /**
+   */function populateRadioOptions(e,t,n){var a=te(e,s.radio);if(a){t.forEach((function(e){var t=e[0];var r=e[1];var o=document.createElement("input");var i=document.createElement("label");o.type="radio";o.name=s.radio;o.value=t;Xt(t,n.inputValue)&&(o.checked=true);var l=document.createElement("span");$(l,r);l.className=s.label;i.appendChild(o);i.appendChild(l);a.appendChild(i)}));var r=a.querySelectorAll("input");r.length&&r[0].focus()}}
+/**
    * Converts `inputOptions` into an array of `[value, label]`s
    *
    * @param {Record<string, any>} inputOptions
    * @typedef {string[]} InputOptionFlattened
    * @returns {InputOptionFlattened[]}
-   */
-  var formatInputOptions = function formatInputOptions(inputOptions) {
-    /** @type {InputOptionFlattened[]} */
-    var result = [];
-    if (inputOptions instanceof Map) {
-      inputOptions.forEach(function (value, key) {
-        var valueFormatted = value;
-        if (_typeof(valueFormatted) === 'object') {
-          // case of <optgroup>
-          valueFormatted = formatInputOptions(valueFormatted);
-        }
-        result.push([key, valueFormatted]);
-      });
-    } else {
-      Object.keys(inputOptions).forEach(function (key) {
-        var valueFormatted = inputOptions[key];
-        if (_typeof(valueFormatted) === 'object') {
-          // case of <optgroup>
-          valueFormatted = formatInputOptions(valueFormatted);
-        }
-        result.push([key, valueFormatted]);
-      });
-    }
-    return result;
-  };
-
-  /**
+   */var Gt=function formatInputOptions(e){
+/** @type {InputOptionFlattened[]} */
+var t=[];e instanceof Map?e.forEach((function(e,n){var a=e;_typeof(a)==="object"&&(a=formatInputOptions(a));t.push([n,a])})):Object.keys(e).forEach((function(n){var a=e[n];_typeof(a)==="object"&&(a=formatInputOptions(a));t.push([n,a])}));return t};
+/**
    * @param {string} optionValue
    * @param {SweetAlertInputValue} inputValue
    * @returns {boolean}
-   */
-  var isSelected = function isSelected(optionValue, inputValue) {
-    return !!inputValue && inputValue.toString() === optionValue.toString();
-  };
-
-  var _this = undefined;
-
-  /**
+   */var Xt=function isSelected(e,t){return!!t&&t.toString()===e.toString()};var Jt=void 0;
+/**
    * @param {SweetAlert} instance
-   */
-  var handleConfirmButtonClick = function handleConfirmButtonClick(instance) {
-    var innerParams = privateProps.innerParams.get(instance);
-    instance.disableButtons();
-    if (innerParams.input) {
-      handleConfirmOrDenyWithInput(instance, 'confirm');
-    } else {
-      confirm(instance, true);
-    }
-  };
-
-  /**
+   */var Qt=function handleConfirmButtonClick(e){var t=Ee.innerParams.get(e);e.disableButtons();t.input?nn(e,"confirm"):ln(e,true)};
+/**
    * @param {SweetAlert} instance
-   */
-  var handleDenyButtonClick = function handleDenyButtonClick(instance) {
-    var innerParams = privateProps.innerParams.get(instance);
-    instance.disableButtons();
-    if (innerParams.returnInputValueOnDeny) {
-      handleConfirmOrDenyWithInput(instance, 'deny');
-    } else {
-      deny(instance, false);
-    }
-  };
-
-  /**
+   */var en=function handleDenyButtonClick(e){var t=Ee.innerParams.get(e);e.disableButtons();t.returnInputValueOnDeny?nn(e,"deny"):rn(e,false)};
+/**
    * @param {SweetAlert} instance
    * @param {Function} dismissWith
-   */
-  var handleCancelButtonClick = function handleCancelButtonClick(instance, dismissWith) {
-    instance.disableButtons();
-    dismissWith(DismissReason.cancel);
-  };
-
-  /**
+   */var tn=function handleCancelButtonClick(e,t){e.disableButtons();t(ut.cancel)};
+/**
    * @param {SweetAlert} instance
    * @param {'confirm' | 'deny'} type
-   */
-  var handleConfirmOrDenyWithInput = function handleConfirmOrDenyWithInput(instance, type) {
-    var innerParams = privateProps.innerParams.get(instance);
-    if (!innerParams.input) {
-      error("The \"input\" parameter is needed to be set when using returnInputValueOn".concat(capitalizeFirstLetter(type)));
-      return;
-    }
-    var input = instance.getInput();
-    var inputValue = getInputValue(instance, innerParams);
-    if (innerParams.inputValidator) {
-      handleInputValidator(instance, inputValue, type);
-    } else if (input && !input.checkValidity()) {
-      instance.enableButtons();
-      instance.showValidationMessage(innerParams.validationMessage || input.validationMessage);
-    } else if (type === 'deny') {
-      deny(instance, inputValue);
-    } else {
-      confirm(instance, inputValue);
-    }
-  };
-
-  /**
+   */var nn=function handleConfirmOrDenyWithInput(e,t){var n=Ee.innerParams.get(e);if(n.input){var a=e.getInput();var r=Wt(e,n);if(n.inputValidator)an(e,r,t);else if(a&&!a.checkValidity()){e.enableButtons();e.showValidationMessage(n.validationMessage||a.validationMessage)}else t==="deny"?rn(e,r):ln(e,r)}else w('The "input" parameter is needed to be set when using returnInputValueOn'.concat(d(t)))};
+/**
    * @param {SweetAlert} instance
    * @param {SweetAlertInputValue} inputValue
    * @param {'confirm' | 'deny'} type
-   */
-  var handleInputValidator = function handleInputValidator(instance, inputValue, type) {
-    var innerParams = privateProps.innerParams.get(instance);
-    instance.disableInput();
-    var validationPromise = Promise.resolve().then(function () {
-      return asPromise(innerParams.inputValidator(inputValue, innerParams.validationMessage));
-    });
-    validationPromise.then(function (validationMessage) {
-      instance.enableButtons();
-      instance.enableInput();
-      if (validationMessage) {
-        instance.showValidationMessage(validationMessage);
-      } else if (type === 'deny') {
-        deny(instance, inputValue);
-      } else {
-        confirm(instance, inputValue);
-      }
-    });
-  };
-
-  /**
+   */var an=function handleInputValidator(e,t,n){var a=Ee.innerParams.get(e);e.disableInput();var r=Promise.resolve().then((function(){return b(a.inputValidator(t,a.validationMessage))}));r.then((function(a){e.enableButtons();e.enableInput();a?e.showValidationMessage(a):n==="deny"?rn(e,t):ln(e,t)}))};
+/**
    * @param {SweetAlert} instance
    * @param {any} value
-   */
-  var deny = function deny(instance, value) {
-    var innerParams = privateProps.innerParams.get(instance || _this);
-    if (innerParams.showLoaderOnDeny) {
-      showLoading(getDenyButton());
-    }
-    if (innerParams.preDeny) {
-      instance.isAwaitingPromise = true; // Flagging the instance as awaiting a promise so it's own promise's reject/resolve methods doesn't get destroyed until the result from this preDeny's promise is received
-      var preDenyPromise = Promise.resolve().then(function () {
-        return asPromise(innerParams.preDeny(value, innerParams.validationMessage));
-      });
-      preDenyPromise.then(function (preDenyValue) {
-        if (preDenyValue === false) {
-          instance.hideLoading();
-          handleAwaitingPromise(instance);
-        } else {
-          instance.close({
-            isDenied: true,
-            value: typeof preDenyValue === 'undefined' ? value : preDenyValue
-          });
-        }
-      })["catch"](function (error) {
-        return rejectWith(instance || _this, error);
-      });
-    } else {
-      instance.close({
-        isDenied: true,
-        value: value
-      });
-    }
-  };
-
-  /**
+   */var rn=function deny(e,t){var n=Ee.innerParams.get(e||Jt);n.showLoaderOnDeny&&qt(j());if(n.preDeny){e.isAwaitingPromise=true;var a=Promise.resolve().then((function(){return b(n.preDeny(t,n.validationMessage))}));a.then((function(n){if(n===false){e.hideLoading();Dt(e)}else e.close({isDenied:true,value:typeof n==="undefined"?t:n})})).catch((function(t){return sn(e||Jt,t)}))}else e.close({isDenied:true,value:t})};
+/**
    * @param {SweetAlert} instance
    * @param {any} value
-   */
-  var succeedWith = function succeedWith(instance, value) {
-    instance.close({
-      isConfirmed: true,
-      value: value
-    });
-  };
-
-  /**
+   */var on=function succeedWith(e,t){e.close({isConfirmed:true,value:t})};
+/**
    *
    * @param {SweetAlert} instance
    * @param {string} error
-   */
-  var rejectWith = function rejectWith(instance, error) {
-    instance.rejectPromise(error);
-  };
-
-  /**
+   */var sn=function rejectWith(e,t){e.rejectPromise(t)};
+/**
    *
    * @param {SweetAlert} instance
    * @param {any} value
-   */
-  var confirm = function confirm(instance, value) {
-    var innerParams = privateProps.innerParams.get(instance || _this);
-    if (innerParams.showLoaderOnConfirm) {
-      showLoading();
-    }
-    if (innerParams.preConfirm) {
-      instance.resetValidationMessage();
-      instance.isAwaitingPromise = true; // Flagging the instance as awaiting a promise so it's own promise's reject/resolve methods doesn't get destroyed until the result from this preConfirm's promise is received
-      var preConfirmPromise = Promise.resolve().then(function () {
-        return asPromise(innerParams.preConfirm(value, innerParams.validationMessage));
-      });
-      preConfirmPromise.then(function (preConfirmValue) {
-        if (isVisible$1(getValidationMessage()) || preConfirmValue === false) {
-          instance.hideLoading();
-          handleAwaitingPromise(instance);
-        } else {
-          succeedWith(instance, typeof preConfirmValue === 'undefined' ? value : preConfirmValue);
-        }
-      })["catch"](function (error) {
-        return rejectWith(instance || _this, error);
-      });
-    } else {
-      succeedWith(instance, value);
-    }
-  };
-
-  /**
-   * Hides loader and shows back the button which was hidden by .showLoading()
-   */
-  function hideLoading() {
-    // do nothing if popup is closed
-    var innerParams = privateProps.innerParams.get(this);
-    if (!innerParams) {
-      return;
-    }
-    var domCache = privateProps.domCache.get(this);
-    hide(domCache.loader);
-    if (isToast()) {
-      if (innerParams.icon) {
-        show(getIcon());
-      }
-    } else {
-      showRelatedButton(domCache);
-    }
-    removeClass([domCache.popup, domCache.actions], swalClasses.loading);
-    domCache.popup.removeAttribute('aria-busy');
-    domCache.popup.removeAttribute('data-loading');
-    domCache.confirmButton.disabled = false;
-    domCache.denyButton.disabled = false;
-    domCache.cancelButton.disabled = false;
-  }
-  var showRelatedButton = function showRelatedButton(domCache) {
-    var buttonToReplace = domCache.popup.getElementsByClassName(domCache.loader.getAttribute('data-button-to-replace'));
-    if (buttonToReplace.length) {
-      show(buttonToReplace[0], 'inline-block');
-    } else if (allButtonsAreHidden()) {
-      hide(domCache.actions);
-    }
-  };
-
-  /**
+   */var ln=function confirm(e,t){var n=Ee.innerParams.get(e||Jt);n.showLoaderOnConfirm&&qt();if(n.preConfirm){e.resetValidationMessage();e.isAwaitingPromise=true;var a=Promise.resolve().then((function(){return b(n.preConfirm(t,n.validationMessage))}));a.then((function(n){if(le(O())||n===false){e.hideLoading();Dt(e)}else on(e,typeof n==="undefined"?t:n)})).catch((function(t){return sn(e||Jt,t)}))}else on(e,t)};function hideLoading(){var t=Ee.innerParams.get(this||e);if(t){var n=Ee.domCache.get(this||e);re(n.loader);W()?t.icon&&ae(P()):cn(n);ee([n.popup,n.actions],s.loading);n.popup.removeAttribute("aria-busy");n.popup.removeAttribute("data-loading");n.confirmButton.disabled=false;n.denyButton.disabled=false;n.cancelButton.disabled=false}}var cn=function showRelatedButton(e){var t=e.popup.getElementsByClassName(e.loader.getAttribute("data-button-to-replace"));t.length?ae(t[0],"inline-block"):ce()&&re(e.actions)};
+/**
    * Gets the input DOM node, this method works with input parameter.
    *
    * @returns {HTMLInputElement | null}
-   */
-  function getInput() {
-    var innerParams = privateProps.innerParams.get(this);
-    var domCache = privateProps.domCache.get(this);
-    if (!domCache) {
-      return null;
-    }
-    return getInput$1(domCache.popup, innerParams.input);
-  }
-
-  /**
+   */function getInput(){var t=Ee.innerParams.get(this||e);var n=Ee.domCache.get(this||e);return n?G(n.popup,t.input):null}
+/**
    * @param {SweetAlert} instance
    * @param {string[]} buttons
    * @param {boolean} disabled
-   */
-  function setButtonsDisabled(instance, buttons, disabled) {
-    var domCache = privateProps.domCache.get(instance);
-    buttons.forEach(function (button) {
-      domCache[button].disabled = disabled;
-    });
-  }
-
-  /**
+   */function setButtonsDisabled(e,t,n){var a=Ee.domCache.get(e);t.forEach((function(e){a[e].disabled=n}))}
+/**
    * @param {HTMLInputElement | null} input
    * @param {boolean} disabled
-   */
-  function setInputDisabled(input, disabled) {
-    var popup = getPopup();
-    if (!popup || !input) {
-      return;
-    }
-    if (input.type === 'radio') {
-      /** @type {NodeListOf<HTMLInputElement>} */
-      var radios = popup.querySelectorAll("[name=\"".concat(swalClasses.radio, "\"]"));
-      for (var i = 0; i < radios.length; i++) {
-        radios[i].disabled = disabled;
-      }
-    } else {
-      input.disabled = disabled;
-    }
-  }
-
-  /**
-   * Enable all the buttons
-   * @this {SweetAlert}
-   */
-  function enableButtons() {
-    setButtonsDisabled(this, ['confirmButton', 'denyButton', 'cancelButton'], false);
-  }
-
-  /**
-   * Disable all the buttons
-   * @this {SweetAlert}
-   */
-  function disableButtons() {
-    setButtonsDisabled(this, ['confirmButton', 'denyButton', 'cancelButton'], true);
-  }
-
-  /**
-   * Enable the input field
-   * @this {SweetAlert}
-   */
-  function enableInput() {
-    setInputDisabled(this.getInput(), false);
-  }
-
-  /**
-   * Disable the input field
-   * @this {SweetAlert}
-   */
-  function disableInput() {
-    setInputDisabled(this.getInput(), true);
-  }
-
-  /**
+   */function setInputDisabled(e,t){var n=A();if(n&&e)if(e.type==="radio"){
+/** @type {NodeListOf<HTMLInputElement>} */
+var a=n.querySelectorAll('[name="'.concat(s.radio,'"]'));for(var r=0;r<a.length;r++)a[r].disabled=t}else e.disabled=t}function enableButtons(){setButtonsDisabled(this||e,["confirmButton","denyButton","cancelButton"],false)}function disableButtons(){setButtonsDisabled(this||e,["confirmButton","denyButton","cancelButton"],true)}function enableInput(){setInputDisabled(this.getInput(),false)}function disableInput(){setInputDisabled(this.getInput(),true)}
+/**
    * Show block with validation message
    *
    * @param {string} error
    * @this {SweetAlert}
-   */
-  function showValidationMessage(error) {
-    var domCache = privateProps.domCache.get(this);
-    var params = privateProps.innerParams.get(this);
-    setInnerHtml(domCache.validationMessage, error);
-    domCache.validationMessage.className = swalClasses['validation-message'];
-    if (params.customClass && params.customClass.validationMessage) {
-      addClass(domCache.validationMessage, params.customClass.validationMessage);
-    }
-    show(domCache.validationMessage);
-    var input = this.getInput();
-    if (input) {
-      input.setAttribute('aria-invalid', 'true');
-      input.setAttribute('aria-describedby', swalClasses['validation-message']);
-      focusInput(input);
-      addClass(input, swalClasses.inputerror);
-    }
-  }
-
-  /**
-   * Hide block with validation message
-   *
-   * @this {SweetAlert}
-   */
-  function resetValidationMessage() {
-    var domCache = privateProps.domCache.get(this);
-    if (domCache.validationMessage) {
-      hide(domCache.validationMessage);
-    }
-    var input = this.getInput();
-    if (input) {
-      input.removeAttribute('aria-invalid');
-      input.removeAttribute('aria-describedby');
-      removeClass(input, swalClasses.inputerror);
-    }
-  }
-
-  var defaultParams = {
-    title: '',
-    titleText: '',
-    text: '',
-    html: '',
-    footer: '',
-    icon: undefined,
-    iconColor: undefined,
-    iconHtml: undefined,
-    template: undefined,
-    toast: false,
-    animation: true,
-    showClass: {
-      popup: 'swal2-show',
-      backdrop: 'swal2-backdrop-show',
-      icon: 'swal2-icon-show'
-    },
-    hideClass: {
-      popup: 'swal2-hide',
-      backdrop: 'swal2-backdrop-hide',
-      icon: 'swal2-icon-hide'
-    },
-    customClass: {},
-    target: 'body',
-    color: undefined,
-    backdrop: true,
-    heightAuto: true,
-    allowOutsideClick: true,
-    allowEscapeKey: true,
-    allowEnterKey: true,
-    stopKeydownPropagation: true,
-    keydownListenerCapture: false,
-    showConfirmButton: true,
-    showDenyButton: false,
-    showCancelButton: false,
-    preConfirm: undefined,
-    preDeny: undefined,
-    confirmButtonText: 'OK',
-    confirmButtonAriaLabel: '',
-    confirmButtonColor: undefined,
-    denyButtonText: 'No',
-    denyButtonAriaLabel: '',
-    denyButtonColor: undefined,
-    cancelButtonText: 'Cancel',
-    cancelButtonAriaLabel: '',
-    cancelButtonColor: undefined,
-    buttonsStyling: true,
-    reverseButtons: false,
-    focusConfirm: true,
-    focusDeny: false,
-    focusCancel: false,
-    returnFocus: true,
-    showCloseButton: false,
-    closeButtonHtml: '&times;',
-    closeButtonAriaLabel: 'Close this dialog',
-    loaderHtml: '',
-    showLoaderOnConfirm: false,
-    showLoaderOnDeny: false,
-    imageUrl: undefined,
-    imageWidth: undefined,
-    imageHeight: undefined,
-    imageAlt: '',
-    timer: undefined,
-    timerProgressBar: false,
-    width: undefined,
-    padding: undefined,
-    background: undefined,
-    input: undefined,
-    inputPlaceholder: '',
-    inputLabel: '',
-    inputValue: '',
-    inputOptions: {},
-    inputAutoFocus: true,
-    inputAutoTrim: true,
-    inputAttributes: {},
-    inputValidator: undefined,
-    returnInputValueOnDeny: false,
-    validationMessage: undefined,
-    grow: false,
-    position: 'center',
-    progressSteps: [],
-    currentProgressStep: undefined,
-    progressStepsDistance: undefined,
-    willOpen: undefined,
-    didOpen: undefined,
-    didRender: undefined,
-    willClose: undefined,
-    didClose: undefined,
-    didDestroy: undefined,
-    scrollbarPadding: true
-  };
-  var updatableParams = ['allowEscapeKey', 'allowOutsideClick', 'background', 'buttonsStyling', 'cancelButtonAriaLabel', 'cancelButtonColor', 'cancelButtonText', 'closeButtonAriaLabel', 'closeButtonHtml', 'color', 'confirmButtonAriaLabel', 'confirmButtonColor', 'confirmButtonText', 'currentProgressStep', 'customClass', 'denyButtonAriaLabel', 'denyButtonColor', 'denyButtonText', 'didClose', 'didDestroy', 'footer', 'hideClass', 'html', 'icon', 'iconColor', 'iconHtml', 'imageAlt', 'imageHeight', 'imageUrl', 'imageWidth', 'preConfirm', 'preDeny', 'progressSteps', 'returnFocus', 'reverseButtons', 'showCancelButton', 'showCloseButton', 'showConfirmButton', 'showDenyButton', 'text', 'title', 'titleText', 'willClose'];
-
-  /** @type {Record<string, string>} */
-  var deprecatedParams = {};
-  var toastIncompatibleParams = ['allowOutsideClick', 'allowEnterKey', 'backdrop', 'focusConfirm', 'focusDeny', 'focusCancel', 'returnFocus', 'heightAuto', 'keydownListenerCapture'];
-
-  /**
+   */function showValidationMessage(t){var n=Ee.domCache.get(this||e);var a=Ee.innerParams.get(this||e);$(n.validationMessage,t);n.validationMessage.className=s["validation-message"];a.customClass&&a.customClass.validationMessage&&Q(n.validationMessage,a.customClass.validationMessage);ae(n.validationMessage);var r=this.getInput();if(r){r.setAttribute("aria-invalid","true");r.setAttribute("aria-describedby",s["validation-message"]);X(r);Q(r,s.inputerror)}}function resetValidationMessage(){var t=Ee.domCache.get(this||e);t.validationMessage&&re(t.validationMessage);var n=this.getInput();if(n){n.removeAttribute("aria-invalid");n.removeAttribute("aria-describedby");ee(n,s.inputerror)}}var un={title:"",titleText:"",text:"",html:"",footer:"",icon:void 0,iconColor:void 0,iconHtml:void 0,template:void 0,toast:false,animation:true,showClass:{popup:"swal2-show",backdrop:"swal2-backdrop-show",icon:"swal2-icon-show"},hideClass:{popup:"swal2-hide",backdrop:"swal2-backdrop-hide",icon:"swal2-icon-hide"},customClass:{},target:"body",color:void 0,backdrop:true,heightAuto:true,allowOutsideClick:true,allowEscapeKey:true,allowEnterKey:true,stopKeydownPropagation:true,keydownListenerCapture:false,showConfirmButton:true,showDenyButton:false,showCancelButton:false,preConfirm:void 0,preDeny:void 0,confirmButtonText:"OK",confirmButtonAriaLabel:"",confirmButtonColor:void 0,denyButtonText:"No",denyButtonAriaLabel:"",denyButtonColor:void 0,cancelButtonText:"Cancel",cancelButtonAriaLabel:"",cancelButtonColor:void 0,buttonsStyling:true,reverseButtons:false,focusConfirm:true,focusDeny:false,focusCancel:false,returnFocus:true,showCloseButton:false,closeButtonHtml:"&times;",closeButtonAriaLabel:"Close this dialog",loaderHtml:"",showLoaderOnConfirm:false,showLoaderOnDeny:false,imageUrl:void 0,imageWidth:void 0,imageHeight:void 0,imageAlt:"",timer:void 0,timerProgressBar:false,width:void 0,padding:void 0,background:void 0,input:void 0,inputPlaceholder:"",inputLabel:"",inputValue:"",inputOptions:{},inputAutoFocus:true,inputAutoTrim:true,inputAttributes:{},inputValidator:void 0,returnInputValueOnDeny:false,validationMessage:void 0,grow:false,position:"center",progressSteps:[],currentProgressStep:void 0,progressStepsDistance:void 0,willOpen:void 0,didOpen:void 0,didRender:void 0,willClose:void 0,didClose:void 0,didDestroy:void 0,scrollbarPadding:true};var dn=["allowEscapeKey","allowOutsideClick","background","buttonsStyling","cancelButtonAriaLabel","cancelButtonColor","cancelButtonText","closeButtonAriaLabel","closeButtonHtml","color","confirmButtonAriaLabel","confirmButtonColor","confirmButtonText","currentProgressStep","customClass","denyButtonAriaLabel","denyButtonColor","denyButtonText","didClose","didDestroy","footer","hideClass","html","icon","iconColor","iconHtml","imageAlt","imageHeight","imageUrl","imageWidth","preConfirm","preDeny","progressSteps","returnFocus","reverseButtons","showCancelButton","showCloseButton","showConfirmButton","showDenyButton","text","title","titleText","willClose"];
+/** @type {Record<string, string>} */var pn={};var wn=["allowOutsideClick","allowEnterKey","backdrop","focusConfirm","focusDeny","focusCancel","returnFocus","heightAuto","keydownListenerCapture"];
+/**
    * Is valid parameter
    *
    * @param {string} paramName
    * @returns {boolean}
-   */
-  var isValidParameter = function isValidParameter(paramName) {
-    return Object.prototype.hasOwnProperty.call(defaultParams, paramName);
-  };
-
-  /**
+   */var fn=function isValidParameter(e){return Object.prototype.hasOwnProperty.call(un,e)};
+/**
    * Is valid parameter for Swal.update() method
    *
    * @param {string} paramName
    * @returns {boolean}
-   */
-  var isUpdatableParameter = function isUpdatableParameter(paramName) {
-    return updatableParams.indexOf(paramName) !== -1;
-  };
-
-  /**
+   */var mn=function isUpdatableParameter(e){return dn.indexOf(e)!==-1};
+/**
    * Is deprecated parameter
    *
    * @param {string} paramName
    * @returns {string | undefined}
-   */
-  var isDeprecatedParameter = function isDeprecatedParameter(paramName) {
-    return deprecatedParams[paramName];
-  };
-
-  /**
+   */var hn=function isDeprecatedParameter(e){return pn[e]};
+/**
    * @param {string} param
-   */
-  var checkIfParamIsValid = function checkIfParamIsValid(param) {
-    if (!isValidParameter(param)) {
-      warn("Unknown parameter \"".concat(param, "\""));
-    }
-  };
-
-  /**
+   */var vn=function checkIfParamIsValid(e){fn(e)||p('Unknown parameter "'.concat(e,'"'))};
+/**
    * @param {string} param
-   */
-  var checkIfToastParamIsValid = function checkIfToastParamIsValid(param) {
-    if (toastIncompatibleParams.includes(param)) {
-      warn("The parameter \"".concat(param, "\" is incompatible with toasts"));
-    }
-  };
-
-  /**
+   */var gn=function checkIfToastParamIsValid(e){wn.includes(e)&&p('The parameter "'.concat(e,'" is incompatible with toasts'))};
+/**
    * @param {string} param
-   */
-  var checkIfParamIsDeprecated = function checkIfParamIsDeprecated(param) {
-    var isDeprecated = isDeprecatedParameter(param);
-    if (isDeprecated) {
-      warnAboutDeprecation(param, isDeprecated);
-    }
-  };
-
-  /**
+   */var bn=function checkIfParamIsDeprecated(e){var t=hn(e);t&&h(e,t)};
+/**
    * Show relevant warnings for given params
    *
    * @param {SweetAlertOptions} params
-   */
-  var showWarningsForParams = function showWarningsForParams(params) {
-    if (params.backdrop === false && params.allowOutsideClick) {
-      warn('"allowOutsideClick" parameter requires `backdrop` parameter to be set to `true`');
-    }
-    for (var param in params) {
-      checkIfParamIsValid(param);
-      if (params.toast) {
-        checkIfToastParamIsValid(param);
-      }
-      checkIfParamIsDeprecated(param);
-    }
-  };
-
-  /**
+   */var yn=function showWarningsForParams(e){e.backdrop===false&&e.allowOutsideClick&&p('"allowOutsideClick" parameter requires `backdrop` parameter to be set to `true`');for(var t in e){vn(t);e.toast&&gn(t);bn(t)}};
+/**
    * Updates popup parameters.
    *
    * @param {SweetAlertOptions} params
-   */
-  function update(params) {
-    var popup = getPopup();
-    var innerParams = privateProps.innerParams.get(this);
-    if (!popup || hasClass(popup, innerParams.hideClass.popup)) {
-      warn("You're trying to update the closed or closing popup, that won't work. Use the update() method in preConfirm parameter or show a new popup.");
-      return;
-    }
-    var validUpdatableParams = filterValidParams(params);
-    var updatedParams = Object.assign({}, innerParams, validUpdatableParams);
-    render(this, updatedParams);
-    privateProps.innerParams.set(this, updatedParams);
-    Object.defineProperties(this, {
-      params: {
-        value: Object.assign({}, this.params, params),
-        writable: false,
-        enumerable: true
-      }
-    });
-  }
-
-  /**
+   */function update(t){var n=A();var a=Ee.innerParams.get(this||e);if(n&&!K(n,a.hideClass.popup)){var r=Cn(t);var o=Object.assign({},a,r);ot(this||e,o);Ee.innerParams.set(this||e,o);Object.defineProperties(this||e,{params:{value:Object.assign({},(this||e).params,t),writable:false,enumerable:true}})}else p("You're trying to update the closed or closing popup, that won't work. Use the update() method in preConfirm parameter or show a new popup.")}
+/**
    * @param {SweetAlertOptions} params
    * @returns {SweetAlertOptions}
-   */
-  var filterValidParams = function filterValidParams(params) {
-    var validUpdatableParams = {};
-    Object.keys(params).forEach(function (param) {
-      if (isUpdatableParameter(param)) {
-        validUpdatableParams[param] = params[param];
-      } else {
-        warn("Invalid parameter to update: ".concat(param));
-      }
-    });
-    return validUpdatableParams;
-  };
-
-  /**
-   * Dispose the current SweetAlert2 instance
-   */
-  function _destroy() {
-    var domCache = privateProps.domCache.get(this);
-    var innerParams = privateProps.innerParams.get(this);
-    if (!innerParams) {
-      disposeWeakMaps(this); // The WeakMaps might have been partly destroyed, we must recall it to dispose any remaining WeakMaps #2335
-      return; // This instance has already been destroyed
-    }
-
-    // Check if there is another Swal closing
-    if (domCache.popup && globalState.swalCloseEventFinishedCallback) {
-      globalState.swalCloseEventFinishedCallback();
-      delete globalState.swalCloseEventFinishedCallback;
-    }
-    if (typeof innerParams.didDestroy === 'function') {
-      innerParams.didDestroy();
-    }
-    disposeSwal(this);
-  }
-
-  /**
+   */var Cn=function filterValidParams(e){var t={};Object.keys(e).forEach((function(n){mn(n)?t[n]=e[n]:p("Invalid parameter to update: ".concat(n))}));return t};function _destroy(){var t=Ee.domCache.get(this||e);var a=Ee.innerParams.get(this||e);if(a){if(t.popup&&n.swalCloseEventFinishedCallback){n.swalCloseEventFinishedCallback();delete n.swalCloseEventFinishedCallback}typeof a.didDestroy==="function"&&a.didDestroy();kn(this||e)}else xn(this||e)}
+/**
    * @param {SweetAlert} instance
-   */
-  var disposeSwal = function disposeSwal(instance) {
-    disposeWeakMaps(instance);
-    // Unset this.params so GC will dispose it (#1569)
-    delete instance.params;
-    // Unset globalState props so GC will dispose globalState (#1569)
-    delete globalState.keydownHandler;
-    delete globalState.keydownTarget;
-    // Unset currentInstance
-    delete globalState.currentInstance;
-  };
-
-  /**
+   */var kn=function disposeSwal(e){xn(e);delete e.params;delete n.keydownHandler;delete n.keydownTarget;delete n.currentInstance};
+/**
    * @param {SweetAlert} instance
-   */
-  var disposeWeakMaps = function disposeWeakMaps(instance) {
-    // If the current instance is awaiting a promise result, we keep the privateMethods to call them once the promise result is retrieved #2335
-    if (instance.isAwaitingPromise) {
-      unsetWeakMaps(privateProps, instance);
-      instance.isAwaitingPromise = true;
-    } else {
-      unsetWeakMaps(privateMethods, instance);
-      unsetWeakMaps(privateProps, instance);
-      delete instance.isAwaitingPromise;
-      // Unset instance methods
-      delete instance.disableButtons;
-      delete instance.enableButtons;
-      delete instance.getInput;
-      delete instance.disableInput;
-      delete instance.enableInput;
-      delete instance.hideLoading;
-      delete instance.disableLoading;
-      delete instance.showValidationMessage;
-      delete instance.resetValidationMessage;
-      delete instance.close;
-      delete instance.closePopup;
-      delete instance.closeModal;
-      delete instance.closeToast;
-      delete instance.rejectPromise;
-      delete instance.update;
-      delete instance._destroy;
-    }
-  };
-
-  /**
+   */var xn=function disposeWeakMaps(e){if(e.isAwaitingPromise){An(Ee,e);e.isAwaitingPromise=true}else{An(Ct,e);An(Ee,e);delete e.isAwaitingPromise;delete e.disableButtons;delete e.enableButtons;delete e.getInput;delete e.disableInput;delete e.enableInput;delete e.hideLoading;delete e.disableLoading;delete e.showValidationMessage;delete e.resetValidationMessage;delete e.close;delete e.closePopup;delete e.closeModal;delete e.closeToast;delete e.rejectPromise;delete e.update;delete e._destroy}};
+/**
    * @param {object} obj
    * @param {SweetAlert} instance
-   */
-  var unsetWeakMaps = function unsetWeakMaps(obj, instance) {
-    for (var i in obj) {
-      obj[i]["delete"](instance);
-    }
-  };
-
-  var instanceMethods = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    _destroy: _destroy,
-    close: close,
-    closeModal: close,
-    closePopup: close,
-    closeToast: close,
-    disableButtons: disableButtons,
-    disableInput: disableInput,
-    disableLoading: hideLoading,
-    enableButtons: enableButtons,
-    enableInput: enableInput,
-    getInput: getInput,
-    handleAwaitingPromise: handleAwaitingPromise,
-    hideLoading: hideLoading,
-    rejectPromise: rejectPromise,
-    resetValidationMessage: resetValidationMessage,
-    showValidationMessage: showValidationMessage,
-    update: update
-  });
-
-  /**
+   */var An=function unsetWeakMaps(e,t){for(var n in e)e[n].delete(t)};var Pn=Object.freeze({__proto__:null,_destroy:_destroy,close:close,closeModal:close,closePopup:close,closeToast:close,disableButtons:disableButtons,disableInput:disableInput,disableLoading:hideLoading,enableButtons:enableButtons,enableInput:enableInput,getInput:getInput,handleAwaitingPromise:Dt,hideLoading:hideLoading,rejectPromise:rejectPromise,resetValidationMessage:resetValidationMessage,showValidationMessage:showValidationMessage,update:update});
+/**
    * @param {SweetAlertOptions} innerParams
    * @param {DomCache} domCache
    * @param {Function} dismissWith
-   */
-  var handlePopupClick = function handlePopupClick(innerParams, domCache, dismissWith) {
-    if (innerParams.toast) {
-      handleToastClick(innerParams, domCache, dismissWith);
-    } else {
-      // Ignore click events that had mousedown on the popup but mouseup on the container
-      // This can happen when the user drags a slider
-      handleModalMousedown(domCache);
-
-      // Ignore click events that had mousedown on the container but mouseup on the popup
-      handleContainerMousedown(domCache);
-      handleModalClick(innerParams, domCache, dismissWith);
-    }
-  };
-
-  /**
+   */var Bn=function handlePopupClick(e,t,n){if(e.toast)Sn(e,t,n);else{En(t);On(t);In(e,t,n)}};
+/**
    * @param {SweetAlertOptions} innerParams
    * @param {DomCache} domCache
    * @param {Function} dismissWith
-   */
-  var handleToastClick = function handleToastClick(innerParams, domCache, dismissWith) {
-    // Closing toast by internal click
-    domCache.popup.onclick = function () {
-      if (innerParams && (isAnyButtonShown(innerParams) || innerParams.timer || innerParams.input)) {
-        return;
-      }
-      dismissWith(DismissReason.close);
-    };
-  };
-
-  /**
+   */var Sn=function handleToastClick(e,t,n){t.popup.onclick=function(){e&&(Tn(e)||e.timer||e.input)||n(ut.close)}};
+/**
    * @param {SweetAlertOptions} innerParams
    * @returns {boolean}
-   */
-  var isAnyButtonShown = function isAnyButtonShown(innerParams) {
-    return !!(innerParams.showConfirmButton || innerParams.showDenyButton || innerParams.showCancelButton || innerParams.showCloseButton);
-  };
-  var ignoreOutsideClick = false;
-
-  /**
+   */var Tn=function isAnyButtonShown(e){return!!(e.showConfirmButton||e.showDenyButton||e.showCancelButton||e.showCloseButton)};var _n=false;
+/**
    * @param {DomCache} domCache
-   */
-  var handleModalMousedown = function handleModalMousedown(domCache) {
-    domCache.popup.onmousedown = function () {
-      domCache.container.onmouseup = function (e) {
-        domCache.container.onmouseup = function () {};
-        // We only check if the mouseup target is the container because usually it doesn't
-        // have any other direct children aside of the popup
-        if (e.target === domCache.container) {
-          ignoreOutsideClick = true;
-        }
-      };
-    };
-  };
-
-  /**
+   */var En=function handleModalMousedown(e){e.popup.onmousedown=function(){e.container.onmouseup=function(t){e.container.onmouseup=function(){};t.target===e.container&&(_n=true)}}};
+/**
    * @param {DomCache} domCache
-   */
-  var handleContainerMousedown = function handleContainerMousedown(domCache) {
-    domCache.container.onmousedown = function () {
-      domCache.popup.onmouseup = function (e) {
-        domCache.popup.onmouseup = function () {};
-        // We also need to check if the mouseup target is a child of the popup
-        if (e.target === domCache.popup || e.target instanceof HTMLElement && domCache.popup.contains(e.target)) {
-          ignoreOutsideClick = true;
-        }
-      };
-    };
-  };
-
-  /**
+   */var On=function handleContainerMousedown(e){e.container.onmousedown=function(){e.popup.onmouseup=function(t){e.popup.onmouseup=function(){};(t.target===e.popup||t.target instanceof HTMLElement&&e.popup.contains(t.target))&&(_n=true)}}};
+/**
    * @param {SweetAlertOptions} innerParams
    * @param {DomCache} domCache
    * @param {Function} dismissWith
-   */
-  var handleModalClick = function handleModalClick(innerParams, domCache, dismissWith) {
-    domCache.container.onclick = function (e) {
-      if (ignoreOutsideClick) {
-        ignoreOutsideClick = false;
-        return;
-      }
-      if (e.target === domCache.container && callIfFunction(innerParams.allowOutsideClick)) {
-        dismissWith(DismissReason.backdrop);
-      }
-    };
-  };
-
-  var isJqueryElement = function isJqueryElement(elem) {
-    return _typeof(elem) === 'object' && elem.jquery;
-  };
-  var isElement = function isElement(elem) {
-    return elem instanceof Element || isJqueryElement(elem);
-  };
-  var argsToParams = function argsToParams(args) {
-    var params = {};
-    if (_typeof(args[0]) === 'object' && !isElement(args[0])) {
-      Object.assign(params, args[0]);
-    } else {
-      ['title', 'html', 'icon'].forEach(function (name, index) {
-        var arg = args[index];
-        if (typeof arg === 'string' || isElement(arg)) {
-          params[name] = arg;
-        } else if (arg !== undefined) {
-          error("Unexpected type of ".concat(name, "! Expected \"string\" or \"Element\", got ").concat(_typeof(arg)));
-        }
-      });
-    }
-    return params;
-  };
-
-  /**
+   */var In=function handleModalClick(e,t,n){t.container.onclick=function(a){_n?_n=false:a.target===t.container&&v(e.allowOutsideClick)&&n(ut.backdrop)}};var Ln=function isJqueryElement(e){return _typeof(e)==="object"&&e.jquery};var jn=function isElement(e){return e instanceof Element||Ln(e)};var Mn=function argsToParams(e){var t={};_typeof(e[0])!=="object"||jn(e[0])?["title","html","icon"].forEach((function(n,a){var r=e[a];typeof r==="string"||jn(r)?t[n]=r:r!==void 0&&w("Unexpected type of ".concat(n,'! Expected "string" or "Element", got ').concat(_typeof(r)))})):Object.assign(t,e[0]);return t};
+/**
    * Main method to create a new SweetAlert2 popup
    *
    * @param  {...SweetAlertOptions} args
    * @returns {Promise<SweetAlertResult>}
-   */
-  function fire() {
-    var Swal = this; // eslint-disable-line @typescript-eslint/no-this-alias
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-    return _construct(Swal, args);
-  }
-
-  /**
+   */function fire(){var t=this||e;for(var n=arguments.length,a=new Array(n),r=0;r<n;r++)a[r]=arguments[r];return _construct(t,a)}
+/**
    * Returns an extended version of `Swal` containing `params` as defaults.
    * Useful for reusing Swal configuration.
    *
@@ -3688,947 +879,215 @@
    *
    * @param {SweetAlertOptions} mixinParams
    * @returns {SweetAlert}
-   */
-  function mixin(mixinParams) {
-    var MixinSwal = /*#__PURE__*/function (_this) {
-      _inherits(MixinSwal, _this);
-      function MixinSwal() {
-        _classCallCheck(this, MixinSwal);
-        return _callSuper(this, MixinSwal, arguments);
-      }
-      _createClass(MixinSwal, [{
-        key: "_main",
-        value: function _main(params, priorityMixinParams) {
-          return _get(_getPrototypeOf(MixinSwal.prototype), "_main", this).call(this, params, Object.assign({}, mixinParams, priorityMixinParams));
-        }
-      }]);
-      return MixinSwal;
-    }(this); // @ts-ignore
-    return MixinSwal;
-  }
-
-  /**
+   */function mixin(t){var n=function(n){_inherits(MixinSwal,n);function MixinSwal(){_classCallCheck(this||e,MixinSwal);return _callSuper(this||e,MixinSwal,arguments)}_createClass(MixinSwal,[{key:"_main",value:function _main(n,a){return _get(_getPrototypeOf(MixinSwal.prototype),"_main",this||e).call(this||e,n,Object.assign({},t,a))}}]);return MixinSwal}(this||e);return n}
+/**
    * If `timer` parameter is set, returns number of milliseconds of timer remained.
    * Otherwise, returns undefined.
    *
    * @returns {number | undefined}
-   */
-  var getTimerLeft = function getTimerLeft() {
-    return globalState.timeout && globalState.timeout.getTimerLeft();
-  };
-
-  /**
+   */var Dn=function getTimerLeft(){return n.timeout&&n.timeout.getTimerLeft()};
+/**
    * Stop timer. Returns number of milliseconds of timer remained.
    * If `timer` parameter isn't set, returns undefined.
    *
    * @returns {number | undefined}
-   */
-  var stopTimer = function stopTimer() {
-    if (globalState.timeout) {
-      stopTimerProgressBar();
-      return globalState.timeout.stop();
-    }
-  };
-
-  /**
+   */var Hn=function stopTimer(){if(n.timeout){we();return n.timeout.stop()}};
+/**
    * Resume timer. Returns number of milliseconds of timer remained.
    * If `timer` parameter isn't set, returns undefined.
    *
    * @returns {number | undefined}
-   */
-  var resumeTimer = function resumeTimer() {
-    if (globalState.timeout) {
-      var remaining = globalState.timeout.start();
-      animateTimerProgressBar(remaining);
-      return remaining;
-    }
-  };
-
-  /**
+   */var Vn=function resumeTimer(){if(n.timeout){var e=n.timeout.start();pe(e);return e}};
+/**
    * Resume timer. Returns number of milliseconds of timer remained.
    * If `timer` parameter isn't set, returns undefined.
    *
    * @returns {number | undefined}
-   */
-  var toggleTimer = function toggleTimer() {
-    var timer = globalState.timeout;
-    return timer && (timer.running ? stopTimer() : resumeTimer());
-  };
-
-  /**
+   */var zn=function toggleTimer(){var e=n.timeout;return e&&(e.running?Hn():Vn())};
+/**
    * Increase timer. Returns number of milliseconds of an updated timer.
    * If `timer` parameter isn't set, returns undefined.
    *
    * @param {number} ms
    * @returns {number | undefined}
-   */
-  var increaseTimer = function increaseTimer(ms) {
-    if (globalState.timeout) {
-      var remaining = globalState.timeout.increase(ms);
-      animateTimerProgressBar(remaining, true);
-      return remaining;
-    }
-  };
-
-  /**
+   */var Rn=function increaseTimer(e){if(n.timeout){var t=n.timeout.increase(e);pe(t,true);return t}};
+/**
    * Check if timer is running. Returns true if timer is running
    * or false if timer is paused or stopped.
    * If `timer` parameter isn't set, returns undefined
    *
    * @returns {boolean}
-   */
-  var isTimerRunning = function isTimerRunning() {
-    return !!(globalState.timeout && globalState.timeout.isRunning());
-  };
-
-  var bodyClickListenerAdded = false;
-  var clickHandlers = {};
-
-  /**
+   */var qn=function isTimerRunning(){return!!(n.timeout&&n.timeout.isRunning())};var Fn=false;var Nn={};
+/**
    * @param {string} attr
-   */
-  function bindClickHandler() {
-    var attr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'data-swal-template';
-    clickHandlers[attr] = this;
-    if (!bodyClickListenerAdded) {
-      document.body.addEventListener('click', bodyClickListener);
-      bodyClickListenerAdded = true;
-    }
-  }
-  var bodyClickListener = function bodyClickListener(event) {
-    for (var el = event.target; el && el !== document; el = el.parentNode) {
-      for (var attr in clickHandlers) {
-        var template = el.getAttribute(attr);
-        if (template) {
-          clickHandlers[attr].fire({
-            template: template
-          });
-          return;
-        }
-      }
-    }
-  };
-
-  var staticMethods = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    argsToParams: argsToParams,
-    bindClickHandler: bindClickHandler,
-    clickCancel: clickCancel,
-    clickConfirm: clickConfirm,
-    clickDeny: clickDeny,
-    enableLoading: showLoading,
-    fire: fire,
-    getActions: getActions,
-    getCancelButton: getCancelButton,
-    getCloseButton: getCloseButton,
-    getConfirmButton: getConfirmButton,
-    getContainer: getContainer,
-    getDenyButton: getDenyButton,
-    getFocusableElements: getFocusableElements,
-    getFooter: getFooter,
-    getHtmlContainer: getHtmlContainer,
-    getIcon: getIcon,
-    getIconContent: getIconContent,
-    getImage: getImage,
-    getInputLabel: getInputLabel,
-    getLoader: getLoader,
-    getPopup: getPopup,
-    getProgressSteps: getProgressSteps,
-    getTimerLeft: getTimerLeft,
-    getTimerProgressBar: getTimerProgressBar,
-    getTitle: getTitle,
-    getValidationMessage: getValidationMessage,
-    increaseTimer: increaseTimer,
-    isDeprecatedParameter: isDeprecatedParameter,
-    isLoading: isLoading,
-    isTimerRunning: isTimerRunning,
-    isUpdatableParameter: isUpdatableParameter,
-    isValidParameter: isValidParameter,
-    isVisible: isVisible,
-    mixin: mixin,
-    resumeTimer: resumeTimer,
-    showLoading: showLoading,
-    stopTimer: stopTimer,
-    toggleTimer: toggleTimer
-  });
-
-  var Timer = /*#__PURE__*/function () {
-    /**
+   */function bindClickHandler(){var t=arguments.length>0&&arguments[0]!==void 0?arguments[0]:"data-swal-template";Nn[t]=this||e;if(!Fn){document.body.addEventListener("click",Wn);Fn=true}}var Wn=function bodyClickListener(e){for(var t=e.target;t&&t!==document;t=t.parentNode)for(var n in Nn){var a=t.getAttribute(n);if(a){Nn[n].fire({template:a});return}}};var Un=Object.freeze({__proto__:null,argsToParams:Mn,bindClickHandler:bindClickHandler,clickCancel:ct,clickConfirm:st,clickDeny:lt,enableLoading:qt,fire:fire,getActions:H,getCancelButton:L,getCloseButton:R,getConfirmButton:I,getContainer:C,getDenyButton:j,getFocusableElements:F,getFooter:V,getHtmlContainer:T,getIcon:P,getIconContent:B,getImage:_,getInputLabel:M,getLoader:D,getPopup:A,getProgressSteps:E,getTimerLeft:Dn,getTimerProgressBar:z,getTitle:S,getValidationMessage:O,increaseTimer:Rn,isDeprecatedParameter:hn,isLoading:U,isTimerRunning:qn,isUpdatableParameter:mn,isValidParameter:fn,isVisible:it,mixin:mixin,resumeTimer:Vn,showLoading:qt,stopTimer:Hn,toggleTimer:zn});var $n=function(){
+/**
      * @param {Function} callback
      * @param {number} delay
      */
-    function Timer(callback, delay) {
-      _classCallCheck(this, Timer);
-      this.callback = callback;
-      this.remaining = delay;
-      this.running = false;
-      this.start();
-    }
-
-    /**
+function Timer(t,n){_classCallCheck(this||e,Timer);(this||e).callback=t;(this||e).remaining=n;(this||e).running=false;this.start()}
+/**
      * @returns {number}
-     */
-    _createClass(Timer, [{
-      key: "start",
-      value: function start() {
-        if (!this.running) {
-          this.running = true;
-          this.started = new Date();
-          this.id = setTimeout(this.callback, this.remaining);
-        }
-        return this.remaining;
-      }
-
-      /**
+     */_createClass(Timer,[{key:"start",value:function start(){if(!(this||e).running){(this||e).running=true;(this||e).started=new Date;(this||e).id=setTimeout((this||e).callback,(this||e).remaining)}return(this||e).remaining}
+/**
        * @returns {number}
-       */
-    }, {
-      key: "stop",
-      value: function stop() {
-        if (this.started && this.running) {
-          this.running = false;
-          clearTimeout(this.id);
-          this.remaining -= new Date().getTime() - this.started.getTime();
-        }
-        return this.remaining;
-      }
-
-      /**
+       */},{key:"stop",value:function stop(){if((this||e).started&&(this||e).running){(this||e).running=false;clearTimeout((this||e).id);(this||e).remaining-=(new Date).getTime()-(this||e).started.getTime()}return(this||e).remaining}
+/**
        * @param {number} n
        * @returns {number}
-       */
-    }, {
-      key: "increase",
-      value: function increase(n) {
-        var running = this.running;
-        if (running) {
-          this.stop();
-        }
-        this.remaining += n;
-        if (running) {
-          this.start();
-        }
-        return this.remaining;
-      }
-
-      /**
+       */},{key:"increase",value:function increase(t){var n=(this||e).running;n&&this.stop();(this||e).remaining+=t;n&&this.start();return(this||e).remaining}
+/**
        * @returns {number}
-       */
-    }, {
-      key: "getTimerLeft",
-      value: function getTimerLeft() {
-        if (this.running) {
-          this.stop();
-          this.start();
-        }
-        return this.remaining;
-      }
-
-      /**
+       */},{key:"getTimerLeft",value:function getTimerLeft(){if((this||e).running){this.stop();this.start()}return(this||e).remaining}
+/**
        * @returns {boolean}
-       */
-    }, {
-      key: "isRunning",
-      value: function isRunning() {
-        return this.running;
-      }
-    }]);
-    return Timer;
-  }();
-
-  var swalStringParams = ['swal-title', 'swal-html', 'swal-footer'];
-
-  /**
+       */},{key:"isRunning",value:function isRunning(){return(this||e).running}}]);return Timer}();var Kn=["swal-title","swal-html","swal-footer"];
+/**
    * @param {SweetAlertOptions} params
    * @returns {SweetAlertOptions}
-   */
-  var getTemplateParams = function getTemplateParams(params) {
-    /** @type {HTMLTemplateElement} */
-    var template = typeof params.template === 'string' ? document.querySelector(params.template) : params.template;
-    if (!template) {
-      return {};
-    }
-    /** @type {DocumentFragment} */
-    var templateContent = template.content;
-    showWarningsForElements(templateContent);
-    var result = Object.assign(getSwalParams(templateContent), getSwalFunctionParams(templateContent), getSwalButtons(templateContent), getSwalImage(templateContent), getSwalIcon(templateContent), getSwalInput(templateContent), getSwalStringParams(templateContent, swalStringParams));
-    return result;
-  };
-
-  /**
+   */var Zn=function getTemplateParams(e){
+/** @type {HTMLTemplateElement} */
+var t=typeof e.template==="string"?document.querySelector(e.template):e.template;if(!t)return{};
+/** @type {DocumentFragment} */var n=t.content;na(n);var a=Object.assign(Yn(n),Gn(n),Xn(n),Jn(n),Qn(n),ea(n),ta(n,Kn));return a};
+/**
    * @param {DocumentFragment} templateContent
    * @returns {SweetAlertOptions}
-   */
-  var getSwalParams = function getSwalParams(templateContent) {
-    var result = {};
-    /** @type {HTMLElement[]} */
-    var swalParams = Array.from(templateContent.querySelectorAll('swal-param'));
-    swalParams.forEach(function (param) {
-      showWarningsForAttributes(param, ['name', 'value']);
-      var paramName = param.getAttribute('name');
-      var value = param.getAttribute('value');
-      if (typeof defaultParams[paramName] === 'boolean') {
-        result[paramName] = value !== 'false';
-      } else if (_typeof(defaultParams[paramName]) === 'object') {
-        result[paramName] = JSON.parse(value);
-      } else {
-        result[paramName] = value;
-      }
-    });
-    return result;
-  };
-
-  /**
+   */var Yn=function getSwalParams(e){var t={};
+/** @type {HTMLElement[]} */var n=Array.from(e.querySelectorAll("swal-param"));n.forEach((function(e){aa(e,["name","value"]);var n=e.getAttribute("name");var a=e.getAttribute("value");typeof un[n]==="boolean"?t[n]=a!=="false":_typeof(un[n])==="object"?t[n]=JSON.parse(a):t[n]=a}));return t};
+/**
    * @param {DocumentFragment} templateContent
    * @returns {SweetAlertOptions}
-   */
-  var getSwalFunctionParams = function getSwalFunctionParams(templateContent) {
-    var result = {};
-    /** @type {HTMLElement[]} */
-    var swalFunctions = Array.from(templateContent.querySelectorAll('swal-function-param'));
-    swalFunctions.forEach(function (param) {
-      var paramName = param.getAttribute('name');
-      var value = param.getAttribute('value');
-      result[paramName] = new Function("return ".concat(value))();
-    });
-    return result;
-  };
-
-  /**
+   */var Gn=function getSwalFunctionParams(e){var t={};
+/** @type {HTMLElement[]} */var n=Array.from(e.querySelectorAll("swal-function-param"));n.forEach((function(e){var n=e.getAttribute("name");var a=e.getAttribute("value");t[n]=new Function("return ".concat(a))()}));return t};
+/**
    * @param {DocumentFragment} templateContent
    * @returns {SweetAlertOptions}
-   */
-  var getSwalButtons = function getSwalButtons(templateContent) {
-    var result = {};
-    /** @type {HTMLElement[]} */
-    var swalButtons = Array.from(templateContent.querySelectorAll('swal-button'));
-    swalButtons.forEach(function (button) {
-      showWarningsForAttributes(button, ['type', 'color', 'aria-label']);
-      var type = button.getAttribute('type');
-      result["".concat(type, "ButtonText")] = button.innerHTML;
-      result["show".concat(capitalizeFirstLetter(type), "Button")] = true;
-      if (button.hasAttribute('color')) {
-        result["".concat(type, "ButtonColor")] = button.getAttribute('color');
-      }
-      if (button.hasAttribute('aria-label')) {
-        result["".concat(type, "ButtonAriaLabel")] = button.getAttribute('aria-label');
-      }
-    });
-    return result;
-  };
-
-  /**
+   */var Xn=function getSwalButtons(e){var t={};
+/** @type {HTMLElement[]} */var n=Array.from(e.querySelectorAll("swal-button"));n.forEach((function(e){aa(e,["type","color","aria-label"]);var n=e.getAttribute("type");t["".concat(n,"ButtonText")]=e.innerHTML;t["show".concat(d(n),"Button")]=true;e.hasAttribute("color")&&(t["".concat(n,"ButtonColor")]=e.getAttribute("color"));e.hasAttribute("aria-label")&&(t["".concat(n,"ButtonAriaLabel")]=e.getAttribute("aria-label"))}));return t};
+/**
    * @param {DocumentFragment} templateContent
    * @returns {SweetAlertOptions}
-   */
-  var getSwalImage = function getSwalImage(templateContent) {
-    var result = {};
-    /** @type {HTMLElement} */
-    var image = templateContent.querySelector('swal-image');
-    if (image) {
-      showWarningsForAttributes(image, ['src', 'width', 'height', 'alt']);
-      if (image.hasAttribute('src')) {
-        result.imageUrl = image.getAttribute('src');
-      }
-      if (image.hasAttribute('width')) {
-        result.imageWidth = image.getAttribute('width');
-      }
-      if (image.hasAttribute('height')) {
-        result.imageHeight = image.getAttribute('height');
-      }
-      if (image.hasAttribute('alt')) {
-        result.imageAlt = image.getAttribute('alt');
-      }
-    }
-    return result;
-  };
-
-  /**
+   */var Jn=function getSwalImage(e){var t={};
+/** @type {HTMLElement} */var n=e.querySelector("swal-image");if(n){aa(n,["src","width","height","alt"]);n.hasAttribute("src")&&(t.imageUrl=n.getAttribute("src"));n.hasAttribute("width")&&(t.imageWidth=n.getAttribute("width"));n.hasAttribute("height")&&(t.imageHeight=n.getAttribute("height"));n.hasAttribute("alt")&&(t.imageAlt=n.getAttribute("alt"))}return t};
+/**
    * @param {DocumentFragment} templateContent
    * @returns {SweetAlertOptions}
-   */
-  var getSwalIcon = function getSwalIcon(templateContent) {
-    var result = {};
-    /** @type {HTMLElement} */
-    var icon = templateContent.querySelector('swal-icon');
-    if (icon) {
-      showWarningsForAttributes(icon, ['type', 'color']);
-      if (icon.hasAttribute('type')) {
-        /** @type {SweetAlertIcon} */
-        // @ts-ignore
-        result.icon = icon.getAttribute('type');
-      }
-      if (icon.hasAttribute('color')) {
-        result.iconColor = icon.getAttribute('color');
-      }
-      result.iconHtml = icon.innerHTML;
-    }
-    return result;
-  };
-
-  /**
+   */var Qn=function getSwalIcon(e){var t={};
+/** @type {HTMLElement} */var n=e.querySelector("swal-icon");if(n){aa(n,["type","color"]);n.hasAttribute("type")&&(
+/** @type {SweetAlertIcon} */
+t.icon=n.getAttribute("type"));n.hasAttribute("color")&&(t.iconColor=n.getAttribute("color"));t.iconHtml=n.innerHTML}return t};
+/**
    * @param {DocumentFragment} templateContent
    * @returns {SweetAlertOptions}
-   */
-  var getSwalInput = function getSwalInput(templateContent) {
-    var result = {};
-    /** @type {HTMLElement} */
-    var input = templateContent.querySelector('swal-input');
-    if (input) {
-      showWarningsForAttributes(input, ['type', 'label', 'placeholder', 'value']);
-      /** @type {SweetAlertInput} */
-      // @ts-ignore
-      result.input = input.getAttribute('type') || 'text';
-      if (input.hasAttribute('label')) {
-        result.inputLabel = input.getAttribute('label');
-      }
-      if (input.hasAttribute('placeholder')) {
-        result.inputPlaceholder = input.getAttribute('placeholder');
-      }
-      if (input.hasAttribute('value')) {
-        result.inputValue = input.getAttribute('value');
-      }
-    }
-    /** @type {HTMLElement[]} */
-    var inputOptions = Array.from(templateContent.querySelectorAll('swal-input-option'));
-    if (inputOptions.length) {
-      result.inputOptions = {};
-      inputOptions.forEach(function (option) {
-        showWarningsForAttributes(option, ['value']);
-        var optionValue = option.getAttribute('value');
-        var optionName = option.innerHTML;
-        result.inputOptions[optionValue] = optionName;
-      });
-    }
-    return result;
-  };
-
-  /**
+   */var ea=function getSwalInput(e){var t={};
+/** @type {HTMLElement} */var n=e.querySelector("swal-input");if(n){aa(n,["type","label","placeholder","value"]);
+/** @type {SweetAlertInput} */t.input=n.getAttribute("type")||"text";n.hasAttribute("label")&&(t.inputLabel=n.getAttribute("label"));n.hasAttribute("placeholder")&&(t.inputPlaceholder=n.getAttribute("placeholder"));n.hasAttribute("value")&&(t.inputValue=n.getAttribute("value"))}
+/** @type {HTMLElement[]} */var a=Array.from(e.querySelectorAll("swal-input-option"));if(a.length){t.inputOptions={};a.forEach((function(e){aa(e,["value"]);var n=e.getAttribute("value");var a=e.innerHTML;t.inputOptions[n]=a}))}return t};
+/**
    * @param {DocumentFragment} templateContent
    * @param {string[]} paramNames
    * @returns {SweetAlertOptions}
-   */
-  var getSwalStringParams = function getSwalStringParams(templateContent, paramNames) {
-    var result = {};
-    for (var i in paramNames) {
-      var paramName = paramNames[i];
-      /** @type {HTMLElement} */
-      var tag = templateContent.querySelector(paramName);
-      if (tag) {
-        showWarningsForAttributes(tag, []);
-        result[paramName.replace(/^swal-/, '')] = tag.innerHTML.trim();
-      }
-    }
-    return result;
-  };
-
-  /**
+   */var ta=function getSwalStringParams(e,t){var n={};for(var a in t){var r=t[a];
+/** @type {HTMLElement} */var o=e.querySelector(r);if(o){aa(o,[]);n[r.replace(/^swal-/,"")]=o.innerHTML.trim()}}return n};
+/**
    * @param {DocumentFragment} templateContent
-   */
-  var showWarningsForElements = function showWarningsForElements(templateContent) {
-    var allowedElements = swalStringParams.concat(['swal-param', 'swal-function-param', 'swal-button', 'swal-image', 'swal-icon', 'swal-input', 'swal-input-option']);
-    Array.from(templateContent.children).forEach(function (el) {
-      var tagName = el.tagName.toLowerCase();
-      if (!allowedElements.includes(tagName)) {
-        warn("Unrecognized element <".concat(tagName, ">"));
-      }
-    });
-  };
-
-  /**
+   */var na=function showWarningsForElements(e){var t=Kn.concat(["swal-param","swal-function-param","swal-button","swal-image","swal-icon","swal-input","swal-input-option"]);Array.from(e.children).forEach((function(e){var n=e.tagName.toLowerCase();t.includes(n)||p("Unrecognized element <".concat(n,">"))}))};
+/**
    * @param {HTMLElement} el
    * @param {string[]} allowedAttributes
-   */
-  var showWarningsForAttributes = function showWarningsForAttributes(el, allowedAttributes) {
-    Array.from(el.attributes).forEach(function (attribute) {
-      if (allowedAttributes.indexOf(attribute.name) === -1) {
-        warn(["Unrecognized attribute \"".concat(attribute.name, "\" on <").concat(el.tagName.toLowerCase(), ">."), "".concat(allowedAttributes.length ? "Allowed attributes are: ".concat(allowedAttributes.join(', ')) : 'To set the value, use HTML within the element.')]);
-      }
-    });
-  };
-
-  var SHOW_CLASS_TIMEOUT = 10;
-
-  /**
+   */var aa=function showWarningsForAttributes(e,t){Array.from(e.attributes).forEach((function(n){t.indexOf(n.name)===-1&&p(['Unrecognized attribute "'.concat(n.name,'" on <').concat(e.tagName.toLowerCase(),">."),"".concat(t.length?"Allowed attributes are: ".concat(t.join(", ")):"To set the value, use HTML within the element.")])}))};var ra=10;
+/**
    * Open popup, add necessary classes and styles, fix scrollbar
    *
    * @param {SweetAlertOptions} params
-   */
-  var openPopup = function openPopup(params) {
-    var container = getContainer();
-    var popup = getPopup();
-    if (typeof params.willOpen === 'function') {
-      params.willOpen(popup);
-    }
-    var bodyStyles = window.getComputedStyle(document.body);
-    var initialBodyOverflow = bodyStyles.overflowY;
-    addClasses(container, popup, params);
-
-    // scrolling is 'hidden' until animation is done, after that 'auto'
-    setTimeout(function () {
-      setScrollingVisibility(container, popup);
-    }, SHOW_CLASS_TIMEOUT);
-    if (isModal()) {
-      fixScrollContainer(container, params.scrollbarPadding, initialBodyOverflow);
-      setAriaHidden();
-    }
-    if (!isToast() && !globalState.previousActiveElement) {
-      globalState.previousActiveElement = document.activeElement;
-    }
-    if (typeof params.didOpen === 'function') {
-      setTimeout(function () {
-        return params.didOpen(popup);
-      });
-    }
-    removeClass(container, swalClasses['no-transition']);
-  };
-
-  /**
+   */var oa=function openPopup(e){var t=C();var a=A();typeof e.willOpen==="function"&&e.willOpen(a);var r=window.getComputedStyle(document.body);var o=r.overflowY;ca(t,a,e);setTimeout((function(){sa(t,a)}),ra);if(N()){la(t,e.scrollbarPadding,o);kt()}W()||n.previousActiveElement||(n.previousActiveElement=document.activeElement);typeof e.didOpen==="function"&&setTimeout((function(){return e.didOpen(a)}));ee(t,s["no-transition"])};
+/**
    * @param {AnimationEvent} event
-   */
-  var swalOpenAnimationFinished = function swalOpenAnimationFinished(event) {
-    var popup = getPopup();
-    if (event.target !== popup || !animationEndEvent) {
-      return;
-    }
-    var container = getContainer();
-    popup.removeEventListener(animationEndEvent, swalOpenAnimationFinished);
-    container.style.overflowY = 'auto';
-  };
-
-  /**
+   */var ia=function swalOpenAnimationFinished(e){var t=A();if(e.target===t&&Be){var n=C();t.removeEventListener(Be,swalOpenAnimationFinished);n.style.overflowY="auto"}};
+/**
    * @param {HTMLElement} container
    * @param {HTMLElement} popup
-   */
-  var setScrollingVisibility = function setScrollingVisibility(container, popup) {
-    if (animationEndEvent && hasCssAnimation(popup)) {
-      container.style.overflowY = 'hidden';
-      popup.addEventListener(animationEndEvent, swalOpenAnimationFinished);
-    } else {
-      container.style.overflowY = 'auto';
-    }
-  };
-
-  /**
+   */var sa=function setScrollingVisibility(e,t){if(Be&&de(t)){e.style.overflowY="hidden";t.addEventListener(Be,ia)}else e.style.overflowY="auto"};
+/**
    * @param {HTMLElement} container
    * @param {boolean} scrollbarPadding
    * @param {string} initialBodyOverflow
-   */
-  var fixScrollContainer = function fixScrollContainer(container, scrollbarPadding, initialBodyOverflow) {
-    iOSfix();
-    if (scrollbarPadding && initialBodyOverflow !== 'hidden') {
-      replaceScrollbarWithPadding(initialBodyOverflow);
-    }
-
-    // sweetalert2/issues/1247
-    setTimeout(function () {
-      container.scrollTop = 0;
-    });
-  };
-
-  /**
+   */var la=function fixScrollContainer(e,t,n){Pt();t&&n!=="hidden"&&Lt(n);setTimeout((function(){e.scrollTop=0}))};
+/**
    * @param {HTMLElement} container
    * @param {HTMLElement} popup
    * @param {SweetAlertOptions} params
-   */
-  var addClasses = function addClasses(container, popup, params) {
-    addClass(container, params.showClass.backdrop);
-    if (params.animation) {
-      // this workaround with opacity is needed for https://github.com/sweetalert2/sweetalert2/issues/2059
-      popup.style.setProperty('opacity', '0', 'important');
-      show(popup, 'grid');
-      setTimeout(function () {
-        // Animate popup right after showing it
-        addClass(popup, params.showClass.popup);
-        // and remove the opacity workaround
-        popup.style.removeProperty('opacity');
-      }, SHOW_CLASS_TIMEOUT); // 10ms in order to fix #2062
-    } else {
-      show(popup, 'grid');
-    }
-    addClass([document.documentElement, document.body], swalClasses.shown);
-    if (params.heightAuto && params.backdrop && !params.toast) {
-      addClass([document.documentElement, document.body], swalClasses['height-auto']);
-    }
-  };
-
-  var defaultInputValidators = {
-    /**
+   */var ca=function addClasses(e,t,n){Q(e,n.showClass.backdrop);if(n.animation){t.style.setProperty("opacity","0","important");ae(t,"grid");setTimeout((function(){Q(t,n.showClass.popup);t.style.removeProperty("opacity")}),ra)}else ae(t,"grid");Q([document.documentElement,document.body],s.shown);n.heightAuto&&n.backdrop&&!n.toast&&Q([document.documentElement,document.body],s["height-auto"])};var ua={
+/**
      * @param {string} string
      * @param {string} [validationMessage]
      * @returns {Promise<string | void>}
      */
-    email: function email(string, validationMessage) {
-      return /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9-]{2,24}$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid email address');
-    },
-    /**
+email:function email(e,t){return/^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9-]{2,24}$/.test(e)?Promise.resolve():Promise.resolve(t||"Invalid email address")},
+/**
      * @param {string} string
      * @param {string} [validationMessage]
      * @returns {Promise<string | void>}
      */
-    url: function url(string, validationMessage) {
-      // taken from https://stackoverflow.com/a/3809435 with a small change from #1306 and #2013
-      return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid URL');
-    }
-  };
-
-  /**
+url:function url(e,t){return/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)$/.test(e)?Promise.resolve():Promise.resolve(t||"Invalid URL")}};
+/**
    * @param {SweetAlertOptions} params
-   */
-  function setDefaultInputValidators(params) {
-    // Use default `inputValidator` for supported input types if not provided
-    if (params.inputValidator) {
-      return;
-    }
-    if (params.input === 'email') {
-      params.inputValidator = defaultInputValidators['email'];
-    }
-    if (params.input === 'url') {
-      params.inputValidator = defaultInputValidators['url'];
-    }
-  }
-
-  /**
+   */function setDefaultInputValidators(e){if(!e.inputValidator){e.input==="email"&&(e.inputValidator=ua.email);e.input==="url"&&(e.inputValidator=ua.url)}}
+/**
    * @param {SweetAlertOptions} params
-   */
-  function validateCustomTargetElement(params) {
-    // Determine if the custom target element is valid
-    if (!params.target || typeof params.target === 'string' && !document.querySelector(params.target) || typeof params.target !== 'string' && !params.target.appendChild) {
-      warn('Target parameter is not valid, defaulting to "body"');
-      params.target = 'body';
-    }
-  }
-
-  /**
+   */function validateCustomTargetElement(e){if(!e.target||typeof e.target==="string"&&!document.querySelector(e.target)||typeof e.target!=="string"&&!e.target.appendChild){p('Target parameter is not valid, defaulting to "body"');e.target="body"}}
+/**
    * Set type, text and actions on popup
    *
    * @param {SweetAlertOptions} params
-   */
-  function setParameters(params) {
-    setDefaultInputValidators(params);
-
-    // showLoaderOnConfirm && preConfirm
-    if (params.showLoaderOnConfirm && !params.preConfirm) {
-      warn('showLoaderOnConfirm is set to true, but preConfirm is not defined.\n' + 'showLoaderOnConfirm should be used together with preConfirm, see usage example:\n' + 'https://sweetalert2.github.io/#ajax-request');
-    }
-    validateCustomTargetElement(params);
-
-    // Replace newlines with <br> in title
-    if (typeof params.title === 'string') {
-      params.title = params.title.split('\n').join('<br />');
-    }
-    init(params);
-  }
-
-  /** @type {SweetAlert} */
-  var currentInstance;
-  var _promise = /*#__PURE__*/new WeakMap();
-  var SweetAlert = /*#__PURE__*/function () {
-    /**
+   */function setParameters(e){setDefaultInputValidators(e);e.showLoaderOnConfirm&&!e.preConfirm&&p("showLoaderOnConfirm is set to true, but preConfirm is not defined.\nshowLoaderOnConfirm should be used together with preConfirm, see usage example:\nhttps://sweetalert2.github.io/#ajax-request");validateCustomTargetElement(e);typeof e.title==="string"&&(e.title=e.title.split("\n").join("<br />"));ke(e)}
+/** @type {SweetAlert} */var da;var pa=new WeakMap;var wa=function(){
+/**
      * @param {...any} args
      * @this {SweetAlert}
      */
-    function SweetAlert() {
-      _classCallCheck(this, SweetAlert);
-      /**
+function SweetAlert(){_classCallCheck(this||e,SweetAlert);
+/**
        * @type {Promise<SweetAlertResult>}
-       */
-      _classPrivateFieldInitSpec(this, _promise, {
-        writable: true,
-        value: void 0
-      });
-      // Prevent run in Node env
-      if (typeof window === 'undefined') {
-        return;
-      }
-      currentInstance = this;
-
-      // @ts-ignore
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-      var outerParams = Object.freeze(this.constructor.argsToParams(args));
-
-      /** @type {Readonly<SweetAlertOptions>} */
-      this.params = outerParams;
-
-      /** @type {boolean} */
-      this.isAwaitingPromise = false;
-      _classPrivateFieldSet(this, _promise, this._main(currentInstance.params));
-    }
-    _createClass(SweetAlert, [{
-      key: "_main",
-      value: function _main(userParams) {
-        var mixinParams = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-        showWarningsForParams(Object.assign({}, mixinParams, userParams));
-        if (globalState.currentInstance) {
-          var swalPromiseResolve = privateMethods.swalPromiseResolve.get(globalState.currentInstance);
-          var isAwaitingPromise = globalState.currentInstance.isAwaitingPromise;
-          globalState.currentInstance._destroy();
-          if (!isAwaitingPromise) {
-            swalPromiseResolve({
-              isDismissed: true
-            });
-          }
-          if (isModal()) {
-            unsetAriaHidden();
-          }
-        }
-        globalState.currentInstance = currentInstance;
-        var innerParams = prepareParams(userParams, mixinParams);
-        setParameters(innerParams);
-        Object.freeze(innerParams);
-
-        // clear the previous timer
-        if (globalState.timeout) {
-          globalState.timeout.stop();
-          delete globalState.timeout;
-        }
-
-        // clear the restore focus timeout
-        clearTimeout(globalState.restoreFocusTimeout);
-        var domCache = populateDomCache(currentInstance);
-        render(currentInstance, innerParams);
-        privateProps.innerParams.set(currentInstance, innerParams);
-        return swalPromise(currentInstance, domCache, innerParams);
-      }
-
-      // `catch` cannot be the name of a module export, so we define our thenable methods here instead
-    }, {
-      key: "then",
-      value: function then(onFulfilled) {
-        return _classPrivateFieldGet(this, _promise).then(onFulfilled);
-      }
-    }, {
-      key: "finally",
-      value: function _finally(onFinally) {
-        return _classPrivateFieldGet(this, _promise)["finally"](onFinally);
-      }
-    }]);
-    return SweetAlert;
-  }();
-
-  /**
+       */_classPrivateFieldInitSpec(this||e,pa,{writable:true,value:void 0});if(typeof window!=="undefined"){da=this||e;for(var t=arguments.length,n=new Array(t),a=0;a<t;a++)n[a]=arguments[a];var r=Object.freeze((this||e).constructor.argsToParams(n));
+/** @type {Readonly<SweetAlertOptions>} */(this||e).params=r;
+/** @type {boolean} */(this||e).isAwaitingPromise=false;_classPrivateFieldSet(this||e,pa,this._main(da.params))}}_createClass(SweetAlert,[{key:"_main",value:function _main(e){var t=arguments.length>1&&arguments[1]!==void 0?arguments[1]:{};yn(Object.assign({},t,e));if(n.currentInstance){var a=Ct.swalPromiseResolve.get(n.currentInstance);var r=n.currentInstance.isAwaitingPromise;n.currentInstance._destroy();r||a({isDismissed:true});N()&&xt()}n.currentInstance=da;var o=ma(e,t);setParameters(o);Object.freeze(o);if(n.timeout){n.timeout.stop();delete n.timeout}clearTimeout(n.restoreFocusTimeout);var i=ha(da);ot(da,o);Ee.innerParams.set(da,o);return fa(da,i,o)}},{key:"then",value:function then(t){return _classPrivateFieldGet(this||e,pa).then(t)}},{key:"finally",value:function _finally(t){return _classPrivateFieldGet(this||e,pa).finally(t)}}]);return SweetAlert}();
+/**
    * @param {SweetAlert} instance
    * @param {DomCache} domCache
    * @param {SweetAlertOptions} innerParams
    * @returns {Promise}
-   */
-  var swalPromise = function swalPromise(instance, domCache, innerParams) {
-    return new Promise(function (resolve, reject) {
-      // functions to handle all closings/dismissals
-      /**
+   */var fa=function swalPromise(e,t,a){return new Promise((function(r,o){
+/**
        * @param {DismissReason} dismiss
        */
-      var dismissWith = function dismissWith(dismiss) {
-        instance.close({
-          isDismissed: true,
-          dismiss: dismiss
-        });
-      };
-      privateMethods.swalPromiseResolve.set(instance, resolve);
-      privateMethods.swalPromiseReject.set(instance, reject);
-      domCache.confirmButton.onclick = function () {
-        handleConfirmButtonClick(instance);
-      };
-      domCache.denyButton.onclick = function () {
-        handleDenyButtonClick(instance);
-      };
-      domCache.cancelButton.onclick = function () {
-        handleCancelButtonClick(instance, dismissWith);
-      };
-      domCache.closeButton.onclick = function () {
-        dismissWith(DismissReason.close);
-      };
-      handlePopupClick(innerParams, domCache, dismissWith);
-      addKeydownHandler(globalState, innerParams, dismissWith);
-      handleInputOptionsAndValue(instance, innerParams);
-      openPopup(innerParams);
-      setupTimer(globalState, innerParams, dismissWith);
-      initFocus(domCache, innerParams);
-
-      // Scroll container to top on open (#1247, #1946)
-      setTimeout(function () {
-        domCache.container.scrollTop = 0;
-      });
-    });
-  };
-
-  /**
+var i=function dismissWith(t){e.close({isDismissed:true,dismiss:t})};Ct.swalPromiseResolve.set(e,r);Ct.swalPromiseReject.set(e,o);t.confirmButton.onclick=function(){Qt(e)};t.denyButton.onclick=function(){en(e)};t.cancelButton.onclick=function(){tn(e,i)};t.closeButton.onclick=function(){i(ut.close)};Bn(a,t,i);pt(n,a,i);Nt(e,a);oa(a);va(n,a,i);ga(t,a);setTimeout((function(){t.container.scrollTop=0}))}))};
+/**
    * @param {SweetAlertOptions} userParams
    * @param {SweetAlertOptions} mixinParams
    * @returns {SweetAlertOptions}
-   */
-  var prepareParams = function prepareParams(userParams, mixinParams) {
-    var templateParams = getTemplateParams(userParams);
-    var params = Object.assign({}, defaultParams, mixinParams, templateParams, userParams); // precedence is described in #2131
-    params.showClass = Object.assign({}, defaultParams.showClass, params.showClass);
-    params.hideClass = Object.assign({}, defaultParams.hideClass, params.hideClass);
-    if (params.animation === false) {
-      params.showClass = {
-        backdrop: 'swal2-noanimation'
-      };
-      params.hideClass = {};
-    }
-    return params;
-  };
-
-  /**
+   */var ma=function prepareParams(e,t){var n=Zn(e);var a=Object.assign({},un,t,n,e);a.showClass=Object.assign({},un.showClass,a.showClass);a.hideClass=Object.assign({},un.hideClass,a.hideClass);if(a.animation===false){a.showClass={backdrop:"swal2-noanimation"};a.hideClass={}}return a};
+/**
    * @param {SweetAlert} instance
    * @returns {DomCache}
-   */
-  var populateDomCache = function populateDomCache(instance) {
-    var domCache = {
-      popup: getPopup(),
-      container: getContainer(),
-      actions: getActions(),
-      confirmButton: getConfirmButton(),
-      denyButton: getDenyButton(),
-      cancelButton: getCancelButton(),
-      loader: getLoader(),
-      closeButton: getCloseButton(),
-      validationMessage: getValidationMessage(),
-      progressSteps: getProgressSteps()
-    };
-    privateProps.domCache.set(instance, domCache);
-    return domCache;
-  };
-
-  /**
+   */var ha=function populateDomCache(e){var t={popup:A(),container:C(),actions:H(),confirmButton:I(),denyButton:j(),cancelButton:L(),loader:D(),closeButton:R(),validationMessage:O(),progressSteps:E()};Ee.domCache.set(e,t);return t};
+/**
    * @param {GlobalState} globalState
    * @param {SweetAlertOptions} innerParams
    * @param {Function} dismissWith
-   */
-  var setupTimer = function setupTimer(globalState, innerParams, dismissWith) {
-    var timerProgressBar = getTimerProgressBar();
-    hide(timerProgressBar);
-    if (innerParams.timer) {
-      globalState.timeout = new Timer(function () {
-        dismissWith('timer');
-        delete globalState.timeout;
-      }, innerParams.timer);
-      if (innerParams.timerProgressBar) {
-        show(timerProgressBar);
-        applyCustomClass(timerProgressBar, innerParams, 'timerProgressBar');
-        setTimeout(function () {
-          if (globalState.timeout && globalState.timeout.running) {
-            // timer can be already stopped or unset at this point
-            animateTimerProgressBar(innerParams.timer);
-          }
-        });
-      }
-    }
-  };
-
-  /**
+   */var va=function setupTimer(e,t,n){var a=z();re(a);if(t.timer){e.timeout=new $n((function(){n("timer");delete e.timeout}),t.timer);if(t.timerProgressBar){ae(a);Y(a,t,"timerProgressBar");setTimeout((function(){e.timeout&&e.timeout.running&&pe(t.timer)}))}}};
+/**
    * @param {DomCache} domCache
    * @param {SweetAlertOptions} innerParams
-   */
-  var initFocus = function initFocus(domCache, innerParams) {
-    if (innerParams.toast) {
-      return;
-    }
-    if (!callIfFunction(innerParams.allowEnterKey)) {
-      blurActiveElement();
-      return;
-    }
-    if (!focusButton(domCache, innerParams)) {
-      setFocus(-1, 1);
-    }
-  };
-
-  /**
+   */var ga=function initFocus(e,t){t.toast||(v(t.allowEnterKey)?ba(e,t)||wt(-1,1):ya())};
+/**
    * @param {DomCache} domCache
    * @param {SweetAlertOptions} innerParams
    * @returns {boolean}
-   */
-  var focusButton = function focusButton(domCache, innerParams) {
-    if (innerParams.focusDeny && isVisible$1(domCache.denyButton)) {
-      domCache.denyButton.focus();
-      return true;
-    }
-    if (innerParams.focusCancel && isVisible$1(domCache.cancelButton)) {
-      domCache.cancelButton.focus();
-      return true;
-    }
-    if (innerParams.focusConfirm && isVisible$1(domCache.confirmButton)) {
-      domCache.confirmButton.focus();
-      return true;
-    }
-    return false;
-  };
-  var blurActiveElement = function blurActiveElement() {
-    if (document.activeElement instanceof HTMLElement && typeof document.activeElement.blur === 'function') {
-      document.activeElement.blur();
-    }
-  };
-
-  // Dear russian users visiting russian sites. Let's have fun.
-  if (typeof window !== 'undefined' && /^ru\b/.test(navigator.language) && location.host.match(/\.(ru|su|by|xn--p1ai)$/)) {
-    var now = new Date();
-    var initiationDate = localStorage.getItem('swal-initiation');
-    if (!initiationDate) {
-      localStorage.setItem('swal-initiation', "".concat(now));
-    } else if ((now.getTime() - Date.parse(initiationDate)) / (1000 * 60 * 60 * 24) > 3) {
-      setTimeout(function () {
-        document.body.style.pointerEvents = 'none';
-        var ukrainianAnthem = document.createElement('audio');
-        ukrainianAnthem.src = 'https://flag-gimn.ru/wp-content/uploads/2021/09/Ukraina.mp3';
-        ukrainianAnthem.loop = true;
-        document.body.appendChild(ukrainianAnthem);
-        setTimeout(function () {
-          ukrainianAnthem.play()["catch"](function () {
-            // ignore
-          });
-        }, 2500);
-      }, 500);
-    }
-  }
-
-  // Assign instance methods from src/instanceMethods/*.js to prototype
-  SweetAlert.prototype.disableButtons = disableButtons;
-  SweetAlert.prototype.enableButtons = enableButtons;
-  SweetAlert.prototype.getInput = getInput;
-  SweetAlert.prototype.disableInput = disableInput;
-  SweetAlert.prototype.enableInput = enableInput;
-  SweetAlert.prototype.hideLoading = hideLoading;
-  SweetAlert.prototype.disableLoading = hideLoading;
-  SweetAlert.prototype.showValidationMessage = showValidationMessage;
-  SweetAlert.prototype.resetValidationMessage = resetValidationMessage;
-  SweetAlert.prototype.close = close;
-  SweetAlert.prototype.closePopup = close;
-  SweetAlert.prototype.closeModal = close;
-  SweetAlert.prototype.closeToast = close;
-  SweetAlert.prototype.rejectPromise = rejectPromise;
-  SweetAlert.prototype.update = update;
-  SweetAlert.prototype._destroy = _destroy;
-
-  // Assign static methods from src/staticMethods/*.js to constructor
-  Object.assign(SweetAlert, staticMethods);
-
-  // Proxy to instance methods to constructor, for now, for backwards compatibility
-  Object.keys(instanceMethods).forEach(function (key) {
-    /**
+   */var ba=function focusButton(e,t){if(t.focusDeny&&le(e.denyButton)){e.denyButton.focus();return true}if(t.focusCancel&&le(e.cancelButton)){e.cancelButton.focus();return true}if(t.focusConfirm&&le(e.confirmButton)){e.confirmButton.focus();return true}return false};var ya=function blurActiveElement(){document.activeElement instanceof HTMLElement&&typeof document.activeElement.blur==="function"&&document.activeElement.blur()};if(typeof window!=="undefined"&&/^ru\b/.test(navigator.language)&&location.host.match(/\.(ru|su|by|xn--p1ai)$/)){var Ca=new Date;var ka=localStorage.getItem("swal-initiation");ka?(Ca.getTime()-Date.parse(ka))/864e5>3&&setTimeout((function(){document.body.style.pointerEvents="none";var e=document.createElement("audio");e.src="https://flag-gimn.ru/wp-content/uploads/2021/09/Ukraina.mp3";e.loop=true;document.body.appendChild(e);setTimeout((function(){e.play().catch((function(){}))}),2500)}),500):localStorage.setItem("swal-initiation","".concat(Ca))}wa.prototype.disableButtons=disableButtons;wa.prototype.enableButtons=enableButtons;wa.prototype.getInput=getInput;wa.prototype.disableInput=disableInput;wa.prototype.enableInput=enableInput;wa.prototype.hideLoading=hideLoading;wa.prototype.disableLoading=hideLoading;wa.prototype.showValidationMessage=showValidationMessage;wa.prototype.resetValidationMessage=resetValidationMessage;wa.prototype.close=close;wa.prototype.closePopup=close;wa.prototype.closeModal=close;wa.prototype.closeToast=close;wa.prototype.rejectPromise=rejectPromise;wa.prototype.update=update;wa.prototype._destroy=_destroy;Object.assign(wa,Un);Object.keys(Pn).forEach((function(e){
+/**
      * @param {...any} args
      * @returns {any | undefined}
      */
-    SweetAlert[key] = function () {
-      if (currentInstance && currentInstance[key]) {
-        var _currentInstance;
-        return (_currentInstance = currentInstance)[key].apply(_currentInstance, arguments);
-      }
-      return null;
-    };
-  });
-  SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '11.10.5';
+wa[e]=function(){if(da&&da[e]){var t;return(t=da)[e].apply(t,arguments)}return null}}));wa.DismissReason=ut;wa.version="11.10.5";var xa=wa;xa.default=xa;return xa}));typeof t!=="undefined"&&t.Sweetalert2&&(t.swal=t.sweetAlert=t.Swal=t.SweetAlert=t.Sweetalert2);"undefined"!=typeof document&&function(e,t){var n=e.createElement("style");if(e.getElementsByTagName("head")[0].appendChild(n),n.styleSheet)n.styleSheet.disabled||(n.styleSheet.cssText=t);else try{n.innerHTML=t}catch(e){n.innerText=t}}(document,'.swal2-popup.swal2-toast{box-sizing:border-box;grid-column:1/4 !important;grid-row:1/4 !important;grid-template-columns:min-content auto min-content;padding:1em;overflow-y:hidden;background:#fff;box-shadow:0 0 1px rgba(0,0,0,.075),0 1px 2px rgba(0,0,0,.075),1px 2px 4px rgba(0,0,0,.075),1px 3px 8px rgba(0,0,0,.075),2px 4px 16px rgba(0,0,0,.075);pointer-events:all}.swal2-popup.swal2-toast>*{grid-column:2}.swal2-popup.swal2-toast .swal2-title{margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-loading{justify-content:center}.swal2-popup.swal2-toast .swal2-input{height:2em;margin:.5em;font-size:1em}.swal2-popup.swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{grid-column:3/3;grid-row:1/99;align-self:center;width:.8em;height:.8em;margin:0;font-size:2em}.swal2-popup.swal2-toast .swal2-html-container{margin:.5em 1em;padding:0;overflow:initial;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-html-container:empty{padding:0}.swal2-popup.swal2-toast .swal2-loader{grid-column:1;grid-row:1/99;align-self:center;width:2em;height:2em;margin:.25em}.swal2-popup.swal2-toast .swal2-icon{grid-column:1;grid-row:1/99;align-self:center;width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:bold}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{justify-content:flex-start;height:auto;margin:0;margin-top:.5em;padding:0 .5em}.swal2-popup.swal2-toast .swal2-styled{margin:.25em .5em;padding:.4em .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.8em;left:-0.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{animation:swal2-toast-hide .1s forwards}div:where(.swal2-container){display:grid;position:fixed;z-index:1060;inset:0;box-sizing:border-box;grid-template-areas:"top-start     top            top-end" "center-start  center         center-end" "bottom-start  bottom-center  bottom-end";grid-template-rows:minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);height:100%;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}div:where(.swal2-container).swal2-backdrop-show,div:where(.swal2-container).swal2-noanimation{background:rgba(0,0,0,.4)}div:where(.swal2-container).swal2-backdrop-hide{background:rgba(0,0,0,0) !important}div:where(.swal2-container).swal2-top-start,div:where(.swal2-container).swal2-center-start,div:where(.swal2-container).swal2-bottom-start{grid-template-columns:minmax(0, 1fr) auto auto}div:where(.swal2-container).swal2-top,div:where(.swal2-container).swal2-center,div:where(.swal2-container).swal2-bottom{grid-template-columns:auto minmax(0, 1fr) auto}div:where(.swal2-container).swal2-top-end,div:where(.swal2-container).swal2-center-end,div:where(.swal2-container).swal2-bottom-end{grid-template-columns:auto auto minmax(0, 1fr)}div:where(.swal2-container).swal2-top-start>.swal2-popup{align-self:start}div:where(.swal2-container).swal2-top>.swal2-popup{grid-column:2;place-self:start center}div:where(.swal2-container).swal2-top-end>.swal2-popup,div:where(.swal2-container).swal2-top-right>.swal2-popup{grid-column:3;place-self:start end}div:where(.swal2-container).swal2-center-start>.swal2-popup,div:where(.swal2-container).swal2-center-left>.swal2-popup{grid-row:2;align-self:center}div:where(.swal2-container).swal2-center>.swal2-popup{grid-column:2;grid-row:2;place-self:center center}div:where(.swal2-container).swal2-center-end>.swal2-popup,div:where(.swal2-container).swal2-center-right>.swal2-popup{grid-column:3;grid-row:2;place-self:center end}div:where(.swal2-container).swal2-bottom-start>.swal2-popup,div:where(.swal2-container).swal2-bottom-left>.swal2-popup{grid-column:1;grid-row:3;align-self:end}div:where(.swal2-container).swal2-bottom>.swal2-popup{grid-column:2;grid-row:3;place-self:end center}div:where(.swal2-container).swal2-bottom-end>.swal2-popup,div:where(.swal2-container).swal2-bottom-right>.swal2-popup{grid-column:3;grid-row:3;place-self:end end}div:where(.swal2-container).swal2-grow-row>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-column:1/4;width:100%}div:where(.swal2-container).swal2-grow-column>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-row:1/4;align-self:stretch}div:where(.swal2-container).swal2-no-transition{transition:none !important}div:where(.swal2-container) div:where(.swal2-popup){display:none;position:relative;box-sizing:border-box;grid-template-columns:minmax(0, 100%);width:32em;max-width:100%;padding:0 0 1.25em;border:none;border-radius:5px;background:#fff;color:#545454;font-family:inherit;font-size:1rem}div:where(.swal2-container) div:where(.swal2-popup):focus{outline:none}div:where(.swal2-container) div:where(.swal2-popup).swal2-loading{overflow-y:hidden}div:where(.swal2-container) h2:where(.swal2-title){position:relative;max-width:100%;margin:0;padding:.8em 1em 0;color:inherit;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}div:where(.swal2-container) div:where(.swal2-actions){display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:auto;margin:1.25em auto 0;padding:0}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))}div:where(.swal2-container) div:where(.swal2-loader){display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 rgba(0,0,0,0) #2778c4 rgba(0,0,0,0)}div:where(.swal2-container) button:where(.swal2-styled){margin:.3125em;padding:.625em 1.1em;transition:box-shadow .1s;box-shadow:0 0 0 3px rgba(0,0,0,0);font-weight:500}div:where(.swal2-container) button:where(.swal2-styled):not([disabled]){cursor:pointer}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#7066e0;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus{box-shadow:0 0 0 3px rgba(112,102,224,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny{border:0;border-radius:.25em;background:initial;background-color:#dc3741;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny:focus{box-shadow:0 0 0 3px rgba(220,55,65,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#6e7881;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel:focus{box-shadow:0 0 0 3px rgba(110,120,129,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus{box-shadow:0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-styled):focus{outline:none}div:where(.swal2-container) button:where(.swal2-styled)::-moz-focus-inner{border:0}div:where(.swal2-container) div:where(.swal2-footer){margin:1em 0 0;padding:1em 1em 0;border-top:1px solid #eee;color:inherit;font-size:1em;text-align:center}div:where(.swal2-container) .swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;grid-column:auto !important;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}div:where(.swal2-container) div:where(.swal2-timer-progress-bar){width:100%;height:.25em;background:rgba(0,0,0,.2)}div:where(.swal2-container) img:where(.swal2-image){max-width:100%;margin:2em auto 1em}div:where(.swal2-container) button:where(.swal2-close){z-index:2;align-items:center;justify-content:center;width:1.2em;height:1.2em;margin-top:0;margin-right:0;margin-bottom:-1.2em;padding:0;overflow:hidden;transition:color .1s,box-shadow .1s;border:none;border-radius:5px;background:rgba(0,0,0,0);color:#ccc;font-family:monospace;font-size:2.5em;cursor:pointer;justify-self:end}div:where(.swal2-container) button:where(.swal2-close):hover{transform:none;background:rgba(0,0,0,0);color:#f27474}div:where(.swal2-container) button:where(.swal2-close):focus{outline:none;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-close)::-moz-focus-inner{border:0}div:where(.swal2-container) .swal2-html-container{z-index:1;justify-content:center;margin:1em 1.6em .3em;padding:0;overflow:auto;color:inherit;font-size:1.125em;font-weight:normal;line-height:normal;text-align:center;word-wrap:break-word;word-break:break-word}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea),div:where(.swal2-container) select:where(.swal2-select),div:where(.swal2-container) div:where(.swal2-radio),div:where(.swal2-container) label:where(.swal2-checkbox){margin:1em 2em 3px}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea){box-sizing:border-box;width:auto;transition:border-color .1s,box-shadow .1s;border:1px solid #d9d9d9;border-radius:.1875em;background:rgba(0,0,0,0);box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) input:where(.swal2-input).swal2-inputerror,div:where(.swal2-container) input:where(.swal2-file).swal2-inputerror,div:where(.swal2-container) textarea:where(.swal2-textarea).swal2-inputerror{border-color:#f27474 !important;box-shadow:0 0 2px #f27474 !important}div:where(.swal2-container) input:where(.swal2-input):focus,div:where(.swal2-container) input:where(.swal2-file):focus,div:where(.swal2-container) textarea:where(.swal2-textarea):focus{border:1px solid #b4dbed;outline:none;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) input:where(.swal2-input)::placeholder,div:where(.swal2-container) input:where(.swal2-file)::placeholder,div:where(.swal2-container) textarea:where(.swal2-textarea)::placeholder{color:#ccc}div:where(.swal2-container) .swal2-range{margin:1em 2em 3px;background:#fff}div:where(.swal2-container) .swal2-range input{width:80%}div:where(.swal2-container) .swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}div:where(.swal2-container) .swal2-range input,div:where(.swal2-container) .swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}div:where(.swal2-container) .swal2-input{height:2.625em;padding:0 .75em}div:where(.swal2-container) .swal2-file{width:75%;margin-right:auto;margin-left:auto;background:rgba(0,0,0,0);font-size:1.125em}div:where(.swal2-container) .swal2-textarea{height:6.75em;padding:.75em}div:where(.swal2-container) .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) .swal2-radio,div:where(.swal2-container) .swal2-checkbox{align-items:center;justify-content:center;background:#fff;color:inherit}div:where(.swal2-container) .swal2-radio label,div:where(.swal2-container) .swal2-checkbox label{margin:0 .6em;font-size:1.125em}div:where(.swal2-container) .swal2-radio input,div:where(.swal2-container) .swal2-checkbox input{flex-shrink:0;margin:0 .4em}div:where(.swal2-container) label:where(.swal2-input-label){display:flex;justify-content:center;margin:1em auto 0}div:where(.swal2-container) div:where(.swal2-validation-message){align-items:center;justify-content:center;margin:1em 0 0;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}div:where(.swal2-container) div:where(.swal2-validation-message)::before{content:"!";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}div:where(.swal2-container) .swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:1.25em auto;padding:0;background:rgba(0,0,0,0);font-weight:600}div:where(.swal2-container) .swal2-progress-steps li{display:inline-block;position:relative}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}div:where(.swal2-icon){position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:2.5em auto .6em;border:0.25em solid rgba(0,0,0,0);border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;user-select:none}div:where(.swal2-icon) .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}div:where(.swal2-icon).swal2-error{border-color:#f27474;color:#f27474}div:where(.swal2-icon).swal2-error .swal2-x-mark{position:relative;flex-grow:1}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-error.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-error.swal2-icon-show .swal2-x-mark{animation:swal2-animate-error-x-mark .5s}div:where(.swal2-icon).swal2-warning{border-color:#facea8;color:#f8bb86}div:where(.swal2-icon).swal2-warning.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .5s}div:where(.swal2-icon).swal2-info{border-color:#9de0f6;color:#3fc3ee}div:where(.swal2-icon).swal2-info.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-info.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .8s}div:where(.swal2-icon).swal2-question{border-color:#c9dae1;color:#87adbd}div:where(.swal2-icon).swal2-question.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-question.swal2-icon-show .swal2-icon-content{animation:swal2-animate-question-mark .8s}div:where(.swal2-icon).swal2-success{border-color:#a5dc86;color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;border-radius:50%}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}div:where(.swal2-icon).swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-0.25em;left:-0.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}div:where(.swal2-icon).swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-animate-success-line-tip .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-animate-success-line-long .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right{animation:swal2-rotate-success-circular-line 4.25s ease-in}[class^=swal2]{-webkit-tap-highlight-color:rgba(0,0,0,0)}.swal2-show{animation:swal2-show .3s}.swal2-hide{animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{margin-right:initial;margin-left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@keyframes swal2-toast-show{0%{transform:translateY(-0.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(0.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0deg)}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-0.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-show{0%{transform:scale(0.7)}45%{transform:scale(1.05)}80%{transform:scale(0.95)}100%{transform:scale(1)}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(0.5);opacity:0}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-0.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(0.4);opacity:0}50%{margin-top:1.625em;transform:scale(0.4);opacity:0}80%{margin-top:-0.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0deg);opacity:1}}@keyframes swal2-rotate-loading{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto !important}body.swal2-no-backdrop .swal2-container{background-color:rgba(0,0,0,0) !important;pointer-events:none}body.swal2-no-backdrop .swal2-container .swal2-popup{pointer-events:all}body.swal2-no-backdrop .swal2-container .swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll !important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static !important}}body.swal2-toast-shown .swal2-container{box-sizing:border-box;width:360px;max-width:100%;background-color:rgba(0,0,0,0);pointer-events:none}body.swal2-toast-shown .swal2-container.swal2-top{inset:0 auto auto 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{inset:0 0 auto auto}body.swal2-toast-shown .swal2-container.swal2-top-start,body.swal2-toast-shown .swal2-container.swal2-top-left{inset:0 auto auto 0}body.swal2-toast-shown .swal2-container.swal2-center-start,body.swal2-toast-shown .swal2-container.swal2-center-left{inset:50% auto auto 0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{inset:50% auto auto 50%;transform:translate(-50%, -50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{inset:50% 0 auto auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-start,body.swal2-toast-shown .swal2-container.swal2-bottom-left{inset:auto auto 0 0}body.swal2-toast-shown .swal2-container.swal2-bottom{inset:auto auto 0 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{inset:auto 0 0 auto}');var n=t;export{n as default};
 
-  var Swal = SweetAlert;
-  // @ts-ignore
-  Swal["default"] = Swal;
-
-  return Swal;
-
-}));
-if (typeof this !== 'undefined' && this.Sweetalert2){this.swal = this.sweetAlert = this.Swal = this.SweetAlert = this.Sweetalert2}
-"undefined"!=typeof document&&function(e,t){var n=e.createElement("style");if(e.getElementsByTagName("head")[0].appendChild(n),n.styleSheet)n.styleSheet.disabled||(n.styleSheet.cssText=t);else try{n.innerHTML=t}catch(e){n.innerText=t}}(document,".swal2-popup.swal2-toast{box-sizing:border-box;grid-column:1/4 !important;grid-row:1/4 !important;grid-template-columns:min-content auto min-content;padding:1em;overflow-y:hidden;background:#fff;box-shadow:0 0 1px rgba(0,0,0,.075),0 1px 2px rgba(0,0,0,.075),1px 2px 4px rgba(0,0,0,.075),1px 3px 8px rgba(0,0,0,.075),2px 4px 16px rgba(0,0,0,.075);pointer-events:all}.swal2-popup.swal2-toast>*{grid-column:2}.swal2-popup.swal2-toast .swal2-title{margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-loading{justify-content:center}.swal2-popup.swal2-toast .swal2-input{height:2em;margin:.5em;font-size:1em}.swal2-popup.swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{grid-column:3/3;grid-row:1/99;align-self:center;width:.8em;height:.8em;margin:0;font-size:2em}.swal2-popup.swal2-toast .swal2-html-container{margin:.5em 1em;padding:0;overflow:initial;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-html-container:empty{padding:0}.swal2-popup.swal2-toast .swal2-loader{grid-column:1;grid-row:1/99;align-self:center;width:2em;height:2em;margin:.25em}.swal2-popup.swal2-toast .swal2-icon{grid-column:1;grid-row:1/99;align-self:center;width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:bold}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{justify-content:flex-start;height:auto;margin:0;margin-top:.5em;padding:0 .5em}.swal2-popup.swal2-toast .swal2-styled{margin:.25em .5em;padding:.4em .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.8em;left:-0.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{animation:swal2-toast-hide .1s forwards}div:where(.swal2-container){display:grid;position:fixed;z-index:1060;inset:0;box-sizing:border-box;grid-template-areas:\"top-start     top            top-end\" \"center-start  center         center-end\" \"bottom-start  bottom-center  bottom-end\";grid-template-rows:minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);height:100%;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}div:where(.swal2-container).swal2-backdrop-show,div:where(.swal2-container).swal2-noanimation{background:rgba(0,0,0,.4)}div:where(.swal2-container).swal2-backdrop-hide{background:rgba(0,0,0,0) !important}div:where(.swal2-container).swal2-top-start,div:where(.swal2-container).swal2-center-start,div:where(.swal2-container).swal2-bottom-start{grid-template-columns:minmax(0, 1fr) auto auto}div:where(.swal2-container).swal2-top,div:where(.swal2-container).swal2-center,div:where(.swal2-container).swal2-bottom{grid-template-columns:auto minmax(0, 1fr) auto}div:where(.swal2-container).swal2-top-end,div:where(.swal2-container).swal2-center-end,div:where(.swal2-container).swal2-bottom-end{grid-template-columns:auto auto minmax(0, 1fr)}div:where(.swal2-container).swal2-top-start>.swal2-popup{align-self:start}div:where(.swal2-container).swal2-top>.swal2-popup{grid-column:2;place-self:start center}div:where(.swal2-container).swal2-top-end>.swal2-popup,div:where(.swal2-container).swal2-top-right>.swal2-popup{grid-column:3;place-self:start end}div:where(.swal2-container).swal2-center-start>.swal2-popup,div:where(.swal2-container).swal2-center-left>.swal2-popup{grid-row:2;align-self:center}div:where(.swal2-container).swal2-center>.swal2-popup{grid-column:2;grid-row:2;place-self:center center}div:where(.swal2-container).swal2-center-end>.swal2-popup,div:where(.swal2-container).swal2-center-right>.swal2-popup{grid-column:3;grid-row:2;place-self:center end}div:where(.swal2-container).swal2-bottom-start>.swal2-popup,div:where(.swal2-container).swal2-bottom-left>.swal2-popup{grid-column:1;grid-row:3;align-self:end}div:where(.swal2-container).swal2-bottom>.swal2-popup{grid-column:2;grid-row:3;place-self:end center}div:where(.swal2-container).swal2-bottom-end>.swal2-popup,div:where(.swal2-container).swal2-bottom-right>.swal2-popup{grid-column:3;grid-row:3;place-self:end end}div:where(.swal2-container).swal2-grow-row>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-column:1/4;width:100%}div:where(.swal2-container).swal2-grow-column>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-row:1/4;align-self:stretch}div:where(.swal2-container).swal2-no-transition{transition:none !important}div:where(.swal2-container) div:where(.swal2-popup){display:none;position:relative;box-sizing:border-box;grid-template-columns:minmax(0, 100%);width:32em;max-width:100%;padding:0 0 1.25em;border:none;border-radius:5px;background:#fff;color:#545454;font-family:inherit;font-size:1rem}div:where(.swal2-container) div:where(.swal2-popup):focus{outline:none}div:where(.swal2-container) div:where(.swal2-popup).swal2-loading{overflow-y:hidden}div:where(.swal2-container) h2:where(.swal2-title){position:relative;max-width:100%;margin:0;padding:.8em 1em 0;color:inherit;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}div:where(.swal2-container) div:where(.swal2-actions){display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:auto;margin:1.25em auto 0;padding:0}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))}div:where(.swal2-container) div:where(.swal2-loader){display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 rgba(0,0,0,0) #2778c4 rgba(0,0,0,0)}div:where(.swal2-container) button:where(.swal2-styled){margin:.3125em;padding:.625em 1.1em;transition:box-shadow .1s;box-shadow:0 0 0 3px rgba(0,0,0,0);font-weight:500}div:where(.swal2-container) button:where(.swal2-styled):not([disabled]){cursor:pointer}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#7066e0;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus{box-shadow:0 0 0 3px rgba(112,102,224,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny{border:0;border-radius:.25em;background:initial;background-color:#dc3741;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny:focus{box-shadow:0 0 0 3px rgba(220,55,65,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#6e7881;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel:focus{box-shadow:0 0 0 3px rgba(110,120,129,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus{box-shadow:0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-styled):focus{outline:none}div:where(.swal2-container) button:where(.swal2-styled)::-moz-focus-inner{border:0}div:where(.swal2-container) div:where(.swal2-footer){margin:1em 0 0;padding:1em 1em 0;border-top:1px solid #eee;color:inherit;font-size:1em;text-align:center}div:where(.swal2-container) .swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;grid-column:auto !important;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}div:where(.swal2-container) div:where(.swal2-timer-progress-bar){width:100%;height:.25em;background:rgba(0,0,0,.2)}div:where(.swal2-container) img:where(.swal2-image){max-width:100%;margin:2em auto 1em}div:where(.swal2-container) button:where(.swal2-close){z-index:2;align-items:center;justify-content:center;width:1.2em;height:1.2em;margin-top:0;margin-right:0;margin-bottom:-1.2em;padding:0;overflow:hidden;transition:color .1s,box-shadow .1s;border:none;border-radius:5px;background:rgba(0,0,0,0);color:#ccc;font-family:monospace;font-size:2.5em;cursor:pointer;justify-self:end}div:where(.swal2-container) button:where(.swal2-close):hover{transform:none;background:rgba(0,0,0,0);color:#f27474}div:where(.swal2-container) button:where(.swal2-close):focus{outline:none;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-close)::-moz-focus-inner{border:0}div:where(.swal2-container) .swal2-html-container{z-index:1;justify-content:center;margin:1em 1.6em .3em;padding:0;overflow:auto;color:inherit;font-size:1.125em;font-weight:normal;line-height:normal;text-align:center;word-wrap:break-word;word-break:break-word}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea),div:where(.swal2-container) select:where(.swal2-select),div:where(.swal2-container) div:where(.swal2-radio),div:where(.swal2-container) label:where(.swal2-checkbox){margin:1em 2em 3px}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea){box-sizing:border-box;width:auto;transition:border-color .1s,box-shadow .1s;border:1px solid #d9d9d9;border-radius:.1875em;background:rgba(0,0,0,0);box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) input:where(.swal2-input).swal2-inputerror,div:where(.swal2-container) input:where(.swal2-file).swal2-inputerror,div:where(.swal2-container) textarea:where(.swal2-textarea).swal2-inputerror{border-color:#f27474 !important;box-shadow:0 0 2px #f27474 !important}div:where(.swal2-container) input:where(.swal2-input):focus,div:where(.swal2-container) input:where(.swal2-file):focus,div:where(.swal2-container) textarea:where(.swal2-textarea):focus{border:1px solid #b4dbed;outline:none;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) input:where(.swal2-input)::placeholder,div:where(.swal2-container) input:where(.swal2-file)::placeholder,div:where(.swal2-container) textarea:where(.swal2-textarea)::placeholder{color:#ccc}div:where(.swal2-container) .swal2-range{margin:1em 2em 3px;background:#fff}div:where(.swal2-container) .swal2-range input{width:80%}div:where(.swal2-container) .swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}div:where(.swal2-container) .swal2-range input,div:where(.swal2-container) .swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}div:where(.swal2-container) .swal2-input{height:2.625em;padding:0 .75em}div:where(.swal2-container) .swal2-file{width:75%;margin-right:auto;margin-left:auto;background:rgba(0,0,0,0);font-size:1.125em}div:where(.swal2-container) .swal2-textarea{height:6.75em;padding:.75em}div:where(.swal2-container) .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) .swal2-radio,div:where(.swal2-container) .swal2-checkbox{align-items:center;justify-content:center;background:#fff;color:inherit}div:where(.swal2-container) .swal2-radio label,div:where(.swal2-container) .swal2-checkbox label{margin:0 .6em;font-size:1.125em}div:where(.swal2-container) .swal2-radio input,div:where(.swal2-container) .swal2-checkbox input{flex-shrink:0;margin:0 .4em}div:where(.swal2-container) label:where(.swal2-input-label){display:flex;justify-content:center;margin:1em auto 0}div:where(.swal2-container) div:where(.swal2-validation-message){align-items:center;justify-content:center;margin:1em 0 0;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}div:where(.swal2-container) div:where(.swal2-validation-message)::before{content:\"!\";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}div:where(.swal2-container) .swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:1.25em auto;padding:0;background:rgba(0,0,0,0);font-weight:600}div:where(.swal2-container) .swal2-progress-steps li{display:inline-block;position:relative}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}div:where(.swal2-icon){position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:2.5em auto .6em;border:0.25em solid rgba(0,0,0,0);border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;user-select:none}div:where(.swal2-icon) .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}div:where(.swal2-icon).swal2-error{border-color:#f27474;color:#f27474}div:where(.swal2-icon).swal2-error .swal2-x-mark{position:relative;flex-grow:1}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-error.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-error.swal2-icon-show .swal2-x-mark{animation:swal2-animate-error-x-mark .5s}div:where(.swal2-icon).swal2-warning{border-color:#facea8;color:#f8bb86}div:where(.swal2-icon).swal2-warning.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .5s}div:where(.swal2-icon).swal2-info{border-color:#9de0f6;color:#3fc3ee}div:where(.swal2-icon).swal2-info.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-info.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .8s}div:where(.swal2-icon).swal2-question{border-color:#c9dae1;color:#87adbd}div:where(.swal2-icon).swal2-question.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-question.swal2-icon-show .swal2-icon-content{animation:swal2-animate-question-mark .8s}div:where(.swal2-icon).swal2-success{border-color:#a5dc86;color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;border-radius:50%}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}div:where(.swal2-icon).swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-0.25em;left:-0.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}div:where(.swal2-icon).swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-animate-success-line-tip .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-animate-success-line-long .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right{animation:swal2-rotate-success-circular-line 4.25s ease-in}[class^=swal2]{-webkit-tap-highlight-color:rgba(0,0,0,0)}.swal2-show{animation:swal2-show .3s}.swal2-hide{animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{margin-right:initial;margin-left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@keyframes swal2-toast-show{0%{transform:translateY(-0.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(0.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0deg)}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-0.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-show{0%{transform:scale(0.7)}45%{transform:scale(1.05)}80%{transform:scale(0.95)}100%{transform:scale(1)}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(0.5);opacity:0}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-0.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(0.4);opacity:0}50%{margin-top:1.625em;transform:scale(0.4);opacity:0}80%{margin-top:-0.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0deg);opacity:1}}@keyframes swal2-rotate-loading{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto !important}body.swal2-no-backdrop .swal2-container{background-color:rgba(0,0,0,0) !important;pointer-events:none}body.swal2-no-backdrop .swal2-container .swal2-popup{pointer-events:all}body.swal2-no-backdrop .swal2-container .swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll !important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static !important}}body.swal2-toast-shown .swal2-container{box-sizing:border-box;width:360px;max-width:100%;background-color:rgba(0,0,0,0);pointer-events:none}body.swal2-toast-shown .swal2-container.swal2-top{inset:0 auto auto 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{inset:0 0 auto auto}body.swal2-toast-shown .swal2-container.swal2-top-start,body.swal2-toast-shown .swal2-container.swal2-top-left{inset:0 auto auto 0}body.swal2-toast-shown .swal2-container.swal2-center-start,body.swal2-toast-shown .swal2-container.swal2-center-left{inset:50% auto auto 0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{inset:50% auto auto 50%;transform:translate(-50%, -50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{inset:50% 0 auto auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-start,body.swal2-toast-shown .swal2-container.swal2-bottom-left{inset:auto auto 0 0}body.swal2-toast-shown .swal2-container.swal2-bottom{inset:auto auto 0 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{inset:auto 0 0 auto}");
