@@ -1,5 +1,5 @@
 <div>
-  <%= simple_form_for topic do |f| %>
+  <%= simple_form_for topic, html: {class: "d-none", data: {edit_movie_target:"form"}} do |f| %>
     <% f.input :name, label: false, value: topic.name %>
     <% f.input :description, label: false, value: topic.description %>
     <%= f.input :note, label: false, placeholder: 'Your resolution notes here...'%>
