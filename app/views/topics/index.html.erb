@@ -93,12 +93,12 @@
             <div data-edit-note-target = "note">
               <p>Note:
                 <%= topic.note %>
-                <button aria-label="Edit movie">
+                <button aria-label="Edit note">
                   <i class="fa-solid fa-pen-to-square" data-action="click->edit-note#displayForm"></i>
                 </button>
               </p>
-              <%= render 'edit_form', topic: topic %>
             </div>
+            <%= render 'edit_form', topic: topic %>
           </div>
         </div>
       <% end %>
