@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="edit-note"
 export default class extends Controller {
-  static targets = ["note", "form"]
+  static targets = ["note", "form", "card"]
 
   displayForm() {
     this.noteTarget.classList.add("d-none")
@@ -23,6 +23,7 @@ export default class extends Controller {
     .then(response => response.text())
     .then((data) => {
       console.log(data)
+      this.cardTarget.outerHTML = data
     })
   }
 }

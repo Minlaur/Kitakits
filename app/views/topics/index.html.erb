@@ -34,7 +34,7 @@
         <hr>
       </div>
       <% @sorted_topics.each do |topic| %>
-        <div class="card" data-controller="edit-note">
+        <div class="card" data-controller="edit-note" data-edit-note-target="card">
           <div class="card-body" style=<%= "background-color:antiquewhite;" if topic.pending? %>>
             <%# if topic is cancelled %>
             <% if topic.cancelled? %>

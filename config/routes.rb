@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :reviews, only: [:new, :create, :index]
-    resources :topics, only: [:index, :show]
+    resources :topics, only: [:index, :show, :update]
   end
 
   resources :topics, except: [:index, :destroy] do

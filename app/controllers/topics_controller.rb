@@ -34,7 +34,7 @@ before_action :set_user
       # redirect_to user_topics_path(current_user)
       respond_to do |format|
         format.html { redirect_to user_topics_path(current_user) }
-        # format.text { render partial: "topics/:id", locals: {topic: @topic}, formats: [:html] }
+        # format.text { render partial: "topics/:id", locals: { topic: @topic }, formats: [:html] }
         format.text { render partial: user_topics_path(current_user), locals: { topic: @topic }, formats: [:html] }
       end
     else
