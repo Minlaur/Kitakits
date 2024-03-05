@@ -1,8 +1,15 @@
+<%# do I need to add the data-controller here? or not necessarily because it is rendered? %>
+<%# <div data-controller="edit-note"> %>
 <div>
-  <%= simple_form_for topic do |f| %>
+  <%= simple_form_for topic,
+    html: {
+      class: "d-none",
+      data: {edit_note_target: "form", action: "submit->edit-note#update"
+      }
+    } do |f| %>
     <% f.input :name, label: false, value: topic.name %>
     <% f.input :description, label: false, value: topic.description %>
     <%= f.input :note, label: false, placeholder: 'Your resolution notes here...'%>
-    <%= f.button :submit, class: 'btn btn-primary', value: 'update'%>
+    <%= f.button :submit, class: 'btn btn-primary', value: 'Update notes'%>
   <% end %>
 </div>
