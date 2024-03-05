@@ -24,6 +24,10 @@
   bottom: 0px;
   flex-direction: column;
   justify-content: flex-end;
+
+  h3 {
+    color: #337CCF;
+  }
 }
 .messages{
   overflow: auto;
