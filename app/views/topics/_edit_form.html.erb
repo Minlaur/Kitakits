@@ -4,7 +4,7 @@
   <%= simple_form_for topic,
     html: {
       class: "d-none",
-      data: {edit_note_target: "form", action: "submit->edit-note#update"
+      data: {edit_note_target: "form"
       }
     } do |f| %>
     <% f.input :name, label: false, value: topic.name %>
