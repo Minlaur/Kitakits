@@ -1,5 +1,7 @@
 .card-body {
   overflow: hidden;
+  background-color: white;
+  border-radius: 12px;
 }
 
 .card-body > img {
@@ -44,6 +46,10 @@
   color: white;
   padding-left: 16px;
   padding-right: 16px;
+}
+
+.link-cards {
+  background-color: white;
 }
 
 // tooltip explaining that the sempai is online
