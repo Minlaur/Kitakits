@@ -22,7 +22,7 @@ def create
   if @booking.save
       redirect_to topic_booking_path(@booking.topic, @booking)
   else
-    render :new, status: :unprocessable_entity
+    head :unprocessable_entity
   end
 end
 
