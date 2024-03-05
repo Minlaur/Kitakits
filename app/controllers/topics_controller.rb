@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
 before_action :set_user
+# skip_before_action :verify_authenticity_token, only: [:update]
 
   def create
     @topic = Topic.new(topic_params)
@@ -32,12 +33,12 @@ before_action :set_user
     # @topic = policy_scope(Topic)
     authorize @topic
     if @topic.update(topic_params)
-      redirect_to user_topic_path(current_user)
+      redirect_to user_topics_path(current_user)
       # respond_to do |format|
-        # format.html { redirect_to user_topics_path(current_user) }
-        # format.text { render partial: "topics", locals: { topic: @topic }, formats: [:html] }
-        # format.text { render "/topics/index", locals: { topic: @topic }, formats: [:html] }
-      # end
+      #   format.html { redirect_to user_topics_path(current_user) }
+      #   # format.text { render partial: "topics", locals: { topic: @topic }, formats: [:html] }
+      #   format.text { render "/topics/index", locals: { topic: @topic }, formats: [:html] }
+      # # end
     else
       render :edit, status: :unprocessable_entity
     end
