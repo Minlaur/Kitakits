@@ -16,6 +16,7 @@
 .page-frame-body {
   flex-grow: 1;
   overflow: scroll;
+  scrollbar-width: none;
 }
 
 .page-frame-footer {

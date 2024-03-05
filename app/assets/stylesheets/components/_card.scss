@@ -34,10 +34,17 @@
   margin: 0.4em 0;
 }
 
+
 .card-text-muted {
   color: lightgrey;
 }
 
 .card-title-muted {
   color: lightgray;
+}
+
+h5.card-title {
+  margin: 16px;
+  color: #337CCF;
+  font-weight: 600;
 }

@@ -1,6 +1,7 @@
 .card-body {
   overflow: hidden;
-  padding: 2rem 2rem;
+  background-color: white;
+  border-radius: 12px;
 }
 
 .card-body > img {
@@ -12,6 +13,43 @@
 
 .container-cards{
   margin: 5rem;
+}
+
+.aside-container {
+  position: static;
+}
+
+.image {
+  position: absolute;
+  margin-top: 8em;
+  margin-left: 80em;
+  z-index: 999999;
+}
+
+.card-body1 {
+  background-color: #070a57;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.card-body1 > img {
+  height: 350px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.card-body1.container-cards {
+  margin: 5rem;
+}
+
+.card-text1 {
+  color: white;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.link-cards {
+  background-color: white;
 }
 
 // tooltip explaining that the sempai is online
