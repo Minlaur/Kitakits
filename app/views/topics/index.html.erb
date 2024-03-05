@@ -34,6 +34,7 @@
       </div>
       <% @sorted_topics.each do |topic| %>
         <div class="card" data-controller="edit-note" data-edit-note-target="card">
+          <div></div>
           <div class="card-body" style=<%= "background-color:white;" if topic.pending? %>>
             <%# ----------if topic is cancelled ------------ %>
             <% if topic.cancelled? %>
@@ -61,84 +62,70 @@
                 </ul>
               </p>
               <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking History: </p>
-              <div class="row my-2" style="display: inline-flex;">
-                <div class="col">
-                  <%# here %>
-                  <% topic.bookings.each do |booking| %>
-                    <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
-                      <%= f.button :submit, booking.time, class: "text-primary" %>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-              <%# here %>
+              <% topic.bookings.each do |booking| %>
+                <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
+                  <%= f.button :submit, booking.time, class: "text-primary" %>
+                <% end %>
+              <% end %>
               <%#---------- NOTE here ---------%>
               <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
               <p>
                 <div data-edit-note-target = "note">
                   <%= topic.note %>
                   <i class="fa-solid fa-pen-clip" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
-                </p>
-              </div>
+                </div>
+              </p>
               <%= render 'edit_form', topic: topic %>
-              <%# <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking Request/s: </p> %>
-              <%# <ul> %>
-              <%# <% topic.bookings.each do |booking| %>
-                <%# <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
-                  <%# <%= f.button :submit, booking.time.strftime('%y-%b-%d'), class: "text-primary" %>
-                  <%# <% end %>
-                  <%# <% end %>
-                  <%# </ul> %>
-                <% else %>
-                  <div>
-                    <h5 class="card-title"><strong><%= topic.name.capitalize %></strong></h5>
-                    <p class="card-text"><%= topic.description %></p>
-                  </div>
-                  <hr>
-                  <div>
-                    <p class="card-text"> <i class="fa-solid fa-users-between-lines fa-xl"></i> Topic Sempai/s:
-                      <ul class="mx-4">
-                        <% @sempais_by_topic[topic].each do |sempai| %>
-                          <li>
-                            <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "text-primary" %>
-                          </li>
-                        <% end %>
-                      </ul>
-                    </p>
-                    <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking Request/s: </p>
-                    <ul>
-                      <% topic.bookings.each do |booking| %>
-                        <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
-                          <%= f.button :submit, booking.time.strftime('%y-%b-%d') , class: "text-primary" %>
-                        <% end %>
-                      <% end %>
-                    </ul>
-                    <%#---------- NOTE here ---------%>
-                    <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
-                    <p>
-                      <div data-edit-note-target = "note">
-                        <%= topic.note %>
-                        <i class="fa-solid fa-pen-clip" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
-                      </p>
-                    </div>
-                    <%= render 'edit_form', topic: topic %>
-                  </div>
-                  <div class="row my-2" style="display: inline-flex;">
-                    <div class="col">
-                      <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
-                        <%= f.button :submit, 'Resolve', class: "btn btn-success" %>
-                      <% end %>
-                    </div>
-                    <div class="col">
-                      <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
-                        <%= f.button :submit, 'Cancel', class: "btn btn-danger" %>
-                      <% end %>
-                    </div>
-                  </div>
-                <% end %> <%# end for if %>
+            <% else %>
+              <div>
+                <h5 class="card-title"><strong><%= topic.name.capitalize %></strong></h5>
+                <p class="card-text"><%= topic.description %></p>
               </div>
-            </div>
-          <% end %>
+              <hr>
+              <div>
+                <p class="card-text"> <i class="fa-solid fa-users-between-lines fa-xl"></i> Topic Sempai/s:
+                  <ul class="mx-4">
+                    <% @sempais_by_topic[topic].each do |sempai| %>
+                      <li>
+                        <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "text-primary" %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </p>
+                <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking Request/s: </p>
+                <ul>
+                  <% topic.bookings.each do |booking| %>
+                    <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
+                      <%= f.button :submit, booking.time.strftime('%y-%b-%d') , class: "text-primary" %>
+                    <% end %>
+                  <% end %>
+                </ul>
+                <%#---------- NOTE here ---------%>
+                <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
+                <p>
+                  <div data-edit-note-target = "note">
+                    <%= topic.note %>
+                    <i class="fa-solid fa-pen-clip" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
+                  </div>
+                </p>
+                <%= render 'edit_form', topic: topic %>
+              </div>
+              <div class="row my-4" style="display: inline-flex;">
+                <div class="col">
+                  <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
+                    <%= f.button :submit, 'Resolve', class: "btn btn-success" %>
+                  <% end %>
+                </div>
+                <div class="col">
+                  <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
+                    <%= f.button :submit, 'Cancel', class: "btn btn-danger" %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %> <%# end for if %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
+  </div>
+</div>
