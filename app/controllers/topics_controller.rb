@@ -29,6 +29,7 @@ before_action :set_user
   def update
     @topics = Topic.all
     @topic = Topic.find(params[:id])
+    # @topic = policy_scope(Topic)
     authorize @topic
     if @topic.update(topic_params)
       redirect_to user_topic_path(current_user)
