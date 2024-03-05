@@ -31,12 +31,12 @@
     <div class = "card-container col-6">
       <div class="page-header">
         <h2>My Topics</h2>
-        <hr>
       </div>
       <% @sorted_topics.each do |topic| %>
-        <div class="card">
-          <div class="card-body" style=<%= "background-color:antiquewhite;" if topic.pending? %>>
-            <%# if topic is cancelled %>
+        <div class="card" data-controller="edit-note" data-edit-note-target="card">
+          <div></div>
+          <div class="card-body" style=<%= "background-color:white;" if topic.pending? %>>
+            <%# ----------if topic is cancelled ------------ %>
             <% if topic.cancelled? %>
               <h5 class="card-title-muted"><%= topic.name %> - Cancelled </h5>
               <p class="card-text-muted"><%= topic.description %></p>
@@ -44,43 +44,76 @@
                 <% @sempais_by_topic[topic].each do |sempai| %>
                   <%= sempai.nickname %>
                 <% end %></p>
-              <%# if topic is resolved %>
+              <%# ----------if topic is resolved ------------ %>
             <% elsif topic.resolved? %>
-              <h5 class="card-title"><%= topic.name %> - Resolved</h5>
-              <p class="card-text"><%= topic.description %></p>
-              <p class="card-text"> Topic Sempai:
-                <% @sempais_by_topic[topic].each do |sempai| %>
-                  <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "text-primary" %>
-                  <%= link_to '(Leave a Review)', sempai_path(id: sempai.id, topic_id: topic.id), class: "text-success" %>
-                <% end %></p>
-              <div class="row my-2" style="display: inline-flex;">
-                <div class="col">
-                  <% topic.bookings.each do |booking| %>
-                    <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
-                      <%= f.button :submit, 'See Chat History', class: "btn btn-secondary" %>
-                    <% end %>
-                  <% end %>
-                </div>
+              <div>
+                <h5 class="card-title"><strong><%= topic.name.capitalize %> - Resolved </strong> <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i></h5>
+                <p class="card-text"><%= topic.description %></p>
               </div>
-            <% else %>
-              <h5 class="card-title"><%= topic.name %></h5>
-              <p class="card-text"><%= topic.description %></p>
-              <p class="card-text"> Topic Sempai/s:
-                <% @sempais_by_topic[topic].each do |sempai| %>
-                  <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "text-primary" %>
-                <% end %>
+              <hr>
+              <p class="card-text">  <i class="fa-solid fa-users-between-lines fa-xl"></i>  Topic Sempai/s:
+                <ul class="mx-4">
+                  <% @sempais_by_topic[topic].each do |sempai| %>
+                    <li>
+                      <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "text-primary" %>
+                      <%= link_to '(Leave a Review)', sempai_path(id: sempai.id, topic_id: topic.id), class: "text-success" %>
+                    </li>
+                  <% end %>
+                </ul>
               </p>
-              <div class="row my-2" style="display: inline-flex;">
-                <div class="col">
+              <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking History: </p>
+              <% topic.bookings.each do |booking| %>
+                <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
+                  <%= f.button :submit, booking.time, class: "text-primary" %>
+                <% end %>
+              <% end %>
+              <%#---------- NOTE here ---------%>
+              <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
+              <p>
+                <div data-edit-note-target = "note">
+                  <%= topic.note %>
+                  <i class="fa-solid fa-pen-clip" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
+                </div>
+              </p>
+              <%= render 'edit_form', topic: topic %>
+            <% else %>
+              <div>
+                <h5 class="card-title"><strong><%= topic.name.capitalize %></strong></h5>
+                <p class="card-text"><%= topic.description %></p>
+              </div>
+              <hr>
+              <div>
+                <p class="card-text"> <i class="fa-solid fa-users-between-lines fa-xl"></i> Topic Sempai/s:
+                  <ul class="mx-4">
+                    <% @sempais_by_topic[topic].each do |sempai| %>
+                      <li>
+                        <%= link_to sempai.nickname, sempai_path(id: sempai.id, topic_id: topic.id), class: "text-primary" %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </p>
+                <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking Request/s: </p>
+                <ul>
                   <% topic.bookings.each do |booking| %>
                     <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
-                      <%= f.button :submit, 'Booking Details', class: "btn btn-info" %>
+                      <%= f.button :submit, booking.time.strftime('%y-%b-%d') , class: "text-primary" %>
                     <% end %>
                   <% end %>
-                </div>
+                </ul>
+                <%#---------- NOTE here ---------%>
+                <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
+                <p>
+                  <div data-edit-note-target = "note">
+                    <%= topic.note %>
+                    <i class="fa-solid fa-pen-clip" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
+                  </div>
+                </p>
+                <%= render 'edit_form', topic: topic %>
+              </div>
+              <div class="row my-4" style="display: inline-flex;">
                 <div class="col">
                   <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
-                    <%= f.button :submit, 'Resolve', class: "btn btn-primary" %>
+                    <%= f.button :submit, 'Resolve', class: "btn btn-success" %>
                   <% end %>
                 </div>
                 <div class="col">
@@ -90,10 +123,6 @@
                 </div>
               </div>
             <% end %> <%# end for if %>
-            <p>Note:
-              <%= topic.note %>
-            </p>
-            <%= render 'edit_form', topic: topic %>
           </div>
         </div>
       <% end %>
