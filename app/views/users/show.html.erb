@@ -40,11 +40,12 @@
       </div>
     </div>
     <div class="card shadow review-cards d-flex">
-      <div class="card-body" data-controller="insert-in-list">
+      <div class="card-body" data-controller="insert-in-list toggle">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-info mb-2 d-none" data-bs-toggle="modal" data-bs-target="#exampleModal" data-toggle-target="togglableElement">
           Leave a review!
         </button>
+        <button class="btn btn-primary"data-action="click->toggle#fire" data-toggle-target="secondTogglableElement">resolved</button>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
           <div class="modal-dialog">
