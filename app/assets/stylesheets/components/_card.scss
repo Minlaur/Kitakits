@@ -25,6 +25,19 @@
   padding: 0.5em;
 }
 
+.card-category3 {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
 .card {
   margin: 0.4em;
 }

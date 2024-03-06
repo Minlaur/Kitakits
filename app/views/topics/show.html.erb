@@ -3,16 +3,16 @@
 <%# 3. User should be able to edit/update the topic name and description %>
 <%# 3.a. Optional - recommended list of sempai updates according to the updated topic %>
 <%# style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url()" %>
-<div class="card-category">
+<div class="card-category3">
   <div class="row justify-content-center">
     <div class="container-topic">
       <div class="blob">
-        <h2><%= @topic.name %></h2>
+        <h3><%= @topic.name %></h3>
         <p><%= @topic.description %></p>
       </div>
     </div>
   </div>
 </div>
-<div class="h-100 mx-5 mb-5 mt-4">
+<div class="h-100 mx-5 mb-5 mt-2">
   <%= render 'matching_sempais', sempais: [@sempais], topic: @topic %>
 </div>
