@@ -4,3 +4,15 @@
   right: 16px;
   z-index: 1000;
 }
+
+.notice {
+  color: #606060;
+  position: fixed;
+  bottom: 16px;
+  /* right: 16px; */
+  z-index: 1000;
+  background-color: lightgray;
+  padding: 0.4em 0.4em;
+  border-radius: 0.4em;
+  margin: 1em 1em;
+}
