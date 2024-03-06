@@ -54,17 +54,15 @@
                 </div>
                 <%= render 'reviews/new' %>
               </div>
-              <%= render 'reviews/new' %>
             </div>
           </div>
-        </div>
-        <div class="render-review" data-insert-in-list-target="items">
-          <%= render partial: 'reviews/render_index', locals: { reviews: @reviews } %>
-          <div class="item-3d-icon">
-            <%= image_tag "9 Man Point Raised.png", alt: "", width: "150vh" %>
+          <div class="render-review" data-insert-in-list-target="items">
+            <%= render partial: 'reviews/render_index', locals: { reviews: @reviews } %>
+            <div class="item-3d-icon">
+              <%= image_tag "9 Man Point Raised.png", alt: "", width: "150vh" %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
