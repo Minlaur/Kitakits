@@ -1,35 +1,34 @@
 .blob {
-  border-radius: 300px 200px 200px 0px;
-  -webkit-border-radius: 300px 200px 200px 50px;
-  -moz-border-radius: 300px 200px 200px 50px;
-  width: 800px;
-  height: 70px;
+  border-radius: 50px 50px 400px 400px;
+  -webkit-border-radius: 50px 50px 400px 400px;
+  -moz-border-radius: 50px 50px 400px 400px;
+  width: 600px;
+  height: 40px;
   height: fit-content;
   background: #ffc436;
   // background-image: linear-gradient(90deg, #337ccf 0%, #ffc436 100%);
   box-shadow: -10vmin 10vmin 0 rgba(255, 255, 255, 0.07);
   display: inline-block;
-  padding: 1.2rem;
+  padding: 12px;
   text-align: center;
-  margin-top: 1.5rem;
 }
 
-.blob h2 {
-  margin: 0 0 5px 0;
+.blob h3 {
+  margin: 0 0 0 0;
   font-weight: 800;
   line-height: 100%;
   color: rgb(56, 56, 56);
 }
 
 .blob p {
-  line-height: 18px;
+  line-height: 12px;
   margin: 3px;
   padding: 0;
 }
 ;
 .col-md-3 {
   flex-grow: 1;
-  height: 200px;
+  height: 40px;
 }
 
 .row-2 {
@@ -38,7 +37,7 @@
 }
 
 .advisor_thumb {
-  height: 400px;
+  height: 250px;
 }
 
 .advisor_thumb img {
@@ -48,4 +47,15 @@
 .designation-description {
   margin-top: 4px;
   margin-bottom: 4px;
+}
+
+.btn-info-sempai {
+  font-size: 14px;
+  background-color: #ffc436;
+  margin-top: 12px;
+}
+
+.img-object {
+  object-fit: cover;
+  object-position: 0px -80px;
 }
