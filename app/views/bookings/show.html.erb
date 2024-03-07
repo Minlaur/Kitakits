@@ -1,4 +1,5 @@
-<div class="container-cards d-flex gap-3 mt-2 h-100">
+<%= link_to "My topics...",  user_topics_path(current_user.id) %>
+<div class="container-frame d-flex">
   <div class="col-6 card card-conf">
     <div class="card-chat">
       <div class="chat-container card-body content ">
@@ -39,6 +40,7 @@
           <div class="item-3d-icon">
             <%= image_tag "14 Woman Phone.png", alt: "", width: "250vh" %>
           </div>
+
         </div>
       </div>
     </div>
