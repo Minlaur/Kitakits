@@ -46,22 +46,17 @@ before_action :set_user
     @topic = Topic.new
     statuses = [ 'pending', 'resolved', 'cancelled' ]
     @sorted_topics = policy_scope(Topic).where(user_id: @user.id).sort_by { |topic| statuses.index(topic.status)}
-    @sempais_by_topic = {}
+
+
     # needed to find sempais under this topic, _by_ is an association extension in Active Record / Rails
+    @sempais_by_topic = {}
     @sorted_topics.each do |topic|
       tags = topic.name.split(" ") + topic.description.split(" ")
       tagged_sempais = User.where(sempai: true).tagged_with(tags, any: true)
       @sempais_by_topic[topic] = tagged_sempais.reject { |sempai| sempai == @user }
     end
   end
-  # def matching_sempais
-  #   # find the record of topic and sets it to @topic
-  #   @topic = Topic.find(params[:id])
-  #   # finds the record of users and sets it as @sempais
-  #   tags = @topic.name.split(" ") + @topic.description.split(" ")
-  #   @sempais = User.where(sempai: true).tagged_with(tags, any: true)
-  #   # @sempais = User.where(sempai: true).tagged_with([@topic.where(params[:query])], on: :expertises, any: true)
-  # end
+
 
   def resolved
     @topic = Topic.find(params[:id])
