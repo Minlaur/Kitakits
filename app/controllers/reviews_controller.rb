@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :set_user
+  before_action :set_user, except: [:create]
   before_action :set_reviews, only: [:index]
 
   def index
@@ -16,18 +16,13 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.user = @user
     @reviews = Review.all.where(user: @user).order(created_at: :desc)
     authorize @review
+    if @review.save
+      redirect_to user_topics_path(current_user)
 
-    respond_to do |format|
-      if @review.save
-        format.html { redirect_to sempais_path(@user) }
-        format.json # Follows the classic Rails flow and look for a create.json view
-      else
-        format.html { render "user/show", status: :unprocessable_entity }
-        format.json # Follows the classic Rails flow and look for a create.json view
-      end
+    else
+      head :ok, status: :unprocessable_entity
     end
   end
 
@@ -42,6 +37,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:rating, :content)
+    params.require(:review).permit(:rating, :content, :user_id)
   end
 end

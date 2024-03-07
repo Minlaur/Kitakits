@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-before_action :set_user
+before_action :set_user, except: [:index]
 
   def create
     @topic = Topic.new(topic_params)
@@ -44,6 +44,8 @@ before_action :set_user
 
   def index
     @topic = Topic.new
+    @user = current_user
+    @review = Review.new
     statuses = [ 'pending', 'resolved', 'cancelled' ]
     @sorted_topics = policy_scope(Topic).where(user_id: @user.id).sort_by { |topic| statuses.index(topic.status)}
 

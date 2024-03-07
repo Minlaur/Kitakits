@@ -33,8 +33,8 @@
         <h2>My Topics</h2>
       </div>
       <% @sorted_topics.each do |topic| %>
-      <% @sempai_id = topic.bookings.first.user_id %>
-      <% @sempai = User.find_by_id(@sempai_id) %>
+      <% @sempai = topic.bookings.first.user %>
+
         <div class="card" data-controller="edit-note" data-edit-note-target="card">
           <div></div>
           <div class="card-body" style=<%= "background-color:white;" if topic.pending? %>>
@@ -76,6 +76,21 @@
                 </div>
               </p>
               <%= render 'edit_form', topic: topic %>
+                <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#<%= topic.description %>Modal" data-toggle-target="togglableElement">
+            Leave a review!
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="<%= topic.description  %>Modal" tabindex="-1" aria-labelledby="<%= topic.description  %>ModalLabel" aria-hidden="true" >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="<%= topic.description  %>ModalLabel">New Review</h1>
+                  <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <%= render partial: 'reviews/new', locals:{sempai: @sempai, review: @review} %>
+              </div>
+            </div>
+          </div>
             <% else %>
               <div>
                 <h5 class="card-title"><strong><%= topic.name.capitalize %></strong></h5>
