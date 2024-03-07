@@ -1,0 +1,5 @@
+meta_product_name: "Kitakits.me"
+ meta_title: "Kitakits.me - Your dedicated space to discuss your troubles with a sempai"
+ meta_description: "A solution might be a chat away."
+ meta_image: "banner.png" # should exist in `app/assets/images/`
+#  twitter_account: "@product_twitter_account" # required for Twitter Cards
