@@ -231,13 +231,13 @@ housing = Topic.create(name: "Housing Concern", description: "I need to move hou
 
 # 1. Laur needs to book Jane
     # new booking
-house_booking = housing.bookings.create!(user: jane, status: :pending, time: 2.days.from_now)
+house_booking = housing.bookings.create!(user: jane, status: :pending, time: 2.days.ago)
 
     # to Jane's topic made by Laur
 # 2. Create messages
 
 house_booking.messages.create!(user: laur, content: "Hi Jane, I wonder if I can ask about housing matters.")
-house_booking.messages.create!(user: jane, content: "Hi! sure, how can I help you? 👋", created_at: 2.days.from_now + 5.minutes)
+house_booking.messages.create!(user: jane, content: "Hi! sure, how can I help you? 👋", created_at: 2.days.ago + 5.minutes)
 house_booking.messages.create!(user: laur, content: "I need to move to a different house or apartment. My housing matters were done by my first employer. This time, I changed employers but I need to do my transfer on my own. What do I need to consider and where do I start?", created_at: 2.days.from_now + 10.minutes)
 house_booking.messages.create!(user: jane, content: "Thanks for asking. 😊 Where in the process of transfer are you now?", created_at: 2.days.from_now + 11.minutes)
 house_booking.messages.create!(user: laur, content: "I haven't moved yet but I found a good apartment and initially talked with the new broker.", created_at: 2.days.from_now + 13.minutes)
