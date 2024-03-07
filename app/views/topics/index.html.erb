@@ -32,11 +32,10 @@
       <div class="page-header">
         <h2>My Topics</h2>
       </div>
-      <% @sorted_topics.each do |topic| %>
+      <% @sorted_topics.select{|t| t.bookings.any?}.each do |topic| %>
       <% @sempai = topic.bookings.first.user %>
 
         <div class="card" data-controller="edit-note" data-edit-note-target="card">
-          <div></div>
           <div class="card-body" style=<%= "background-color:white;" if topic.pending? %>>
             <%# ----------if topic is cancelled ------------ %>
             <% if topic.cancelled? %>
