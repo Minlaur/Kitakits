@@ -12,6 +12,7 @@
     href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.0.0/css/flag-icons.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
+    <%= favicon_link_tag %>
   </head>
   <body data-controller="online-indicator" data-online-indicator-user-id-value = "<%= current_user.id if current_user%>" data-online-indicator-last-seen-value = "<%= DateTime.now %>">
     <div class="page-frame-content">
