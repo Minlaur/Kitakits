@@ -28,7 +28,7 @@
                 </p>
               <% elsif (Time.now - sempai.last_seen) - 1.hour %>
                 <div class="online" style="display: inline-flex; align-items: center; margin-left: 16px;">
-                  <i class="fa-solid fa-circle mb-1" style="color: #33cfab;"> </i>
+                  <i class="fa-solid fa-circle mb-0" style="color: #33cfab;"> </i>
                   <p class="card-text mx-1" style="color: #33cfab">
                     Online <%= time_ago_in_words(sempai.last_seen) %> ago
                   </p>
