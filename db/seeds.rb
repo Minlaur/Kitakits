@@ -62,6 +62,18 @@ topic_tags = [
 #   { name:"Communication professionnelle", description: "Bonjour, je suis non japonais et travaille pour une grande entreprise. J'ai des problèmes de communication interfonctionnelle avec un département différent. J'aimerais discuter et obtenir des conseils."},
 # ]
 
+marty = User.find_by_nickname("Marty")
+
+marty.reviews.create(content: "Thank you so much for your advice, Marty. I was able to understand the key points of the requirements for my visa paper work. I was able to hand in everything on time.", rating: 5)
+marty.reviews.create(content: "Marty is very kind and patient. He thoroughly understood my problem. I was able to trust his advice 100%.", rating: 5)
+marty.reviews.create(content: "Appreciate your support Marty! I'll probably ask you again if I need your help!", rating: 4)
+
+# reviews = [
+#   { nickname: "Martin", content: "Thank you so much for your advice, Marty. I was able to understand the key points of the requirements for my visa paper work. I was able to hand in everything on time.", rating: 5},
+#   { first_name: "Martin", content: "Marty is very kind and patient. He thoroughly understood my problem. I was able to trust his advice 100%.", rating: 5}
+#   {first_name: "Martin", content: "Appreciate your support Marty! I'll probably ask you again if I need your help!", rating: 4}
+# ]
+
 
 puts "Cleaning database..."
 User.destroy_all
