@@ -1,52 +1,75 @@
-<div class="container-cards d-flex gap-3 mt-2 h-100">
-  <div class="main-card flex-2 w-100">
-    <div class="card shadow">
-      <div class="card-body h-100">
-        <%= cl_image_tag @user.picture.key, crop: :fill %>
-        <h5 class="card-title fs-2"> <%= @user.nickname %></h5>
-        <%# if online, update bottom %>
-        <div style="display: inline-flex; align-items: center;">
-          <% if @user.last_seen == nil %>
-            <i class="fa-solid fa-circle" style="color: grey"> </i>
-            <p class="card-text mx-1" style="color: grey">
-              Offline for a while
-            </p>
-          <% elsif (Time.now - @user.last_seen) - 1.hour %>
-            <i class="fa-solid fa-circle" style="color: #33cfab;"> </i>
-            <p class="card-text mx-1" style="color: #33cfab">
-              Online <%= time_ago_in_words(@user.last_seen) %> ago
-            </p>
-          <% else %>
-            <i class="fa-solid fa-circle" style="color: #33cfab;"> </i>
-            <p class="card-text mx-1" style="color: grey">
-              Online <%= time_ago_in_words(@user.last_seen) %> ago
-            </p>
-          <% end %>
-        </div>
-        <hr>
-        <p class="card-text"> <%= @user.background %></p>
-        <p class="card-text"><%= @user.occupation %></p>
-        <div class="flag-container d-flex gap-2">
-          <span class="fi fi-fr"></span>
-          <span class="fi fi-jp"></span>
-        </div>
-      </div>
+<div class="container-cards d-flex gap-2 mt-0 h-100">
+              <div class="main-card  pt-2">
+                <div class="card shadow">
+                  <div class="card-body1 h-80 p-4">
+                    <%= cl_image_tag @user.picture.key, crop: :fill %>
+                    <div class="row-2">
+                      <h5 class="card-title fs-2"> <%= @user.nickname %></h5>
+                      <%# if online, update bottom %>
+                      <div style="display: inline-flex; align-items: center; margin-left: 16px;">
+                        <% if @user.last_seen == nil %>
+                          <i class="fa-solid fa-circle" style="color: grey"> </i>
+                          <p class="card-text mx-1" style="color: grey">
+                            Offline for a while
+                          </p>
+                        <% elsif (Time.now - @user.last_seen) - 1.hour %>
+                          <i class="fa-solid fa-circle" style="color: #33cfab;"> </i>
+                          <p class="card-text mx-1" style="color: #33cfab">
+                            Online <%= time_ago_in_words(@user.last_seen) %> ago
+                          </p>
+                        <% else %>
+                          <i class="fa-solid fa-circle" style="color: #33cfab;"> </i>
+                          <p class="card-text mx-1" style="color: grey">
+                            Online <%= time_ago_in_words(@user.last_seen) %> ago
+                          </p>
+                        <% end %>
+                      </div>
+                    </div>
+                    <hr class="m-2">
+                    <h4 class="card-text1"><%= @user.occupation %> </h4>
+                    <p class="card-text1"><%= @user.background %></p>
+                    <div class="flag-container d-flex gap-2 mt-2 ms-3">
+                      <span class="fi fi-fr"></span>
+                      <span class="fi fi-jp"></span>
+                      <span class="fi fi-gb"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="aside-container d-flex flex-column gap-2 mt-0 mb-3 ms-2">
+                  <div class="blob">
+                    <h3><%= @topic.name %></h3>
+                  </div>
+                  <div class="link-cards card shadow">
+                    <div class="link p-3 flex-column gap-5">
+                      <%= render partial: 'bookings/new_form', locals: {topic: @topic, user: @user, booking: @booking} %>
+                    </div>
+                  </div>
+                <div class="card shadow review-cards d-flex">
+                  <div class="card-body-review" data-controller="insert-in-list">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      Leave a review!
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">New Review</h1>
+                            <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                            <%= render 'reviews/new' %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="render-review" data-insert-in-list-target="items">
+                        <%= render partial: 'reviews/render_index', locals: { reviews: @reviews } %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    <div class="mascot-image">
+      <%= image_tag "9 Man Point Raised.png", alt: "", width: "200vh" %>
     </div>
-  </div>
-  <div class="aside-container d-flex flex-column w-100 gap-5 mb-3">
-    <div class="link-cards card shadow">
-      <div class="link p-3 flex-column justify-content-center gap-5">
-        <%= render partial: 'bookings/new_form', locals: {topic: @topic, user: @user, booking: @booking} %>
-      </div>
-    </div>
-    <div class="card shadow review-cards d-flex">
-      <div class="card-body" data-controller="insert-in-list toggle">
-        <!-- Button trigger modal -->
-
-        <div class="render-review" data-insert-in-list-target="items">
-          <%= render partial: 'reviews/render_index', locals: { reviews: @reviews } %>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

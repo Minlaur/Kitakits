@@ -4,31 +4,10 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["note", "form", "card"]
 
-  connect() {
-    console.log(this.noteTarget, this.formTarget)
-  }
-
   displayForm() {
     this.noteTarget.classList.add("d-none")
     this.formTarget.classList.remove("d-none")
 
     console.log("is this working?")
-    console.log(this.formTarget.action)
-  }
-
-  update(event) {
-    event.preventDefault()
-    const url = this.formTarget.action
-    fetch(url, {
-      method: "PATCH",
-      headers: {"X-CSRF-Token": csrfToken,},
-      // headers: { "Accept": "text/plain" },
-      body: new FormData(this.formTarget)
-    })
-    .then(response => response.text())
-    .then((data) => {
-      console.log(data)
-      this.cardTarget.outerHTML = data
-    })
   }
 }

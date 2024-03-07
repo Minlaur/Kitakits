@@ -1,6 +1,24 @@
-.card-body {
+
+
+.main-card {
+  z-index: 1;
+  width: 28rem;
+}
+
+.review-cards {
+  width: 35em;
+  margin-left: 70px;
+}
+.card-body-review {
   overflow: hidden;
+  background-color: white;
+  border-radius: 12px;
   padding: 2rem 2rem;
+  width: 28em;
+}
+
+.card.shadow {
+  width: 28rem;
 }
 
 .card-body > img {
@@ -12,6 +30,53 @@
 
 .container-cards{
   margin: 5rem;
+}
+
+.aside-container {
+  margin-top: 0;
+  width: 35rem;
+}
+
+.mascot-image {
+  position: absolute;
+  margin-top: 5em;
+  margin-left: 62em;
+  z-index: 0;
+}
+
+.card-body1 {
+  background-color: #070a57;
+  overflow: hidden;
+  border-radius: 12px;
+  width: 28rem;
+}
+.card-body1 > img {
+  height: 250px;
+  width: 25rem;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+
+h4.card-text1 {
+  color: white;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+p.card-text1 {
+  color: white;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 10px;
+}
+.link-cards {
+  background-color: white;
+  width: 35em;
+  margin-left: 70px;
+  .link {
+    justify-content: center;
+  }
 }
 
 // tooltip explaining that the sempai is online

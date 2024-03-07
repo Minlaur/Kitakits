@@ -17,7 +17,7 @@ body{
     border-radius: 15px 15px 0 0;
     margin: 0 auto;
     padding: 1px 1px 1px 1px;
-    background-color: #337ccf;
+    background-color: #ccc;
     overflow: hidden;
 }
 .single_advisor_profile .advisor_thumb::after {
@@ -25,7 +25,7 @@ body{
     transition-duration: 500ms;
     position: absolute;
     width: 150%;
-    height: 80px;
+    height: 60px;
     bottom: -35px;
     left: -25%;
     content: "";
@@ -35,7 +35,7 @@ body{
 }
 @media only screen and (max-width: 575px) {
     .single_advisor_profile .advisor_thumb::after {
-        height: 160px;
+        height: 130px;
         bottom: -90px;
     }
 }
@@ -44,13 +44,13 @@ body{
     z-index: 1;
     width: 100%;
     bottom: 0;
-    right: 30px;
+    right: 20px;
     text-align: right;
 }
 .single_advisor_profile .advisor_thumb .social-info a {
-    font-size: 14px;
+    font-size: 12px;
     color: #020710;
-    padding: 0 5px;
+    padding: 0 2px;
 }
 .single_advisor_profile .advisor_thumb .social-info a:hover,
 .single_advisor_profile .advisor_thumb .social-info a:focus {
@@ -62,7 +62,7 @@ body{
 .single_advisor_profile .single_advisor_details_info {
     position: relative;
     z-index: 1;
-    padding: 0px 30px 30px 30px;
+    padding: 0px 30px 20px 30px;
     text-align: right;
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
@@ -76,7 +76,6 @@ body{
     z-index: 1;
     width: 50px;
     height: 3px;
-    background-color: #337ccf;
     content: "";
     top: 12px;
     right: 30px;
@@ -96,7 +95,7 @@ body{
 .single_advisor_profile .single_advisor_details_info p {
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
-    margin-bottom: 0;
+    margin-bottom: 6px;
     font-size: 14px;
     color: #ffffff;
 }
@@ -140,7 +139,7 @@ body{
 }
 .single_advisor_profile:hover .single_advisor_details_info::after,
 .single_advisor_profile:focus .single_advisor_details_info::after {
-    background-color: #070a57;
+    // background-color: #070a57;
 }
 .single_advisor_profile:hover .single_advisor_details_info h6,
 .single_advisor_profile:focus .single_advisor_details_info h6 {

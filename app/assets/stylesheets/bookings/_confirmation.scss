@@ -24,10 +24,14 @@
   bottom: 0px;
   flex-direction: column;
   justify-content: flex-end;
+
+  h3 {
+    color: #337CCF;
+  }
 }
 .messages{
   overflow: auto;
-  height: 28rem;
+  height: 25rem;
 }
 .chat-form{
   position: sticky;
@@ -37,8 +41,13 @@ svg{
 }
 
 .conf-content{
-  gap: 8rem;
-  text-align: center;
+  gap: 4rem;
+
+  .item-3d-icon {
+    img {
+      margin: -30rem 20rem;
+    }
+  }
 }
 
 
