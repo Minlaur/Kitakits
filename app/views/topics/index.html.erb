@@ -75,15 +75,15 @@
                 </div>
               </p>
               <%= render 'edit_form', topic: topic %>
-                <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#<%= topic.description %>Modal" data-toggle-target="togglableElement">
+                <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#<%= topic.name.gsub(/\s+/, "")%>Modal" data-toggle-target="togglableElement">
             Leave a review!
           </button>
           <!-- Modal -->
-          <div class="modal fade" id="<%= topic.description  %>Modal" tabindex="-1" aria-labelledby="<%= topic.description  %>ModalLabel" aria-hidden="true" >
+          <div class="modal fade" id="<%= topic.name.gsub(/\s+/, "") %>Modal" tabindex="-1" aria-labelledby="<%= topic.name.gsub(/\s+/, "") %>ModalLabel" aria-hidden="true" >
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="<%= topic.description  %>ModalLabel">New Review</h1>
+                  <h1 class="modal-title fs-5" id="<%= topic.name.gsub(/\s+/, "") %>ModalLabel">New Review</h1>
                   <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <%= render partial: 'reviews/new', locals:{sempai: @sempai, review: @review} %>
