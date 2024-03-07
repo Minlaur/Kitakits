@@ -1,7 +1,8 @@
-<div class="container-frame d-flex">
+<div class="container-cards d-flex gap-3 mt-2 h-100">
   <div class="col-6 card card-conf">
     <div class="card-chat">
       <div class="chat-container card-body content ">
+        <h3 class="text-center" style= "padding: 0 3em"> Chat with <%= @booking.user.nickname %></h3>
         <%= render 'bookings/chatroom' %>
       </div>
     </div>
@@ -9,13 +10,35 @@
   <div class="col-6 card card-conf">
     <div class="card-confirmation">
       <div class="card-body content ">
-        <h3 class="text-center text-black">Confirmed your booking on</h3>
-        <div class="conf-content d-flex flex-column justfify-content-center align-center">
-          <p class="fs-3 text-center"><%= @booking.time.strftime("%m-%d %H:%M") %> </p>
-          <% if @booking.user.web_url.present? %>
-            <%= RQRCode::QRCode.new(@booking.user.web_url).as_svg(module_size: 6).html_safe %>
-          <% end %>
-          <%= link_to "Goole meet link", "https://meet.google.com/?pli=1", target: "blank" %>
+        <h3 class="text-center" style= "padding: 0 3em"> Your booking has been successfully confirmed with <%= @booking.user.nickname %>!</h3>
+        <div class="conf-content">
+          <ul class="no-bullets">
+            <li>
+              <i class="fa-regular fa-circle-question fa-xl"></i>
+              <%= @booking.topic.name.capitalize %>
+            </li>
+            <li> <i class="fa-regular fa-calendar-check fa-xl"></i> <%= @booking.time.strftime("%B-%d") %> </li>
+            <li> <i class="fa-regular fa-clock fa-xl"></i> <%= @booking.time.strftime("%H:%M") %></li>
+            <li>
+              <i class="fa-regular fa-calendar-plus fa-xl"></i>
+              <%= link_to "Add to my Google Calendar", @booking.google_url %>
+            </li>
+            <li>
+              <i class="fa-regular fa-address-book fa-xl"></i>
+              <%= @booking.user.nickname %>'s email - <%= @booking.user.email %>
+            </li>
+            <li> Learn more about your sempai:
+            </li>
+            <li>
+              <% if @booking.user.web_url.present? %>
+                <%= RQRCode::QRCode.new(@booking.user.web_url).as_svg(module_size: 3, color: '666666').html_safe %>
+              <% end %>
+            </li>
+          </ul>
+          <%# <%= link_to "Goole meet link", "https://meet.google.com/?pli=1", target: "blank" %>
+          <div class="item-3d-icon">
+            <%= image_tag "14 Woman Phone.png", alt: "", width: "250vh" %>
+          </div>
         </div>
       </div>
     </div>
