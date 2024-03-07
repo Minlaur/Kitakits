@@ -219,6 +219,37 @@ users.each do |user_data|
 end
 puts "done"
 
+
+# Goal is to make a chat between Laur and Jane
+# 0. get the instances of Laur and Jane and store in variable
+laur = User.find_by_nickname("Laur")
+jane = User.find_by_nickname("Jane the housing expert")
+
+# 0.5 Jane needs a topic
+
+housing = Topic.create(name: "Housing Concern", description: "I need to move houses and not sure what to consider first.", user: laur)
+
+# 1. Laur needs to book Jane
+    # new booking
+house_booking = housing.bookings.create!(user: jane, status: :pending, time: 2.days.from_now)
+
+    # to Jane's topic made by Laur
+# 2. Create messages
+
+house_booking.messages.create!(user: laur, content: "Hi Jane, I wonder if I can ask about housing matters.")
+house_booking.messages.create!(user: jane, content: "Hi! sure, how can I help you? 👋", created_at: 2.days.from_now + 5.minutes)
+house_booking.messages.create!(user: laur, content: "I need to move to a different house or apartment. My housing matters were done by my first employer. This time, I changed employers but I need to do my transfer on my own. What do I need to consider and where do I start?", created_at: 2.days.from_now + 10.minutes)
+house_booking.messages.create!(user: jane, content: "Thanks for asking. 😊 Where in the process of transfer are you now?", created_at: 2.days.from_now + 11.minutes)
+house_booking.messages.create!(user: laur, content: "I haven't moved yet but I found a good apartment and initially talked with the new broker.", created_at: 2.days.from_now + 13.minutes)
+house_booking.messages.create!(user: jane, content: "Alright, first, you need to report to your current building or property management that you are moving out on your preferred date. They may give further instructions and make sure you get your deposit money.", created_at: 2.days.from_now + 20.minutes)
+house_booking.messages.create!(user: laur, content: "Thank you. May I know how much it will most likely be?", created_at: 2.days.from_now + 25.minutes)
+house_booking.messages.create!(user: jane, content: "It depends if you paid your cleaning fee up front, you should get the full deposit back, if not, it will be deducted from the deposit.", created_at: 2.days.from_now + 30.minutes)
+house_booking.messages.create!(user: laur, content: "Got it. Thank you so much! Can I book you after I received the instructions from the Property Management?", created_at: 2.days.from_now + 35.minutes)
+house_booking.messages.create!(user: jane, content: "Very much welcome. I hope you can fix it soon!", created_at: 2.days.from_now + 36.minutes)
+
+
+
+
 # fetching api to create random users with restapi
 
 # 10.times do |i|
