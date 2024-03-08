@@ -8,8 +8,9 @@
       }
     } do |f| %>
     <% f.input :name, label: false, value: topic.name %>
-    <% f.input :description, label: false, value: topic.description %>
+    <% f.input :description, label: false, value: topic.description%>
     <%= f.input :note, label: false, placeholder: 'Your resolution notes here...'%>
     <%= f.button :submit, class: 'btn btn-primary mb-2', value: 'Update notes'%>
+
   <% end %>
 </div>

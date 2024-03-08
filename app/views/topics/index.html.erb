@@ -1,6 +1,7 @@
-<div class="container">
-  <div class="row">
-    <div class="col-5">
+
+<div class = "container-fluid p-5">
+  <div class = "row">
+    <div class = "col-5" style="position: sticky, top: 0">
       <div class="item-3d">
         <div class="item-3d-content">
           <h4>Hi <strong><%= current_user.nickname %></strong>,<br>
@@ -15,13 +16,11 @@
         </div>
       </div>
     </div>
-    <div class="col-1">
-    </div>
-    <div class="card-container col-6">
+    <div class = "card-container col-7">
       <div class="page-header">
         <h2>My Topics</h2>
       </div>
-      <% @sorted_topics.select { |t| t.bookings.any? }.each do |topic| %>
+      <% @sorted_topics.select{|t| t.bookings.any?}.each do |topic| %>
         <% @sempai = topic.bookings.first.user %>
         <div class="card" data-controller="edit-note" data-edit-note-target="card">
           <div class="card-body" style=<%= "background-color:white;" if topic.pending? %>>
@@ -29,31 +28,38 @@
             <% if topic.cancelled? %>
               <h5 class="card-title-muted"><%= topic.name %> - Cancelled </h5>
               <p class="card-text-muted"><%= topic.description %></p>
-              <p class="card-text-muted"> Topic Sempai:
-                <% if @sempai %>
-                  <%= @sempai.nickname %>
-                <% end %>
-              </p>
-            <%# ----------if topic is resolved ------------ %>
+              <p class="card-text-muted"> Topic Sempai:</p>
+              <% if @sempai %>
+                <%= @sempai.nickname %>
+              <% end %>
+              <%# ----------if topic is resolved ------------ %>
             <% elsif topic.resolved? %>
               <div>
                 <h5 class="card-title"><strong><%= topic.name.capitalize %> - Resolved </strong> <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i></h5>
                 <p class="card-text"><%= topic.description %></p>
               </div>
               <hr>
-              <p class="card-text">  <i class="fa-solid fa-users-between-lines fa-xl"></i>  Topic Sempai/s:
-                <ul class="mx-4">
-                  <% if @sempai %>
-                    <%= link_to @sempai.nickname, sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-primary" %>
+
+              <div class="row" style="display: inline-flex">
+                <div class="col">
+                  <p class="card-text">  <i class="fa-solid fa-users-between-lines fa-xl"></i>  Topic Sempai/s:
+                    <ul class="mx-4">
+                      <% if @sempai %>
+                        <%= link_to @sempai.nickname, sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-primary" %>
+                        <%= link_to '(Leave a Review)', sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-success" %>
+                      <% end %>
+                    </ul>
+                  </p>
+                </div>
+                <div class="col">
+                  <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking History: </p>
+                  <% topic.bookings.each do |booking| %>
+                    <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
+                      <%= f.button :submit, booking.time, class: "text-primary" %>
+                    <% end %>
                   <% end %>
-                </ul>
-              </p>
-              <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking History: </p>
-              <% topic.bookings.each do |booking| %>
-                <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
-                  <%= f.button :submit, booking.time.strftime("%m/%d/%Y %I:%M %p"), class: "text-primary" %>
-                <% end %>
-              <% end %>
+                </div>
+              </div>
               <%#---------- NOTE here ---------%>
               <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
               <p>
@@ -67,6 +73,7 @@
                 Leave a review!
               </button>
               <!-- Modal -->
+
               <div class="modal fade" id="<%= topic.name.gsub(/\s+/, "") %>Modal" tabindex="-1" aria-labelledby="<%= topic.name.gsub(/\s+/, "") %>ModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -84,22 +91,27 @@
                 <p class="card-text"><%= topic.description %></p>
               </div>
               <hr>
-              <div>
-                <p class="card-text"> <i class="fa-solid fa-users-between-lines fa-xl"></i> Topic Sempai/s:
-                  <ul class="mx-4">
-                    <% if @sempai %>
-                      <%= link_to @sempai.nickname, sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-primary" %>
+              <div class="row" style="display: inline-flex">
+                <div class="col">
+                  <p class="card-text"> <i class="fa-solid fa-users-between-lines fa-xl"></i> Topic Sempai/s:
+                    <ul class="mx-4">
+                      <% if @sempai %>
+                        <%= link_to @sempai.nickname, sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-primary" %>
+                      <% end %>
+                    </ul>
+                  </p>
+                </div>
+                <div class="col">
+                  <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking Request/s: </p>
+                  <ul>
+                    <% topic.bookings.each do |booking| %>
+                      <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
+                        <%= f.button :submit, booking.time.strftime("%m/%d/%Y %I:%M %p") , class: "text-primary" %>
+                      <% end %>
                     <% end %>
                   </ul>
-                </p>
-                <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking Request/s: </p>
-                <ul>
-                  <% topic.bookings.each do |booking| %>
-                    <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
-                      <%= f.button :submit, booking.time.strftime("%m/%d/%Y %I:%M %p"), class: "text-primary" %>
-                    <% end %>
-                  <% end %>
-                </ul>
+
+                </div>
                 <%#---------- NOTE here ---------%>
                 <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
                 <p>
