@@ -86,7 +86,7 @@ users = [
     language: "French",
     nationality: "France",
     nickname: "Marty",
-    occupation: "Immigration lawyer",
+    occupation: "Immigration Lawyer",
     background: "Marty is a registered lawyer in both France and Japan. He is a registered foreign lawyer(Gaikokuho Jimu Bengoshi) with 20 yrs of experience in Japan.",
     web_url: "www.linkedin.com/MartinBernard",
     meet_url: "www.meet.google.com/dsj-pzzh-eru",
@@ -235,14 +235,26 @@ puts "done"
 # 0. get the instances of Laur and Jane and store in variable
 laur = User.find_by_nickname("Laur")
 jane = User.find_by_nickname("Jane the housing expert")
+taro = User.find_by_nickname("T-man")
+annabelle = User.find_by_nickname("Ann")
 
 # 0.5 Jane needs a topic
 
 housing = Topic.create(name: "Housing Concern", description: "I need to move houses and not sure what to consider first.", user: laur)
 
+# 0.5.5 Laur needs 2 topics
+communication = Topic.create(name:"Workplace Relationship", description: "I want to be a better communicator with my boss and teammates.", user: laur, status: :resolved)
+employment = Topic.create(name:"Job Hunting", description:"I would like to know more about HelloWork. Can you please give me info?", user: laur, status: :resolved)
+
 # 1. Laur needs to book Jane
     # new booking
 house_booking = housing.bookings.create!(user: jane, status: :pending, time: 2.days.ago)
+#  Laur needs to book T-man
+    # new booking
+communication_booking = communication.bookings.create!(user: taro, status: :accepted, time: 14.days.ago)
+#  Laur needs to book Ann
+    # new booking
+employment_booking = employment.bookings.create!(user: annabelle, status: :accepted, time: 35.days.ago)
 
     # to Jane's topic made by Laur
 # 2. Create messages
