@@ -7,16 +7,16 @@
     <% end %>
   </div>
 </div>
-<div class="chat-form" data-controller="booking-subscription">
+<div class="chat-form w-100" data-controller="booking-subscription">
   <% if @booking.topic.resolved? %>
-    <%= simple_form_for [@booking, @booking.messages.new], html: { data: { action: "turbo:submit-end->booking-subscription#resetForm" }, class: "d-flex row disabled chat-form" } do |f| %>
+    <%= simple_form_for [@booking, @booking.messages.new], html: { data: { action: "turbo:submit-end->booking-subscription#resetForm" }, class: "d-flex disabled chat-form" } do |f| %>
       <%= f.input :content, label: false, placeholder: "Type your message here", class: "form-control" %>
       <%= f.button :submit, "Send", class: "btn btn-primary" %>
     <% end %>
   <% else %>
-    <%= simple_form_for [@booking, @booking.messages.new], html: { data: { action: "turbo:submit-end->booking-subscription#resetForm" }, class: "d-flex row chat-form" } do |f| %>
-      <%= f.input :content, label: false, placeholder: "Type your message here", class: "form-control" %>
-      <%= f.button :submit, "Send", class: "btn btn-primary" %>
+    <%= simple_form_for [@booking, @booking.messages.new], html: { data: { action: "turbo:submit-end->booking-subscription#resetForm" }, class: "flex-column chat-form" } do |f| %>
+      <%= f.input :content, label: false, placeholder: "Type your message here", class:"w-100" %>
+      <%= f.button :submit, "Send", class: "btn btn-primary w-100" %>
     <% end %>
   <% end %>
 </div>

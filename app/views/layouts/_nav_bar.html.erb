@@ -12,7 +12,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav m-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
             <%= link_to user_topics_path(current_user.id),  class: "nav-link" do %>
@@ -25,7 +25,7 @@
             <% end %>
           </li>
           <li class="nav-item dropdown">
-            <%= image_tag "man.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-expanded': false %>
+              <i class="fa-solid fa-bars fa-2xl dropdown-toggle fs-3 m-3" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="color: #337CCF"></i>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to current_user.nickname, "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>

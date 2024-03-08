@@ -1,14 +1,4 @@
-<%# OK 1. View all topics %>
-<%# OK 2. Add a link to the topic  %>
-<%# OK 3. Be able to resolve the topic  %>
-<%# OK 3. a. routes - patch for resolved and cancelled
-<%# OK b. model - status -> pending, resolved, cancelled %>
-<%# OK c. controller - def for resolved and cancelled %>
-<%# OK 4. update the navbar to go to my topics %>
-<%# 5. update view
-        a.simple form and conditional to show if status changes then what
-        b. if user booked it, hide name %>
-<%# 6. if user booked it, hide the link to user's name%>
+
 <div class = "container-fluid p-5">
   <div class = "row">
     <div class = "col-5" style="position: sticky, top: 0">
@@ -49,6 +39,7 @@
                 <p class="card-text"><%= topic.description %></p>
               </div>
               <hr>
+
               <div class="row" style="display: inline-flex">
                 <div class="col">
                   <p class="card-text">  <i class="fa-solid fa-users-between-lines fa-xl"></i>  Topic Sempai/s:
@@ -72,9 +63,9 @@
               <%#---------- NOTE here ---------%>
               <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
               <p>
-                <div data-edit-note-target = "note">
+                <div data-edit-note-target="note">
                   <%= topic.note %>
-                  <i class="fa-solid fa-pen-clip" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
+                  <i class="fa-solid fa-pen-clip m-3" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
                 </div>
               </p>
               <%= render 'edit_form', topic: topic %>
@@ -82,14 +73,15 @@
                 Leave a review!
               </button>
               <!-- Modal -->
-              <div class="modal fade" id="<%= topic.name.gsub(/\s+/, "") %>Modal" tabindex="-1" aria-labelledby="<%= topic.name.gsub(/\s+/, "") %>ModalLabel" aria-hidden="true" >
+
+              <div class="modal fade" id="<%= topic.name.gsub(/\s+/, "") %>Modal" tabindex="-1" aria-labelledby="<%= topic.name.gsub(/\s+/, "") %>ModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h1 class="modal-title fs-5" id="<%= topic.name.gsub(/\s+/, "") %>ModalLabel">New Review</h1>
                       <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <%= render partial: 'reviews/new', locals:{sempai: @sempai, review: @review} %>
+                    <%= render partial: 'reviews/new', locals: { sempai: @sempai, review: @review } %>
                   </div>
                 </div>
               </div>
@@ -118,11 +110,12 @@
                       <% end %>
                     <% end %>
                   </ul>
+
                 </div>
                 <%#---------- NOTE here ---------%>
                 <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
                 <p>
-                  <div data-edit-note-target = "note">
+                  <div data-edit-note-target="note">
                     <%= topic.note %>
                     <i class="fa-solid fa-pen-clip" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
                   </div>
