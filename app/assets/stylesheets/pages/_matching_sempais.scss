@@ -76,7 +76,7 @@ body{
     z-index: 1;
     width: 50px;
     height: 3px;
-    background-color: #337ccf;
+    // background-color: #337ccf;
     content: "";
     top: 12px;
     right: 30px;
@@ -140,7 +140,7 @@ body{
 }
 .single_advisor_profile:hover .single_advisor_details_info::after,
 .single_advisor_profile:focus .single_advisor_details_info::after {
-    background-color: #070a57;
+    // background-color: #070a57;
 }
 .single_advisor_profile:hover .single_advisor_details_info h6,
 .single_advisor_profile:focus .single_advisor_details_info h6 {
