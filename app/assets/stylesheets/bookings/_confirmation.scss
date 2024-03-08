@@ -1,16 +1,16 @@
-.container-frame{
+.container-frame {
   display: flex;
   justify-content: center;
   gap: 3rem;
   margin-top: 2rem;
 }
-.card-conf{
+.card-conf {
   padding: 20px;
   width: 40rem;
-  height: 40rem;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+  height: 100%;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 
-  .card-chat{
+  .card-chat {
     height: 100%;
     width: 100%;
     display: flex;
@@ -18,7 +18,7 @@
     justify-content: space-between;
   }
 }
-.chat-container{
+.chat-container {
   height: 100%;
   width: 100%;
   bottom: 0px;
@@ -26,21 +26,21 @@
   justify-content: flex-end;
 
   h3 {
-    color: #337CCF;
+    color: #337ccf;
   }
 }
-.messages{
+.messages {
   overflow: auto;
   height: 25rem;
 }
-.chat-form{
+.chat-form {
   position: sticky;
 }
-svg{
+svg {
   align-self: center;
 }
 
-.conf-content{
+.conf-content {
   gap: 4rem;
 
   .item-3d-icon {
@@ -50,8 +50,6 @@ svg{
   }
 }
 
-
-.image{
+.image {
   width: 10rem;
-
 }
