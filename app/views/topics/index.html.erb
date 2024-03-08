@@ -38,62 +38,69 @@
             <% if topic.cancelled? %>
               <h5 class="card-title-muted"><%= topic.name %> - Cancelled </h5>
               <p class="card-text-muted"><%= topic.description %></p>
-              <p class="card-text-muted"> Topic Sempai:
-                <% if @sempai %>
-                  <%= @sempai.nickname %>
-                <% end %>
-                <%# ----------if topic is resolved ------------ %>
-              <% elsif topic.resolved? %>
-                <div>
-                  <h5 class="card-title"><strong><%= topic.name.capitalize %> - Resolved </strong> <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i></h5>
-                  <p class="card-text"><%= topic.description %></p>
+              <p class="card-text-muted"> Topic Sempai:</p>
+              <% if @sempai %>
+                <%= @sempai.nickname %>
+              <% end %>
+              <%# ----------if topic is resolved ------------ %>
+            <% elsif topic.resolved? %>
+              <div>
+                <h5 class="card-title"><strong><%= topic.name.capitalize %> - Resolved </strong> <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i></h5>
+                <p class="card-text"><%= topic.description %></p>
+              </div>
+              <hr>
+              <div class="row" style="display: inline-flex">
+                <div class="col">
+                  <p class="card-text">  <i class="fa-solid fa-users-between-lines fa-xl"></i>  Topic Sempai/s:
+                    <ul class="mx-4">
+                      <% if @sempai %>
+                        <%= link_to @sempai.nickname, sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-primary" %>
+                        <%= link_to '(Leave a Review)', sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-success" %>
+                      <% end %>
+                    </ul>
+                  </p>
                 </div>
-                <hr>
-                <p class="card-text">  <i class="fa-solid fa-users-between-lines fa-xl"></i>  Topic Sempai/s:
-                  <ul class="mx-4">
-                    <% if @sempai %>
-                      <%= link_to @sempai.nickname, sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-primary" %>
-                      <%= link_to '(Leave a Review)', sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-success" %>
+                <div class="col">
+                  <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking History: </p>
+                  <% topic.bookings.each do |booking| %>
+                    <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
+                      <%= f.button :submit, booking.time, class: "text-primary" %>
                     <% end %>
-                  </ul>
-                </p>
-                <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking History: </p>
-                <% topic.bookings.each do |booking| %>
-                  <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
-                    <%= f.button :submit, booking.time, class: "text-primary" %>
                   <% end %>
-                <% end %>
-                <%#---------- NOTE here ---------%>
-                <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
-                <p>
-                  <div data-edit-note-target = "note">
-                    <%= topic.note %>
-                    <i class="fa-solid fa-pen-clip" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
-                  </div>
-                </p>
-                <%= render 'edit_form', topic: topic %>
-                <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#<%= topic.name.gsub(/\s+/, "")%>Modal" data-toggle-target="togglableElement">
-                  Leave a review!
-                </button>
-                <!-- Modal -->
-                <div class="modal fade" id="<%= topic.name.gsub(/\s+/, "") %>Modal" tabindex="-1" aria-labelledby="<%= topic.name.gsub(/\s+/, "") %>ModalLabel" aria-hidden="true" >
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="<%= topic.name.gsub(/\s+/, "") %>ModalLabel">New Review</h1>
-                        <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <%= render partial: 'reviews/new', locals:{sempai: @sempai, review: @review} %>
+                </div>
+              </div>
+              <%#---------- NOTE here ---------%>
+              <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
+              <p>
+                <div data-edit-note-target = "note">
+                  <%= topic.note %>
+                  <i class="fa-solid fa-pen-clip" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
+                </div>
+              </p>
+              <%= render 'edit_form', topic: topic %>
+              <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#<%= topic.name.gsub(/\s+/, "")%>Modal" data-toggle-target="togglableElement">
+                Leave a review!
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="<%= topic.name.gsub(/\s+/, "") %>Modal" tabindex="-1" aria-labelledby="<%= topic.name.gsub(/\s+/, "") %>ModalLabel" aria-hidden="true" >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="<%= topic.name.gsub(/\s+/, "") %>ModalLabel">New Review</h1>
+                      <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <%= render partial: 'reviews/new', locals:{sempai: @sempai, review: @review} %>
                   </div>
                 </div>
-              <% else %>
-                <div>
-                  <h5 class="card-title"><strong><%= topic.name.capitalize %></strong></h5>
-                  <p class="card-text"><%= topic.description %></p>
-                </div>
-                <hr>
-                <div>
+              </div>
+            <% else %>
+              <div>
+                <h5 class="card-title"><strong><%= topic.name.capitalize %></strong></h5>
+                <p class="card-text"><%= topic.description %></p>
+              </div>
+              <hr>
+              <div class="row" style="display: inline-flex">
+                <div class="col">
                   <p class="card-text"> <i class="fa-solid fa-users-between-lines fa-xl"></i> Topic Sempai/s:
                     <ul class="mx-4">
                       <% if @sempai %>
@@ -101,6 +108,8 @@
                       <% end %>
                     </ul>
                   </p>
+                </div>
+                <div class="col">
                   <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking Request/s: </p>
                   <ul>
                     <% topic.bookings.each do |booking| %>
@@ -109,32 +118,33 @@
                       <% end %>
                     <% end %>
                   </ul>
-                  <%#---------- NOTE here ---------%>
-                  <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
-                  <p>
-                    <div data-edit-note-target = "note">
-                      <%= topic.note %>
-                      <i class="fa-solid fa-pen-clip" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
-                    </div>
-                  </p>
-                  <%= render 'edit_form', topic: topic, user: current_user %>
                 </div>
-                <div class="row my-4" style="display: inline-flex;">
-                  <div class="col">
-                    <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
-                      <%= f.button :submit, 'Resolve', class: "btn btn-success" %>
-                    <% end %>
+                <%#---------- NOTE here ---------%>
+                <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
+                <p>
+                  <div data-edit-note-target = "note">
+                    <%= topic.note %>
+                    <i class="fa-solid fa-pen-clip" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
                   </div>
-                  <div class="col">
-                    <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
-                      <%= f.button :submit, 'Cancel', class: "btn btn-danger" %>
-                    <% end %>
-                  </div>
+                </p>
+                <%= render 'edit_form', topic: topic, user: current_user %>
+              </div>
+              <div class="row my-4" style="display: inline-flex;">
+                <div class="col">
+                  <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
+                    <%= f.button :submit, 'Resolve', class: "btn btn-success" %>
+                  <% end %>
                 </div>
-              <% end %> <%# end for if %>
-            </div>
+                <div class="col">
+                  <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
+                    <%= f.button :submit, 'Cancel', class: "btn btn-danger" %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %> <%# end for if %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
+</div>
