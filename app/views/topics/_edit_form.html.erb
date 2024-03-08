@@ -3,13 +3,13 @@
 <div>
   <%= simple_form_for topic,
     html: {
-      class: "d-none",
+      class: "d-none mx-3 mt-2",
       data: {edit_note_target: "form"
       }
     } do |f| %>
     <% f.input :name, label: false, value: topic.name %>
     <% f.input :description, label: false, value: topic.description %>
     <%= f.input :note, label: false, placeholder: 'Your resolution notes here...'%>
-    <%= f.button :submit, class: 'btn btn-primary', value: 'Update notes'%>
+    <%= f.button :submit, class: 'btn btn-primary mb-2', value: 'Update notes'%>
   <% end %>
 </div>

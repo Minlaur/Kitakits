@@ -138,42 +138,42 @@ users = [
     sempai: true,
     image_file: "app/assets/images/jane_sempai.jpg"
   },
-  { first_name: "Javier",
-    last_name: "Rodriguez",
-    email: "abc123@mail.com",
-    password: "secret",
-    password_confirmation: "secret",
-    language: "English",
-    nationality: "Mexico",
-    nickname: "Javo",
-  },
-  { first_name: "Mary",
-    last_name: "Smith",
-    email: "456@mail.com",
-    password: "secret",
-    password_confirmation: "secret",
-    language: "English",
-    nationality: "United Kingdom",
-    nickname: "Britgirl",
-  },
-  { first_name: "Min",
-    last_name: "Kim",
-    email: "abc456@mail.com",
-    password: "secret",
-    password_confirmation: "secret",
-    language: "English",
-    nationality: "South Korea",
-    nickname: "Gamer",
-  },
-  { first_name: "Ali",
-    last_name: "Suharto",
-    email: "789@mail.com",
-    password: "secret",
-    password_confirmation: "secret",
-    language: "English",
-    nationality: "Indonesia",
-    nickname: "Traveller",
-  },
+  # { first_name: "Javier",
+  #   last_name: "Rodriguez",
+  #   email: "abc123@mail.com",
+  #   password: "secret",
+  #   password_confirmation: "secret",
+  #   language: "English",
+  #   nationality: "Mexico",
+  #   nickname: "Javo",
+  # },
+  # { first_name: "Mary",
+  #   last_name: "Smith",
+  #   email: "456@mail.com",
+  #   password: "secret",
+  #   password_confirmation: "secret",
+  #   language: "English",
+  #   nationality: "United Kingdom",
+  #   nickname: "Britgirl",
+  # },
+  # { first_name: "Min",
+  #   last_name: "Kim",
+  #   email: "abc456@mail.com",
+  #   password: "secret",
+  #   password_confirmation: "secret",
+  #   language: "English",
+  #   nationality: "South Korea",
+  #   nickname: "Gamer",
+  # },
+  # { first_name: "Ali",
+  #   last_name: "Suharto",
+  #   email: "789@mail.com",
+  #   password: "secret",
+  #   password_confirmation: "secret",
+  #   language: "English",
+  #   nationality: "Indonesia",
+  #   nickname: "Traveller",
+  # },
   { first_name: "Annu",
     last_name: "Patel",
     email: "laur@mail.com",
@@ -183,28 +183,29 @@ users = [
     nationality: "India",
     nickname: "Laur",
   },
-  { first_name: "Ozzy",
-    last_name: "Campbell",
-    email: "xyz@mail.com",
-    password: "secret",
-    password_confirmation: "secret",
-    language: "English",
-    nationality: "Australia",
-    nickname: "Digital nomad"
-  },
-  { first_name: "Mimi",
-    last_name: "Wong",
-    email: "xyz123@mail.com",
-    password: "secret",
-    password_confirmation: "secret",
-    language: "English",
-    nationality: "Hong Kong",
-    nickname: "New to Japan",
-  },
+  # { first_name: "Ozzy",
+  #   last_name: "Campbell",
+  #   email: "xyz@mail.com",
+  #   password: "secret",
+  #   password_confirmation: "secret",
+  #   language: "English",
+  #   nationality: "Australia",
+  #   nickname: "Digital nomad"
+  # },
+  # { first_name: "Mimi",
+  #   last_name: "Wong",
+  #   email: "xyz123@mail.com",
+  #   password: "secret",
+  #   password_confirmation: "secret",
+  #   language: "English",
+  #   nationality: "Hong Kong",
+  #   nickname: "New to Japan",
+  # },
 ]
 
 users.each do |user_data|
-  file = user_data.delete(:image_file) || "app/assets/images/sample_sempai.jpg"
+  file = user_data[:image_file] || "app/assets/images/sample_sempai.jpg"
+  user_data.delete(:image_file)
   user = User.create!(user_data)
   # t = Topic.new(topics.sample)
   # t.tag_list.add(topic_tags.sample)
@@ -245,6 +246,7 @@ house_booking = housing.bookings.create!(user: jane, status: :pending, time: 2.d
 
     # to Jane's topic made by Laur
 # 2. Create messages
+marty = User.find_by_nickname("Marty")
 
 house_booking.messages.create!(user: laur, content: "Hi Jane, I wonder if I can ask about housing matters.")
 house_booking.messages.create!(user: jane, content: "Hi! sure, how can I help you? 👋", created_at: 2.days.ago + 5.minutes)
@@ -258,9 +260,9 @@ house_booking.messages.create!(user: laur, content: "Got it. Thank you so much! 
 house_booking.messages.create!(user: jane, content: "Very much welcome. I hope you can fix it soon!", created_at: 2.days.from_now + 36.minutes)
 
 
-Review.create(content: "Thank you so much for your advice, Marty. I was able to understand the key points of the requirements for my visa paper work. I was able to hand in everything on time.", rating: 5, user_id: 1)
-Review.create(content: "Marty is very kind and patient. He thoroughly understood my problem. I was able to trust his advice 100%.", rating: 5, user_id: 1)
-Review.create(content: "Appreciate your support Marty! I'll probably ask you again if I need your help!", rating: 4, user_id: 1)
+marty.reviews.create!(content: "Thank you so much for your advice, Marty. I was able to understand the key points of the requirements for my visa paper work. I was able to hand in everything on time.", rating: 5)
+marty.reviews.create!(content: "Marty is very kind and patient. He thoroughly understood my problem. I was able to trust his advice 100%.", rating: 5)
+marty.reviews.create!(content: "Appreciate your support Marty! I'll probably ask you again if I need your help!", rating: 4)
 
 # fetching api to create random users with restapi
 
