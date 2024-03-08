@@ -1,9 +1,9 @@
 class BookingsController < ApplicationController
-  before_action :set_topic, only: [:new, :create, :show]
+  before_action :set_topic, only: [:new, :create, :show, :index]
 
 # as a user I can see all bookings I made
 def index
-  @bookings = policy_scope(Booking)
+  @bookings = Booking.where(user_id: current_user)
   authorize @bookings
 end
 
@@ -81,6 +81,6 @@ def set_topic
 end
 
   def booking_params
-    params.require(:booking).permit(:status, :time, :user_id ).merge(status: "pending")
+    params.require(:booking).permit(:status, :time, :user_id, :topic_id ).merge(status: "pending")
   end
 end
