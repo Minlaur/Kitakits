@@ -1,5 +1,10 @@
-<%= link_to "My topics...",  user_topics_path(current_user.id) %>
+
+  <%= link_to user_topics_path(current_user.id), class: "m-3", style:"position: fixed;
+    font-size: 1.5rem;" do %>
+  <i class="fa-solid fa-arrow-left"></i>
+<% end %>
 <div class="container-frame d-flex">
+
   <div class="col-6 card card-conf">
     <div class="card-chat">
       <div class="chat-container card-body content ">
