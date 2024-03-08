@@ -5,7 +5,7 @@
 <div>
   <%= simple_form_for @topic do |f| %>
     <%= f.input :name, label: false, placeholder: "Eg. About Visa Renewal"%>
-    <%= f.input :description, label: false , placeholder: 'Eg. I made a mistake about my visa renewal. What should I do?'%>
+    <%= f.input :description, label: false , placeholder: 'Eg. I made a mistake about my visa renewal. What should I do?', input_html: {rows:3}  %>
     <%= f.button :submit, class: 'btn btn-primary', value: 'Reach Out'%>
   <% end %>
 </div>

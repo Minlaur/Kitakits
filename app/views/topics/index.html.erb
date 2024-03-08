@@ -9,9 +9,9 @@
         a.simple form and conditional to show if status changes then what
         b. if user booked it, hide name %>
 <%# 6. if user booked it, hide the link to user's name%>
-<div class = "container">
+<div class = "container-fluid p-5">
   <div class = "row">
-    <div class = "col-5">
+    <div class = "col-5" style="position: sticky, top: 0">
       <div class="item-3d">
         <div class="item-3d-content">
           <h4>Hi <strong><%= current_user.nickname %></strong>,<br>
@@ -26,15 +26,12 @@
         </div>
       </div>
     </div>
-    <div class = "col-1">
-    </div>
-    <div class = "card-container col-6">
+    <div class = "card-container col-7">
       <div class="page-header">
         <h2>My Topics</h2>
       </div>
       <% @sorted_topics.select{|t| t.bookings.any?}.each do |topic| %>
-      <% @sempai = topic.bookings.first.user %>
-
+        <% @sempai = topic.bookings.first.user %>
         <div class="card" data-controller="edit-note" data-edit-note-target="card">
           <div class="card-body" style=<%= "background-color:white;" if topic.pending? %>>
             <%# ----------if topic is cancelled ------------ %>
@@ -42,76 +39,30 @@
               <h5 class="card-title-muted"><%= topic.name %> - Cancelled </h5>
               <p class="card-text-muted"><%= topic.description %></p>
               <p class="card-text-muted"> Topic Sempai:
-                  <% if @sempai %>
-                    <%= @sempai.nickname %>
-                  <% end %>
-              <%# ----------if topic is resolved ------------ %>
-            <% elsif topic.resolved? %>
-              <div>
-                <h5 class="card-title"><strong><%= topic.name.capitalize %> - Resolved </strong> <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i></h5>
-                <p class="card-text"><%= topic.description %></p>
-              </div>
-              <hr>
-              <p class="card-text">  <i class="fa-solid fa-users-between-lines fa-xl"></i>  Topic Sempai/s:
-                <ul class="mx-4">
-                  <% if @sempai %>
-                    <%= link_to @sempai.nickname, sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-primary" %>
-                    <%= link_to '(Leave a Review)', sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-success" %>
-                  <% end %>
-                </ul>
-              </p>
-              <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking History: </p>
-              <% topic.bookings.each do |booking| %>
-                <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
-                  <%= f.button :submit, booking.time, class: "text-primary" %>
+                <% if @sempai %>
+                  <%= @sempai.nickname %>
                 <% end %>
-              <% end %>
-              <%#---------- NOTE here ---------%>
-              <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
-              <p>
-                <div data-edit-note-target = "note">
-                  <%= topic.note %>
-                  <i class="fa-solid fa-pen-clip" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
+                <%# ----------if topic is resolved ------------ %>
+              <% elsif topic.resolved? %>
+                <div>
+                  <h5 class="card-title"><strong><%= topic.name.capitalize %> - Resolved </strong> <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i></h5>
+                  <p class="card-text"><%= topic.description %></p>
                 </div>
-              </p>
-              <%= render 'edit_form', topic: topic %>
-                <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#<%= topic.name.gsub(/\s+/, "")%>Modal" data-toggle-target="togglableElement">
-            Leave a review!
-          </button>
-          <!-- Modal -->
-          <div class="modal fade" id="<%= topic.name.gsub(/\s+/, "") %>Modal" tabindex="-1" aria-labelledby="<%= topic.name.gsub(/\s+/, "") %>ModalLabel" aria-hidden="true" >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="<%= topic.name.gsub(/\s+/, "") %>ModalLabel">New Review</h1>
-                  <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <%= render partial: 'reviews/new', locals:{sempai: @sempai, review: @review} %>
-              </div>
-            </div>
-          </div>
-            <% else %>
-              <div>
-                <h5 class="card-title"><strong><%= topic.name.capitalize %></strong></h5>
-                <p class="card-text"><%= topic.description %></p>
-              </div>
-              <hr>
-              <div>
-                <p class="card-text"> <i class="fa-solid fa-users-between-lines fa-xl"></i> Topic Sempai/s:
+                <hr>
+                <p class="card-text">  <i class="fa-solid fa-users-between-lines fa-xl"></i>  Topic Sempai/s:
                   <ul class="mx-4">
                     <% if @sempai %>
                       <%= link_to @sempai.nickname, sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-primary" %>
+                      <%= link_to '(Leave a Review)', sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-success" %>
                     <% end %>
                   </ul>
                 </p>
-                <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking Request/s: </p>
-                <ul>
-                  <% topic.bookings.each do |booking| %>
-                    <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
-                      <%= f.button :submit, booking.time.strftime("%m/%d/%Y %I:%M %p") , class: "text-primary" %>
-                    <% end %>
+                <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking History: </p>
+                <% topic.bookings.each do |booking| %>
+                  <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
+                    <%= f.button :submit, booking.time, class: "text-primary" %>
                   <% end %>
-                </ul>
+                <% end %>
                 <%#---------- NOTE here ---------%>
                 <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
                 <p>
@@ -120,24 +71,70 @@
                     <i class="fa-solid fa-pen-clip" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
                   </div>
                 </p>
-                <%= render 'edit_form', topic: topic, user: current_user %>
-              </div>
-              <div class="row my-4" style="display: inline-flex;">
-                <div class="col">
-                  <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
-                    <%= f.button :submit, 'Resolve', class: "btn btn-success" %>
-                  <% end %>
+                <%= render 'edit_form', topic: topic %>
+                <button type="button" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#<%= topic.name.gsub(/\s+/, "")%>Modal" data-toggle-target="togglableElement">
+                  Leave a review!
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="<%= topic.name.gsub(/\s+/, "") %>Modal" tabindex="-1" aria-labelledby="<%= topic.name.gsub(/\s+/, "") %>ModalLabel" aria-hidden="true" >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="<%= topic.name.gsub(/\s+/, "") %>ModalLabel">New Review</h1>
+                        <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <%= render partial: 'reviews/new', locals:{sempai: @sempai, review: @review} %>
+                    </div>
+                  </div>
                 </div>
-                <div class="col">
-                  <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
-                    <%= f.button :submit, 'Cancel', class: "btn btn-danger" %>
-                  <% end %>
+              <% else %>
+                <div>
+                  <h5 class="card-title"><strong><%= topic.name.capitalize %></strong></h5>
+                  <p class="card-text"><%= topic.description %></p>
                 </div>
-              </div>
-            <% end %> <%# end for if %>
+                <hr>
+                <div>
+                  <p class="card-text"> <i class="fa-solid fa-users-between-lines fa-xl"></i> Topic Sempai/s:
+                    <ul class="mx-4">
+                      <% if @sempai %>
+                        <%= link_to @sempai.nickname, sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-primary" %>
+                      <% end %>
+                    </ul>
+                  </p>
+                  <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking Request/s: </p>
+                  <ul>
+                    <% topic.bookings.each do |booking| %>
+                      <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
+                        <%= f.button :submit, booking.time.strftime("%m/%d/%Y %I:%M %p") , class: "text-primary" %>
+                      <% end %>
+                    <% end %>
+                  </ul>
+                  <%#---------- NOTE here ---------%>
+                  <p> <i class="fa-solid fa-note-sticky fa-xl"></i> Notes: </p>
+                  <p>
+                    <div data-edit-note-target = "note">
+                      <%= topic.note %>
+                      <i class="fa-solid fa-pen-clip" style="color: #337CCF", data-action="click->edit-note#displayForm"></i>
+                    </div>
+                  </p>
+                  <%= render 'edit_form', topic: topic, user: current_user %>
+                </div>
+                <div class="row my-4" style="display: inline-flex;">
+                  <div class="col">
+                    <%= simple_form_for topic, url: resolved_topic_path(topic), method: :patch do |f| %>
+                      <%= f.button :submit, 'Resolve', class: "btn btn-success" %>
+                    <% end %>
+                  </div>
+                  <div class="col">
+                    <%= simple_form_for topic, url: cancelled_topic_path(topic), method: :patch do |f| %>
+                      <%= f.button :submit, 'Cancel', class: "btn btn-danger" %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %> <%# end for if %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
