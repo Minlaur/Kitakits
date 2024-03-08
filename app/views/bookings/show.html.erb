@@ -20,17 +20,19 @@
         <div class="conf-content">
           <ul class="no-bullets">
             <li>
-              <i class="fa-regular fa-circle-question fa-xl"></i>
+              <i class="fa-regular fa-circle-question fa-xl me-2"></i>
               <%= @booking.topic.name.capitalize %>
             </li>
-            <li> <i class="fa-regular fa-calendar-check fa-xl"></i> <%= @booking.time.strftime("%B-%d") %> </li>
-            <li> <i class="fa-regular fa-clock fa-xl"></i> <%= @booking.time.strftime("%H:%M") %></li>
+            <li> <i class="fa-regular fa-calendar-check fa-xl me-2"></i> <%= @booking.time.strftime("%B-%d") %> </li>
             <li>
-              <i class="fa-regular fa-calendar-plus fa-xl"></i>
+              <i class="fa-regular fa-clock fa-xl me-2"></i><%= @booking.time.strftime("%H:%M") %>
+              </li>
+            <li>
+              <i class="fa-regular fa-calendar-plus fa-xl me-2"></i>
               <%= link_to "Add to my Google Calendar", @booking.google_url %>
             </li>
             <li>
-              <i class="fa-regular fa-address-book fa-xl"></i>
+              <i class="fa-regular fa-address-book fa-xl me-2"></i>
               <%= @booking.user.nickname %>'s email - <%= @booking.user.email %>
             </li>
             <li> Learn more about your sempai:
@@ -43,7 +45,7 @@
           </ul>
           <%# <%= link_to "Goole meet link", "https://meet.google.com/?pli=1", target: "blank" %>
           <div class="item-3d-icon-booking">
-            <%= image_tag "14 Woman Phone.png", alt: "", width: "250vh" %>
+            <%= image_tag "14 Woman Phone.png", alt: "", width: "200vh" %>
           </div>
         </div>
       </div>
