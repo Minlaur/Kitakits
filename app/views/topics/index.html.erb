@@ -46,7 +46,6 @@
                     <ul class="mx-4">
                       <% if @sempai %>
                         <%= link_to @sempai.nickname, sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-primary" %>
-                        <%= link_to '(Leave a Review)', sempai_path(id: @sempai.id, topic_id: topic.id), class: "text-success" %>
                       <% end %>
                     </ul>
                   </p>
@@ -55,7 +54,7 @@
                   <p> <i class="fa-solid fa-calendar fa-xl"></i>  Booking History: </p>
                   <% topic.bookings.each do |booking| %>
                     <%= simple_form_for topic, url: topic_booking_path(id: booking.id, topic_id: topic.id), method: :get do |f| %>
-                      <%= f.button :submit, booking.time, class: "text-primary" %>
+                      <%= f.button :submit, booking.time.strftime("%m/%d/%Y %I:%M %p"), class: "text-primary" %>
                     <% end %>
                   <% end %>
                 </div>
