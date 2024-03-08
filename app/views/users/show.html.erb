@@ -4,7 +4,7 @@
         <div class="card-body1 h-80 p-4">
           <%= cl_image_tag @user.picture.key, crop: :fill %>
           <div class="row-2">
-            <h5 class="card-title fs-2"> <%= @user.nickname %></h5>
+            <h5 class="card-title-detail fs-2"> <%= @user.nickname %></h5>
             <%# if online, update bottom %>
             <div style="display: inline-flex; align-items: center; margin-left: 16px;">
               <% if @user.last_seen == nil %>
